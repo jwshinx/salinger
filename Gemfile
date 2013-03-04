@@ -13,6 +13,9 @@ gem "authlogic"
 gem 'activemerchant', :require => 'active_merchant'
 gem "cancan"
 
+gem 'execjs'
+gem 'therubyracer'
+
 group :test do
   gem 'factory_girl_rails'
   gem "rspec-rails", ">= 2.0.0"
