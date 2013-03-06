@@ -1,0 +1,19 @@
+<img id="scream" src="images/uNido_background_wBorder.jpg" alt="uNido: Under Incubation" style='display:none;'> 
+
+<!-- <canvas id="myCanvas" width="2000" height="1800" style="border:1px solid #d3d3d3;"> -->
+<canvas id="myCanvas" width="2000" height="1800">
+Your browser does not support the HTML5 canvas tag.</canvas>
+
+<script>
+
+var c=document.getElementById("myCanvas");
+var ctx=c.getContext("2d");
+var img=document.getElementById("scream");
+ctx.shadowBlur = 10;
+ctx.shadowColor = "Gray";
+ctx.drawImage(img,50,50, 1850, 1269);
+
+img.onload = function() {
+ ctx.drawImage(img,50,50, 1850, 1269);
+}
+</script>
