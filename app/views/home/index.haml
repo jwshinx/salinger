@@ -1,6 +1,23 @@
-%br
-%br
-%br
-%br
-#rafa_div{:style=>'margin-left:auto;margin-right:auto;'}
- = image_tag 'rafa.jpg'
+:css
+ body {
+  background-color:#f1f1f1;
+ }
+ #myCanvas {
+  width: 100%;
+  height: 100%;
+ }
+
+= image_tag 'uNido_background_wBorder.jpg', :id => 'scream', :alt => 'uNido: Under Incubation', :style => 'display:none;'
+%canvas{:width => 1900, :height => 1319, :id => 'myCanvas'}
+
+:javascript
+ var c=document.getElementById("myCanvas");
+ var ctx=c.getContext("2d");
+ var img=document.getElementById("scream");
+ ctx.shadowBlur = 30;
+ ctx.shadowColor = "#333";
+ ctx.drawImage(img,0,0, 1800, 1219);
+ 
+ img.onload = function() {
+  ctx.drawImage(img,50,50, 1800, 1219);
+ }
