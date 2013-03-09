@@ -40,5 +40,6 @@ production:
   database: unido_production
   pool: 5
   username: root
-  password: 
-  host: localhost
+  password: henny
+  #host: localhost
+  socket: /var/run/mysqld/mysqld.sock
