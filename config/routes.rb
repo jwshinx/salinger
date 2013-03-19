@@ -1,4 +1,5 @@
 Salinger::Application.routes.draw do
+  match 'hamlet' => 'home#hamlet', :as => :hamlet
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

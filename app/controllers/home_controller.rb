@@ -4,13 +4,7 @@ class HomeController < ActionController::Base
    render :layout => 'application'
   end
 
-  def incubating_one
-   render :layout => 'application'
-  end
-  def incubating_two 
-   render :layout => 'application'
-  end
-  def incubating_three 
+  def hamlet
    render :layout => 'application'
   end
 end
