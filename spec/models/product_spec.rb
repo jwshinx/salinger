@@ -12,19 +12,17 @@ describe Product do
   its(:price) { should == 39.99 }
   its(:price) { should_not be_blank }
  end
- describe "name = ''" do
-  it "should throw exception" do
-   expect {
-    FactoryGirl.create(:orange_argyle, :name => '') 
-   }.to raise_error(ActiveRecord::RecordInvalid, /Name is too short/)
-  end
+ describe "when name" do
+  it "is blank throws exception" do expect { FactoryGirl.create(:orange_argyle, :name => '') }.to raise_error(ActiveRecord::RecordInvalid, /Name is too short/) end
+  it "is nil throws exception" do expect { FactoryGirl.create(:orange_argyle, :name => nil) }.to raise_error(ActiveRecord::RecordInvalid, /Name can't be blank/) end
  end
- describe "name = nil" do
-  it "should throw exception" do
-   expect {
-    FactoryGirl.create(:orange_argyle, :name => nil) 
-   }.to raise_error(ActiveRecord::RecordInvalid, /Name can't be blank/)
-  end
+ describe "when description" do
+  it "is blank throws exception" do expect { FactoryGirl.create(:orange_argyle, :description => '') }.to raise_error(ActiveRecord::RecordInvalid, /Description is too short/) end
+  it "is nil throws exception" do expect { FactoryGirl.create(:orange_argyle, :description => nil) }.to raise_error(ActiveRecord::RecordInvalid, /Description can't be blank/) end
  end
-
+ describe "when price" do
+  it "is nil throws exception" do expect { FactoryGirl.create(:orange_argyle, :price => nil) }.to raise_error(ActiveRecord::RecordInvalid, /Price can't be blank/) end
+  it "is not numeric throws exception" do expect { FactoryGirl.create(:orange_argyle, :price => 'sa') }.to raise_error(ActiveRecord::RecordInvalid, /Price is not a number/) end
+  it "is not greate than zero throws exception" do expect { FactoryGirl.create(:orange_argyle, :price => 0) }.to raise_error(ActiveRecord::RecordInvalid, /Price must be greater than 0/) end
+ end
 end
