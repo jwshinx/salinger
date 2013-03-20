@@ -14,9 +14,9 @@
 ActiveRecord::Schema.define(:version => 20130319003727) do
 
   create_table "products", :force => true do |t|
-    t.string   "name"
-    t.text     "description"
-    t.decimal  "price",       :precision => 2, :scale => 0
+    t.string   "name",                                      :null => false
+    t.text     "description",                               :null => false
+    t.decimal  "price",       :precision => 5, :scale => 2, :null => false
     t.datetime "created_at",                                :null => false
     t.datetime "updated_at",                                :null => false
   end
