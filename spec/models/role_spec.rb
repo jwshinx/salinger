@@ -1,7 +1,7 @@
 require "spec_helper"
 
 describe Role do
- describe "when admin" do
+ describe "admin" do
   subject { FactoryGirl.create(:admin) }
   specify { subject.should be_valid } 
   its(:name) { should == 'admin' }
