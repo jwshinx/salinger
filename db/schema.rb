@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130321214702) do
+ActiveRecord::Schema.define(:version => 20130321224956) do
 
   create_table "products", :force => true do |t|
     t.string   "name",                                      :null => false
@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(:version => 20130321214702) do
     t.datetime "updated_at",                                :null => false
   end
 
+  add_index "products", ["id"], :name => "index_products_on_id", :unique => true
   add_index "products", ["name"], :name => "index_products_on_name"
 
   create_table "roles", :force => true do |t|
@@ -30,6 +31,22 @@ ActiveRecord::Schema.define(:version => 20130321214702) do
     t.datetime "updated_at",  :null => false
   end
 
+  add_index "roles", ["id"], :name => "index_roles_on_id", :unique => true
   add_index "roles", ["name"], :name => "index_roles_on_name"
+
+  create_table "users", :force => true do |t|
+    t.string   "username",                            :null => false
+    t.string   "email",                               :null => false
+    t.boolean  "active",            :default => true, :null => false
+    t.integer  "role_id",                             :null => false
+    t.string   "crypted_password",                    :null => false
+    t.string   "password_salt",                       :null => false
+    t.string   "persistence_token",                   :null => false
+    t.datetime "created_at",                          :null => false
+    t.datetime "updated_at",                          :null => false
+  end
+
+  add_index "users", ["id"], :name => "index_users_on_id", :unique => true
+  add_index "users", ["username"], :name => "index_users_on_username"
 
 end

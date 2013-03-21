@@ -1,0 +1,27 @@
+%p#notice= notice
+
+%p
+  %b Username:
+  = @user.username
+%p
+  %b Email:
+  = @user.email
+%p
+  %b Active:
+  = @user.active
+%p
+  %b Role:
+  = @user.role_id
+%p
+  %b Crypted password:
+  = @user.crypted_password
+%p
+  %b Password salt:
+  = @user.password_salt
+%p
+  %b Persistence token:
+  = @user.persistence_token
+
+= link_to 'Edit', edit_user_path(@user)
+\|
+= link_to 'Back', users_path
