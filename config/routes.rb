@@ -1,4 +1,7 @@
 Salinger::Application.routes.draw do
+  resources :roles
+
+
   resources :products
 
 
