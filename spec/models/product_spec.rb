@@ -1,6 +1,7 @@
 require "spec_helper"
 
 describe Product do
+ # today is 032113
  describe "when perfect" do
   subject { FactoryGirl.create(:orange_argyle) }
   specify { subject.should be_valid } 
