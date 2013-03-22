@@ -1,5 +1,6 @@
 #nav
  - if current_user
+  = "Hello, #{current_user.username}...  "
   = link_to 'Edit Profile', edit_user_path(current_user.id)
   = link_to 'Logout', :logout
  - else

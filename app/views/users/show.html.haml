@@ -1,18 +1,20 @@
 %p#notice= notice
 
 %p
-  %b Username:
-  = @user.username
+ %b Username:
+ = @user.username
 %p
-  %b Email:
-  = @user.email
+ %b Email:
+ = @user.email
 %p
-  %b Active:
-  = @user.active
+ %b Active:
+ = @user.active
 %p
-  %b Role:
-  = @user.role.name
+ %b Role:
+ = @user.role.name
 
-= link_to 'Edit', edit_user_path(@user)
-\|
-= link_to 'Back', users_path
+- if can? :edit, User, :id => @user.id
+ = link_to 'Edit', edit_user_path(@user)
+ \|
+- if can? :read, User
+ = link_to 'Back', users_path

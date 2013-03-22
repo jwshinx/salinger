@@ -5,10 +5,23 @@ class ApplicationController < ActionController::Base
   before_filter :logger_start
   #before_filter :require_login
 
+  rescue_from CanCan::AccessDenied do |exc|
+   #render :file => "#{Rails.root}/public/403.html", :status => 403, :layout => false
+   # exc.action, exc.subject
+   # exc.default_message = 'joel said this'
+   # exc.message
+   #redirect_to :login, :alert => exc.message
+   flash[:error] = exc.message
+   Rails.logger.debug "---> cancan access denied" 
+   redirect_to :login
+  end
+
   def logger_start
    logger.debug "===> #{params[:controller]}:#{params[:action]} <===================="
   end
+
 private
+
   def require_login
     unless current_user
       redirect_to login_url, :notice => "You must log in."
