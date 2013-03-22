@@ -1,14 +1,12 @@
 Salinger::Application.routes.draw do
   resources :users
-
-
+  resources :user_sessions
   resources :roles
-
-
   resources :products
 
-
   match 'hamlet' => 'home#hamlet', :as => :hamlet
+  match 'login' => 'user_sessions#new', :as => :login
+  match 'logout' => 'user_sessions#destroy', :as => :logout
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

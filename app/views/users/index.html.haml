@@ -1,14 +1,13 @@
 %h1 Listing users
 
+%p#notice= notice
+
 %table
   %tr
     %th Username
     %th Email
     %th Active
     %th Role
-    %th Crypted password
-    %th Password salt
-    %th Persistence token
     %th
     %th
     %th
@@ -18,10 +17,7 @@
       %td= user.username
       %td= user.email
       %td= user.active
-      %td= user.role_id
-      %td= user.crypted_password
-      %td= user.password_salt
-      %td= user.persistence_token
+      %td= user.role.name
       %td= link_to 'Show', user
       %td= link_to 'Edit', edit_user_path(user)
       %td= link_to 'Destroy', user, :method => :delete, :data => { :confirm => 'Are you sure?' }

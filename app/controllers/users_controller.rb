@@ -40,11 +40,14 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.json
   def create
+    role_id = Role.find_by_name('admin').id
+    params[:user][:role_id] = role_id
+    logger.debug "---> params: #{params.inspect}"
     @user = User.new(params[:user])
 
     respond_to do |format|
       if @user.save
-        format.html { redirect_to @user, notice: 'User was successfully created.' }
+        format.html { redirect_to @user, notice: 'Registration successful.' }
         format.json { render json: @user, status: :created, location: @user }
       else
         format.html { render action: "new" }
