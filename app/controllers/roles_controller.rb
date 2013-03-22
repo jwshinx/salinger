@@ -1,4 +1,5 @@
 class RolesController < ApplicationController
+  layout 'role'
   # GET /roles
   # GET /roles.json
   def index

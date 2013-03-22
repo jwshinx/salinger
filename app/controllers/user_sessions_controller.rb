@@ -1,6 +1,8 @@
 class UserSessionsController < ApplicationController
+  layout "user_session"
 
   def new
+    logger_start
     @user_session = UserSession.new
 
     respond_to do |format|

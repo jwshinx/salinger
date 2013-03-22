@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  layout 'user'
   # GET /users
   # GET /users.json
   def index

@@ -1,0 +1,6 @@
+#nav
+ - if current_user
+  = link_to 'Edit Profile', edit_user_path(current_user.id)
+  = link_to 'Logout', :logout
+ - else
+  not logged in.
