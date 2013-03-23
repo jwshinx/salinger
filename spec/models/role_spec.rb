@@ -35,10 +35,10 @@ describe Role do
   end
  end
  describe "privilege" do
+  subject { my_ability }
+  let(:my_ability) { Ability.new(@user) }
   describe "for admin" do
    before(:each) { @user = FactoryGirl.create(:admin_user) }
-   subject { my_ability }
-   let(:my_ability) { Ability.new(@user) }
    it { should be_able_to(:read, Role.new) }
    it { should be_able_to(:update, Role.new) }
    it { should be_able_to(:create, Role.new) }
@@ -46,8 +46,6 @@ describe Role do
   end
   describe "for manager" do
    before(:each) { @user = FactoryGirl.create(:manager_user) }
-   subject { my_ability }
-   let(:my_ability) { Ability.new(@user) }
    it { should be_able_to(:read, Role.new) }
    it { should_not be_able_to(:update, Role.new) }
    it { should_not be_able_to(:create, Role.new) }
@@ -55,8 +53,6 @@ describe Role do
   end
   describe "for all else" do
    before(:each) { @user = FactoryGirl.create(:member_user) }
-   subject { my_ability }
-   let(:my_ability) { Ability.new(@user) }
    it { should_not be_able_to(:read, Role.new) }
    it { should_not be_able_to(:update, Role.new) }
    it { should_not be_able_to(:create, Role.new) }
