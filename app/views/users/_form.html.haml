@@ -1,28 +1,30 @@
 = form_for @user do |f|
-  - if @user.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@user.errors.count, "error")} prohibited this user from being saved:"
-      %ul
-        - @user.errors.full_messages.each do |msg|
-          %li= msg
+ - if @user.errors.any?
+  #error_explanation
+   %h2= "#{pluralize(@user.errors.count, "error")} prohibited this user from being saved:"
+   %ul
+    - @user.errors.full_messages.each do |msg|
+     %li= msg
 
+ - if current_user.username == 'joel' 
+  /- unless is_joel?
   .field
-    = f.label :username
-    = f.text_field :username
+   = f.label :username
+   = f.text_field :username
   .field
-    = f.label :email
-    = f.text_field :email
+   = f.label :email
+   = f.text_field :email
   .field
-    = f.label :active
-    = f.check_box :active
+   = f.label :active
+   = f.check_box :active
   .field
-    = f.label :role_id
-    = f.number_field :role_id
-  .field
-    = f.label :password
-    = f.password_field :password
-  .field
-    = f.label :password_confirmation
-    = f.password_field :password_confirmation
-  .actions
-    = f.submit 'Save'
+   = f.label :role_id
+   = f.select :role_id, Role.all.collect {|r| [r.name, r.id]}
+ .field
+  = f.label :password
+  = f.password_field :password
+ .field
+  = f.label :password_confirmation
+  = f.password_field :password_confirmation
+ .actions
+  = f.submit 'Save'

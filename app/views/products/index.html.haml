@@ -5,20 +5,20 @@
   %th Name
   %th Description
   %th Price
-  %th Price
-  %th
-  %th
-  %th
+  - if can? :update, Product
+   %th
+   %th
+   %th
 
  - @products.each do |product|
   %tr
    %td= product.name
    %td= product.description
    %td= product.price
-   %td= product.price
-   %td= link_to 'Show', product
-   %td= link_to 'Edit', edit_product_path(product)
-   %td= link_to 'Destroy', product, :method => :delete, :data => { :confirm => 'Are you sure?' }
+   - if can? :update, Product
+    %td= link_to 'Show', product
+    %td= link_to 'Edit', edit_product_path(product)
+    %td= link_to 'Destroy', product, :method => :delete, :data => { :confirm => 'Are you sure?' }
 
 %br
 - if can? :create, Product

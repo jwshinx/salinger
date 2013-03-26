@@ -1,15 +1,12 @@
 %p
-  %b Name:
-  = @product.name
+ %b Name:
+ = @product.name
 %p
-  %b Description:
-  = @product.description
+ %b Description:
+ = @product.description
 %p
-  %b Price:
-  = @product.price
-%p
-  %b Price:
-  = @product.price
+ %b Price:
+ = @product.price
 
 - if can? :edit, Product
  = link_to 'Edit', edit_product_path(@product)

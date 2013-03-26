@@ -66,9 +66,9 @@ describe Product do
   describe "for manager" do
    before(:each) { @user = FactoryGirl.create(:manager_user) }
    it { should be_able_to(:read, Product.new) }
-   it { should_not be_able_to(:update, Product.new) }
+   it { should be_able_to(:update, Product.new) }
    it { should be_able_to(:create, Product.new) }
-   it { should_not be_able_to(:destroy, Product.new) }
+   it { should be_able_to(:destroy, Product.new) }
   end
   describe "for all else" do
    before(:each) { @user = FactoryGirl.create(:member_user) }

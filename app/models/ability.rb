@@ -9,7 +9,11 @@ class Ability
       can :read, :all
       can :create, :all
 
+      can :update, Product 
+      can :destroy, Product 
+
       cannot :create, Role
+      cannot :destroy, Role
 
       cannot :read, User
       can :read, User, :id => user.id
