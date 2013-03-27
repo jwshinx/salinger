@@ -1,20 +1,23 @@
-%p#notice= notice
-
-%p
- %b Username:
- = @user.username
-%p
- %b Email:
- = @user.email
-%p
- %b Active:
- = @user.active
-%p
- %b Role:
- = @user.role.name
-
-- if can? :edit, User, :id => @user.id
- = link_to 'Edit', edit_user_path(@user)
- \|
-- if can? :read, User
- = link_to 'Back', users_path
+#scan_column
+ = render 'shared/sidebar_menu'
+#content
+ %p#notice= notice
+ 
+ %p
+  %b Username:
+  = @user.username
+ %p
+  %b Email:
+  = @user.email
+ %p
+  %b Active:
+  = @user.active
+ %p
+  %b Role:
+  = @user.role.name
+ 
+ - if can? :edit, User, :id => @user.id
+  = link_to 'Edit', edit_user_path(@user)
+  \|
+ - if can? :read, User
+  = link_to 'Back', users_path

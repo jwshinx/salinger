@@ -1,14 +1,17 @@
-%p
- %b Name:
- = @product.name
-%p
- %b Description:
- = @product.description
-%p
- %b Price:
- = @product.price
-
-- if can? :edit, Product
- = link_to 'Edit', edit_product_path(@product)
- \|
-= link_to 'Back', products_path
+#scan_column
+ = render 'shared/sidebar_menu'
+#content
+ %p
+  %b Name:
+  = @product.name
+ %p
+  %b Description:
+  = @product.description
+ %p
+  %b Price:
+  = @product.price
+ 
+ - if can? :edit, Product
+  = link_to 'Edit', edit_product_path(@product)
+  \|
+ = link_to 'Back', products_path
