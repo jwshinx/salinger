@@ -11,7 +11,12 @@
   = javascript_include_tag "application" 
   = csrf_meta_tags 
  %body 
-  = render 'shared/login_nav'
-  %br
-  %br
-  = yield 
+  #wrapper
+   #masthead
+    #logo
+     uNido logo
+    = render 'shared/login_nav'
+   #content_container
+    = yield 
+
+  = render 'layouts/footer'
