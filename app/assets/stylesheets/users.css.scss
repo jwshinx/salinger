@@ -1,6 +1,14 @@
 // Place all the styles related to the users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+$skyblue: #3bbfce;
+$gray: #f1f1f1;
+$salmon: #f58869;
+$lavendar: #D1B5D7;
+$taupe: #D7CAB4;
+$red: #F80505;
+
 #wrapper {
  margin: 0 auto;
  position:relative;
@@ -8,14 +16,14 @@
  z-index:200;
 }
 #masthead {
- background-color:#D7B5B5;
+ background-color:$taupe;
  height:170px;
  width:1250px;
 }
 #logo {
  /*background-image:url(/images/_sprite_main.png); */
  /*background-repeat:none; */
- background-color:#D1B5D7;
+ background-color:$lavendar;
  background-position:0px -270px;
  cursor:pointer;
  display:inline-block;
@@ -57,28 +65,28 @@
  text-align:left;
  width:100%;
  z-index:2;
+ a {
+  text-decoration:none;
+  &:link, &:visited {
+   color:$salmon;
+  }
+  &:hover {
+   color:$red;
+   background-color:$gray;
+   text-decoration:underline;
+  }
+ }
 }
 #footer_text {
  font-size:11px;
  margin:20px auto;
  padding-left:20px;
  width:980px;
- /* padding-left:0px; position:relative; right: 25px; text-align: right; */
- /* top: 150px; white-space: nowrap; */
-}
-#footer_text strong {
- /*color:#6D8D24;*/
- color:#2F5B3F;
- margin-right:6px;
- font-weight:normal;
-}
-#footer a:link, #footer a:visited {
- color:#F58869;
- text-decoration:none;
-}
-#footer a:hover {
- background-color:#f1f1f1;
- text-decoration:underline;
+ strong {
+  color:$skyblue;
+  margin-right:6px;
+  font-weight:normal;
+ }
 }
 #footer_city {
  /*background-image:url(/images/_sprite_main.png); */
@@ -92,18 +100,20 @@
  right:5px;
  text-align:right;
  z-index:1001;
-}
-#headlinks span {
- color:#ccc;
- display:inline-block;
- margin:0 4px 0 4px;
-}
-#headlinks a:link, #headlinks a:visited {
- color:#808083;
- margin:0 1px 0 1px;
- text-decoration:none;
-}
-#headlinks a:hover {
- background-color:#F0E6AC;
- color:#000;
+ span {
+  color:#000;
+  display:inline-block;
+  margin:0 4px 0 4px;
+ }
+ a {
+  &:link, &:visited {
+   color:#808083;
+   margin:0 1px 0 1px;
+   text-decoration:none;
+  }
+  &:hover {
+   background-color:$skyblue;
+   color:#000;
+  }
+ }
 }
