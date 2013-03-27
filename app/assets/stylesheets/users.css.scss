@@ -8,6 +8,9 @@ $salmon: #f58869;
 $lavendar: #D1B5D7;
 $taupe: #D7CAB4;
 $red: #F80505;
+$violet: #270A6B;
+$yellow: #efedbf;
+$olive: #2E5A08;
 
 #wrapper {
  margin: 0 auto;
@@ -59,6 +62,72 @@ $red: #F80505;
  position:absolute;
  width:140px;
  z-index:3;
+ hr {
+  display:none;
+ }
+ div.hr {
+  border-top:dashed 1px #999;
+  display:inline-block;
+  height:1px;
+  margin:18px 0 18px 0;
+  width:162px;
+ }
+ a {
+  &:hover {
+   color:black;
+  }
+ }
+ ul {
+  padding:0;
+  margin:0 0 20px 0;
+  div.subnav_group {
+   border-bottom:5px solid #c0c0c0;
+   position:relative;
+   top:-1px;
+  }
+  li {
+   border-bottom:dashed 1px #999;
+   line-height:18px;
+   list-style-type: none;
+   padding:5px 0 5px 0;
+   width:140px;
+
+   a {
+    &:link, &:visited {
+     color:$violet;
+     font-size:14px;
+     text-decoration:none;
+    }
+    &:hover {
+     color:$yellow;
+     background-color:$gray;
+    }
+    &:active {
+     color:$olive;
+     background-color:$yellow;
+    }
+   }
+  }
+  ul {
+   li { 
+    a {
+     &:link, &:visited {
+      color:#000;
+      text-decoration:none;
+      font-size:13px;
+     }
+     &:hover {
+      color:#6D8D24;
+     }
+     &:active {
+      color:#000;
+      font-size:14px;
+      text-decoration:none;
+     }
+    }
+   }
+  }
+ }
 }
 #footer {
  line-height:20px;
