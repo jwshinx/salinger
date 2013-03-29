@@ -92,9 +92,11 @@ div {
  width:1250px;
 }
 #logo {
- /*background-image:url(/images/_sprite_main.png); */
- /*background-repeat:none; */
  background-color:$lavendar;
+ float:left;
+ width:150px;
+ height:70px;
+/*
  background-position:0px -270px;
  cursor:pointer;
  display:inline-block;
@@ -104,6 +106,7 @@ div {
  position:relative;
  top:20px;
  width:267px;
+*/
 }
 #content_container {
  background-image:url('bg_content_grad.png');
@@ -252,4 +255,13 @@ div {
    color:#000;
   }
  }
+}
+.black_background {
+ background-color:#000; 
+}
+.white_background {
+ background-color:#fff; 
+}
+.red_border {
+ border: 1px solid red;
 }

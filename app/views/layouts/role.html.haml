@@ -9,12 +9,12 @@
   = stylesheet_link_tag "application", :media => "all"
   = stylesheet_link_tag params[:controller]
   = javascript_include_tag "application" 
+  = javascript_include_tag "roles" 
   = csrf_meta_tags 
  %body 
   #wrapper
    #masthead
     #logo
-     uNido logo
     = render 'shared/login_nav'
    #content_container
     = render 'shared/notice'
