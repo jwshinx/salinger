@@ -40,7 +40,7 @@ describe Product do
   it "is nil throws exception" do 
    expect { 
     FactoryGirl.create(:orange_argyle, :price => nil) 
-   }.to raise_error(ActiveRecord::RecordInvalid, /Price can't be blank/) 
+   }.to raise_error(ActiveRecord::RecordInvalid, /Price is not a number/) 
   end
   it "is not numeric throws exception" do 
    expect { 
