@@ -2,4 +2,5 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 $(document).ready ->
- alert('roles');
+ $('#footer').bind 'click', (event) => 
+  $('#scratch_space').toggleClass('red_border');

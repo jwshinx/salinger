@@ -7,6 +7,10 @@ $red: #F80505;
 $violet: #270A6B;
 $yellow: #efedbf;
 $olive: #2E5A08;
+$threepx: 3px;
+$fivepx: 5px;
+$tenpx: 10px;
+$fifteenpx: 15px;
 
 body {
   background-color:#f1f1f1; 
@@ -88,7 +92,7 @@ div {
 }
 #masthead {
  background-color:$taupe;
- height:170px;
+ height:90px;
  width:1250px;
 }
 #logo {
@@ -121,7 +125,7 @@ div {
 #content {
  background-color:white;
  left:150px;
- min-height:700px;
+ min-height:400px;
  padding: 20px 10px 20px 20px;
  position:relative;
  width:1045px;
@@ -264,4 +268,32 @@ div {
 }
 .red_border {
  border: 1px solid red;
+}
+#scratch_space {
+ background-color:$skyblue;
+ height:150px;
+}
+.salmon_background {
+ background-color:$salmon;
+}
+.yellow_background {
+ background-color:$yellow;
+}
+.thin_height {
+ height:20px;
+}
+.end_to_end_width {
+ width:100%;
+}
+.ninety_pct_width {
+ width:90%;
+}
+.thin_margin {
+ margin:$threepx
+}
+.medium_margin {
+ margin:$tenpx
+}
+.wide_margin {
+ margin:$fifteenpx
 }

@@ -5,4 +5,4 @@ $(document).ready ->
   $('#footer').toggleClass('white_background');
   #$('#footer').hide();
  $('#masthead').bind 'click', (event) =>
-  alert('thats the masthead');
+  #alert('thats the masthead');
