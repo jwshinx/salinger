@@ -4,6 +4,8 @@ Salinger::Application.routes.draw do
   resources :roles
   resources :products
 
+  match 'payment' => 'products#new_payment', :as => :payment
+  match 'process_payment' => 'products#process_payment', :as => :process_payment
   match 'hamlet' => 'home#hamlet', :as => :hamlet
   match 'login' => 'user_sessions#new', :as => :login
   match 'logout' => 'user_sessions#destroy', :as => :logout

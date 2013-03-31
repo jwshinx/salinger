@@ -6,3 +6,4 @@ $(document).ready ->
   #$('#footer').hide();
  $('#masthead').bind 'click', (event) =>
   #alert('thats the masthead');
+

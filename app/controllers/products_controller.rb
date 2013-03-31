@@ -2,6 +2,12 @@ class ProductsController < ApplicationController
   layout "product"
   load_and_authorize_resource
 
+  def new_payment
+   render 'shared/payment/new_payment.html.haml'
+  end
+  def process_payment
+   redirect_to products_url, notice: 'Payment was successful.' 
+  end
   def index
     #@products = Product.all
 
