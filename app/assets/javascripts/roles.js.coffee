@@ -1,6 +1,15 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
-$(document).ready ->
+#Role =
+# validInfo: (name, description) ->
+
+jQuery ->
+ if ($('#new_role_form').length > 0) 
+  console.log 'i see new role form'
+ else
+  console.log 'no new role form'
+
+
  $('#footer').bind 'click', (event) => 
-  $('#scratch_space').toggleClass('red_border');
+  #$('#scratch_space').toggleClass('red_border');
+  console.log 'footer clicked'
+   
+

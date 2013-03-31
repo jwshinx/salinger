@@ -1,4 +1,4 @@
-= form_for @role do |f|
+= form_for @role, :html => {:id => 'new_role_form'} do |f|
   - if @role.errors.any?
     = render :partial => 'shared/error_explanation', :object => @role, :as => :object
 
