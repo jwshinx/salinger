@@ -1,6 +1,8 @@
 CreditCard = 
+  number_of_digits: (number) -> 
+    number.length+1
   cleanNumber: (number) -> 
-    return number.replace /[- ]/g, ""
+    number.replace /[- ]/g, ""
   validNumber: (number) -> 
     total = 0
     number = @cleanNumber(number)
@@ -14,8 +16,11 @@ CreditCard =
 
 jQuery ->
   $("#card_number").blur ->
-    if (CreditCard.validNumber(this.value))
+    card_number = this.value
+    if (CreditCard.validNumber(card_number))
       $("#credit_card_number_error").text("")
     else
-      $("#credit_card_number_error").text("Invalid credit card number.")
+      $("#credit_card_number_error").text("Invalid credit card number: " + card_number + ".")
 
+  $("#card_number").keypress ->
+    $("#credit_card_number_error").text("Number of digits: " + CreditCard.number_of_digits(this.value))
