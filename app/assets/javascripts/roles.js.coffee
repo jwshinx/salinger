@@ -2,7 +2,8 @@
 # validInfo: (name, description) ->
 
 jQuery ->
- if ($('#new_role_form').length > 0) 
+ #if isPresent($('#new_role_form'))
+ if ($('#new_role_form').length > 0)
   console.log 'i see new role form'
  else
   console.log 'no new role form'
@@ -12,4 +13,9 @@ jQuery ->
   #$('#scratch_space').toggleClass('red_border');
   console.log 'footer clicked'
    
-
+#function isPresent(element) 
+#isPresent: ->
+# if (element.length > 0) 
+#  return true
+# else
+#  return false 
