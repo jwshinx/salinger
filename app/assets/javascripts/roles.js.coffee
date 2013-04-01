@@ -12,7 +12,10 @@ jQuery ->
  $('#footer').bind 'click', (event) => 
   #$('#scratch_space').toggleClass('red_border');
   console.log 'footer clicked'
+  isPresent()
    
+isPresent = ->
+ console.log 'is present!'
 #function isPresent(element) 
 #isPresent: ->
 # if (element.length > 0) 
