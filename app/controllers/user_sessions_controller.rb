@@ -20,6 +20,7 @@ class UserSessionsController < ApplicationController
         format.xml { render :xml => @user_session, :status => :created, :location => @user_session }
       else
         format.html { render :action => "new" }
+        #format.html { render 'login' }
         format.xml { render :xml => @user_session.errors, :status => :unprocessable_entity }
       end
     end
