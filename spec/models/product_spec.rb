@@ -3,21 +3,10 @@ require 'cancan/matchers'
 
 describe Product do
  describe "red solid" do
-  before { @product = FactoryGirl.create(:red_solid) }
-  describe "fabric" do
-   it "returns one item" do @product.fabrics.length.should == 1 end 
-   it "returns red-cotton" do @product.fabrics.first.name.should == 'red cotton' end 
-  end   
-  
- end
- describe "when red solid" do
-  #subject { FactoryGirl.create(:red_solid) }
-  before { @r = FactoryGirl.create(:red_solid) }
-  it "dksdlfkj" do
-   puts "---> #{@r.inspect}"
-   puts "---> #{@r.sewings.inspect}"
-   puts "---> #{@r.fabrics.inspect}"
-  end 
+  let(:length) { FactoryGirl.create(:red_solid).fabrics.length }
+  let(:fabric_name) { FactoryGirl.create(:red_solid).fabrics.first.name }
+  it "has one fabric" do length.should == 1 end 
+  it "has fabric red-cotton" do fabric_name.should == 'red cotton' end 
  end
 
  describe "when perfect" do
