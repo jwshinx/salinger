@@ -1,0 +1,9 @@
+#scan_column
+ = render 'shared/sidebar_menu'
+#content
+ %h1 Editing fabric
+ = render 'form'
+ - if can? :read, Fabric
+  = link_to 'Show', @fabric
+  \|
+  = link_to 'Back', fabrics_path

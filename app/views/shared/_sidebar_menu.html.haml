@@ -1,5 +1,7 @@
 %h2 Actions
 %ul
+ - if can? :read, Fabric 
+  %li= link_to 'Fabric', fabrics_path
  - if can? :read, Product
   %li= link_to 'Scarves', products_path
  - if can? :read, Role 

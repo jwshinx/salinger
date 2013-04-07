@@ -1,0 +1,12 @@
+#scan_column
+ = render 'shared/sidebar_menu'
+#content
+ %p
+  %b Name:
+  = @fabric.name
+
+ - if can? :edit, Fabric
+  = link_to 'Edit', edit_fabric_path(@fabric)
+ - if can? :read, Fabric
+  \|
+  = link_to 'Back', fabrics_path

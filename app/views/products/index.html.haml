@@ -8,8 +8,9 @@
    %th Name
    %th Description
    %th Price
-   - if can? :update, Product
+   - if can? :read, Product
     %th
+   - if can? :update, Product
     %th
     %th
  
@@ -18,8 +19,9 @@
     %td= product.name
     %td= product.description
     %td= product.price
-    - if can? :update, Product
+    - if can? :read, Product
      %td= link_to 'Show', product
+    - if can? :update, Product
      %td= link_to 'Edit', edit_product_path(product)
      %td= link_to 'Destroy', product, :method => :delete, :data => { :confirm => 'Are you sure?' }
  

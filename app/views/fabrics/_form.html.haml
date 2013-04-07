@@ -1,0 +1,9 @@
+= form_for @fabric do |f|
+  - if @fabric.errors.any?
+    = render :partial => 'shared/error_explanation', :object => @fabric, :as => :object
+
+  .field
+    = f.label :name
+    = f.text_field :name
+  .actions
+    = f.submit 'Save'

@@ -3,6 +3,7 @@
 #content
  %h1 Editing product
  = render 'form'
- = link_to 'Show', @product
- \|
- = link_to 'Back', products_path
+ - if can? :read, Product
+  = link_to 'Show', @product
+  \|
+  = link_to 'Back', products_path

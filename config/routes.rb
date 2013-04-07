@@ -1,4 +1,7 @@
 Salinger::Application.routes.draw do
+  resources :fabrics
+
+
   resources :users
   resources :user_sessions
   resources :roles

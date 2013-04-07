@@ -11,6 +11,8 @@ class Ability
 
       can :update, Product 
       can :destroy, Product 
+      can :update, Fabric 
+      can :destroy, Fabric 
 
       cannot :create, Role
       cannot :destroy, Role
