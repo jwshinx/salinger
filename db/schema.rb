@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130407180006) do
+ActiveRecord::Schema.define(:version => 20130407195604) do
 
   create_table "fabrics", :force => true do |t|
     t.string   "name",       :null => false
@@ -42,6 +42,16 @@ ActiveRecord::Schema.define(:version => 20130407180006) do
 
   add_index "roles", ["id"], :name => "index_roles_on_id", :unique => true
   add_index "roles", ["name"], :name => "index_roles_on_name"
+
+  create_table "sewings", :force => true do |t|
+    t.integer  "fabric_id",  :null => false
+    t.integer  "product_id", :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "sewings", ["fabric_id"], :name => "index_sewings_on_fabric_id"
+  add_index "sewings", ["product_id"], :name => "index_sewings_on_product_id"
 
   create_table "users", :force => true do |t|
     t.string   "username",                            :null => false
