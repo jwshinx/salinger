@@ -38,6 +38,8 @@ class ProductsController < ApplicationController
 
   def edit
     #@product = Product.find(params[:id])
+    (3-@product.sewings.length).times { @product.sewings.build }
+    
   end
 
   def create
