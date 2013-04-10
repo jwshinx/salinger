@@ -28,6 +28,7 @@ class ProductsController < ApplicationController
 
   def new
     #@product = Product.new
+    3.times { @product.sewings.build }
 
     respond_to do |format|
       format.html # new.html.erb

@@ -1,15 +1,20 @@
 = form_for @product do |f|
-  - if @product.errors.any?
-    = render :partial => 'shared/error_explanation', :object => @product , :as => :object
+ - if @product.errors.any?
+  = render :partial => 'shared/error_explanation', :object => @product , :as => :object
 
+ .field
+  = f.label :name
+  = f.text_field :name
+ .field
+  = f.label :description
+  = f.text_area :description, :cols => 20, :rows => 5
+ .field
+  = f.label :price
+  = f.text_field :price
+ = f.fields_for :sewings do |builder|
   .field
-    = f.label :name
-    = f.text_field :name
-  .field
-    = f.label :description
-    = f.text_area :description
-  .field
-    = f.label :price
-    = f.text_field :price
-  .actions
-    = f.submit 'Save'
+   = builder.label :fabric
+   = builder.select :fabric_id, Fabric.order('name asc').all.collect {|r| [r.name, r.id]}, {:include_blank => true}
+  
+ .actions
+  = f.submit 'Save'

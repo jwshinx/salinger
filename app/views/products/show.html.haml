@@ -10,7 +10,9 @@
  %p
   %b Price:
   = @product.price
- 
+ %p
+  %b Fabrics:
+  = @product.sewings.collect{ |s| s.fabric.name}.flatten.join('...')
  - if can? :edit, Product
   = link_to 'Edit', edit_product_path(@product)
  - if can? :show, Product

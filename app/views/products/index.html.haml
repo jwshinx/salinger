@@ -6,8 +6,9 @@
  %table
   %tr
    %th Name
-   %th Description
    %th Price
+   %th Fabrics
+   %th Description
    - if can? :read, Product
     %th
    - if can? :update, Product
@@ -17,8 +18,10 @@
   - @products.each do |product|
    %tr
     %td= product.name
-    %td= product.description
     %td= product.price
+    - # %td= "#{product.sewings.collect{ |s| s.fabric.name}.flatten.join('<br />')}".html_safe
+    %td= product.sewings.collect{ |s| s.fabric.name}.flatten.join('...')
+    %td= product.description
     - if can? :read, Product
      %td= link_to 'Show', product
     - if can? :update, Product
