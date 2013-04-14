@@ -1,0 +1,15 @@
+#scan_column
+ = render 'shared/sidebar_menu'
+#content
+ %p
+  %b Name:
+  = "#{@customer.firstname} #{@customer.lastname}"
+ %p
+  %b Email:
+  = @customer.email
+ %p
+  %b Description:
+  = @customer.description
+ 
+ - if can? :edit, Customer
+  = link_to 'Edit', edit_customer_path(@customer)

@@ -62,6 +62,7 @@ module Salinger
     # joelshin added 032013: rails generators automatically creates factory, not fixture 
     config.generators do |g|
      g.fixture_replacement :factory_girl
+     g.test_framework :rspec
     end
   end
 end
