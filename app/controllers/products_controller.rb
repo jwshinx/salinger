@@ -46,7 +46,8 @@ class ProductsController < ApplicationController
     #@product = Product.new(params[:product])
     @product.creator = current_user
     @product.updater = current_user
-
+    @product.sewings.each { |s| s.creator = current_user }
+    @product.sewings.each { |s| s.updater = current_user }
     respond_to do |format|
       if @product.save
         format.html { redirect_to @product, notice: 'Product was successfully created.' }
@@ -61,6 +62,7 @@ class ProductsController < ApplicationController
   def update
     #@product = Product.find(params[:id])
     @product.updater = current_user
+    @product.sewings.each { |s| s.updater = current_user }
 
     respond_to do |format|
       if @product.update_attributes(params[:product])

@@ -7,6 +7,8 @@ class User < ActiveRecord::Base
  has_many :updated_products, :class_name => "Product", :foreign_key => "updated_by"
  has_many :created_fabrics, :class_name => "Fabric", :foreign_key => "created_by"
  has_many :updated_fabrics, :class_name => "Fabric", :foreign_key => "updated_by"
+ has_many :created_sewings, :class_name => "Sewing", :foreign_key => "created_by"
+ has_many :updated_sewings, :class_name => "Sewing", :foreign_key => "updated_by"
  def admin?
   !role.nil? && role.name == 'admin' ? true : false
  end
