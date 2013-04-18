@@ -35,6 +35,8 @@ class FabricsController < ApplicationController
 
   def create
     #@fabric = Fabric.new(params[:fabric])
+    @fabric.creator = current_user
+    @fabric.updater = current_user
 
     respond_to do |format|
       if @fabric.save
@@ -49,6 +51,7 @@ class FabricsController < ApplicationController
 
   def update
     #@fabric = Fabric.find(params[:id])
+    @fabric.updater = current_user
 
     respond_to do |format|
       if @fabric.update_attributes(params[:fabric])

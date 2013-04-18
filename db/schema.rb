@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130418171047) do
+ActiveRecord::Schema.define(:version => 20130418180746) do
 
   create_table "customers", :force => true do |t|
     t.string   "firstname",   :null => false
@@ -28,6 +28,8 @@ ActiveRecord::Schema.define(:version => 20130418171047) do
     t.string   "name",       :null => false
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.integer  "created_by", :null => false
+    t.integer  "updated_by", :null => false
   end
 
   add_index "fabrics", ["id"], :name => "index_fabrics_on_id", :unique => true

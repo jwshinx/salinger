@@ -5,7 +5,8 @@ class User < ActiveRecord::Base
  belongs_to :role
  has_many :created_products, :class_name => "Product", :foreign_key => "created_by"
  has_many :updated_products, :class_name => "Product", :foreign_key => "updated_by"
- #belongs_to :updater, :class_name => "User", :foreign_key => "updated_by"
+ has_many :created_fabrics, :class_name => "Fabric", :foreign_key => "created_by"
+ has_many :updated_fabrics, :class_name => "Fabric", :foreign_key => "updated_by"
  def admin?
   !role.nil? && role.name == 'admin' ? true : false
  end
