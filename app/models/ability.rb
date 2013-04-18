@@ -15,6 +15,8 @@ class Ability
       can :destroy, Fabric 
       can :update, Customer 
       can :destroy, Customer 
+      can :update, Note 
+      can :destroy, Note 
 
       cannot :create, Role
       cannot :destroy, Role
