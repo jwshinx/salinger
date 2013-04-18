@@ -35,6 +35,8 @@ class CustomersController < ApplicationController
 
   def create
     #@customer = Customer.new(params[:customer])
+    @customer.creator = current_user
+    @customer.updater = current_user
 
     respond_to do |format|
       if @customer.save
@@ -49,6 +51,7 @@ class CustomersController < ApplicationController
 
   def update
     #@customer = Customer.find(params[:id])
+    @customer.updater = current_user
 
     respond_to do |format|
       if @customer.update_attributes(params[:customer])
