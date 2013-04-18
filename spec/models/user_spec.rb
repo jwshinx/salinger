@@ -6,9 +6,9 @@ describe User do
   before { @joel = FactoryGirl.create(:admin_user) }
   subject { @joel }
   specify { @joel.should be_valid } 
-  its(:username) { should == 'joel' }
+  its(:username) { should =~ /joel/}
   its(:username) { should_not be_blank }
-  its(:email) { should == 'joel@webpass.net' }
+  its(:email) { should =~ /joel\d*@yahoo.com/}
   its(:active) { should be_true }
   describe "role" do
    subject { @joel.role }

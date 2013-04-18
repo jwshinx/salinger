@@ -6,5 +6,7 @@ FactoryGirl.define do
     lastname "Twain"
     email "mt@yahoo.com"
     description "he used to be samuel clemens"
+    association :creator, factory: :manager_user
+    association :updater, factory: :manager_user
   end
 end
