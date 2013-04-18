@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130418184441) do
+ActiveRecord::Schema.define(:version => 20130418190853) do
 
   create_table "customers", :force => true do |t|
     t.string   "firstname",   :null => false
@@ -44,6 +44,8 @@ ActiveRecord::Schema.define(:version => 20130418184441) do
     t.string   "content",      :null => false
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
+    t.integer  "created_by",   :null => false
+    t.integer  "updated_by",   :null => false
   end
 
   add_index "notes", ["id"], :name => "index_notes_on_id", :unique => true

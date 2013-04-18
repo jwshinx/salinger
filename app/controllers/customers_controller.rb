@@ -39,6 +39,15 @@ class CustomersController < ApplicationController
     #@customer = Customer.new(params[:customer])
     @customer.creator = current_user
     @customer.updater = current_user
+    @customer.fyis.each do |f| 
+     f.creator = current_user 
+     f.updater = current_user 
+    end
+    @customer.todos.each do |t| 
+     t.creator = current_user 
+     t.updater = current_user 
+    end
+
 
     respond_to do |format|
       if @customer.save
@@ -54,6 +63,7 @@ class CustomersController < ApplicationController
   def update
     #@customer = Customer.find(params[:id])
     @customer.updater = current_user
+    @customer.todos.each { |t| t.updater = current_user }
 
     respond_to do |format|
       if @customer.update_attributes(params[:customer])
