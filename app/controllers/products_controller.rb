@@ -44,6 +44,8 @@ class ProductsController < ApplicationController
 
   def create
     #@product = Product.new(params[:product])
+    @product.creator = current_user
+    @product.updater = current_user
 
     respond_to do |format|
       if @product.save
@@ -58,6 +60,7 @@ class ProductsController < ApplicationController
 
   def update
     #@product = Product.find(params[:id])
+    @product.updater = current_user
 
     respond_to do |format|
       if @product.update_attributes(params[:product])
