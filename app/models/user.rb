@@ -11,8 +11,14 @@ class User < ActiveRecord::Base
  has_many :updated_sewings, :class_name => "Sewing", :foreign_key => "updated_by"
  has_many :created_customers, :class_name => "Customer", :foreign_key => "created_by"
  has_many :updated_customers, :class_name => "Customer", :foreign_key => "updated_by"
- has_many :created_notes, :class_name => "Note", :foreign_key => "created_by"
- has_many :updated_notes, :class_name => "Note", :foreign_key => "updated_by"
+ has_many :created_fyis, 
+  :class_name => "Note", :foreign_key => "created_by", :conditions => ['type = ?', 'Fyi'] 
+ has_many :updated_fyis, 
+  :class_name => "Note", :foreign_key => "updated_by", :conditions => ['type = ?', 'Fyi']
+ has_many :created_todos, 
+  :class_name => "Note", :foreign_key => "created_by", :conditions => ['type = ?', 'Todo'] 
+ has_many :updated_todos, 
+  :class_name => "Note", :foreign_key => "updated_by", :conditions => ['type = ?', 'Todo']
  def admin?
   !role.nil? && role.name == 'admin' ? true : false
  end
