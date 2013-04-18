@@ -1,0 +1,10 @@
+= form_for @note do |f|
+ - if @note.errors.any?
+  = render :partial => 'shared/error_explanation', :object => @note, :as => :object
+
+ .field
+  = f.label :content
+  = f.text_field :content
+
+ .actions
+  = f.submit 'Save'

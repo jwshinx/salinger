@@ -22,6 +22,8 @@ class CustomersController < ApplicationController
 
   def new
     #@customer = Customer.new
+    @customer.todos.build
+    @customer.fyis.build
 
     respond_to do |format|
       format.html # new.html.erb

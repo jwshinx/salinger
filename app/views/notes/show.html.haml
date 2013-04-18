@@ -1,0 +1,9 @@
+#scan_column
+ = render 'shared/sidebar_menu'
+#content
+ %p
+  %b Content
+  = @note.content
+
+ - if can? :edit, Note
+  = link_to 'Edit', edit_note_path(@note)
