@@ -1,0 +1,2 @@
+class Fyi < Note
+end
