@@ -2,8 +2,8 @@
 
 FactoryGirl.define do
  factory :note do
-  association :creator, factory: :manager_user
-  association :updater, factory: :manager_user
+  creator
+  updater
    
   factory :customer_fyi do
    content 'remember to mark it'

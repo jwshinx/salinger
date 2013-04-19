@@ -5,7 +5,7 @@ FactoryGirl.define do
   password '1234abcd'
   password_confirmation '1234abcd'
 
-  factory :manager_user do
+  factory :manager_user, aliases: [:creator, :updater] do
    association :role, factory: :manager
   end
   factory :admin_user do
