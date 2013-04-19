@@ -4,7 +4,7 @@ FactoryGirl.define do
   creator
   updater
  end
- factory :red_cotton, class: Fabric do 
+ factory :red_cotton, class: Fabric, aliases: [:fabric] do 
   name 'red cotton' 
   creator
   updater

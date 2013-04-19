@@ -8,13 +8,13 @@ FactoryGirl.define do
   factory :customer_fyi do
    content 'remember to mark it'
    type 'Fyi'
-   association :notable, factory: :customer
+   notable # association :notable, factory: :customer
   end
 
   factory :customer_todo do
    content 'send him bill'
    type 'Todo'
-   association :notable, factory: :customer
+   notable # association :notable, factory: :customer
   end
 
  end
