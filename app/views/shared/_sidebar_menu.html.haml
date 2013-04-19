@@ -1,11 +1,13 @@
 %h2 Actions
 %ul
  - if can? :read, Customer 
-  %li= link_to 'Customer', customers_path
+  %li= link_to 'Customers', customers_path
  - if can? :read, Fabric 
-  %li= link_to 'Fabric', fabrics_path
+  %li= link_to 'Fabrics', fabrics_path
  - if can? :read, Product
-  %li= link_to 'Scarves', products_path
+  %li= link_to 'Products', products_path
+ - if can? :read, Note 
+  %li= link_to 'Notes', notes_path
  - if can? :read, Role 
   %li= link_to 'Roles', roles_path
  - if can? :read, User 

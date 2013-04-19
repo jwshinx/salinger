@@ -34,7 +34,6 @@ class NotesController < ApplicationController
   end
 
   def create
-    #@note = Note.new(params[:note])
     @note.creator = current_user
     @note.updater = current_user
 
@@ -52,10 +51,12 @@ class NotesController < ApplicationController
   def update
     #@note = Note.find(params[:id])
     @note.updater = current_user
+    hash = (params[:fyi].nil?) ? params[:todo] : params[:fyi]
 
     respond_to do |format|
-      if @note.update_attributes(params[:note])
-        format.html { redirect_to @note, notice: 'Note was successfully updated.' }
+      #if @note.update_attributes(params[:note])
+      if @note.update_attributes(hash)
+        format.html { redirect_to note_url(@note), notice: 'Note was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

@@ -1,4 +1,5 @@
-= form_for @note do |f|
+- # = form_for @note do |f|
+= form_for(@note, :url => note_path(@note)) do |f|
  - if @note.errors.any?
   = render :partial => 'shared/error_explanation', :object => @note, :as => :object
 

@@ -50,6 +50,10 @@ class ProductsController < ApplicationController
     @product.updater = current_user
     @product.sewings.each { |s| s.creator = current_user }
     @product.sewings.each { |s| s.updater = current_user }
+    @product.fyis.each { |f| f.creator = current_user }
+    @product.fyis.each { |f| f.updater = current_user }
+    @product.todos.each { |t| t.creator = current_user }
+    @product.todos.each { |t| t.updater = current_user }
     respond_to do |format|
       if @product.save
         format.html { redirect_to @product, notice: 'Product was successfully created.' }

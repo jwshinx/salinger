@@ -4,6 +4,12 @@
  %p
   %b Content
   = @note.content
+ %p
+  %b Type 
+  = @note.notable_type
+ %p
+  %b Info 
+  = @note.owner.inspect
 
  - if can? :edit, Note
   = link_to 'Edit', edit_note_path(@note)
