@@ -17,6 +17,10 @@ class Ability
       can :destroy, Customer 
       can :update, Note 
       can :destroy, Note 
+      can :update, Farm 
+      can :destroy, Farm 
+      can :update, Address 
+      can :destroy, Address 
 
       cannot :create, Role
       cannot :destroy, Role

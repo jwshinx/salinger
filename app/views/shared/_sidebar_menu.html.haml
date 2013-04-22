@@ -8,11 +8,11 @@
   %li= link_to 'Products', products_path
  - if can? :read, Note 
   %li= link_to 'Notes', notes_path
+%h2 Joel Only 
+%ul
  - if can? :read, Role 
   %li= link_to 'Roles', roles_path
  - if can? :read, User 
   %li= link_to 'Users', users_path
-%h2 Fun 
-%ul
  - if can? :create, Product
   %li= link_to 'Payment', :payment 

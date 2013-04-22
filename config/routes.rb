@@ -1,4 +1,6 @@
 Salinger::Application.routes.draw do
+  resources :addresses
+  resources :farms
   resources :notes
   resources :customers
   resources :fabrics

@@ -92,12 +92,14 @@ div {
  z-index:200;
 }
 #masthead {
- background-color:$taupe;
+ /*background-color:$taupe; */
+ background-color:$gray; 
  height:90px;
  width:1250px;
 }
 #logo {
- background-color:$lavendar;
+ /*background-color:$lavendar; */
+ background-color:$gray; 
  float:left;
  width:150px;
  height:70px;

@@ -11,7 +11,22 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130418190853) do
+ActiveRecord::Schema.define(:version => 20130422180235) do
+
+  create_table "addresses", :force => true do |t|
+    t.string   "street",     :null => false
+    t.string   "suite"
+    t.string   "city",       :null => false
+    t.string   "state",      :null => false
+    t.string   "zip",        :null => false
+    t.integer  "updated_by", :null => false
+    t.integer  "created_by", :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "addresses", ["id"], :name => "index_addresses_on_id", :unique => true
+  add_index "addresses", ["street"], :name => "index_addresses_on_street"
 
   create_table "customers", :force => true do |t|
     t.string   "firstname",   :null => false
@@ -36,6 +51,20 @@ ActiveRecord::Schema.define(:version => 20130418190853) do
 
   add_index "fabrics", ["id"], :name => "index_fabrics_on_id", :unique => true
   add_index "fabrics", ["name"], :name => "index_fabrics_on_name"
+
+  create_table "farms", :force => true do |t|
+    t.string   "name",       :null => false
+    t.integer  "address_id", :null => false
+    t.integer  "created_by", :null => false
+    t.integer  "updated_by", :null => false
+    t.string   "contact"
+    t.string   "phone"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "farms", ["id"], :name => "index_farms_on_id", :unique => true
+  add_index "farms", ["name"], :name => "index_farms_on_name"
 
   create_table "notes", :force => true do |t|
     t.string   "notable_type", :null => false
