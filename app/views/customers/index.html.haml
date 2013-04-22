@@ -9,9 +9,15 @@
    %th Lastname
    %th Email
    %th Description
-   %th
-   %th
-   %th
+   - if can? :read, Customer
+    %th
+   - if can? :update, Customer
+    %th
+   - if can? :destroy, Customer
+    %th
+   - if can? :create, Note 
+    %th
+    %th
  
   - @customers.each do |customer|
    %tr
@@ -19,9 +25,15 @@
     %td= customer.lastname
     %td= customer.email
     %td= customer.description
-    %td= link_to 'Show', customer
-    %td= link_to 'Edit', edit_customer_path(customer)
-    %td= link_to 'Destroy', customer, :method => :delete, :data => { :confirm => 'Are you sure?' }
+    - if can? :read, Customer
+     %td= link_to 'Show', customer
+    - if can? :update, Customer
+     %td= link_to 'Edit', edit_customer_path(customer)
+    - if can? :destroy, Customer
+     %td= link_to 'Destroy', customer, :method => :delete, :data => { :confirm => 'Are you sure?' }
+    - if can? :create, Customer 
+     %td= link_to 'Fyi', new_note_path
+     %td= link_to 'Todo', new_note_path
  
  %br
  - if can? :create, Customer 

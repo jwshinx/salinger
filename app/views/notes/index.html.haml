@@ -27,6 +27,6 @@
     - if can? :destroy, Note
      %td= link_to 'Destroy', note_path(note), :method => :delete, :data => { :confirm => 'Are you sure?' }
  
-%br
-- if can? :create, Note 
- = link_to 'New Note', new_note_path
+ %br
+ - if can? :create, Note 
+  = link_to 'New Note', new_note_path

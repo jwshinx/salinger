@@ -1,13 +1,7 @@
 Salinger::Application.routes.draw do
   resources :notes
-
-
   resources :customers
-
-
   resources :fabrics
-
-
   resources :users
   resources :user_sessions
   resources :roles
