@@ -1,5 +1,8 @@
-%h1 New farm
+#scan_column
+ = render 'shared/sidebar_menu'
+#content
+ %h1 New farm 
+ = render 'form'
+ - if can? :read, Farm 
+  = link_to 'Back', farms_path
 
-= render 'form'
-
-= link_to 'Back', farms_path

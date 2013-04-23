@@ -1,15 +1,21 @@
-%p#notice= notice
-
-%p
-  %b Name:
-  = @farm.name
-%p
-  %b Address:
-  = @farm.address
-%p
-  %b Contact:
-  = @farm.contact
-
-= link_to 'Edit', edit_farm_path(@farm)
-\|
-= link_to 'Back', farms_path
+#scan_column
+ = render 'shared/sidebar_menu'
+#content
+ %p
+   %b Name:
+   = @farm.name
+ %p
+   %b Address:
+   = @farm.address.inspect
+ %p
+   %b Contact:
+   = @farm.contact
+ %p
+   %b Phone:
+   = @farm.phone
+ 
+ - if can? :edit, Farm 
+  = link_to 'Edit', edit_farm_path(@farm)
+ - if can? :show, Farm 
+  \|
+  = link_to 'Back', farms_path

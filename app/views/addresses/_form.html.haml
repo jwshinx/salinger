@@ -1,31 +1,22 @@
 = form_for @address do |f|
-  - if @address.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@address.errors.count, "error")} prohibited this address from being saved:"
-      %ul
-        - @address.errors.full_messages.each do |msg|
-          %li= msg
+ - if @address.errors.any?
+  = render :partial => 'shared/error_explanation', :object => @address , :as => :object
 
-  .field
-    = f.label :street
-    = f.text_field :street
-  .field
-    = f.label :suite
-    = f.text_field :suite
-  .field
-    = f.label :city
-    = f.text_field :city
-  .field
-    = f.label :state
-    = f.text_field :state
-  .field
-    = f.label :zip
-    = f.text_field :zip
-  .field
-    = f.label :updated_by
-    = f.number_field :updated_by
-  .field
-    = f.label :created_by
-    = f.number_field :created_by
-  .actions
-    = f.submit 'Save'
+
+ .field
+  = f.label :street
+  = f.text_field :street
+ .field
+  = f.label :suite
+  = f.text_field :suite
+ .field
+  = f.label :city
+  = f.text_field :city
+ .field
+  = f.label :state
+  = f.text_field :state
+ .field
+  = f.label :zip
+  = f.text_field :zip
+ .actions
+  = f.submit 'Save'

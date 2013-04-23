@@ -1,6 +1,9 @@
 class FarmsController < ApplicationController
+  layout "farm"
+  load_and_authorize_resource
+
   def index
-    @farms = Farm.all
+    #@farms = Farm.all
 
     respond_to do |format|
       format.html # index.html.erb
@@ -9,7 +12,7 @@ class FarmsController < ApplicationController
   end
 
   def show
-    @farm = Farm.find(params[:id])
+    #@farm = Farm.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -18,7 +21,7 @@ class FarmsController < ApplicationController
   end
 
   def new
-    @farm = Farm.new
+    #@farm = Farm.new
 
     respond_to do |format|
       format.html # new.html.erb
@@ -27,11 +30,11 @@ class FarmsController < ApplicationController
   end
 
   def edit
-    @farm = Farm.find(params[:id])
+    #@farm = Farm.find(params[:id])
   end
 
   def create
-    @farm = Farm.new(params[:farm])
+    #@farm = Farm.new(params[:farm])
 
     respond_to do |format|
       if @farm.save
@@ -45,7 +48,7 @@ class FarmsController < ApplicationController
   end
 
   def update
-    @farm = Farm.find(params[:id])
+    #@farm = Farm.find(params[:id])
 
     respond_to do |format|
       if @farm.update_attributes(params[:farm])
@@ -59,7 +62,7 @@ class FarmsController < ApplicationController
   end
 
   def destroy
-    @farm = Farm.find(params[:id])
+    #@farm = Farm.find(params[:id])
     @farm.destroy
 
     respond_to do |format|

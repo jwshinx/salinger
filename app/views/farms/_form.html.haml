@@ -1,19 +1,21 @@
 = form_for @farm do |f|
-  - if @farm.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@farm.errors.count, "error")} prohibited this farm from being saved:"
-      %ul
-        - @farm.errors.full_messages.each do |msg|
-          %li= msg
+ - if @farm.errors.any?
+  = render :partial => 'shared/error_explanation', :object => @farm, :as => :object
 
+ .field
+  = f.label :name
+  = f.text_field :name
+ = f.fields_for :address do |builder|
   .field
-    = f.label :name
-    = f.text_field :name
-  .field
-    = f.label :address
-    = f.number_field :address
-  .field
-    = f.label :contact
-    = f.text_field :contact
-  .actions
-    = f.submit 'Save'
+   = builder.label :address
+   = builder.select :address_id, Address.order('street asc').all.collect { |a| [a.street, a.id]}, {:include_blank => true }
+   = builder.check_box :_destroy
+   = builder.label :_destroy, "Remove"
+ .field
+  = f.label :contact
+  = f.text_field :contact
+ .field
+  = f.label :phone
+  = f.text_field :phone
+ .actions
+  = f.submit 'Save'

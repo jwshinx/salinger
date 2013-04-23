@@ -1,0 +1,23 @@
+!!!
+%html
+ %head
+  %title
+   uNido Scarves 
+   \|  
+   = "#{params[:controller].capitalize}"
+  = favicon_link_tag 'favicon.ico'
+  = stylesheet_link_tag "application", :media => "all"
+  = stylesheet_link_tag params[:controller]
+  = javascript_include_tag "application" 
+  = javascript_include_tag "farms" 
+  = csrf_meta_tags 
+ %body 
+  #wrapper
+   #masthead
+    #logo
+    = render 'shared/login_nav'
+   #content_container
+    = render 'shared/notice'
+    = yield
+
+  = render 'layouts/footer'

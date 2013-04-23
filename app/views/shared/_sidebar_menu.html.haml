@@ -8,6 +8,10 @@
   %li= link_to 'Products', products_path
  - if can? :read, Note 
   %li= link_to 'Notes', notes_path
+ - if can? :read, Farm 
+  %li= link_to 'Farms', farms_path
+ - if can? :read, Address 
+  %li= link_to 'Addresses', addresses_path
 %h2 Joel Only 
 %ul
  - if can? :read, Role 

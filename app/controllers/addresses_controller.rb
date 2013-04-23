@@ -1,8 +1,9 @@
 class AddressesController < ApplicationController
-  # GET /addresses
-  # GET /addresses.json
+  layout "address"
+  load_and_authorize_resource
+
   def index
-    @addresses = Address.all
+    #@addresses = Address.all
 
     respond_to do |format|
       format.html # index.html.erb
@@ -10,10 +11,8 @@ class AddressesController < ApplicationController
     end
   end
 
-  # GET /addresses/1
-  # GET /addresses/1.json
   def show
-    @address = Address.find(params[:id])
+    #@address = Address.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -21,10 +20,8 @@ class AddressesController < ApplicationController
     end
   end
 
-  # GET /addresses/new
-  # GET /addresses/new.json
   def new
-    @address = Address.new
+    #@address = Address.new
 
     respond_to do |format|
       format.html # new.html.erb
@@ -32,15 +29,14 @@ class AddressesController < ApplicationController
     end
   end
 
-  # GET /addresses/1/edit
   def edit
-    @address = Address.find(params[:id])
+    #@address = Address.find(params[:id])
   end
 
-  # POST /addresses
-  # POST /addresses.json
   def create
-    @address = Address.new(params[:address])
+    #@address = Address.new(params[:address])
+    @address.creator = current_user
+    @address.updater = current_user
 
     respond_to do |format|
       if @address.save
@@ -53,10 +49,9 @@ class AddressesController < ApplicationController
     end
   end
 
-  # PUT /addresses/1
-  # PUT /addresses/1.json
   def update
-    @address = Address.find(params[:id])
+    #@address = Address.find(params[:id])
+    @address.updater = current_user
 
     respond_to do |format|
       if @address.update_attributes(params[:address])
@@ -69,10 +64,8 @@ class AddressesController < ApplicationController
     end
   end
 
-  # DELETE /addresses/1
-  # DELETE /addresses/1.json
   def destroy
-    @address = Address.find(params[:id])
+    #@address = Address.find(params[:id])
     @address.destroy
 
     respond_to do |format|
