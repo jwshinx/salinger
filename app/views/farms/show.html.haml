@@ -2,18 +2,19 @@
  = render 'shared/sidebar_menu'
 #content
  %p
-   %b Name:
-   = @farm.name
+  %b Name:
+  = @farm.name
  %p
-   %b Address:
-   = @farm.address.inspect
+  %b Address:
+  = "#{@farm.address.street} #{@farm.address.suite} #{@farm.address.city}"
  %p
-   %b Contact:
-   = @farm.contact
+  %b Contact:
+  = @farm.contact
  %p
-   %b Phone:
-   = @farm.phone
+  %b Phone:
+  = @farm.phone
  
+ %br
  - if can? :edit, Farm 
   = link_to 'Edit', edit_farm_path(@farm)
  - if can? :show, Farm 

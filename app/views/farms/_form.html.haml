@@ -5,12 +5,15 @@
  .field
   = f.label :name
   = f.text_field :name
- = f.fields_for :address do |builder|
-  .field
-   = builder.label :address
-   = builder.select :address_id, Address.order('street asc').all.collect { |a| [a.street, a.id]}, {:include_blank => true }
-   = builder.check_box :_destroy
-   = builder.label :_destroy, "Remove"
+ .field
+  = f.label :address_id
+  = f.select :address_id, Address.order('street asc').all.collect { |a| [a.street, a.id]}, {:include_blank => true }
+ - # = f.fields_for :address do |builder|
+ - #  .field
+ - #   = builder.label :address
+ - #  = builder.select :address_id, Address.order('street asc').all.collect { |a| [a.street, a.id]}, {:include_blank => true }
+ - #  = builder.check_box :_destroy
+ - #   = builder.label :_destroy, "Remove"
  .field
   = f.label :contact
   = f.text_field :contact

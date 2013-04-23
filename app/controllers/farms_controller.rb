@@ -34,7 +34,8 @@ class FarmsController < ApplicationController
   end
 
   def create
-    #@farm = Farm.new(params[:farm])
+    @farm.creator = current_user
+    @farm.updater = current_user
 
     respond_to do |format|
       if @farm.save
@@ -49,6 +50,7 @@ class FarmsController < ApplicationController
 
   def update
     #@farm = Farm.find(params[:id])
+    @farm.updater = current_user
 
     respond_to do |format|
       if @farm.update_attributes(params[:farm])
