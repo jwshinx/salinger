@@ -12,6 +12,7 @@ gem 'will_paginate', "~> 3.0.pre2"
 gem "authlogic"
 gem 'activemerchant', :require => 'active_merchant'
 gem "cancan"
+gem "jquery-validation-rails"
 
 gem 'execjs'
 gem 'therubyracer'

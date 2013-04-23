@@ -1,11 +1,12 @@
-= form_for @address do |f|
+= form_for @address, :html => {:id => 'address_form'} do |f|
  - if @address.errors.any?
   = render :partial => 'shared/error_explanation', :object => @address , :as => :object
 
 
  .field
   = f.label :street
-  = f.text_field :street
+  = f.text_field :street, :class => 'required'
+  #street_note{:style=>'display:none;'} xxxxx
  .field
   = f.label :suite
   = f.text_field :suite
