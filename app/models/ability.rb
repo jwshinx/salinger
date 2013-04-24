@@ -19,6 +19,8 @@ class Ability
       can :destroy, Note 
       can :update, Farm 
       can :destroy, Farm 
+      can :update, Retailer 
+      can :destroy, Retailer 
       can :update, Address 
       can :destroy, Address 
 

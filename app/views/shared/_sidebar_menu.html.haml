@@ -8,6 +8,8 @@
   %li= link_to 'Products', products_path
  - if can? :read, Note 
   %li= link_to 'Notes', notes_path
+ - if can? :read, Retailer 
+  %li= link_to 'Retailers', retailers_path
  - if can? :read, Farm 
   %li= link_to 'Farms', farms_path
  - if can? :read, Address 

@@ -1,0 +1,34 @@
+#scan_column
+ = render 'shared/sidebar_menu'
+#content
+ %h1 Listing retailers
+ 
+ %table
+  %tr
+   %th Name
+   %th Address
+   %th Phone
+   %th Contact
+   - if can? :read, Retailer
+    %th
+   - if can? :update, Retailer
+    %th
+   - if can? :destroy, Retailer
+    %th
+ 
+  - @retailers.each do |retailer|
+   %tr
+    %td= retailer.name
+    %td= "#{retailer.address.street} #{retailer.address.suite} #{retailer.address.city}"
+    %td= retailer.phone
+    %td= retailer.contact
+    - if can? :read, Retailer
+     %td= link_to 'Show', retailer
+    - if can? :update, Retailer
+     %td= link_to 'Edit', edit_retailer_path(retailer)
+    - if can? :destroy, Retailer
+     %td= link_to 'Destroy', retailer, :method => :delete, :data => { :confirm => 'Are you sure?' }
+ 
+ %br
+  - if can? :create, Retailer
+   = link_to 'New Retailer', new_retailer_path

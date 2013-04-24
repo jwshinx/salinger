@@ -1,0 +1,23 @@
+#scan_column
+ = render 'shared/sidebar_menu'
+#content
+
+ %p
+  %b Name:
+  = @retailer.name
+ %p
+  %b Address:
+  = "#{@retailer.address.street} #{@retailer.address.suite} #{@retailer.address.city}"
+ %p
+  %b Contact:
+  = @retailer.contact
+ %p
+  %b Phone:
+  = @retailer.phone
+
+ %br 
+ - if can? :edit, Retailer 
+  = link_to 'Edit', edit_retailer_path(@retailer)
+ - if can? :show, Retailer 
+  \|
+  = link_to 'Back', retailers_path

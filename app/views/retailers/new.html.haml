@@ -1,0 +1,7 @@
+#scan_column
+ = render 'shared/sidebar_menu'
+#content
+ %h1 New retailer
+ = render 'form'
+ - if can? :read, Retailer
+  = link_to 'Back', retailers_path

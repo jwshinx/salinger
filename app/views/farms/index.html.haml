@@ -10,8 +10,9 @@
    %th Contact
    - if can? :read, Farm
     %th
-   - if can? :read, Farm
+   - if can? :update, Farm
     %th
+   - if can? :destroy, Farm
     %th
 
   - @farms.each do |farm|
