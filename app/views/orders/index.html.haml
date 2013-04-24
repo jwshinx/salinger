@@ -1,0 +1,40 @@
+#scan_column
+ = render 'shared/sidebar_menu'
+#content
+ %h1 Listing orders
+ 
+ %table
+  %tr
+   %th Purchase date
+   %th Paid date
+   %th Customer
+   %th Purchase amount
+   %th Paid amount
+   %th Updated by
+   %th Created by
+   %th Ispaid
+   - if can? :read, Order 
+    %th
+   - if can? :update, Order 
+    %th
+   - if can? :destroy, Order 
+    %th
+ 
+   - @orders.each do |order|
+    %tr
+     %td= order.purchase_date
+     %td= order.paid_date
+     %td= order.customer_id
+     %td= order.purchase_amount
+     %td= order.paid_amount
+     %td= order.ispaid
+     - if can? :read, Order 
+      %td= link_to 'Show', order
+     - if can? :update, Order 
+      %td= link_to 'Edit', edit_order_path(order)
+     - if can? :destroy, Order 
+      %td= link_to 'Destroy', order, :method => :delete, :data => { :confirm => 'Are you sure?' }
+ 
+ %br
+ - if can? :create, Order 
+  = link_to 'New Order', new_order_path

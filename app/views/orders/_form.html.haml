@@ -1,0 +1,24 @@
+= form_for @order do |f|
+  - if @order.errors.any?
+    = render :partial => 'shared/error_explanation', :object => @order , :as => :object
+
+  .field
+    = f.label :purchase_date
+    = f.date_select :purchase_date
+  .field
+    = f.label :paid_date
+    = f.date_select :paid_date
+  - #.field
+  - #   = f.label :customer_id
+  - #   = f.select :customer_id, Role.all.collect {|r| [r.name, r.id]}
+  .field
+    = f.label :purchase_amount
+    = f.text_field :purchase_amount
+  .field
+    = f.label :paid_amount
+    = f.text_field :paid_amount
+  .field
+    = f.label :ispaid
+    = f.check_box :ispaid
+  .actions
+    = f.submit 'Save'

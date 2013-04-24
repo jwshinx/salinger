@@ -1,4 +1,10 @@
 Salinger::Application.routes.draw do
+  resources :order_line_items
+
+
+  resources :orders
+
+
   resources :retailers
 
 

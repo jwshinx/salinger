@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130423235357) do
+ActiveRecord::Schema.define(:version => 20130424182838) do
 
   create_table "addresses", :force => true do |t|
     t.string   "street",     :null => false
@@ -78,6 +78,33 @@ ActiveRecord::Schema.define(:version => 20130423235357) do
   end
 
   add_index "notes", ["id"], :name => "index_notes_on_id", :unique => true
+
+  create_table "order_line_items", :force => true do |t|
+    t.date     "date",                      :null => false
+    t.integer  "quantity",   :default => 1, :null => false
+    t.integer  "price",                     :null => false
+    t.integer  "subtotal",                  :null => false
+    t.integer  "order_id",                  :null => false
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
+  end
+
+  add_index "order_line_items", ["id"], :name => "index_order_line_items_on_id", :unique => true
+
+  create_table "orders", :force => true do |t|
+    t.date     "purchase_date",                      :null => false
+    t.date     "paid_date"
+    t.integer  "customer_id",                        :null => false
+    t.integer  "purchase_amount",                    :null => false
+    t.integer  "paid_amount",     :default => 0,     :null => false
+    t.integer  "updated_by",                         :null => false
+    t.integer  "created_by",                         :null => false
+    t.boolean  "ispaid",          :default => false, :null => false
+    t.datetime "created_at",                         :null => false
+    t.datetime "updated_at",                         :null => false
+  end
+
+  add_index "orders", ["id"], :name => "index_orders_on_id", :unique => true
 
   create_table "products", :force => true do |t|
     t.string   "name",                                      :null => false

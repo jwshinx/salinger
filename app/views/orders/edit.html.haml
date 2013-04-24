@@ -1,0 +1,9 @@
+#scan_column
+ = render 'shared/sidebar_menu'
+#content
+ %h1 Editing order
+ = render 'form'
+ - if can? :read, Order 
+  = link_to 'Show', @order
+  \|
+  = link_to 'Back', orders_path

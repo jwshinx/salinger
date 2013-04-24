@@ -1,0 +1,26 @@
+#scan_column
+ = render 'shared/sidebar_menu'
+#content
+ %p
+  %b Purchase date:
+  = @order.purchase_date
+ %p
+  %b Paid date:
+  = @order.paid_date
+ %p
+  %b Customer:
+  = @order.customer_id
+ %p
+  %b Purchase amount:
+  = @order.purchase_amount
+ %p
+  %b Paid amount:
+  = @order.paid_amount
+ %p
+  %b Ispaid:
+  = @order.ispaid
+ - if can? :edit, Order 
+  = link_to 'Edit', edit_order_path(@order)
+ - if can? :read, Order 
+  \|
+  = link_to 'Back', orders_path

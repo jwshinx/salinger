@@ -1,0 +1,21 @@
+%p#notice= notice
+
+%p
+  %b Date:
+  = @order_line_item.date
+%p
+  %b Quantity:
+  = @order_line_item.quantity
+%p
+  %b Price:
+  = @order_line_item.price
+%p
+  %b Subtotal:
+  = @order_line_item.subtotal
+%p
+  %b Order:
+  = @order_line_item.order_id
+
+= link_to 'Edit', edit_order_line_item_path(@order_line_item)
+\|
+= link_to 'Back', order_line_items_path

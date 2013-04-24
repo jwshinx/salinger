@@ -6,6 +6,8 @@
   %li= link_to 'Fabrics', fabrics_path
  - if can? :read, Product
   %li= link_to 'Products', products_path
+ - if can? :read, Order 
+  %li= link_to 'Orders', orders_path
  - if can? :read, Note 
   %li= link_to 'Notes', notes_path
  - if can? :read, Retailer 
