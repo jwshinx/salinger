@@ -109,13 +109,13 @@ ActiveRecord::Schema.define(:version => 20130424182838) do
   add_index "orders", ["id"], :name => "index_orders_on_id", :unique => true
 
   create_table "products", :force => true do |t|
-    t.string   "name",                                      :null => false
-    t.text     "description",                               :null => false
-    t.decimal  "price",       :precision => 5, :scale => 2, :null => false
-    t.datetime "created_at",                                :null => false
-    t.datetime "updated_at",                                :null => false
-    t.integer  "created_by",                                :null => false
-    t.integer  "updated_by",                                :null => false
+    t.string   "name",        :null => false
+    t.text     "description", :null => false
+    t.integer  "price",       :null => false
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+    t.integer  "created_by",  :null => false
+    t.integer  "updated_by",  :null => false
   end
 
   add_index "products", ["id"], :name => "index_products_on_id", :unique => true

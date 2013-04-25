@@ -16,7 +16,7 @@ describe Product do
   its(:name) { should_not be_blank }
   its(:description) { should == 'orange color with yellow, white print' }
   its(:description) { should_not be_blank }
-  its(:price) { should == 39.99 }
+  its(:price) { should == 1999 }
   its(:price) { should_not be_blank }
  end
  describe "when name" do
