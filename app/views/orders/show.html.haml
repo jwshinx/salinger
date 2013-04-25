@@ -3,19 +3,19 @@
 #content
  %p
   %b Purchase date:
-  = @order.purchase_date
+  = mmddyy_date( @order.purchase_date )
  %p
   %b Paid date:
-  = @order.paid_date
+  = mmddyy_date( @order.paid_date )
  %p
   %b Customer:
   = @order.customer.fullname
  %p
   %b Purchase amount:
-  = @order.purchase_amount
+  = number_to_currency(cents_to_dollars(@order.purchase_amount), :precision => 2)
  %p
   %b Paid amount:
-  = @order.paid_amount
+  = number_to_currency(cents_to_dollars(@order.paid_amount), :precision => 2)
  %p
   %b Ispaid:
   = @order.ispaid

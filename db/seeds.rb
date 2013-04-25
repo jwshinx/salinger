@@ -86,13 +86,13 @@ def delete_all_products
 end
 def create_all_products
  delete_all_products
- @p1 = Product.create({name: 'Sunkist', description: 'bright and fun', price: 3500,
+ @p1 = Product.create({name: 'Sunkist', description: 'bright and fun', price: 2500,
   created_by: @joel.id, updated_by: @joel.id})
  @p2 = Product.create({name: "Oakland A's", description: 'lets go oakland', price: 5000,
   created_by: @joel.id, updated_by: @joel.id})
  @p3 = Product.create({name: "SF Giants", description: 'sf pride', price: 5000,
   created_by: @joel.id, updated_by: @joel.id})
- @p4 = Product.create({name: "Black and White Ball", description: 'sf pride', price: 5000,
+ @p4 = Product.create({name: "Black and White Ball", description: 'clean and simple', price: 2500,
   created_by: @joel.id, updated_by: @joel.id})
  o_fab = Fabric.find_by_name 'Orange'
  y_fab = Fabric.find_by_name 'Yellow'
@@ -122,12 +122,12 @@ def create_all_orders
  o2.line_items.create({quantity: qty_ten, product_id: @p4.id, price: @p4.price, subtotal: @p4.price * qty_ten,
   created_by: @joel.id, updated_by: @joel.id})
 
- total = (@p4.price + @p1.price) * qty_ten
+ total = (@p4.price + @p3.price) * qty_ten
  o3 = @c2.orders.create({purchase_date: Date.today, purchase_amount: total, 
   created_by: @joel.id, updated_by: @joel.id})
  o3.line_items.create({quantity: qty_ten, product_id: @p4.id, price: @p4.price, subtotal: @p4.price * qty_ten,
   created_by: @joel.id, updated_by: @joel.id})
- o3.line_items.create({quantity: qty_ten, product_id: @p1.id, price: @p1.price, subtotal: @p1.price * qty_ten,
+ o3.line_items.create({quantity: qty_ten, product_id: @p3.id, price: @p3.price, subtotal: @p3.price * qty_ten,
   created_by: @joel.id, updated_by: @joel.id})
 
 end

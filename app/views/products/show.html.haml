@@ -9,7 +9,7 @@
   = @product.description
  %p
   %b Price:
-  = @product.price
+  = number_to_currency(cents_to_dollars(@product.price), :precision => 2)
  %p
   %b Fabrics:
   = @product.sewings.collect{ |s| s.fabric.name}.flatten.join('...')

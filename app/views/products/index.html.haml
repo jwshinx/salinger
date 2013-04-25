@@ -18,7 +18,7 @@
   - @products.each do |product|
    %tr
     %td= product.name
-    %td= product.price
+    %td= number_to_currency(cents_to_dollars(product.price), :precision => 2)
     - # %td= "#{product.sewings.collect{ |s| s.fabric.name}.flatten.join('<br />')}".html_safe
     %td= product.sewings.collect{ |s| s.fabric.name}.flatten.join('...')
     %td= product.description
