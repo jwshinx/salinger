@@ -9,6 +9,7 @@ def delete_all_roles
  Role.delete_all
 end
 def create_all_roles
+ delete_all_roles
  Role.create({name: 'admin', description: 'only joel'})
  Role.create({name: 'manager', description: 'only paola and monique'})
 end
@@ -16,6 +17,7 @@ def delete_all_users
  User.delete_all
 end
 def create_all_users
+ delete_all_users
  admin = Role.find_by_name 'admin'
  manager = Role.find_by_name 'manager'
  User.create({username: 'joel', email: 'joel@unidoinoakland.com', 
@@ -25,13 +27,121 @@ def create_all_users
  User.create({username: 'monique', email: 'monique@unidoinoakland.com', 
   active: true, role_id: manager.id, password: 'password', password_confirmation: 'password'})
 end
+def define_joel
+ @joel = User.find_by_username 'joel'
+end
+def delete_all_fabrics
+ Fabric.delete_all
+end
+def create_all_fabrics
+ delete_all_fabrics
+ Fabric.create({name: 'Orange', created_by: @joel.id, updated_by: @joel.id})
+ Fabric.create({name: 'Black', created_by: @joel.id, updated_by: @joel.id})
+ Fabric.create({name: 'Yellow', created_by: @joel.id, updated_by: @joel.id})
+ Fabric.create({name: 'Green', created_by: @joel.id, updated_by: @joel.id})
+ Fabric.create({name: 'Red', created_by: @joel.id, updated_by: @joel.id})
+end
+def delete_all_farms_and_retailers
+ Address.delete_all
+ Farm.delete_all
+ Retailer.delete_all
+end
+def create_all_farms_and_retailers
+ delete_all_farms_and_retailers
+ a1 = Address.create({street: '1 First Street', suite: '#101', city: 'Oakland', state: 'CA', 
+  zip: '94610', created_by: @joel.id, updated_by: @joel.id})
+ a2 = Address.create({street: '2 Second Street', suite: '#200', city: 'Oakland', state: 'CA', 
+  zip: '94615', created_by: @joel.id, updated_by: @joel.id})
+ a3 = Address.create({street: '1000 Shattuck Avenue', suite: '#1', city: 'Berkeley', state: 'CA', 
+  zip: '94700', created_by: @joel.id, updated_by: @joel.id})
+ a4 = Address.create({street: '20 College Avenue', suite: '#2', city: 'Berkeley', state: 'CA', 
+  zip: '94705', created_by: @joel.id, updated_by: @joel.id})
+ Farm.create({name: 'Joann', address_id: a1.id, contact: 'Joanne Smith', phone: '5109993333',
+  created_by: @joel.id, updated_by: @joel.id})
+ Farm.create({name: "Michael's", address_id: a2.id, contact: 'Michael Smith', phone: '5102221111',
+  created_by: @joel.id, updated_by: @joel.id})
+ Retailer.create({name: "Resurrect", address_id: a3.id, contact: 'Karrie Karrie', phone: '5108881111',
+  created_by: @joel.id, updated_by: @joel.id})
+ Retailer.create({name: "Nathan and Co", address_id: a4.id, contact: 'Tanya Lee', phone: '5107553333',
+  created_by: @joel.id, updated_by: @joel.id})
+end
+def delete_all_customers
+ Customer.delete_all
+ Note.delete_all
+end
+def create_all_customers
+ delete_all_customers
+ @c1 = Customer.create({firstname:  'Brad', lastname: 'Pitt', email: 'bp@yahoo.com', description: 'paola friend',
+  created_by: @joel.id, updated_by: @joel.id})
+ @c2 = Customer.create({firstname:  'George', lastname: 'Clooney', email: 'gc@yahoo.com', description: 'mo friend',
+  created_by: @joel.id, updated_by: @joel.id})
+ @c1.fyis.create({content: 'his hair blonde', created_by: @joel.id, updated_by: @joel.id})
+ @c2.fyis.create({content: 'hair brown', created_by: @joel.id, updated_by: @joel.id})
+ @c1.todos.create({content: 'email receipt', created_by: @joel.id, updated_by: @joel.id})
+ @c2.todos.create({content: 'send to lake como', created_by: @joel.id, updated_by: @joel.id})
+end
+def delete_all_products
+ Product.delete_all
+ Sewing.delete_all
+end
+def create_all_products
+ delete_all_products
+ @p1 = Product.create({name: 'Sunkist', description: 'bright and fun', price: 3500,
+  created_by: @joel.id, updated_by: @joel.id})
+ @p2 = Product.create({name: "Oakland A's", description: 'lets go oakland', price: 5000,
+  created_by: @joel.id, updated_by: @joel.id})
+ @p3 = Product.create({name: "SF Giants", description: 'sf pride', price: 5000,
+  created_by: @joel.id, updated_by: @joel.id})
+ @p4 = Product.create({name: "Black and White Ball", description: 'sf pride', price: 5000,
+  created_by: @joel.id, updated_by: @joel.id})
+ o_fab = Fabric.find_by_name 'Orange'
+ y_fab = Fabric.find_by_name 'Yellow'
+ g_fab = Fabric.find_by_name 'Green'
+ b_fab = Fabric.find_by_name 'Black'
+ @p1.sewings.create({fabric_id: o_fab.id, created_by: @joel.id, updated_by: @joel.id})
+ @p2.sewings.create({fabric_id: y_fab.id, created_by: @joel.id, updated_by: @joel.id})
+ @p2.sewings.create({fabric_id: g_fab.id, created_by: @joel.id, updated_by: @joel.id})
+ @p3.sewings.create({fabric_id: o_fab.id, created_by: @joel.id, updated_by: @joel.id})
+ @p3.sewings.create({fabric_id: b_fab.id, created_by: @joel.id, updated_by: @joel.id})
+ @p4.sewings.create({fabric_id: b_fab.id, created_by: @joel.id, updated_by: @joel.id})
+end
+def delete_all_orders
+ Order.delete_all
+ OrderLineItem.delete_all
+end
+def create_all_orders
+ delete_all_orders
+ qty_ten = 10
+ o1 = @c1.orders.create({purchase_date: Date.today, purchase_amount: qty_ten * @p2.price, 
+  created_by: @joel.id, updated_by: @joel.id})
+ o1.line_items.create({quantity: qty_ten, product_id: @p2.id, price: @p2.price, subtotal: @p2.price * qty_ten,
+  created_by: @joel.id, updated_by: @joel.id})
+   
+ o2 = @c1.orders.create({purchase_date: Date.today, purchase_amount: qty_ten * @p4.price, 
+  created_by: @joel.id, updated_by: @joel.id})
+ o2.line_items.create({quantity: qty_ten, product_id: @p4.id, price: @p4.price, subtotal: @p4.price * qty_ten,
+  created_by: @joel.id, updated_by: @joel.id})
+
+ total = (@p4.price + @p1.price) * qty_ten
+ o3 = @c2.orders.create({purchase_date: Date.today, purchase_amount: total, 
+  created_by: @joel.id, updated_by: @joel.id})
+ o3.line_items.create({quantity: qty_ten, product_id: @p4.id, price: @p4.price, subtotal: @p4.price * qty_ten,
+  created_by: @joel.id, updated_by: @joel.id})
+ o3.line_items.create({quantity: qty_ten, product_id: @p1.id, price: @p1.price, subtotal: @p1.price * qty_ten,
+  created_by: @joel.id, updated_by: @joel.id})
+
+end
 
 puts "---> hi. im seed.rb. lets start"
 
-delete_all_roles
 create_all_roles
-delete_all_users
 create_all_users
+define_joel
+create_all_fabrics
+create_all_farms_and_retailers
+create_all_customers
+create_all_products
+create_all_orders
 
 puts "---> all done."
 #Fabric.delete_all

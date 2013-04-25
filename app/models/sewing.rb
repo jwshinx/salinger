@@ -5,5 +5,5 @@ class Sewing < ActiveRecord::Base
  belongs_to :creator, :class_name => "User", :foreign_key => "created_by"
  belongs_to :updater, :class_name => "User", :foreign_key => "updated_by"
 
- attr_accessible :product_id, :fabric_id
+ attr_accessible :created_by, :updated_by, :product_id, :fabric_id
 end

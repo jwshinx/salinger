@@ -16,5 +16,7 @@ class Product < ActiveRecord::Base
  accepts_nested_attributes_for :todos, :reject_if => lambda { |a| a[:content].blank? }, :allow_destroy => true
  accepts_nested_attributes_for :fyis, :reject_if => lambda { |a| a[:content].blank? }, :allow_destroy => true
 
- attr_accessible :description, :name, :price, :sewings_attributes, :todos_attributes, :fyis_attributes
+ attr_accessible :created_by, :updated_by, :description, :name, 
+  :price, :sewings_attributes, :todos_attributes, :fyis_attributes
+
 end
