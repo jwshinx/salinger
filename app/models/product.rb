@@ -11,6 +11,7 @@ class Product < ActiveRecord::Base
  accepts_nested_attributes_for :sewings, :reject_if => lambda { |a| a[:fabric_id].blank? }, :allow_destroy => true
  has_many :todos, :as => :notable, :dependent => :destroy
  has_many :fyis, :as => :notable, :dependent => :destroy
+ has_many :line_items, :class_name => "OrderLineItem"
  #accepts_nested_attributes_for :todos, :reject_if => lambda { |a| a[:fabric_id].blank? }, :allow_destroy => true
  accepts_nested_attributes_for :todos, :reject_if => lambda { |a| a[:content].blank? }, :allow_destroy => true
  accepts_nested_attributes_for :fyis, :reject_if => lambda { |a| a[:content].blank? }, :allow_destroy => true

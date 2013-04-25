@@ -1,17 +1,14 @@
 Salinger::Application.routes.draw do
+  match 'orders' => 'orders#index', :as => :orders
+
   resources :order_line_items
-
-
-  resources :orders
-
-
   resources :retailers
-
-
   resources :addresses
   resources :farms
   resources :notes
-  resources :customers
+  resources :customers do
+   resources :orders
+  end
   resources :fabrics
   resources :users
   resources :user_sessions

@@ -23,6 +23,10 @@ class Ability
       can :destroy, Retailer 
       can :update, Address 
       can :destroy, Address 
+      can :update, Order 
+      can :destroy, Order 
+      can :update, OrderLineItem
+      can :destroy, OrderLineItem 
 
       cannot :create, Role
       cannot :destroy, Role

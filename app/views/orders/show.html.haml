@@ -9,7 +9,7 @@
   = @order.paid_date
  %p
   %b Customer:
-  = @order.customer_id
+  = @order.customer.fullname
  %p
   %b Purchase amount:
   = @order.purchase_amount
@@ -20,7 +20,7 @@
   %b Ispaid:
   = @order.ispaid
  - if can? :edit, Order 
-  = link_to 'Edit', edit_order_path(@order)
+  = link_to 'Edit', edit_customer_order_path(@order.customer, @order)
  - if can? :read, Order 
   \|
   = link_to 'Back', orders_path

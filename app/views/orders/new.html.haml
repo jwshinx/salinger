@@ -1,7 +1,9 @@
 #scan_column
  = render 'shared/sidebar_menu'
 #content
- %h1 New order
+ %h1 
+  New order: 
+  = @customer.fullname
  = render 'form'
  - if can? :read, Order
   = link_to 'Back', orders_path

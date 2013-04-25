@@ -1,16 +1,24 @@
-= form_for @order do |f|
+- # = form_for @order do |f|
+= form_for @order, {:url => customer_orders_path, :method => :post} do |f| 
+  = f.hidden_field :customer_id, :value => @customer.id
   - if @order.errors.any?
     = render :partial => 'shared/error_explanation', :object => @order , :as => :object
 
   .field
     = f.label :purchase_date
     = f.date_select :purchase_date
-  .field
-    = f.label :paid_date
-    = f.date_select :paid_date
+  - #.field
+  - #  = f.label :paid_date
+  - #  = f.date_select :paid_date
   - #.field
   - #   = f.label :customer_id
   - #   = f.select :customer_id, Role.all.collect {|r| [r.name, r.id]}
+  = f.fields_for :line_items do |line_item|
+    .field
+      = line_item.label :product
+      = line_item.select :product_id, Product.order('name asc').all.collect {|p| [p.name, p.id]}, {:include_blank => true}
+      = line_item.check_box :_destroy
+      = line_item.label :_destroy, "Remove"
   .field
     = f.label :purchase_amount
     = f.text_field :purchase_amount

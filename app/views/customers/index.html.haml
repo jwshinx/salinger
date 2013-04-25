@@ -18,6 +18,8 @@
    - if can? :create, Note 
     %th
     %th
+   - if can? :create, Order 
+    %th
  
   - @customers.each do |customer|
    %tr
@@ -34,6 +36,8 @@
     - if can? :create, Customer 
      %td= link_to 'Fyi', new_note_path
      %td= link_to 'Todo', new_note_path
+    - if can? :create, Order 
+     %td= link_to 'New Order', new_customer_order_path(customer)
  
  %br
  - if can? :create, Customer 

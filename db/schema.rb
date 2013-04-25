@@ -80,11 +80,13 @@ ActiveRecord::Schema.define(:version => 20130424182838) do
   add_index "notes", ["id"], :name => "index_notes_on_id", :unique => true
 
   create_table "order_line_items", :force => true do |t|
-    t.date     "date",                      :null => false
     t.integer  "quantity",   :default => 1, :null => false
     t.integer  "price",                     :null => false
     t.integer  "subtotal",                  :null => false
     t.integer  "order_id",                  :null => false
+    t.integer  "product_id",                :null => false
+    t.integer  "updated_by",                :null => false
+    t.integer  "created_by",                :null => false
     t.datetime "created_at",                :null => false
     t.datetime "updated_at",                :null => false
   end
