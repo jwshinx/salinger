@@ -1,3 +1,103 @@
 // Place all the styles related to the Customers controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+$taupe: #D7CAB4;
+$violet: #270A6B;
+$gray1: #395f96;
+$red: #F80505;
+$lavendar: #D1B5D7;
+$olive: #2E5A08;
+$blue: #0101DF;
+$babyblue1: #c6dbfe;
+$babyblue2: #a0bff4;
+$navyblue: #395f96;
+$white: #fff;
+$threepx: 3px;
+table {
+ border:1px solid $babyblue1;
+ width:100%;
+ th {
+  background-color:$babyblue1;
+  border-bottom:1px solid $babyblue2;
+  color:$navyblue;
+  font-size:11px;
+  font-weight:bold;
+  text-align:left;
+  text-transform:uppercase;
+  vertical-align:top;
+  white-space:nowrap;
+ }
+ td {
+  background-color:$white;
+  //border:1px dotted $gray1;
+ }
+}
+table.overview {
+ background-color:$taupe;
+ width:450px;
+ tr {
+  padding:$threepx;
+  background-color:$red;
+  td {
+   background-color:$white;
+  }
+  td.key {
+   color:$blue;
+   width:150px;
+  }
+  td.value {
+   color:$red;
+   width:250px;
+  }
+ }
+}
+
+
+// .custable,
+//  .tablesorter {
+//    border:1px solid $babyblue;
+//    width:100%;
+//  }
+//  .custable th,
+//  .tablesorter th {
+//    background-color:#c6dbfe;
+//    border-bottom:1px solid #a0bff4;
+//    color:#395f96;
+//    font-size:11px;
+//    font-weight:bold;
+//    text-align:left;
+//    text-transform:uppercase;
+//    vertical-align:top;
+//    white-space:nowrap;
+//  }
+//  .custable th a:link,
+//  .tablesorter th a:link {
+//    font-size:12px;
+//    text-decoration:underline;
+//  }
+//  .custable th .current {
+//    padding-right: 12px;
+//    background-repeat: no-repeat;
+//    background-position: right center;
+//  }
+//  .custable th .asc {
+//    background-image: url(/images/up_arrow.png);
+//  }
+//  .custable th .desc {
+//    background-image: url(/images/down_arrow.png);
+//  }
+//  .custable th, .custable td, .tablesorter th, .tablesorter td {
+//    padding:8px;
+//  }
+//  .custable td, .tablesorter td {
+//    background-color:white;
+//    border:1px dotted #ddd;
+//  }
+//  .custable tr td:first-child, .tablesorter tr td:first-child {
+//    font-weight:bold;
+//  }
+//  .custable tr.mini th {
+//    max-height:5px;
+//    padding:2px;
+//  }
+//

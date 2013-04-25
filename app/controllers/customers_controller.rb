@@ -13,6 +13,7 @@ class CustomersController < ApplicationController
 
   def show
     #@customer = Customer.find(params[:id])
+    @orders = @customer.orders.order('created_at desc').includes(:line_items).all
 
     respond_to do |format|
       format.html # show.html.erb

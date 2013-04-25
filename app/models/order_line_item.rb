@@ -1,7 +1,15 @@
+require 'moneyable'
+
 class OrderLineItem < ActiveRecord::Base
-  attr_accessible :date, :product_id, :order_id, :price, :quantity, :subtotal, :created_by, :updated_by
-  belongs_to :order
-  belongs_to :product
-  belongs_to :creator, :class_name => "User", :foreign_key => "created_by"
-  belongs_to :updater, :class_name => "User", :foreign_key => "updated_by"
+ attr_accessible :date, :product_id, :order_id, :price, :quantity, :subtotal, :created_by, :updated_by
+ belongs_to :order
+ belongs_to :product
+ belongs_to :creator, :class_name => "User", :foreign_key => "created_by"
+ belongs_to :updater, :class_name => "User", :foreign_key => "updated_by"
+
+ include Moneyable
+
+ def to_s
+  "#{product.name}: #{quantity} x $#{cents_to_dollars(price)} = $#{cents_to_dollars(subtotal)}"
+ end
 end

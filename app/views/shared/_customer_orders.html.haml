@@ -1,0 +1,18 @@
+- if @orders.empty?
+ %h4 No Orders
+- else 
+ %h4= "Orders (#{@orders.length})"
+ %table
+  %thead
+   %tr
+    %th Order #
+    %th Date 
+    %th Total Due
+    %th Items
+  %tbody
+   - @orders.each do |o|
+    %tr
+     %td= o.id 
+     %td= mmddyy_date(o.purchase_date)
+     %td= number_to_currency(cents_to_dollars(o.purchase_amount), :precision => 2)
+     %td= o.line_items.collect{|li| li.to_s}.join('<br />').html_safe
