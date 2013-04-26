@@ -19,14 +19,14 @@
    %tr
     %td= note.content
     %td= note.owner.class
-    %td monkey 'info' in AR
-    - if can? :read, Note
-     %td= link_to 'Show', note_path(note)
-    - if can? :update, Note
-     %td= link_to 'Edit', edit_note_path(note)
-    - if can? :destroy, Note
-     %td= link_to 'Destroy', note_path(note), :method => :delete, :data => { :confirm => 'Are you sure?' }
+    %td monkey-info-in-AR
+    - # - if can? :read, Note
+    - #  %td= link_to 'Show', note_path(note)
+    - # - if can? :update, Note
+    - #  %td= link_to 'Edit', edit_note_path(note)
+    - # - if can? :destroy, Note
+    - #  %td= link_to 'Destroy', note_path(note), :method => :delete, :data => { :confirm => 'Are you sure?' }
  
  %br
  - if can? :create, Note 
-  = link_to 'New Note', new_note_path
+  - # = link_to 'New Note', new_note_path

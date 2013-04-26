@@ -1,10 +1,16 @@
 #scan_column
  = render 'shared/sidebar_menu'
 #content
- %h1= link_to @customer.fullname, @customer
+ %h1= @customer.fullname
+ - if can? :edit, Customer
+  = link_to 'Edit', edit_customer_path(@customer)
+ - if can? :create, Note 
+  \|
+  = link_to 'Fyi', new_note_path(@customer, 'Customer', 'Fyi')
+  \|
+  = link_to 'Todo', new_note_path(@customer, 'Customer', 'Todo')
+ %br
+ %br
  = render 'customer_overview'
  = render 'shared/customer_orders'
  
- %br
- - if can? :edit, Customer
-  = link_to 'Edit', edit_customer_path(@customer)

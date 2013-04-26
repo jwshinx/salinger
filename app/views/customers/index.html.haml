@@ -27,9 +27,9 @@
      %td= customer.fullname
     %td= customer.email
     %td= customer.description
-    - if can? :create, Customer 
-     %td= link_to 'Fyi', new_note_path
-     %td= link_to 'Todo', new_note_path
+    - if can? :create, Note 
+     %td= link_to 'Fyi', new_note_path(customer.id, 'Customer', 'Fyi')
+     %td= link_to 'Todo', new_note_path(customer.id, 'Customer', 'Todo')
     - if can? :create, Order 
      %td= link_to 'New Order', new_customer_order_path(customer)
  

@@ -1,5 +1,6 @@
 Salinger::Application.routes.draw do
   match 'orders' => 'orders#index', :as => :orders
+  match 'new_note/:notable_id/:notable_type/:type' => 'notes#new', :as => :new_note
 
   resources :order_line_items
   resources :retailers
