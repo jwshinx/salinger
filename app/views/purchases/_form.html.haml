@@ -1,0 +1,42 @@
+/ = form_for @customer, {:url => process_purchase(@customer), :method => :post} do |f|
+= form_for @customer, {:url => create_purchase_path, :method => :post} do |f|
+ /- if @product.errors.any?
+ / = render :partial => 'shared/error_explanation', :object => @product , :as => :object
+
+ .field
+  = f.label :firstname
+  = f.text_field :firstname
+ .field
+  = f.label :lastname
+  = f.text_field :lastname
+ .field
+  = f.label :email
+  = f.text_field :email
+ .field
+  = f.label :description
+  = f.text_field :description
+ = f.fields_for :todos do |builder|
+  .field
+   = builder.label :content, 'Todo'
+   = builder.text_field :content, :size => 30, :maxlength => 30
+ = f.fields_for :fyis do |builder|
+  .field
+   = builder.label :content, 'Fyi'
+   = builder.text_field :content, :size => 30, :maxlength => 30
+ = f.fields_for :orders do |builder|
+  .field
+   = builder.label :purchase_date, 'Purchase Date'
+   = builder.date_select :purchase_date
+  .field
+   = builder.label :paid_amount
+   = builder.text_field :paid_amount
+  = builder.fields_for :line_items do |line_item|
+   .field
+    = line_item.label :product
+    = line_item.select :product_id, Product.order('name asc').all.collect {|p| [p.name, p.id]}, {:include_blank => true}
+   .field
+    = line_item.label :quantity
+    = line_item.text_field :quantity 
+  
+ .actions
+  = f.submit 'Save'
