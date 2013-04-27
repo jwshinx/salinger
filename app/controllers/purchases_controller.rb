@@ -16,42 +16,34 @@ class PurchasesController < ApplicationController
       format.json { render json: @purchase }
     end
   end
-
+  def set_creator object, user
+   object.creator = user
+  end
+  def set_updater object, user
+   object.updater = user
+  end
+  def set_creator_and_updater object, user
+   set_creator object, user
+   set_updater object, user
+  end
   def create
-    logger.debug "---> PC.create 0"
-    #@purchase = Retailer.new(params[:purchase])
     @customer = Customer.new(params[:customer])
-    @customer.creator = current_user
-    @customer.updater = current_user
-    logger.debug "---> PC.create 1"
-    @customer.fyis.each do |f| 
-     f.creator = current_user 
-     f.updater = current_user 
-    end
-    logger.debug "---> PC.create 2"
-    @customer.todos.each do |t| 
-     t.creator = current_user 
-     t.updater = current_user 
-    end
-    logger.debug "---> PC.create 3"
+    set_creator_and_updater @customer, current_user 
+    @customer.fyis.each { |f| set_creator_and_updater f, current_user }
+    @customer.todos.each { |t| set_creator_and_updater t, current_user }
     @customer.orders.each do |o| 
      order_total = 0
-     o.creator = current_user 
-     o.updater = current_user 
+     set_creator_and_updater o, current_user
      o.line_items.each do |oli|
-      oli.creator = current_user 
-      oli.updater = current_user 
+      set_creator_and_updater oli, current_user
       price = Product.find(params[:customer][:orders_attributes]['0'][:line_items_attributes]['0'][:product_id]).price 
-      logger.debug "---> PC.create 3.1 price: #{price}"
       oli.price = price 
       quantity = params[:customer][:orders_attributes]['0'][:line_items_attributes]['0'][:quantity].to_i
-      logger.debug "---> PC.create 3.2 quantity: #{quantity}"
       order_total += price * quantity
       oli.subtotal = price * quantity 
      end
      o.purchase_amount = order_total 
     end
-    logger.debug "---> PC.create 4"
 
     respond_to do |format|
       if @customer.save
