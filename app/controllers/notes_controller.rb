@@ -4,6 +4,7 @@ class NotesController < ApplicationController
 
   def index
     #@notes = Note.all
+    @notes = Note.order('created_at desc').all
 
     respond_to do |format|
       format.html # index.html.erb

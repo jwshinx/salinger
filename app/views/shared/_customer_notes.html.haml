@@ -1,0 +1,18 @@
+- if @notes.empty?
+ %h4 No Notes 
+- else 
+ %h4= "Notes (#{@notes.length})"
+ %table
+  %thead
+   %tr
+    %th Type 
+    %th Owner 
+    %th Content 
+    %th Date 
+  %tbody
+   - @notes.each do |n|
+    %tr
+     %td= n.type
+     %td= "#{n.notable_type}: #{n.notable.blurb}"
+     %td= n.content 
+     %td= mmddyy_date(n.created_at)

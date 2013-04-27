@@ -14,5 +14,7 @@ class Customer < ActiveRecord::Base
  def fullname
   "#{firstname} #{lastname}"
  end
+ 
+ alias_method :blurb, :fullname
 end
 

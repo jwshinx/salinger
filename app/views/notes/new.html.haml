@@ -3,7 +3,8 @@
 #content
  %h1
   New 
-  = "#{params[:notable_type]}:"
+  = "#{params[:type]} for "
+  = "#{params[:notable_type]}: "
   = link_to @note_owner.fullname, customer_path(@note_owner)
  = render 'form'
 
