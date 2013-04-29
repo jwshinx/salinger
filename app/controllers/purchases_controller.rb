@@ -1,6 +1,9 @@
+require 'trackable'
+
 class PurchasesController < ApplicationController
   layout "purchase"
   #load_and_authorize_resource 
+  include Trackable
 
   def new
     #@purchase = Retailer.new
@@ -15,16 +18,6 @@ class PurchasesController < ApplicationController
       format.html # new.html.erb
       format.json { render json: @purchase }
     end
-  end
-  def set_creator object, user
-   object.creator = user
-  end
-  def set_updater object, user
-   object.updater = user
-  end
-  def set_creator_and_updater object, user
-   set_creator object, user
-   set_updater object, user
   end
   def create
     @customer = Customer.new(params[:customer])
