@@ -1,6 +1,26 @@
 require 'spec_helper'
 #require 'cancan/matchers'
 
+def valid_customer_params
+end
+def valid_fyi_params
+ {:content=>"he is cool"}
+end
+def valid_todo_params
+ {:content=>"send receipt"}
+end
+def valid_line_item_params item_id
+ {:product_id=>item_id, :quantity=>"4"}
+end
+def valid_order_params item
+ today = Date.today
+ {"purchase_date(1i)"=>today.year.to_s, "purchase_date(2i)"=>today.month.to_s, 
+  "purchase_date(3i)"=>today.day.to_s, :paid_amount=>"8000", 
+  :line_items_attributes=>{
+   "0" => valid_line_item_params( item.id ) 
+  }
+ }
+end
 def valid_purchase_params
  orange_argyle = FactoryGirl.create(:orange_argyle)
  random = Random.rand(5 ** 5)
@@ -8,17 +28,13 @@ def valid_purchase_params
   :customer=>{:firstname=>"Miles#{random}", :lastname=>"Davis#{random}", :email=>"md#{random}@yahoo.com", 
    :description=>"first customer", 
    :todos_attributes=>{
-    "0"=>{:content=>"send receipt"}
+    "0" => valid_todo_params
    }, 
    :fyis_attributes=>{
-    "0"=>{:content=>"he is cool"}
+    "0" => valid_fyi_params
    }, 
    :orders_attributes=>{
-    "0"=>{"purchase_date(1i)"=>"2013", "purchase_date(2i)"=>"4", "purchase_date(3i)"=>"27", :paid_amount=>"8000", 
-     :line_items_attributes=>{
-      "0"=>{:product_id=>orange_argyle.id, :quantity=>"4"}
-     }
-    }
+    "0" => valid_order_params( orange_argyle )
    }
   }
  }
@@ -29,12 +45,6 @@ describe Purchase do
   before do
    @admin = FactoryGirl.create(:admin_user)
    @p = Purchase.new valid_purchase_params, @admin
-  end
-  it "one" do
-   @p.should be_true
-  end
-  it "two" do
-   @p.to_s.should == 'purchase'
   end
   describe "*customer*" do
    describe "name" do
@@ -76,7 +86,7 @@ describe Purchase do
   describe "*orders*" do
    it "returns one fyi" do
     #@p.customer.orders.length.should == 1
-    @p.customer.orders.first.purchase_date.should == Date.new(2013, 4, 27)
+    @p.customer.orders.first.purchase_date.should == Date.today
     @p.customer.orders.first.paid_amount.should == 8000
     @p.customer.orders.first.line_items.length.should == 1
     @p.customer.orders.first.line_items.first.product.name.should == 'orange argyle'
