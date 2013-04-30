@@ -4,15 +4,17 @@ require 'example_helper'
 
 describe Purchase do 
  include ExampleHelper
- describe "fun" do
+ describe "by Lebron" do
   before do
    @admin = FactoryGirl.create(:admin_user)
-   @todo = FactoryGirl.create(:customer_todo)
+   @lebron = FactoryGirl.create(:lebron)
   end
   describe "*customer*" do
    describe "name" do
-    it "returns Mark Twain" do
-     @todo.content.should == "send him bill"
+    it "returns lebron" do
+     puts "---> 1 #{@lebron.inspect}"
+     puts "---> 2 #{@lebron.orders.inspect}"
+     puts "---> 3 #{@lebron.orders.first.line_items.inspect}"
     end
    end
   end

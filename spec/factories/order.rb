@@ -7,4 +7,15 @@ FactoryGirl.define do
   creator
   updater
  end
+ factory :red_solid_order, class: Order do
+  purchase_date Date.today
+  purchase_amount 2000
+  ispaid false
+  creator
+  updater
+  ignore do line_item_count 1 end
+  after(:create) do |order, evaluator|
+   FactoryGirl.create_list(:red_solid_line_item, evaluator.line_item_count, order: order)
+  end
+ end
 end

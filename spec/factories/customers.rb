@@ -9,4 +9,17 @@ FactoryGirl.define do
   creator
   updater
  end
+
+ factory :lebron, class: Customer do
+  firstname "Lebron"
+  lastname "James"
+  email "lj@yahoo.com"
+  description "the king"
+  creator
+  updater
+  ignore do order_count 1 end
+  after(:create) do |customer, evaluator|
+   FactoryGirl.create_list(:red_solid_order, evaluator.order_count, customer: customer)
+  end
+ end
 end

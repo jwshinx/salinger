@@ -1,10 +1,10 @@
 require 'spec_helper'
 
 describe OrderLineItem do
- subject { FactoryGirl.create(:order_line_item) }
+ subject { FactoryGirl.create(:lebron).orders.first.line_items.first }
  its(:quantity) { should == 1 }
- its(:price) { should == 2500 }
- its(:subtotal) { should == 2500 }
+ its(:price) { should == 2000 }
+ its(:subtotal) { should == 2000 }
  it "returns creator" do
   subject.creator.username.should =~ /joel/
  end
