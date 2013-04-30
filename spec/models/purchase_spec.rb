@@ -8,7 +8,6 @@ describe Purchase do
   before do
    @admin = FactoryGirl.create(:admin_user)
    @todo = FactoryGirl.create(:customer_todo)
-   #@ = Purchase.new valid_purchase_params, @admin
   end
   describe "*customer*" do
    describe "name" do
@@ -61,13 +60,19 @@ describe Purchase do
    end
   end
   describe "*orders*" do
-   it "returns one fyi" do
-    #@p.customer.orders.length.should == 1
-    @p.customer.orders.first.purchase_date.should == Date.today
-    @p.customer.orders.first.paid_amount.should == 8000
+   it "returns one line item" do
     @p.customer.orders.first.line_items.length.should == 1
-    @p.customer.orders.first.line_items.first.product.name.should == 'orange argyle'
-    @p.customer.orders.first.line_items.first.quantity.should == 4
+   end
+   subject { @p.customer.orders.first }
+   its(:purchase_date) { should == Date.today }
+   its(:paid_amount) { should == 8000 }
+   describe "line item" do
+    it "returns quantity 4" do
+     @p.customer.orders.first.line_items.first.quantity.should == 4 
+    end
+    it "returns orange argyle" do
+     @p.customer.orders.first.line_items.first.product.name.should == 'orange argyle'
+    end
    end
   end
  end
