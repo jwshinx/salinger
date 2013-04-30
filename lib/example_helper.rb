@@ -1,6 +1,19 @@
 module ExampleHelper
  
- def valid_customer_params
+ def valid_email fname, lname, salt
+  "#{fname}#{lname}#{salt}@yahoo.com"
+ end
+ def invalid_email
+  ''
+ end
+ def valid_customer_params item
+  firstname = "Miles"; lastname = "Davis"; random = Random.rand(5 ** 5)
+  {:firstname=>"#{firstname}#{random}", :lastname=>"#{lastname}#{random}", 
+   :email=> valid_email(firstname, lastname, random), :description=>"first customer",
+   :todos_attributes=>{ "0" => valid_todo_params },
+   :fyis_attributes=>{ "0" => valid_fyi_params },
+   :orders_attributes=>{ "0" => valid_order_params( item ) }
+  }
  end
  def valid_fyi_params
   {:content=>"he is cool"}
@@ -22,21 +35,7 @@ module ExampleHelper
  end
  def valid_purchase_params
   orange_argyle = FactoryGirl.create(:orange_argyle)
-  random = Random.rand(5 ** 5)
-  {
-   :customer=>{:firstname=>"Miles#{random}", :lastname=>"Davis#{random}", :email=>"md#{random}@yahoo.com",
-    :description=>"first customer",
-    :todos_attributes=>{
-     "0" => valid_todo_params
-    },
-    :fyis_attributes=>{
-     "0" => valid_fyi_params
-    },
-    :orders_attributes=>{
-     "0" => valid_order_params( orange_argyle )
-    }
-   }
-  }
+  { :customer => valid_customer_params( orange_argyle ) }
  end
  
 end

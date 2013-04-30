@@ -18,8 +18,8 @@ describe Purchase do
     end
    end
    describe "email" do
-    it "should be mdxx@yahoo.com" do
-     @p.customer.email.should =~ /md.+@yahoo.com$/
+    it "should be MilesDavisxxx@yahoo.com" do
+     @p.customer.email.should =~ /MilesDavis.+@yahoo.com$/
     end
    end
    describe "description" do
