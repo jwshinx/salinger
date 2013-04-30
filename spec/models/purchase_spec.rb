@@ -6,7 +6,7 @@ def valid_purchase_params
  random = Random.rand(5 ** 5)
  {
   :customer=>{:firstname=>"Miles#{random}", :lastname=>"Davis#{random}", :email=>"md#{random}@yahoo.com", 
-   :description=>"dkf", 
+   :description=>"first customer", 
    :todos_attributes=>{
     "0"=>{:content=>"send receipt"}
    }, 
@@ -30,14 +30,30 @@ describe Purchase do
    @admin = FactoryGirl.create(:admin_user)
    @p = Purchase.new valid_purchase_params, @admin
   end
-  it "xxx" do
+  it "one" do
    @p.should be_true
   end
-  it "dkdk" do
+  it "two" do
    @p.to_s.should == 'purchase'
   end
-  it "one" do
-   @p.customer.should be_instance_of Customer
+  describe "*customer*" do
+   describe "name" do
+    it "returns Miles Davis" do
+     @p.customer.should be_instance_of Customer
+     @p.customer.firstname.should =~ /Miles/
+     @p.customer.lastname.should =~ /Davis/
+    end
+   end
+   describe "email" do
+    it "should be mdxx@yahoo.com" do
+     @p.customer.email.should =~ /md.+@yahoo.com$/
+    end
+   end
+   describe "description" do
+    it "returns *first customer*" do
+     @p.customer.description.should == "first customer"
+    end
+   end
   end
   describe "*todos*" do
    it "returns one todo" do
@@ -55,6 +71,16 @@ describe Purchase do
    end
    it "returns content 'he is cool'" do 
     @p.customer.fyis[0].content.should == 'he is cool' 
+   end
+  end
+  describe "*orders*" do
+   it "returns one fyi" do
+    #@p.customer.orders.length.should == 1
+    @p.customer.orders.first.purchase_date.should == Date.new(2013, 4, 27)
+    @p.customer.orders.first.paid_amount.should == 8000
+    @p.customer.orders.first.line_items.length.should == 1
+    @p.customer.orders.first.line_items.first.product.name.should == 'orange argyle'
+    @p.customer.orders.first.line_items.first.quantity.should == 4
    end
   end
  end
