@@ -1,6 +1,7 @@
 Salinger::Application.routes.draw do
   match 'new_purchase' => 'purchases#new', :as => :new_purchase
   match 'create_purchase' => 'purchases#create', :as => :create_purchase
+  match 'email_signup' => 'home#email_signup', :as => :email_signup
  
   match 'orders' => 'orders#index', :as => :orders
   match 'new_note/:notable_id/:notable_type/:type' => 'notes#new', :as => :new_note
