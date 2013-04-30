@@ -5,16 +5,10 @@ module ExampleHelper
   random = Random.rand(5 ** 5)
   {:firstname=>"#{cust.firstname}#{random}", :lastname=>"#{cust.lastname}#{random}", 
    :email=> cust.email, :description=> cust.description,
-   :todos_attributes=>{ "0" => valid_todo_params },
-   :fyis_attributes=>{ "0" => valid_fyi_params },
+   :todos_attributes=>{ "0" => {:content => FactoryGirl.create(:customer_todo).content} },
+   :fyis_attributes=>{ "0" => {:content => FactoryGirl.create(:customer_fyi).content} },
    :orders_attributes=>{ "0" => valid_order_params( item ) }
   }
- end
- def valid_fyi_params
-  {:content=>"he is cool"}
- end
- def valid_todo_params
-  {:content=>"send receipt"}
  end
  def valid_line_item_params item_id
   {:product_id=>item_id, :quantity=>"4"}

@@ -4,6 +4,20 @@ require 'example_helper'
 
 describe Purchase do 
  include ExampleHelper
+ describe "fun" do
+  before do
+   @admin = FactoryGirl.create(:admin_user)
+   @todo = FactoryGirl.create(:customer_todo)
+   #@ = Purchase.new valid_purchase_params, @admin
+  end
+  describe "*customer*" do
+   describe "name" do
+    it "returns Mark Twain" do
+     @todo.content.should == "send him bill"
+    end
+   end
+  end
+ end
  describe "when perfect" do
   before do
    @admin = FactoryGirl.create(:admin_user)
@@ -34,7 +48,7 @@ describe Purchase do
     @p.customer.todos[0].should be_instance_of Todo
    end
    it "returns content 'send receipt'" do 
-    @p.customer.todos[0].content.should == 'send receipt' 
+    @p.customer.todos[0].content.should == "send him bill"
    end
   end
   describe "*fyis*" do
@@ -43,7 +57,7 @@ describe Purchase do
     @p.customer.fyis[0].should be_instance_of Fyi 
    end
    it "returns content 'he is cool'" do 
-    @p.customer.fyis[0].content.should == 'he is cool' 
+    @p.customer.fyis[0].content.should == "remember to mark it"
    end
   end
   describe "*orders*" do
