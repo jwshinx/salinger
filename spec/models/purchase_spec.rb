@@ -11,20 +11,20 @@ describe Purchase do
   end
   describe "*customer*" do
    describe "name" do
-    it "returns Miles Davis" do
+    it "returns Mark Twain" do
      @p.customer.should be_instance_of Customer
-     @p.customer.firstname.should =~ /Miles/
-     @p.customer.lastname.should =~ /Davis/
+     @p.customer.firstname.should =~ /Mark/
+     @p.customer.lastname.should =~ /Twain/
     end
    end
    describe "email" do
-    it "should be MilesDavisxxx@yahoo.com" do
-     @p.customer.email.should =~ /MilesDavis.+@yahoo.com$/
+    it "should be mt@yahoo.com" do
+     @p.customer.email.should =~ /mt.*@yahoo.com$/
     end
    end
    describe "description" do
-    it "returns *first customer*" do
-     @p.customer.description.should == "first customer"
+    it "returns *he used to be samuel clemens*" do
+     @p.customer.description.should == "he used to be samuel clemens"
     end
    end
   end
