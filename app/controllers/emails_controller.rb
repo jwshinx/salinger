@@ -1,6 +1,6 @@
 class EmailsController < ApplicationController
   layout 'email'
-  #load_and_authorize_resource :except => [:create]
+  load_and_authorize_resource :except => [:create]
 
   def index
     @emails = Email.all
@@ -19,7 +19,7 @@ class EmailsController < ApplicationController
         format.json { render json: @email, status: :created, location: @email }
       else
         #format.html { render action: "new" }
-        format.html { render 'home/index' }
+        format.html { render 'home/index', :layout => 'application' }
         format.json { render json: @email.errors, status: :unprocessable_entity }
       end
     end
