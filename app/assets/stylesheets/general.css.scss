@@ -4,6 +4,7 @@ $babyblue1: #c6dbfe;
 $babyblue2: #a0bff4;
 $navyblue: #395f96;
 $gray: #f1f1f1;
+$dark_gray: #333333;
 $salmon: #f58869;
 $lavendar: #D1B5D7;
 $taupe: #D7CAB4;
@@ -75,6 +76,19 @@ div {
   background-color:transparent;
   color:$white;
   height:200px;
+}
+#email_input_field {
+  border: 1px dashed red;
+  height:20px;
+  box-shadow: 1px 3px 15px $dark_gray;
+  -moz-box-shadow: 1px 3px 5px $dark_gray;
+  -webkit-box-shadow: 1px 3px 5px $dark_gray;
+  border-radius: 5px;
+  // cursor:pointer;
+  // font-size:12px;
+  padding:4px 7px 4px 7px;
+  // text-align:center;
+  width:220px; 
 }
 #email_signup_error_explanation {
   padding: 7px;

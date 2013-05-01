@@ -26,11 +26,11 @@
  = form_for @email, :html => {:id => 'email_signup_form'} do |f|
   - if @email.errors.any?
    = render :partial => 'shared/email_signup_error_explanation', :object => @email, :as => :object
-  = text_field_tag 'color', nil, {:style=>'margin:3px;display:none;'}
+  = text_field_tag 'color', nil, {:style=>'margin:3px;display:none;' }
   - # = f.label :content, ''
-  = f.text_field :content, :placeholder => 'Enter email address.', :size => 30, :maxlength => 30
+  = f.text_field :content, :id => 'email_input_field', :placeholder => 'Enter email address.', :size => 30, :maxlength => 30
   - # = submit_tag raw('&nbsp; Submit &nbsp;'), :id => 'signup_form', :class => 'button', :disable_with => disable_with_text
-  = f.submit raw('&nbsp; Submit &nbsp;'), :class => 'button', :disable_with => 'DISABLED?' 
+  = f.submit raw('&nbsp;&nbsp;&nbsp; Submit &nbsp;&nbsp;'), :class => 'button', :disable_with => 'DISABLED?' 
 
  %h5 No spam. No sharing your email address.
 
