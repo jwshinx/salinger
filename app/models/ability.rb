@@ -30,12 +30,15 @@ class Ability
 
       cannot :create, Role
       cannot :destroy, Role
+      cannot :create, EmailType 
+      cannot :destroy, EmailType 
 
       cannot :read, User
       can :read, User, :id => user.id
       cannot :create, User 
       can :update, User, :id => user.id
     else
+     #cannot :destroy, Email #update and #read
     end
     #
     # The first argument to `can` is the action you are giving the user 

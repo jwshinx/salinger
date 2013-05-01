@@ -64,7 +64,16 @@ div {
   background-color: red;
   display: table;
 }
-
+#email_signup_error_explanation {
+  padding: 7px;
+  padding-bottom: 0;
+  margin-bottom: 20px;
+  background-color: #f0f0f0;
+  ul li {
+    font-size: 12px;
+    list-style: square;
+  }
+}
 #error_explanation {
   width: 450px;
   border: 2px solid red;

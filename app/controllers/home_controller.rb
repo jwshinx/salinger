@@ -4,6 +4,7 @@ class HomeController < ActionController::Base
 
   def index
    logger.debug "---> HC.index 0"
+   @email = Email.new
    logger.debug "---> HC.index 10"
   end
 

@@ -1,4 +1,10 @@
 Salinger::Application.routes.draw do
+  resources :emails
+
+
+  resources :email_types
+
+
   match 'new_purchase' => 'purchases#new', :as => :new_purchase
   match 'create_purchase' => 'purchases#create', :as => :create_purchase
   match 'email_signup' => 'home#email_signup', :as => :email_signup
