@@ -12,6 +12,7 @@ $white: #fff;
 $violet: #270A6B;
 $yellow: #efedbf;
 $olive: #2E5A08;
+$pink: #F9B7FF;
 $threepx: 3px;
 $fivepx: 5px;
 $tenpx: 10px;
@@ -63,6 +64,17 @@ div {
   padding: 2px;
   background-color: red;
   display: table;
+}
+#email_signup_area {
+  position:relative;
+  top:-720px;
+  left:100px;
+  padding:5px;
+  width:500px;
+  //background-color:$pink;
+  background-color:transparent;
+  color:$white;
+  height:200px;
 }
 #email_signup_error_explanation {
   padding: 7px;

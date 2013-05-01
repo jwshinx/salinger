@@ -18,16 +18,19 @@
  img.onload = function() {
   ctx.drawImage(img,50,50, 1800, 1219);
  }
-#signup_form{:style=>'padding:5px;width:500px;background-color:#acc;height:250px;'}
- %div{:style=>'padding:5px;width:300px;background-color:#eee;height:50px;'}
-  %p#notice= flash[:notice]
+#email_signup_area
+ %h4 Signup below to be the first to receive news and special offers.
+ - # %div{:style=>'padding:5px;width:300px;background-color:#eee;height:50px;'}
+ %p#notice= flash[:notice]
  - # = form_tag('/email_signup', :id => 'email_signup_form') do
  = form_for @email, :html => {:id => 'email_signup_form'} do |f|
   - if @email.errors.any?
    = render :partial => 'shared/email_signup_error_explanation', :object => @email, :as => :object
   = text_field_tag 'color', nil, {:style=>'margin:3px;display:none;'}
-  = f.label :content, 'Email'
+  - # = f.label :content, ''
   = f.text_field :content, :placeholder => 'Enter email address.', :size => 30, :maxlength => 30
   - # = submit_tag raw('&nbsp; Submit &nbsp;'), :id => 'signup_form', :class => 'button', :disable_with => disable_with_text
   = f.submit raw('&nbsp; Submit &nbsp;'), :class => 'button', :disable_with => 'DISABLED?' 
+
+ %h5 No spam. No sharing your email address.
 
