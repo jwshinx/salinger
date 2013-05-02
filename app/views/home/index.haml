@@ -22,6 +22,7 @@
  - # %div{:style=>'padding:5px;width:300px;background-color:#eee;height:50px;'}
  %p#notice= flash[:notice]
  - # = form_tag('/email_signup', :id => 'email_signup_form') do
+ 
  = form_for @email, :html => {:id => 'email_signup_form'} do |f|
   - if @email.errors.any?
    = render :partial => 'shared/email_signup_error_explanation', :object => @email, :as => :object
@@ -31,6 +32,6 @@
   - # = submit_tag raw('&nbsp; Submit &nbsp;'), :id => 'signup_form', :class => 'button', :disable_with => disable_with_text
   - # = f.submit raw('&nbsp;&nbsp;&nbsp; Submit &nbsp;&nbsp;'), :class => 'button', :disable_with => 'DISABLED?' 
   - # = f.submit "submit_button.png"
-  = image_submit_tag("submit_button.png")
+  = image_submit_tag "submit_button.png", :id => 'email_signup_button'
 
 

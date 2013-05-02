@@ -67,26 +67,52 @@ div {
   display: table;
 }
 #email_signup_area {
-  position:relative;
-  top:-720px;
-  left:100px;
-  padding:5px;
-  width:500px;
+  //position:relative;
+  //top:-720px;
+  //left:100px;
+  padding:0px;
+  margin:0px;
+  width:100%;
   //background-color:$pink;
   background-color:transparent;
   color:$white;
-  height:200px;
+  height:50px;
+  position:relative;
+  top:-200px;
+}
+#email_signup_form {
+  padding:0px;
+  //background-color:$salmon;
+  background-color:transparent;
+  width:345px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+.centered {
+  padding:0px;
+  margin:0px;
+  background-color:$olive;
+  //display: block;
+  //margin-left: auto;
+  //margin-right: auto
+}
+#email_signup_button {
+ position:relative;
+ top:10px;
 }
 #email_input_field {
-  border: 1px dashed red;
-  height:20px;
-  box-shadow: 1px 3px 15px $dark_gray;
-  -moz-box-shadow: 1px 3px 5px $dark_gray;
-  -webkit-box-shadow: 1px 3px 5px $dark_gray;
-  border-radius: 5px;
+  //vertical-align:text-top;
+border: 1px dashed red;
+height:20px;
+box-shadow: 1px 3px 15px $dark_gray;
+-moz-box-shadow: 1px 3px 5px $dark_gray;
+-webkit-box-shadow: 1px 3px 5px $dark_gray;
+border-radius: 5px;
+
   // cursor:pointer;
   // font-size:12px;
-  padding:4px 7px 4px 7px;
+  // padding:4px 7px 4px 7px;
   // text-align:center;
   width:220px; 
 }
@@ -94,7 +120,7 @@ div {
   padding: 7px;
   padding-bottom: 0;
   margin-bottom: 20px;
-  background-color: #f0f0f0;
+  background-color: $yellow;
   ul li {
     font-size: 12px;
     list-style: square;
