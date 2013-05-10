@@ -9,6 +9,9 @@
   = f.label :description
   = f.text_area :description, :cols => 20, :rows => 5
  .field
+  = f.label :count, 'Unsold Quantity'
+  = f.text_field :count
+ .field
   = f.label :price
   = f.text_field :price
  = f.fields_for :sewings do |builder|

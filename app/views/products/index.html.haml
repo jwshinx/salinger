@@ -6,6 +6,7 @@
  %table
   %tr
    %th Name
+   %th Quantity 
    %th Price
    %th Fabrics
    %th Description
@@ -18,9 +19,10 @@
   - @products.each do |product|
    %tr
     %td= product.name
+    %td= product.count
     %td= number_to_currency(cents_to_dollars(product.price), :precision => 2)
     - # %td= "#{product.sewings.collect{ |s| s.fabric.name}.flatten.join('<br />')}".html_safe
-    %td= product.sewings.collect{ |s| s.fabric.name}.flatten.join('...')
+    %td= product.sewings.collect{ |s| s.fabric.name}.flatten.join(' / ')
     %td= product.description
     - if can? :read, Product
      %td= link_to 'Show', product

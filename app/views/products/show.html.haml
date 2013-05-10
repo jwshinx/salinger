@@ -5,6 +5,9 @@
   %b Name:
   = @product.name
  %p
+  %b Quantity:
+  = @product.count
+ %p
   %b Description:
   = @product.description
  %p
@@ -12,7 +15,7 @@
   = number_to_currency(cents_to_dollars(@product.price), :precision => 2)
  %p
   %b Fabrics:
-  = @product.sewings.collect{ |s| s.fabric.name}.flatten.join('...')
+  = @product.sewings.collect{ |s| s.fabric.name}.flatten.join(' / ')
  - if can? :edit, Product
   = link_to 'Edit', edit_product_path(@product)
  - if can? :show, Product

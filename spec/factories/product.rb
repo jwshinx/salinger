@@ -3,6 +3,7 @@ FactoryGirl.define do
   name 'orange argyle'
   description 'orange color with yellow, white print'
   price 1999 
+  count 1
   creator
   updater
  end
@@ -10,6 +11,7 @@ FactoryGirl.define do
   name 'red solid'
   description 'simple. comfy like a tshirt'
   price 9999 
+  count 1
   creator
   updater
   ignore { sewings_count 1 }

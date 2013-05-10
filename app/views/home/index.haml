@@ -4,15 +4,15 @@
   height: 100%;
  }
 
-= image_tag 'background_2.jpg', :id => 'under_incubation_jpg', :alt => 'uNido: Under Incubation', :style => 'display:none;'
+= image_tag 'background_underincubation.jpg', :id => 'under_incubation_jpg', :alt => 'uNido: Under Incubation', :style => 'display:none;'
 %canvas{:width => 1900, :height => 1319, :id => 'main_canvas'}
 
 :javascript
  var c=document.getElementById("main_canvas");
  var ctx=c.getContext("2d");
  var img=document.getElementById("under_incubation_jpg");
- ctx.shadowBlur = 30;
- ctx.shadowColor = "#333";
+ //ctx.shadowBlur = 30;
+ //ctx.shadowColor = "#333";
  ctx.drawImage(img,0,0, 1800, 1219);
  
  img.onload = function() {

@@ -1,5 +1,6 @@
 class Product < ActiveRecord::Base
  validates :name, :presence => true, :length => { :minimum => 1 }
+ validates :count, :presence => true, :length => { :minimum => 1 }
  validates :description, :presence => true, :length => { :minimum => 1 }
  validates :price, :numericality => { :greater_than => 0 }
  #has_many :sewings, :dependent => :destroy, :inverse_of => :product
@@ -16,7 +17,7 @@ class Product < ActiveRecord::Base
  accepts_nested_attributes_for :todos, :reject_if => lambda { |a| a[:content].blank? }, :allow_destroy => true
  accepts_nested_attributes_for :fyis, :reject_if => lambda { |a| a[:content].blank? }, :allow_destroy => true
 
- attr_accessible :created_by, :updated_by, :description, :name, 
+ attr_accessible :created_by, :updated_by, :description, :name, :count,
   :price, :sewings_attributes, :todos_attributes, :fyis_attributes
 
 end
