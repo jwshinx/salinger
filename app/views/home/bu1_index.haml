@@ -4,14 +4,14 @@
   height: 100%;
  }
 
-- # = image_tag 'uNido_background_noboxes_top.jpg', :id => 'under_incubation_top_jpg', :alt => 'uNido: Under Incubation', :style => 'width:100%;height:100%;' 
-= image_tag 'joel_top.jpg', :id => 'under_incubation_top_jpg', :alt => 'uNido: Under Incubation', :style => 'width:100%;height:100%;' 
+= image_tag 'uNido_background_noboxes_top.jpg', :id => 'under_incubation_top_jpg', :alt => 'uNido: Under Incubation', :style => 'display:none;'
 - # = image_tag 'uNido_background_noboxes_middle.jpg', :id => 'under_incubation_middle_jpg', :alt => 'uNido: Under Incubation', :style => 'display:none;'
-- # = image_tag 'uNido_background_noboxes_bottom.jpg', :id => 'under_incubation_bottom_jpg', :alt => 'uNido: Under Incubation', :style => 'display:none;'
+= image_tag 'joel_middle_3.jpg', :id => 'under_incubation_middle_jpg', :alt => 'uNido: Under Incubation', :style => 'display:none;'
+= image_tag 'uNido_background_noboxes_bottom.jpg', :id => 'under_incubation_bottom_jpg', :alt => 'uNido: Under Incubation', :style => 'display:none;'
 - # %canvas{:width => 1900, :height => 1319, :id => 'main_canvas'}
+%canvas{:width => 1800, :height => 1396, :id => 'main_canvas'}
 
 :javascript
- /*
  var c=document.getElementById("main_canvas");
  var ctx=c.getContext("2d");
  var img_top=document.getElementById("under_incubation_top_jpg");
@@ -27,15 +27,12 @@
  img_middle.onload = function() {
   ctx.drawImage(img_middle,0,956 );
  }
- */
  /*
  img_bottom.onload = function() {
   ctx.drawImage(img_bottom,0,1016 );
  }
  */
  
-
-= image_tag 'joel_middle_4.jpg', :id => 'under_incubation_middle_jpg', :alt => 'uNido: Under Incubation', :style => 'width:100%;height:100%;'
 
 #email_signup_area
  - # %div{:style=>'padding:5px;width:300px;background-color:#eee;height:50px;'}
@@ -54,4 +51,3 @@
   = image_submit_tag "submit_button.png", :id => 'email_signup_button'
 
 
-= image_tag 'joel_bottom.jpg', :id => 'under_incubation_bottom_jpg', :alt => 'uNido: Under Incubation', :style => 'width:100%;height:100%;'

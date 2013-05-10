@@ -67,23 +67,34 @@ div {
   display: table;
 }
 #email_signup_area {
-  //position:relative;
-  //top:-720px;
-  //left:100px;
   padding:0px;
   margin:0px;
   width:100%;
   //background-color:$pink;
   background-color:transparent;
   color:$white;
-  height:50px;
+  height:40px;
   position:relative;
-  top:-200px;
+  top:-70px;
+  //left:100px;
+}
+/*
+#under_incubation_middle_jpg {
+  position:relative;
+  top:-40px;
+  //left:100px;
+}
+*/
+#under_incubation_bottom_jpg {
+  position:relative;
+  top:-60px;
+  //left:100px;
 }
 #email_signup_form {
+  height:40px;
   padding:0px;
-  //background-color:$salmon;
-  background-color:transparent;
+  background-color:$salmon;
+  //background-color:transparent;
   width:345px;
   display: block;
   margin-left: auto;
