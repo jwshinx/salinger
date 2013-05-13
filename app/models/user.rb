@@ -11,8 +11,12 @@ class User < ActiveRecord::Base
  has_many :updated_sewings, :class_name => "Sewing", :foreign_key => "updated_by"
  has_many :created_customers, :class_name => "Customer", :foreign_key => "created_by"
  has_many :updated_customers, :class_name => "Customer", :foreign_key => "updated_by"
+
+ has_many :created_emails, :class_name => "Email", :foreign_key => "created_by"
+ has_many :updated_emails, :class_name => "Email", :foreign_key => "updated_by"
  has_many :created_email_types, :class_name => "EmailType", :foreign_key => "created_by"
  has_many :updated_email_types, :class_name => "EmailType", :foreign_key => "updated_by"
+
  has_many :created_fyis, 
   :class_name => "Note", :foreign_key => "created_by", :conditions => ['type = ?', 'Fyi'] 
  has_many :updated_fyis, 

@@ -11,7 +11,11 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(:version => 20130510205719) do
+=======
+ActiveRecord::Schema.define(:version => 20130430233053) do
+>>>>>>> develop-signup
 
   create_table "addresses", :force => true do |t|
     t.string   "street",     :null => false
