@@ -87,13 +87,13 @@ end
 def create_all_products
  delete_all_products
  @p1 = Product.create({name: 'Sunkist', description: 'bright and fun', price: 2500,
-  created_by: @joel.id, updated_by: @joel.id})
+  count: 1, created_by: @joel.id, updated_by: @joel.id})
  @p2 = Product.create({name: "Oakland A's", description: 'lets go oakland', price: 5000,
-  created_by: @joel.id, updated_by: @joel.id})
+  count: 1, created_by: @joel.id, updated_by: @joel.id})
  @p3 = Product.create({name: "SF Giants", description: 'sf pride', price: 5000,
-  created_by: @joel.id, updated_by: @joel.id})
+  count: 1, created_by: @joel.id, updated_by: @joel.id})
  @p4 = Product.create({name: "Black and White Ball", description: 'clean and simple', price: 2500,
-  created_by: @joel.id, updated_by: @joel.id})
+  count: 1, created_by: @joel.id, updated_by: @joel.id})
  o_fab = Fabric.find_by_name 'Orange'
  y_fab = Fabric.find_by_name 'Yellow'
  g_fab = Fabric.find_by_name 'Green'
@@ -108,6 +108,18 @@ end
 def delete_all_orders
  Order.delete_all
  OrderLineItem.delete_all
+end
+def delete_all_emails
+ Email.delete_all
+end
+def delete_all_email_types
+ EmailType.delete_all
+end
+def create_all_emails
+ delete_all_emails
+ delete_all_email_types
+ et = EmailType.create( {name: 'Email Signup', description: 'dkdkd', updated_by: @joel.id, created_by: @joel.id})
+ Email.create( {content: 'maybe@yahoo.com', email_type_id: et.id, updated_by: @joel.id, created_by: @joel.id})
 end
 def create_all_orders
  delete_all_orders
@@ -135,13 +147,23 @@ end
 puts "---> hi. im seed.rb. lets start"
 
 create_all_roles
+puts "---> roles: done" 
 create_all_users
+puts "---> users: done" 
 define_joel
+puts "---> joel: done" 
 create_all_fabrics
+puts "---> fabrics: done" 
 create_all_farms_and_retailers
+puts "---> farms, retailers: done" 
 create_all_customers
+puts "---> customers: done" 
 create_all_products
+puts "---> products: done" 
 create_all_orders
+puts "---> orders: done" 
+create_all_emails
+puts "---> emails: done" 
 
 puts "---> all done."
 #Fabric.delete_all
