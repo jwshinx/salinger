@@ -8,7 +8,8 @@ class Product < ActiveRecord::Base
  validates :count, :numericality => { :only_integer => true }
  validates :description, :presence => true, :length => { :minimum => 1 }
  #validates :price, :numericality => { :greater_than => 0 }, :format => { :with => /^(\d{1,3}(\,\d{3})*|(\d+))(\.\d{2})?$/ }
- validates :price, :numericality => true, :format => { :with => /^(\d{1,3}(\,\d{3})*|(\d+))(\.\d{2})?$/ }
+ #validates :price, :numericality => true, :format => { :with => /^(\d{1,3}(\,\d{3})*|(\d+))(\.\d{2})?$/ }
+ validates :price, :numericality => { :greater_than => 0 }, :format => { :with => /^(\d{1,3}(\,\d{3})*|(\d+))(\.\d{2})?$/ }
  #validates :price, :format => { :with => /^(\d{1,3}(\,\d{3})*|(\d+))(\.\d{2})?$/ }
 
  #validates :price, :format => { :with => /^(\d{1,3}(\,\d{3})*|(\d+))(\.\d{2})?$/,
