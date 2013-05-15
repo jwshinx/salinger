@@ -1,6 +1,9 @@
+require 'formatable'
+
 class ProductsController < ApplicationController
   layout "product"
   load_and_authorize_resource
+  include Formatable
 
   def new_payment
    render 'shared/payment/new_payment.html.haml'
@@ -54,6 +57,9 @@ class ProductsController < ApplicationController
     @product.fyis.each { |f| f.updater = current_user }
     @product.todos.each { |t| t.creator = current_user }
     @product.todos.each { |t| t.updater = current_user }
+
+    @product.price = convert_dollars_to_cents( params[:product][:price] ) 
+
     respond_to do |format|
       if @product.save
         format.html { redirect_to @product, notice: 'Product was successfully created.' }
@@ -69,9 +75,11 @@ class ProductsController < ApplicationController
     #@product = Product.find(params[:id])
     @product.updater = current_user
     @product.sewings.each { |s| s.updater = current_user }
-
+    params[:product][:price] = convert_dollars_to_cents( params[:product][:price] ) 
     respond_to do |format|
       if @product.update_attributes(params[:product])
+        logger.debug "---> PC.update 3: #{params.inspect}"
+        logger.debug "---> PC.update 3.1: #{@product.inspect}"
         format.html { redirect_to @product, notice: 'Product was successfully updated.' }
         format.json { head :no_content }
       else

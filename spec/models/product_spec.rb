@@ -54,10 +54,27 @@ describe Product do
     FactoryGirl.create(:orange_argyle, :price => 'sa') 
    }.to raise_error(ActiveRecord::RecordInvalid, /Price is not a number/) 
   end
-  it "is not greate than zero throws exception" do 
+  it "is not greater than zero throws exception" do 
    expect { 
     FactoryGirl.create(:orange_argyle, :price => 0) 
    }.to raise_error(ActiveRecord::RecordInvalid, /Price must be greater than 0/) 
+  end
+ end
+ describe "when non-numeric count" do
+  it "throws exception" do 
+   expect { 
+    FactoryGirl.create(:orange_argyle, :count=> 'a') 
+   }.to raise_error(ActiveRecord::RecordInvalid, /Count is not a number/) 
+  end
+ end
+ describe "when price doesn't look like dollars" do
+  it "throws exception" do 
+   pending
+   expect { 
+    FactoryGirl.create(:orange_argyle, :price => '1.018784278') 
+   }.to raise_error(ActiveRecord::RecordInvalid, /Price xxx/) 
+   a = FactoryGirl.create(:orange_argyle, :price => '888.000978') 
+   puts "---> #{a.errors.inspect}"
   end
  end
  describe "privilege" do

@@ -13,7 +13,7 @@
   = f.text_field :count
  .field
   = f.label :price
-  = f.text_field :price
+  = f.text_field :price, :value => number_to_currency(cents_to_dollars(f.object.price), :precision => 2, :unit => '')
  = f.fields_for :sewings do |builder|
   .field
    = builder.label :fabric
