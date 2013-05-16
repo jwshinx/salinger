@@ -1,16 +1,13 @@
 :javascript
  $().ready(function() {
-  $("#new_product_form").validate();
-  /*
   $("#new_product_form").validate({ 
-   rules: {
-    price: "required"
-   //},
-   //messages: {
-   // price: "Please a real dollar"
+   rules: { 
+    'product[price]': { required: true, min: 1 }
+   },
+   messages: {
+    'product[price]': { min: "Please a valid dollar amount." }
    }
   });
-  */
  });
 
 #scan_column
