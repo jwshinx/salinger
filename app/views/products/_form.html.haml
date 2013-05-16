@@ -4,13 +4,13 @@
 
  .field
   = f.label :name
-  = f.text_field :name, :class => 'required', :id => 'name'
+  = f.text_field :name, :id => 'name'
  .field
   = f.label :description
-  = f.text_area :description, :cols => 40, :rows => 5, :id => 'description', :class => 'required'
+  = f.text_area :description, :cols => 40, :rows => 5, :id => 'description'
  .field
   = f.label :count, 'Unsold Quantity'
-  = f.text_field :count, :class => 'required digits', :id => 'count'
+  = f.text_field :count, :id => 'count'
  .field
   = f.label :price
   = f.text_field :price, :value => number_to_currency(cents_to_dollars(f.object.price), :precision => 2, :unit => ''), :id => 'price'
