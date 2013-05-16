@@ -1,3 +1,18 @@
+:javascript
+ $().ready(function() {
+  $("#new_product_form").validate();
+  /*
+  $("#new_product_form").validate({ 
+   rules: {
+    price: "required"
+   //},
+   //messages: {
+   // price: "Please a real dollar"
+   }
+  });
+  */
+ });
+
 #scan_column
  = render 'shared/sidebar_menu'
 #content

@@ -1,19 +1,20 @@
-= form_for @product do |f|
+= form_for @product, :html => {:id => 'new_product_form'} do |f|
  - if @product.errors.any?
   = render :partial => 'shared/error_explanation', :object => @product , :as => :object
 
  .field
   = f.label :name
-  = f.text_field :name
+  = f.text_field :name, :class => 'required', :id => 'name'
  .field
   = f.label :description
-  = f.text_area :description, :cols => 20, :rows => 5
+  = f.text_area :description, :cols => 20, :rows => 5, :id => 'description', :class => 'required'
  .field
   = f.label :count, 'Unsold Quantity'
-  = f.text_field :count
+  = f.text_field :count, :class => 'required digits', :id => 'count'
  .field
   = f.label :price
-  = f.text_field :price, :value => number_to_currency(cents_to_dollars(f.object.price), :precision => 2, :unit => '')
+  - # = f.text_field :price, :value => number_to_currency(cents_to_dollars(f.object.price), :precision => 2, :unit => ''), :class => 'required number'
+  = f.text_field :price, :value => number_to_currency(cents_to_dollars(f.object.price), :precision => 2, :unit => ''), :id => 'price', :class => 'required number'
  = f.fields_for :sewings do |builder|
   .field
    = builder.label :fabric
