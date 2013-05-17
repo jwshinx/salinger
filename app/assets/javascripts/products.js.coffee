@@ -2,10 +2,28 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 $(document).ready -> 
+ Product = 
+  cleanName: (name) ->
+   name.replace /[-]/g, ""
+   
+  validName: (name) ->
+   cleaned_name = @cleanName(name)
+   #for i in [(cleaned_name.length-1)..0]
+
+ $("#name").blur ->
+  new_name = Product.validName(@value) 
+  if new_name
+   $("#name").val(new_name)
+  else
+
  $("#new_product_form").bind 'submit', (event) =>
-  console.log "submit..2"
-  #$('input[type=submit]').attr('disabled', 'disabled')
-  #console.log "submit..2a #{event.target.nodeName} #{event.target} #{event.data} #{event.isDefaultPrevented()} #{event.result} #{event.isPropagationStopped()}"
+  is_valid_form = $("#new_product_form").valid()
+  if is_valid_form
+   $('input[type=submit]').attr('disabled', 'disabled')
+  else
+   $('input[type=submit]').removeAttr('disabled')
+  
+ #$("#product_form_button").bind 'click', (event) =>
 
  $("#new_product_form").validate({
   rules: {
