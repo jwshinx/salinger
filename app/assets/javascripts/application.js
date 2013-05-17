@@ -13,6 +13,6 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery.validate
-//= require general 
+// NO NO = require general 
 // NO NO = require users 
-// NO NO = require_tree .
+//= require_tree .
