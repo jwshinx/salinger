@@ -73,52 +73,23 @@ class ProductsController < ApplicationController
   end
 
   def update
-    #@product = Product.find(params[:id])
-    logger.debug "---> PC.update 0: #{params.inspect}" 
     @product.updater = current_user
-    logger.debug "---> PC.update 1: #{@product.sewings.length}" 
-    0.upto(2) do |i|
-     logger.debug "---> PC.update 1.1: #{i}"
-     @product.sewings_attributes = [ params[:product][:sewings_attributes][i.to_s] ]
-     #x.updater = current_user 
-     #x.creator = current_user 
-    end
-    logger.debug "---> PC.update 2" 
-    logger.debug "---> PC.update 2.1: #{params[:product][:sewings_attributes]['0'].inspect}"
-    logger.debug "---> PC.update 2.2: #{params[:product][:sewings_attributes]['1'].inspect}"
-    logger.debug "---> PC.update 2.3: #{params[:product][:sewings_attributes]['2'].inspect}"
-    logger.debug "---> PC.update 2.4" 
-    logger.debug "---> PC.update 2.5: #{@product.sewings.inspect}" 
+    0.upto(2) { |i| @product.sewings_attributes = [ params[:product][:sewings_attributes][i.to_s] ] }
     @product.sewings.each do |s| 
-     logger.debug "---> PC.update 3.1: #{s.inspect}" 
-     if s.creator.nil? 
-      logger.debug "---> PC.update 3.2"
-      s.creator = current_user 
-     else
-      logger.debug "---> PC.update 3.3" 
-     end
+     s.creator = current_user if s.creator.nil? 
      s.updater = current_user 
     end
     @product.save
-    #@product.sewings.each { |s| s.updater = current_user }
-    #if params[:product][:sewings_attributes]['0'][:id].nil? && !params[:product][:sewings_attributes]['0'][:fabric_id].nil? 
-    logger.debug "---> PC.update 4.81: #{@product.sewings.inspect}" 
     params[:product].delete :sewings_attributes
-    logger.debug "---> PC.update 4.82: #{@product.sewings.inspect}" 
 
-    logger.debug "---> PC.update 4.9" 
     @product.fyis.each { |f| f.creator = current_user if f.new_record? }
     @product.fyis.each { |f| f.updater = current_user }
-    logger.debug "---> PC.update 5" 
     @product.todos.each { |t| t.creator = current_user if t.new_record?}
     @product.todos.each { |t| t.updater = current_user }
-    logger.debug "---> PC.update 5.1: params: #{params.inspect}" 
 
     params[:product][:price] = convert_dollars_to_cents( params[:product][:price] ) 
     respond_to do |format|
       if @product.update_attributes(params[:product])
-        logger.debug "---> PC.update 10: #{params.inspect}"
-        logger.debug "---> PC.update 10.1: #{@product.inspect}"
         format.html { redirect_to @product, notice: 'Product was successfully updated.' }
         format.json { head :no_content }
       else
