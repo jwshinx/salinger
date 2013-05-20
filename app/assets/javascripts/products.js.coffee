@@ -16,6 +16,26 @@ $(document).ready ->
    $("#name").val(new_name)
   else
 
+ value = $("#product_sewings_attributes_1_fabric_id").val()
+ if value == ''
+  console.log "add_fabric_1 was clicked; but no value"
+  $("#fabric_1").hide()
+ else
+  console.log "add_fabric_1 was clicked: #{value}" 
+  $("#fabric_1").show()
+ value = $("#product_sewings_attributes_2_fabric_id").val()
+ if value == ''
+  console.log "add_fabric_2 was clicked; but no value"
+  $("#fabric_2").hide()
+ else
+  console.log "add_fabric_2 was clicked: #{value}" 
+  $("#fabric_2").show()
+
+ $("#additional_fabric_0").bind 'click', (event) =>
+  $("#fabric_1").show()
+ $("#additional_fabric_1").bind 'click', (event) =>
+  $("#fabric_2").show()
+
  $("#new_product_form").bind 'submit', (event) =>
   is_valid_form = $("#new_product_form").valid()
   if is_valid_form
