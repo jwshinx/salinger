@@ -5,14 +5,18 @@
  %table
   %thead
    %tr
-    %th Order #
+    %th{:style=>'width:40px;'} #
     %th Date 
     %th Total Due
+    %th Paid?
+    %th Paid Amt 
     %th Items
   %tbody
    - @orders.each do |o|
     %tr
-     %td= o.id 
+     %td{:style=>'width:40px;'}= o.id 
      %td= mmddyy_date(o.purchase_date)
      %td= number_to_currency(cents_to_dollars(o.purchase_amount), :precision => 2)
+     %td= o.ispaid ? 'Yes' : 'No'
+     %td= number_to_currency(cents_to_dollars(o.paid_amount), :precision => 2)
      %td= o.line_items.collect{|li| li.to_s}.join('<br />').html_safe
