@@ -1,9 +1,11 @@
 require 'trackable'
+require 'formatable'
 
 class PurchasesController < ApplicationController
   layout "purchase"
   #load_and_authorize_resource 
   include Trackable
+  include Formatable
 
   def new
     #@purchase = Retailer.new
@@ -25,6 +27,7 @@ class PurchasesController < ApplicationController
     @customer.fyis.each { |f| set_creator_and_updater f, current_user }
     @customer.todos.each { |t| set_creator_and_updater t, current_user }
     @customer.orders.each do |o| 
+     o.paid_amount = convert_dollars_to_cents( params[:customer][:orders_attributes]['0'][:paid_amount] )
      order_total = 0
      set_creator_and_updater o, current_user
      o.line_items.each do |oli|
@@ -40,7 +43,6 @@ class PurchasesController < ApplicationController
 
     respond_to do |format|
       if @customer.save
-        logger.debug "---> PC.create 5"
         format.html { redirect_to @customer, notice: 'Purchase was successfully created.' }
         format.json { render json: @customer, status: :created, location: @customer }
       else
