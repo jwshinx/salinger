@@ -20,22 +20,25 @@ class Product < ActiveRecord::Base
  has_many :fabrics, :through => :sewings, :uniq => true
  belongs_to :creator, :class_name => "User", :foreign_key => "created_by"
  belongs_to :updater, :class_name => "User", :foreign_key => "updated_by"
- #has_many :fabrics, :through => :sewings
- accepts_nested_attributes_for :sewings, :reject_if => lambda { |a| a[:fabric_id].blank? }, :allow_destroy => true
+ accepts_nested_attributes_for :sewings, :allow_destroy => true, :reject_if => lambda { |a| a[:fabric_id].blank? }
  has_many :todos, :as => :notable, :dependent => :destroy
  has_many :fyis, :as => :notable, :dependent => :destroy
  has_many :line_items, :class_name => "OrderLineItem"
- #accepts_nested_attributes_for :todos, :reject_if => lambda { |a| a[:fabric_id].blank? }, :allow_destroy => true
  accepts_nested_attributes_for :todos, :reject_if => lambda { |a| a[:content].blank? }, :allow_destroy => true
  accepts_nested_attributes_for :fyis, :reject_if => lambda { |a| a[:content].blank? }, :allow_destroy => true
 
  attr_accessible :created_by, :updated_by, :description, :name, :count,
   :price, :sewings_attributes, :todos_attributes, :fyis_attributes
 
- #before_validation do |product|
- # Rails.logger.debug "---> a: #{product.inspect}"
- # product.price *= 100.0 unless product.price.nil?
- # Rails.logger.debug "---> b: #{product.inspect}"
- #end 
+private
+
+ before_validation do |product|
+  if product.sewings.collect{|s|s.fabric_id}.uniq.count == product.sewings.length
+   true
+  else
+   errors[:base] << "Product must be comprised of unique fabrics. No duplicate fabrics."
+   false
+  end
+ end
  
 end
