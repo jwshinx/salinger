@@ -1,7 +1,7 @@
 %h2 Actions
 %ul
  - if can? :read, Customer 
-  %li= link_to 'New Purchase', new_purchase_path
+  %li= link_to 'New Order', new_purchase_path
  - if can? :read, Customer 
   %li= link_to 'Customers', customers_path
  - if can? :read, Fabric 

@@ -27,16 +27,16 @@
   .field
    = builder.label :purchase_date, 'Purchase Date'
    = builder.date_select :purchase_date
-  .field
-   = builder.label :paid_amount
-   = builder.text_field :paid_amount
   = builder.fields_for :line_items do |line_item|
    .field
     = line_item.label :product
-    = line_item.select :product_id, Product.order('name asc').all.collect {|p| [p.name, p.id]}, {:include_blank => true}
+    = line_item.select :product_id, Product.order('name asc').all.collect {|p| ["#{p.name } - $#{("%0.02f" % (p.price/100.0))}", p.id]}, {:include_blank => true}
    .field
     = line_item.label :quantity
     = line_item.text_field :quantity 
+  .field
+   = builder.label :paid_amount
+   = builder.text_field :paid_amount
   
  .actions
   = f.submit 'Save'
