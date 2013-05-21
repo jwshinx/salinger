@@ -1,9 +1,9 @@
-= form_for @fabric do |f|
+= form_for @fabric, :html => {:id => 'new_fabric_form'}  do |f|
   - if @fabric.errors.any?
     = render :partial => 'shared/error_explanation', :object => @fabric, :as => :object
 
   .field
     = f.label :name
-    = f.text_field :name
+    = f.text_field :name, :id => 'name'
   .actions
-    = f.submit 'Save'
+    = f.submit 'Save', :id => 'fabric_form_button'
