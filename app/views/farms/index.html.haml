@@ -1,32 +1,33 @@
 #scan_column
  = render 'shared/sidebar_menu'
 #content
- %h1 Listing farms
-
- %table
-  %tr
-   %th Name
-   %th Address
-   %th Contact
-   - if can? :read, Farm
-    %th
-   - if can? :update, Farm
-    %th
-   - if can? :destroy, Farm
-    %th
-
-  - @farms.each do |farm|
+ %h1= and_show_count_of @farms 
+ - unless @farms.empty?
+  %h1 Farms
+  %table
    %tr
-    %td= farm.name
-    %td= "#{farm.address.street} #{farm.address.suite} #{farm.address.city}"
-    %td= farm.contact
+    %th Name
+    %th Address
+    %th Contact
     - if can? :read, Farm
-     %td= link_to 'Show', farm
+     %th
     - if can? :update, Farm
-     %td= link_to 'Edit', edit_farm_path(farm)
+     %th
     - if can? :destroy, Farm
-     %td= link_to 'Destroy', farm, :method => :delete, :data => { :confirm => 'Are you sure?' }
-
- %br
-  - if can? :create, Farm
-   = link_to 'New Farm', new_farm_path
+     %th
+ 
+   - @farms.each do |farm|
+    %tr
+     %td= farm.name
+     %td= "#{farm.address.street} #{farm.address.suite} #{farm.address.city}"
+     %td= farm.contact
+     - if can? :read, Farm
+      %td= link_to 'Show', farm
+     - if can? :update, Farm
+      %td= link_to 'Edit', edit_farm_path(farm)
+     - if can? :destroy, Farm
+      %td= link_to 'Destroy', farm, :method => :delete, :data => { :confirm => 'Are you sure?' }
+ 
+  %br
+   - if can? :create, Farm
+    = link_to 'New Farm', new_farm_path

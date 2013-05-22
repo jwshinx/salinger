@@ -1,45 +1,45 @@
 #scan_column
  = render 'shared/sidebar_menu'
 #content
- %h1 Listing orders
- 
- %table
-  %tr
-   %th Order ID 
-   %th Purchase 
-   %th Name 
-   %th Product 
-   %th Quantity
-   %th Price 
-   %th Subtotal 
-   %th Due
-   %th Paid Date
-   %th Paid Amount
-   %th Ispaid
-   - if can? :read, Order 
-    %th 
-   - if can? :update, Order 
-    %th 
-   - if can? :destroy, Order 
-    %th 
- 
-   - @order_line_items.each do |li|
-    %tr
-     %td= li.order.id
-     %td= mmddyy_date( li.order.purchase_date )
-     %td= li.order.customer.fullname
-     %td= li.product.name
-     %td= li.quantity
-     %td= number_to_currency(cents_to_dollars(li.price), :precision => 2)
-     %td= number_to_currency(cents_to_dollars(li.subtotal), :precision => 2)
-     %td= number_to_currency(cents_to_dollars(li.order.purchase_amount), :precision => 2)
-     %td= mmddyy_date( li.order.paid_date )
-     %td= number_to_currency(cents_to_dollars(li.order.paid_amount), :precision => 2)
-     %td= li.order.ispaid
-     - if can? :read, Order 
-      %td= link_to 'Show', customer_order_path(li.order.customer, li.order)
-     - if can? :update, Order 
-      %td= link_to 'Edit', edit_customer_order_path(li.order.customer, li.order)
-     - if can? :destroy, Order 
-      %td= link_to 'Destroy', customer_order_path(li.order.customer, li.order), :method => :delete, :data => { :confirm => 'Are you sure?' }
- 
+ %h1= and_show_count_of @order_line_items 
+ - unless @order_line_items.empty?
+  %table
+   %tr
+    %th Order ID 
+    %th Purchase 
+    %th Name 
+    %th Product 
+    %th Quantity
+    %th Price 
+    %th Subtotal 
+    %th Due
+    %th Paid Date
+    %th Paid Amount
+    %th Ispaid
+    - if can? :read, Order 
+     %th 
+    - if can? :update, Order 
+     %th 
+    - if can? :destroy, Order 
+     %th 
+  
+    - @order_line_items.each do |li|
+     %tr
+      %td= li.order.id
+      %td= mmddyy_date( li.order.purchase_date )
+      %td= li.order.customer.fullname
+      %td= li.product.name
+      %td= li.quantity
+      %td= number_to_currency(cents_to_dollars(li.price), :precision => 2)
+      %td= number_to_currency(cents_to_dollars(li.subtotal), :precision => 2)
+      %td= number_to_currency(cents_to_dollars(li.order.purchase_amount), :precision => 2)
+      %td= mmddyy_date( li.order.paid_date )
+      %td= number_to_currency(cents_to_dollars(li.order.paid_amount), :precision => 2)
+      %td= li.order.ispaid
+      - if can? :read, Order 
+       %td= link_to 'Show', customer_order_path(li.order.customer, li.order)
+      - if can? :update, Order 
+       %td= link_to 'Edit', edit_customer_order_path(li.order.customer, li.order)
+      - if can? :destroy, Order 
+       %td= link_to 'Destroy', customer_order_path(li.order.customer, li.order), :method => :delete, :data => { :confirm => 'Are you sure?' }
+  

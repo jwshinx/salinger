@@ -1,7 +1,6 @@
-- if @notes.empty?
- %h4 No Notes 
-- else 
- %h4= "Notes (#{@notes.length})"
+%h1= and_show_count_of @notes
+- unless @notes.empty?
+ %h1= "Notes (#{@notes.length})"
  %table
   %thead
    %tr
