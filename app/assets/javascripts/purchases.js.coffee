@@ -36,12 +36,16 @@ $(document).ready ->
    'customer[firstname]': { required: true },
    'customer[lastname]': { required: true },
    'customer[email]': { required: true, email: true },
-   'customer[orders_attributes][0][paid_amount]': { required: true, digits: true }
+   'customer[orders_attributes][0][paid_amount]': { required: true, digits: true },
+   'customer[orders_attributes][0][line_items_attributes][0][product_id]': { required: true },
+   'customer[orders_attributes][0][line_items_attributes][0][quantity]': { required: true, digits: true, min: 1 }
   },
   messages: {
    'customer[firstname]': { required: 'Firstname must be alphanumeric.' },
    'customer[lastname]': { required: 'Lastname must be alphanumeric.' },
    'customer[email]': { required: "Email is required.", email: "It should look like an email." },
-   'customer[orders_attributes][0][paid_amount]': { required: "A value (like zero) is required.", digits: "It needs to be a number." }
+   'customer[orders_attributes][0][paid_amount]': { required: "A value (like zero) is required.", digits: "It needs to be a number." },
+   'customer[orders_attributes][0][line_items_attributes][0][product_id]': { required: "Please select at least one item." },
+   'customer[orders_attributes][0][line_items_attributes][0][quantity]': { required: "Number of items is required.", digits: "It must be a number.", min: "Number must be greater than zero." }
   }
  });

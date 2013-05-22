@@ -2,5 +2,13 @@
  = render 'shared/sidebar_menu'
 #content
  %h1 New Order 
- %h5{:style=>'color:red;'} (Pending: Multiple Scarf Type)
  = render 'form'
+
+ - if current_user.username == 'joel'
+  %h5{:style=>'color:red;'} Note to Joel 
+  %ul
+   %li{:style=>'color:red;'} Multiple products per order
+   %li{:style=>'color:red;'} Customer name check; if repeat customer, dont duplicate
+   %li{:style=>'color:red;'} Default date?  No dates of past
+   %li{:style=>'color:red;'} Set ispaid to true, if needed
+   %li{:style=>'color:red;'} Decrement inventory count 
