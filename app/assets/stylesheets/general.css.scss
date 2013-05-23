@@ -458,12 +458,11 @@ table.tablesorter {
   padding: 4px;
   background-color: #FFF;
   vertical-align: top;
-  tr.odd td {
-   background-color:#F0F0F6;
-  }
+ }
+ tbody tr.odd td {
+  background-color:#F0F0F6;
  }
 }
-
 // .custable,
 //  .tablesorter {
 //    border:1px solid $babyblue;

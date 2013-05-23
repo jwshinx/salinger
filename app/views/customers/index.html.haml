@@ -3,36 +3,42 @@
 #content 
  %h1= and_show_count_of @customers
  - unless @customers.empty?
-  %table
-   %tr
-    %th Name 
-    %th Email
-    %th Description
-    - if can? :create, Note 
-     %th
-     %th
-    - if can? :create, Order 
-     %th
-  
-   - @customers.each do |customer|
+  %table{:id => 'customers_table', :class => 'tablesorter' }
+   %thead
     %tr
-     - if can? :read, Customer
-      %td
-       = link_to customer.fullname, customer
-       - # - if can? :update, Customer
-       - #  = link_to 'Edit', edit_customer_path(customer)
-       - # - if can? :destroy, Customer
-       - #  = link_to 'Destroy', customer, :method => :delete, :data => { :confirm => 'Are you sure?' }
-     - else
-      %td= customer.fullname
-     %td= customer.email
-     %td= customer.description
+     %th Firstname 
+     %th Lastname 
+     %th Email
+     %th Description
      - if can? :create, Note 
-      %td= link_to 'Fyi', new_note_path(customer.id, 'Customer', 'Fyi')
-      %td= link_to 'Todo', new_note_path(customer.id, 'Customer', 'Todo')
+      %th
+      %th
      - if can? :create, Order 
-      %td= link_to 'New Order', new_customer_order_path(customer)
+      %th
+   
+   %tbody
+    - @customers.each do |customer|
+     %tr
+      - if can? :read, Customer
+       %td
+        = link_to customer.firstname, customer
+       %td
+        = link_to customer.lastname, customer
+        - # - if can? :update, Customer
+        - #  = link_to 'Edit', edit_customer_path(customer)
+        - # - if can? :destroy, Customer
+        - #  = link_to 'Destroy', customer, :method => :delete, :data => { :confirm => 'Are you sure?' }
+      - else
+       %td= customer.firstname
+       %td= customer.lastname
+      %td= customer.email
+      %td= customer.description
+      - if can? :create, Note 
+       %td= link_to 'Fyi', new_note_path(customer.id, 'Customer', 'Fyi')
+       %td= link_to 'Todo', new_note_path(customer.id, 'Customer', 'Todo')
+      - if can? :create, Order 
+       %td= link_to 'New Order', new_customer_order_path(customer)
   
-  %br
-  - if can? :create, Customer 
-   = link_to 'New Customer', new_customer_path
+ %br
+ - if can? :create, Customer 
+  = link_to 'New Customer', new_customer_path

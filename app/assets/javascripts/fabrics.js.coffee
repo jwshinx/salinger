@@ -27,3 +27,9 @@ $(document).ready ->
    'fabric[name]': { required: true }
   }
  });
+
+ $("#fabrics_table").tablesorter({
+  sortList: [[0,0]],
+  widgets: ['zebra'],
+  headers: { 1: { sorter: false }, 2: { sorter: false }, 3: { sorter: false } }
+ });

@@ -3,33 +3,35 @@
 #content
  %h1= and_show_count_of @products 
  - unless @products.empty?
-  %table
-   %tr
-    %th Name
-    %th Quantity 
-    %th Price
-    %th Fabrics
-    %th Description
-    - if can? :read, Product
-     %th
-    - if can? :update, Product
-     %th
-     %th
-  
-   - @products.each do |product|
+  %table{:id => 'products_table', :class => 'tablesorter' }
+   %thead
     %tr
-     %td= product.name
-     %td= product.count
-     %td= number_to_currency(cents_to_dollars(product.price), :precision => 2)
-     - # %td= "#{product.sewings.collect{ |s| s.fabric.name}.flatten.join('<br />')}".html_safe
-     %td= product.sewings.collect{ |s| s.fabric.name}.flatten.join(' / ')
-     %td= product.description
+     %th Name
+     %th Quantity 
+     %th Price
+     %th Fabrics
+     %th Description
      - if can? :read, Product
-      %td= link_to 'Show', product
+      %th
      - if can? :update, Product
-      %td= link_to 'Edit', edit_product_path(product)
-      %td= link_to 'Destroy', product, :method => :delete, :data => { :confirm => 'Are you sure?' }
+      %th
+      %th
+   
+   %tbody
+    - @products.each do |product|
+     %tr
+      %td= product.name
+      %td= product.count
+      %td= number_to_currency(cents_to_dollars(product.price), :precision => 2)
+      - # %td= "#{product.sewings.collect{ |s| s.fabric.name}.flatten.join('<br />')}".html_safe
+      %td= product.sewings.collect{ |s| s.fabric.name}.flatten.join(' / ')
+      %td= product.description
+      - if can? :read, Product
+       %td= link_to 'Show', product
+      - if can? :update, Product
+       %td= link_to 'Edit', edit_product_path(product)
+       %td= link_to 'Destroy', product, :method => :delete, :data => { :confirm => 'Are you sure?' }
   
-  %br
-  - if can? :create, Product
-   = link_to 'New Product', new_product_path
+ %br
+ - if can? :create, Product
+  = link_to 'New Product', new_product_path

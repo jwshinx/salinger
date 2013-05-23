@@ -58,4 +58,9 @@ $(document).ready ->
    'product[sewings_attributes][0][fabric_id]': { required: "Please select at least one fabric." }
   }
  });
+ $("#products_table").tablesorter({
+  sortList: [[0,0]],
+  widgets: ['zebra'],
+  headers: { 5: { sorter: false }, 6: { sorter: false }, 7: { sorter: false } }
+ });
 

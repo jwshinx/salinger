@@ -3,24 +3,26 @@
 #content
  %h1= and_show_count_of @fabrics
  - unless @fabrics.empty?
-  %table
-   %tr
-    %th Name
-    - if can? :read, Fabric
-     %th
-    - if can? :update, Fabric
-     %th
-     %th
-  
-   - @fabrics.each do |fabric|
+  %table{:id => 'fabrics_table', :class => 'tablesorter' }
+   %thead
     %tr
-     %td= fabric.name
+     %th Name
      - if can? :read, Fabric
-      %td= link_to 'Show', fabric
+      %th
      - if can? :update, Fabric
-      %td= link_to 'Edit', edit_fabric_path(fabric)
-      %td= link_to 'Destroy', fabric, :method => :delete, :data => { :confirm => 'Are you sure?' }
+      %th
+      %th
+   
+   %tbody
+    - @fabrics.each do |fabric|
+     %tr
+      %td= fabric.name
+      - if can? :read, Fabric
+       %td= link_to 'Show', fabric
+      - if can? :update, Fabric
+       %td= link_to 'Edit', edit_fabric_path(fabric)
+       %td= link_to 'Destroy', fabric, :method => :delete, :data => { :confirm => 'Are you sure?' }
   
-  %br
-  - if can? :create, Fabric
-   = link_to 'New Fabric', new_fabric_path
+ %br
+ - if can? :create, Fabric
+  = link_to 'New Fabric', new_fabric_path
