@@ -437,29 +437,30 @@ table.tablesorter {
   font-size: 8pt;
   padding: 4px;
  }
- thead tr .header {
-  background-image: url(bg.gif);
-  background-repeat: no-repeat;
-  background-position: center right;
-  cursor: pointer;
+ thead tr { 
+  .header {
+   background-image: url(bg.gif);
+   background-repeat: no-repeat;
+   background-position: center right;
+   cursor: pointer;
+  }
+  .headerSortUp {
+   background-color: #8dbdd8;
+   background-image: url(asc.gif);
+  }
+  .headerSortDown {
+   background-color: #8dbdd8;
+   background-image: url(desc.gif);
+  }
  }
  tbody td {
   color: #3D3D3D;
   padding: 4px;
   background-color: #FFF;
   vertical-align: top;
- }
- tbody tr.odd td {
-  background-color:#F0F0F6;
- }
- thead tr .headerSortUp {
-  background-image: url(asc.gif);
- }
- thead tr .headerSortDown {
-  background-image: url(desc.gif);
- }
- thead tr .headerSortDown, thead tr .headerSortUp {
-  background-color: #8dbdd8;
+  tr.odd td {
+   background-color:#F0F0F6;
+  }
  }
 }
 
