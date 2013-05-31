@@ -1,4 +1,8 @@
+require 'starburstroma'
+
 class Customer < ActiveRecord::Base
+ include Starburstroma
+
  attr_accessible :created_by, :updated_by, :description, 
   :email, :firstname, :lastname, :todos_attributes, :fyis_attributes, :orders_attributes
  belongs_to :creator, :class_name => "User", :foreign_key => "created_by"
@@ -11,6 +15,11 @@ class Customer < ActiveRecord::Base
  accepts_nested_attributes_for :fyis, :reject_if => lambda { |a| a[:content].blank? }, :allow_destroy => true
 
  validates :email, :firstname, :lastname, :presence => true, :length => { :minimum => 1 }
+
+ after_validation do |c|
+  c.firstname = cleaned_up(c.firstname) 
+  c.lastname = cleaned_up(c.lastname) 
+ end
 
  def fullname
   "#{firstname} #{lastname}"
