@@ -17,6 +17,8 @@ gem "jquery-validation-rails"
 gem 'execjs'
 gem 'therubyracer'
 
+gem 'starburstroma'
+
 group :test do
   gem 'factory_girl_rails'
   gem "rspec-rails", ">= 2.0.0"
