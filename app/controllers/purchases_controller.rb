@@ -13,8 +13,10 @@ class PurchasesController < ApplicationController
     @customer = Customer.new
     @customer.fyis.build
     @customer.todos.build
-    @customer.orders.build
-    @customer.orders[0].line_items.build
+    @customer.orders.build 
+    5.times do 
+     @customer.orders[0].line_items.build
+    end
 
     respond_to do |format|
       format.html # new.html.erb
@@ -30,11 +32,11 @@ class PurchasesController < ApplicationController
      o.paid_amount = convert_dollars_to_cents( params[:customer][:orders_attributes]['0'][:paid_amount] )
      order_total = 0
      set_creator_and_updater o, current_user
-     o.line_items.each do |oli|
+     o.line_items.each_with_index do |oli, i|
       set_creator_and_updater oli, current_user
-      price = Product.find(params[:customer][:orders_attributes]['0'][:line_items_attributes]['0'][:product_id]).price 
+      price = Product.find(params[:customer][:orders_attributes]['0'][:line_items_attributes][i.to_s][:product_id]).price 
       oli.price = price 
-      quantity = params[:customer][:orders_attributes]['0'][:line_items_attributes]['0'][:quantity].to_i
+      quantity = params[:customer][:orders_attributes]['0'][:line_items_attributes][i.to_s][:quantity].to_i
       order_total += price * quantity
       oli.subtotal = price * quantity 
      end
