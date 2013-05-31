@@ -24,39 +24,12 @@ $(document).ready ->
    $("#lastname").val(new_lastname)
   else
 
- value = $("#customer_orders_attributes_0_line_items_attributes_1_product_id").val()
- if value == ''
-  console.log "add_product_1 was clicked; but no value"
-  $("#product_1").hide()
- else
-  console.log "add_product_1 was clicked: #{value}"
-  $("#product_1").show()
- 
- value = $("#customer_orders_attributes_0_line_items_attributes_2_product_id").val()
- if value == ''
-  console.log "add_product_2 was clicked; but no value"
-  $("#product_2").hide()
- else
-  console.log "add_product_2 was clicked: #{value}"
-  $("#product_2").show()
-
- value = $("#customer_orders_attributes_0_line_items_attributes_3_product_id").val()
- if value == ''
-  console.log "add_product_3 was clicked; but no value"
-  $("#product_3").hide()
- else
-  console.log "add_product_3 was clicked: #{value}"
-  $("#product_3").show()
-
- value = $("#customer_orders_attributes_0_line_items_attributes_4_product_id").val()
- if value == ''
-  console.log "add_product_4 was clicked; but no value"
-  $("#product_4").hide()
- else
-  console.log "add_product_4 was clicked: #{value}"
-  $("#product_4").show()
-
-
+ for x in [1..4]
+  value = $("#customer_orders_attributes_0_line_items_attributes_#{x}_product_id").val()
+  if value == ''
+   $("#product_#{x}").hide()
+  else
+   $("#product_#{x}").show()
 
  $("#new_order_form").bind 'submit', (event) =>
   is_valid_form = $("#new_order_form").valid()
