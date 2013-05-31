@@ -24,12 +24,55 @@ $(document).ready ->
    $("#lastname").val(new_lastname)
   else
 
+ value = $("#customer_orders_attributes_0_line_items_attributes_1_product_id").val()
+ if value == ''
+  console.log "add_product_1 was clicked; but no value"
+  $("#product_1").hide()
+ else
+  console.log "add_product_1 was clicked: #{value}"
+  $("#product_1").show()
+ 
+ value = $("#customer_orders_attributes_0_line_items_attributes_2_product_id").val()
+ if value == ''
+  console.log "add_product_2 was clicked; but no value"
+  $("#product_2").hide()
+ else
+  console.log "add_product_2 was clicked: #{value}"
+  $("#product_2").show()
+
+ value = $("#customer_orders_attributes_0_line_items_attributes_3_product_id").val()
+ if value == ''
+  console.log "add_product_3 was clicked; but no value"
+  $("#product_3").hide()
+ else
+  console.log "add_product_3 was clicked: #{value}"
+  $("#product_3").show()
+
+ value = $("#customer_orders_attributes_0_line_items_attributes_4_product_id").val()
+ if value == ''
+  console.log "add_product_4 was clicked; but no value"
+  $("#product_4").hide()
+ else
+  console.log "add_product_4 was clicked: #{value}"
+  $("#product_4").show()
+
+
+
  $("#new_order_form").bind 'submit', (event) =>
   is_valid_form = $("#new_order_form").valid()
   if is_valid_form
    $('input[type=submit]').attr('disabled', 'disabled')
   else
    $('input[type=submit]').removeAttr('disabled')
+
+ $("#additional_line_item_0").bind 'click', (event) =>
+  $("#product_1").show()
+ $("#additional_line_item_1").bind 'click', (event) =>
+  $("#product_2").show()
+ $("#additional_line_item_2").bind 'click', (event) =>
+  $("#product_3").show()
+ $("#additional_line_item_3").bind 'click', (event) =>
+  $("#product_4").show()
 
  $("#new_order_form").validate({
   rules: {

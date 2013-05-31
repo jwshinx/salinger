@@ -27,12 +27,23 @@
   .field
    = builder.label :purchase_date, 'Purchase Date'
    = builder.date_select :purchase_date, :id => 'purchase_date'
+  - count = 0
   = builder.fields_for :line_items do |line_item|
-   .field
+   %div{:class=>'field', :id => "product_#{count}", :style=>'width:500px;'}
     = line_item.label :product
     = line_item.select :product_id, Product.order('name asc').all.collect {|p| ["#{p.name } - $#{("%0.02f" % (p.price/100.0))}", p.id]}, {:include_blank => true}
     = line_item.label :quantity
     = line_item.text_field :quantity, :size => 5, :maxlength => 5
+    - unless f.object.new_record?
+     = builder.check_box :_destroy
+     = builder.label :_destroy, "Remove"
+     - # if count < f.object.orders.length-1
+    - if count < builder.object.line_items.length-1
+     %div{:id => "additional_line_item_#{count}", :style=>'color:gray;float:right'}
+      = "Another Product?"
+   - count += 1
+
+
   .field
    = builder.label :paid_amount
    = builder.text_field :paid_amount
