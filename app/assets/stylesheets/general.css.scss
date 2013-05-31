@@ -463,6 +463,16 @@ table.tablesorter {
   background-color:#F0F0F6;
  }
 }
+.open_another_item {
+ cursor:pointer;
+ float:right;
+ color: red;
+ display: inline;
+ &:hover {
+  color: #fff;
+  background-color: #000;
+ }
+}
 // .custable,
 //  .tablesorter {
 //    border:1px solid $babyblue;

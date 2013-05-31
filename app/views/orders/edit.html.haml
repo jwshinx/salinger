@@ -4,7 +4,11 @@
  %h1 
   Editing order:
   = @order.customer.fullname 
- = render 'form'
+ %h1 Email Joel with updated order information.
+ %ul 
+  %li Customer Name?
+  %li New Item? Quantity?
+ /= render 'form'
  - if can? :read, Order 
   = link_to 'Show', customer_order_path(@order.customer, @order)
   \|

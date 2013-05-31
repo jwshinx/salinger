@@ -16,15 +16,15 @@
   = f.text_field :price, :value => number_to_currency(cents_to_dollars(f.object.price), :precision => 2, :unit => ''), :id => 'price'
  - count = 0 
  = f.fields_for :sewings do |builder|
-  %div{:class=>'field', :id => "fabric_#{count}", :style=>'width:500px;'}
+  %div{:class=>'field', :id => "fabric_#{count}", :style=>'width:650px;'}
    = builder.label :fabric
    = builder.select :fabric_id, Fabric.order('name asc').all.collect {|r| [r.name, r.id]}, {:include_blank => true}
    - unless f.object.new_record?
     = builder.check_box :_destroy 
     = builder.label :_destroy, "Remove"
    - if count < f.object.sewings.length-1
-    %div{:id => "additional_fabric_#{count}", :style=>'color:gray;float:right'}
-     = "Another Fabric?"
+    %div{:id => "additional_fabric_#{count}", :class => 'open_another_item'}
+     = link_to "Another Fabric?", :remote => true
   - count += 1
   
  = f.fields_for :todos do |builder|
