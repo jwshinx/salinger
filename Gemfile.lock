@@ -164,7 +164,7 @@ GEM
       multi_json (~> 1.0)
       rack (~> 1.0)
       tilt (~> 1.1, != 1.3.0)
-    starburstroma (0.0.1)
+    starburstroma (0.0.2)
     therubyracer (0.11.4)
       libv8 (~> 3.11.8.12)
       ref
