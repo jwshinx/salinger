@@ -29,7 +29,7 @@
    = builder.date_select :purchase_date, :id => 'purchase_date'
   - count = 0
   = builder.fields_for :line_items do |line_item|
-   %div{:class=>'field', :id => "product_#{count}", :style=>'width:650px;'}
+   %div{:class=>'field', :id => "product_#{count}", :style=>'width:700px;'}
     = line_item.label :product
     = line_item.select :product_id, Product.order('name asc').all.collect {|p| ["#{p.name } - $#{("%0.02f" % (p.price/100.0))}", p.id]}, {:include_blank => true}
     = line_item.label :quantity
@@ -40,7 +40,7 @@
      - # if count < f.object.orders.length-1
     - if count < builder.object.line_items.length-1
      %div{:id => "additional_line_item_#{count}", :class => 'open_another_item'}
-      = link_to "Another Product?", :remote => true 
+      = link_to "+1", :remote => true 
    - count += 1
 
 
