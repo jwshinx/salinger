@@ -16,6 +16,8 @@ class User < ActiveRecord::Base
  has_many :updated_emails, :class_name => "Email", :foreign_key => "updated_by"
  has_many :created_email_types, :class_name => "EmailType", :foreign_key => "created_by"
  has_many :updated_email_types, :class_name => "EmailType", :foreign_key => "updated_by"
+ has_many :created_task_status_types, :class_name => "TaskStatusType", :foreign_key => "created_by"
+ has_many :updated_task_status_types, :class_name => "TaskStatusType", :foreign_key => "updated_by"
 
  has_many :created_fyis, 
   :class_name => "Note", :foreign_key => "created_by", :conditions => ['type = ?', 'Fyi'] 

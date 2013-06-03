@@ -1,0 +1,16 @@
+#scan_column
+ = render 'shared/sidebar_menu'
+#content
+
+ %p
+  %b Name:
+  = @task_status_type.name
+ %p
+  %b Description:
+  = @task_status_type.description
+
+ - if can? :edit, TaskStatusType 
+  = link_to 'Edit', edit_task_status_type_path(@task_status_type)
+ - if can? :show, TaskStatusType 
+  \|
+  = link_to 'Back', task_status_types_path

@@ -1,8 +1,7 @@
 Salinger::Application.routes.draw do
   resources :emails
-
-
   resources :email_types
+  resources :task_status_types
 
 
   match 'new_purchase' => 'purchases#new', :as => :new_purchase

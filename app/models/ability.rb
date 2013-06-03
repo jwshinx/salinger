@@ -27,6 +27,8 @@ class Ability
       can :destroy, Order 
       can :update, OrderLineItem
       can :destroy, OrderLineItem 
+      can :update, TaskStatusType 
+      can :destroy, TaskStatusType 
 
       cannot :create, Role
       cannot :destroy, Role

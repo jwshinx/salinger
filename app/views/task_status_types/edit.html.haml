@@ -1,0 +1,10 @@
+#scan_column
+ = render 'shared/sidebar_menu'
+#content
+ %h1 Editing Task Status Type
+ = render 'form'
+ - if can? :read, Product
+  = link_to 'Show', @task_status_type
+  \|
+  = link_to 'Back', task_status_types_path
+

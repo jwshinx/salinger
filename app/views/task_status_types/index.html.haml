@@ -1,0 +1,31 @@
+#scan_column
+ = render 'shared/sidebar_menu'
+#content
+ %h1= and_show_count_of @task_status_types
+ - unless @task_status_types.empty?
+  %table{:id => 'task_status_types_table', :class => 'tablesorter' }
+   %thead
+    %tr
+     %th Name
+     %th Description 
+     - if can? :read, TaskStatusType 
+      %th
+     - if can? :update, TaskStatusType 
+      %th
+      %th
+
+   %tbody
+    - @task_status_types.each do |task_status_type|
+     %tr
+      %td= task_status_type.name
+      %td= task_status_type.description
+      - if can? :read, TaskStatusType 
+       %td= link_to 'Show', task_status_type
+      - if can? :update, TaskStatusType 
+       %td= link_to 'Edit', edit_task_status_type_path(task_status_type)
+       %td= link_to 'Destroy', task_status_type, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+ %br
+ - if can? :create, TaskStatusType
+  = link_to 'New Task Status Type', new_task_status_type_path
+

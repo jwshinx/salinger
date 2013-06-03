@@ -1,14 +1,21 @@
+%h3 Orders
 %ul
  - if can? :read, Customer 
   %li= link_to 'New Order', new_purchase_path
+ - if can? :read, Order 
+  %li= link_to 'Orders', orders_path
+%h3 Manage 
+%ul
  - if can? :read, Customer 
   %li= link_to 'Customers', customers_path
  - if can? :read, Fabric 
   %li= link_to 'Fabrics', fabrics_path
  - if can? :read, Product
   %li= link_to 'Products', products_path
- - if can? :read, Order 
-  %li= link_to 'Orders', orders_path
+%h3 Other 
+%ul
+ - if can? :read, TaskStatusType 
+  %li= link_to 'Task Status Types', task_status_types_path
  - if can? :read, Note 
   %li= link_to 'Notes', notes_path
  - if can? :read, Retailer 
@@ -17,8 +24,9 @@
   %li= link_to 'Farms', farms_path
  - if can? :read, Address 
   %li= link_to 'Addresses', addresses_path
+%ul
 - if current_user.username == 'joel'
- %h2 Joel Only 
+ %h3 Joel Only 
  %ul
   - if can? :read, Role 
    %li= link_to 'Roles', roles_path
