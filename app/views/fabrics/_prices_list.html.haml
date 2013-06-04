@@ -1,0 +1,15 @@
+- if @fabric.prices.empty?
+ %h4 No Price Information Available
+- else
+ %table
+  %th Date
+  %th Price
+  %th Creator
+  %th Updater
+  - @fabric.prices.order('date desc').all.each do |f|
+   %tr
+    %td= mmddyy_date( f.date )
+    %td= cents_to_dollars f.amount
+    %td= f.creator.username
+    %td= f.updater.username
+

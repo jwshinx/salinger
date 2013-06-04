@@ -1,9 +1,16 @@
 = form_for @fabric, :html => {:id => 'new_fabric_form'}  do |f|
-  - if @fabric.errors.any?
-    = render :partial => 'shared/error_explanation', :object => @fabric, :as => :object
+ - if @fabric.errors.any?
+  = render :partial => 'shared/error_explanation', :object => @fabric, :as => :object
 
+ .field
+  = f.label :name
+  = f.text_field :name, :id => 'name'
+ = f.fields_for :prices do |builder|
   .field
-    = f.label :name
-    = f.text_field :name, :id => 'name'
-  .actions
-    = f.submit 'Save', :id => 'fabric_form_button'
+   - if builder.object.date.nil?
+    = builder.label :amount, "Per-Yard Price"
+   - else
+    = builder.label :amount, "Per-Yard Price (on #{mmddyy_date(builder.object.date)})"
+   = builder.text_field :amount
+ .actions
+  = f.submit 'Save', :id => 'fabric_form_button'

@@ -1,6 +1,9 @@
+require 'formatable'
+
 class FabricsController < ApplicationController
   layout "fabric"
   load_and_authorize_resource
+  include Formatable
 
   def index
     #@fabrics = Fabric.all
@@ -22,6 +25,7 @@ class FabricsController < ApplicationController
 
   def new
     #@fabric = Fabric.new
+    @fabric.prices.build
 
     respond_to do |format|
       format.html # new.html.erb
@@ -34,9 +38,23 @@ class FabricsController < ApplicationController
   end
 
   def create
+    logger.debug "---> 1"
     #@fabric = Fabric.new(params[:fabric])
     @fabric.creator = current_user
     @fabric.updater = current_user
+    logger.debug "---> 2: #{@fabric.inspect}"
+    @fabric.prices.each do |p| 
+     p.creator = current_user 
+     p.updater = current_user
+     logger.debug "---> 2.01: #{params[:fabric][:prices_attributes]['0'][:amount]}"
+     p.amount = convert_dollars_to_cents( params[:fabric][:prices_attributes]['0'][:amount] )
+     logger.debug "---> 2.02: #{p.amount}"
+     p.date = Date.today
+    end
+    logger.debug "---> 2.1: #{@fabric.inspect}"
+    logger.debug "---> 2.2: #{@fabric.prices.inspect}"
+    logger.debug "---> 3"
+    #@fabric.prices = convert_dollars_to_cents( params[:product][:price] )
 
     respond_to do |format|
       if @fabric.save

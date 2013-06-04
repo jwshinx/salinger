@@ -24,12 +24,16 @@ $(document).ready ->
 
  $("#new_fabric_form").validate({
   rules: {
-   'fabric[name]': { required: true }
+   'fabric[name]': { required: true },
+   'fabric[prices_attributes][0][amount]': { required: true, min: 0.01, number: true }
+  },
+  messages: { 
+   'fabric[prices_attributes][0][amount]': { required: "Please enter price greater than 1 cent.", min: "Please enter valid price.", number: "Please enter valid price." }
   }
  });
 
  $("#fabrics_table").tablesorter({
   sortList: [[0,0]],
   widgets: ['zebra'],
-  headers: { 1: { sorter: false }, 2: { sorter: false }, 3: { sorter: false } }
+  headers: { 4: { sorter: false }, 5: { sorter: false } }
  });
