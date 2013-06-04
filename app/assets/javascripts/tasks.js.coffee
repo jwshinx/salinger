@@ -4,16 +4,14 @@
 #$(document).ready -> 
 #$->
 jQuery ->
- console.log '---> tasks 1'
- $('#due_date_datepicker').bind 'click', (event) =>
-  console.log '---> tasks.due_date_datepicker 2'
-  $("#due_date_datepicker").datepicker()
-  console.log '---> tasks.due_date_datepicker 3'
+ $("#due_date_datepicker").datepicker()
 
  ###
- $("#due_date_datepicker").blur ->
+ $('#due_date_datepicker').bind 'click', (event) =>
+  console.log '---> tasks.due_date_datepicker 2'
   $("#due_date_datepicker").attr class: 'red_border'
-  console.log '---> tasks.due_date_datepicker 1'
+  $("#due_date_datepicker").datepicker()
+  console.log '---> tasks.due_date_datepicker 3'
  ###
 
  $("#new_task_form").bind 'submit', (event) =>
