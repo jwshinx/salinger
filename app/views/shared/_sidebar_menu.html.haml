@@ -2,7 +2,9 @@
  - if can? :read, Customer 
   %li= link_to 'New Order', new_purchase_path
  - if can? :read, Order 
-  %li= link_to 'All Orders', orders_path
+  %li
+   = link_to 'All Orders', orders_path
+   = link_to '[Items]', order_line_items_path
 %h3 Manage 
 %ul
  - if can? :read, Customer 

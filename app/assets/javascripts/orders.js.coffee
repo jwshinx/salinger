@@ -5,5 +5,5 @@ $(document).ready ->
  $("#orders_table").tablesorter({
   sortList: [[0,1], [1,0]],
   widgets: ['zebra'],
-  headers: { 10: { sorter: false }, 11: { sorter: false }, 12: { sorter: false } }
+  headers: { 2: { sorter: false }, 7: { sorter: false }, 8: { sorter: false }}
  });

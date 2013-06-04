@@ -1,6 +1,7 @@
 class OrderLineItemsController < ApplicationController
-  # GET /order_line_items
-  # GET /order_line_items.json
+  layout "order_line_item"
+  #load_and_authorize_resource
+
   def index
     @order_line_items = OrderLineItem.all
 
@@ -10,8 +11,6 @@ class OrderLineItemsController < ApplicationController
     end
   end
 
-  # GET /order_line_items/1
-  # GET /order_line_items/1.json
   def show
     @order_line_item = OrderLineItem.find(params[:id])
 
@@ -21,8 +20,6 @@ class OrderLineItemsController < ApplicationController
     end
   end
 
-  # GET /order_line_items/new
-  # GET /order_line_items/new.json
   def new
     @order_line_item = OrderLineItem.new
 
@@ -32,13 +29,10 @@ class OrderLineItemsController < ApplicationController
     end
   end
 
-  # GET /order_line_items/1/edit
   def edit
     @order_line_item = OrderLineItem.find(params[:id])
   end
 
-  # POST /order_line_items
-  # POST /order_line_items.json
   def create
     @order_line_item = OrderLineItem.new(params[:order_line_item])
 
@@ -53,8 +47,6 @@ class OrderLineItemsController < ApplicationController
     end
   end
 
-  # PUT /order_line_items/1
-  # PUT /order_line_items/1.json
   def update
     @order_line_item = OrderLineItem.find(params[:id])
 
@@ -69,8 +61,6 @@ class OrderLineItemsController < ApplicationController
     end
   end
 
-  # DELETE /order_line_items/1
-  # DELETE /order_line_items/1.json
   def destroy
     @order_line_item = OrderLineItem.find(params[:id])
     @order_line_item.destroy

@@ -3,7 +3,7 @@ class OrdersController < ApplicationController
   load_and_authorize_resource
 
   def index
-    #@orders = Order.all
+    @orders = Order.order('created_at desc').includes(:line_items).all
     @order_line_items = OrderLineItem.order('created_at desc').includes(:order).all
 
     respond_to do |format|

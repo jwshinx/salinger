@@ -1,27 +1,45 @@
-%h1 Listing order_line_items
-
-%table
-  %tr
-    %th Date
-    %th Quantity
-    %th Price
-    %th Subtotal
-    %th Order
-    %th
-    %th
-    %th
-
-  - @order_line_items.each do |order_line_item|
+#scan_column
+ = render 'shared/sidebar_menu'
+#content
+ %h1= and_show_count_of @order_line_items 
+ - unless @order_line_items.empty?
+  %table{:id => 'order_line_items_table', :class => 'tablesorter' }
+   %thead
     %tr
-      %td= order_line_item.date
-      %td= order_line_item.quantity
-      %td= order_line_item.price
-      %td= order_line_item.subtotal
-      %td= order_line_item.order_id
-      %td= link_to 'Show', order_line_item
-      %td= link_to 'Edit', edit_order_line_item_path(order_line_item)
-      %td= link_to 'Destroy', order_line_item, :method => :delete, :data => { :confirm => 'Are you sure?' }
-
-%br
-
-= link_to 'New Order line item', new_order_line_item_path
+     %th Date 
+     %th Customer 
+     %th Product 
+     %th Qty
+     %th Unit $ 
+     %th Subtotal 
+     %th Due
+     %th Paid Date
+     %th Paid Amount
+     %th Ispaid?
+     - if can? :read, Order 
+      %th 
+     - if can? :update, Order 
+      %th 
+     - if can? :destroy, Order 
+      %th 
+  
+   %tbody
+    - @order_line_items.each do |li|
+     %tr
+      %td= mmddyy_date( li.order.purchase_date )
+      %td= li.order.customer.fullname
+      %td= li.product.name
+      %td= li.quantity
+      %td= number_to_currency(cents_to_dollars(li.price), :precision => 2)
+      %td= number_to_currency(cents_to_dollars(li.subtotal), :precision => 2)
+      %td= number_to_currency(cents_to_dollars(li.order.purchase_amount), :precision => 2)
+      %td= mmddyy_date( li.order.paid_date )
+      %td= number_to_currency(cents_to_dollars(li.order.paid_amount), :precision => 2)
+      %td= li.order.ispaid
+      - if can? :read, Order 
+       %td= link_to 'Show', customer_order_path(li.order.customer, li.order)
+      - if can? :update, Order 
+       %td= link_to 'Edit', edit_customer_order_path(li.order.customer, li.order)
+      - if can? :destroy, Order 
+       %td= link_to 'Destroy', customer_order_path(li.order.customer, li.order), :method => :delete, :data => { :confirm => 'Are you sure?' }
+  
