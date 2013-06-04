@@ -1,0 +1,27 @@
+= form_for @task, :html => {:id => 'new_task_form'} do |f|
+ - if @task.errors.any?
+  = render :partial => 'shared/error_explanation', :object => @task, :as => :object
+
+ .field
+  = f.label :title
+  = f.text_field :title, :id => 'title', :size => 50, :maxlength => 50
+ .field
+  = f.label :description
+  = f.text_area :description, :id => 'description', :cols => 40, :rows => 5
+ .field
+  = f.label :due_date
+  = f.date_select :due_date, :id => 'due_date'
+ - # .field
+ - #  = f.label :completed_on
+ - #  = f.date_select :completed_on, :id => 'completed_on'
+ - # .field
+ - #  = f.label :completed_by
+ - #  = f.number_field :completed_by, :id => 'completed_by'
+ .field
+  = f.label :assigned_to
+  = f.select :assigned_to, User.managers.order('username asc').all.collect {|u| [u.username, u.id]}, {:include_blank => true}, :id => 'assigned_to'
+ - # .field
+ - #  = f.label :task_status_id
+ - # = f.select :task_status_id, TaskStatusType.order('name asc').all.collect {|s| [s.name, s.id]}, {:include_blank => true}
+ .actions
+  = f.submit 'Save', :id => 'task_form_button'

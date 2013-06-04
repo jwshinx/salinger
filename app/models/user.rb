@@ -27,6 +27,9 @@ class User < ActiveRecord::Base
   :class_name => "Note", :foreign_key => "created_by", :conditions => ['type = ?', 'Todo'] 
  has_many :updated_todos, 
   :class_name => "Note", :foreign_key => "updated_by", :conditions => ['type = ?', 'Todo']
+
+ scope :managers, joins(:role).where(:roles => {:name => 'manager'})
+
  def admin?
   !role.nil? && role.name == 'admin' ? true : false
  end

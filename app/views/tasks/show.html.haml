@@ -1,0 +1,34 @@
+#scan_column
+ = render 'shared/sidebar_menu'
+#content
+ 
+ %h3= "Task: #{@task.title}"
+ %p
+  %b Description:
+  = @task.description
+ %p
+  %b Updated by:
+  = @task.updater.username
+ %p
+  %b Created by:
+  = @task.creator.username
+ %p
+  %b Due date:
+  = mmddyy_date @task.due_date
+ %p
+  %b Completed on:
+  = @task.completed_on.blank? ? '---' : @task.completed_on
+ %p
+  %b Completed by:
+  = @task.completed_by.blank? ? '---' : @task.completer
+ %p
+  %b Assigned to:
+  = @task.assigned_to.blank? ? '---' : @task.assignee
+ %p
+  %b Status:
+  = @task.status.name
+ - if can? :edit, Task 
+  = link_to 'Edit', edit_task_path(@task)
+ - if can? :show, Task 
+  \|
+  = link_to 'Back', tasks_path

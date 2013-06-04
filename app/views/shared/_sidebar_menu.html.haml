@@ -1,9 +1,8 @@
-%h3 Orders
 %ul
  - if can? :read, Customer 
   %li= link_to 'New Order', new_purchase_path
  - if can? :read, Order 
-  %li= link_to 'Orders', orders_path
+  %li= link_to 'All Orders', orders_path
 %h3 Manage 
 %ul
  - if can? :read, Customer 
@@ -14,6 +13,8 @@
   %li= link_to 'Products', products_path
 %h3 Other 
 %ul
+ - if can? :read, Task
+  %li= link_to 'Tasks', tasks_path
  - if can? :read, TaskStatusType 
   %li= link_to 'Task Status Types', task_status_types_path
  - if can? :read, Note 

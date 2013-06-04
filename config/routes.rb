@@ -1,4 +1,7 @@
 Salinger::Application.routes.draw do
+  resources :tasks
+
+
   resources :emails
   resources :email_types
   resources :task_status_types
