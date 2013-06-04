@@ -55,6 +55,8 @@ class TasksController < ApplicationController
   def update
     #@task = Task.find(params[:id])
     @task.updater = current_user
+    @task.due_date = Date.parse(params[:task][:due_date])
+    @task.completed_on = Date.parse(params[:task][:completed_on])
 
     respond_to do |format|
       if @task.update_attributes(params[:task])

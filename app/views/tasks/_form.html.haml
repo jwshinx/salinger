@@ -11,19 +11,20 @@
  .field
   = f.label :assigned_to
   = f.select :assigned_to, User.managers.order('username asc').all.collect {|u| [u.username, u.id]}, {:include_blank => true}, :id => 'assigned_to'
+ - if params[:action] == 'edit'
+  .field
+   = f.label :task_status_id
+   = f.select :task_status_id, TaskStatusType.order('name asc').all.collect {|s| [s.name, s.id]} 
+  .field
+   = f.label :completed_on
+   = f.text_field :completed_on, :id => 'completed_on_datepicker'
+  .field
+   = f.label :completed_by
+   = f.select :completed_by, User.managers.order('username asc').all.collect {|u| [u.username, u.id]}, {:include_blank => true}, :id => 'completed_by'
  .field
   = f.label :due_date
   - # = f.date_select :due_date, :id => 'due_date'
   = f.text_field :due_date, :id => 'due_date_datepicker'
- - # .field
- - #  = f.label :completed_on
- - #  = f.date_select :completed_on, :id => 'completed_on'
- - # .field
- - #  = f.label :completed_by
- - #  = f.number_field :completed_by, :id => 'completed_by'
- - # .field
- - #  = f.label :task_status_id
- - # = f.select :task_status_id, TaskStatusType.order('name asc').all.collect {|s| [s.name, s.id]}, {:include_blank => true}
  %br
  %br
  %br

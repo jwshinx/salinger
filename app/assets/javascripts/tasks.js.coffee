@@ -5,6 +5,7 @@
 #$->
 jQuery ->
  $("#due_date_datepicker").datepicker({ dateFormat: "dd/mm/yy" })
+ $("#completed_on_datepicker").datepicker({ dateFormat: "dd/mm/yy" })
 
  ###
  $('#due_date_datepicker').bind 'click', (event) =>
