@@ -38,6 +38,7 @@ class TasksController < ApplicationController
     @task.creator = current_user
     @task.updater = current_user
     #@task.status = TaskStatusType.pending.first
+    @task.due_date = Date.parse(params[:task][:due_date])
     @task.task_status_id = 1
 
     respond_to do |format|
