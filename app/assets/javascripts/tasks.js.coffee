@@ -6,6 +6,8 @@
 jQuery ->
  $("#due_date_datepicker").datepicker({ dateFormat: "dd/mm/yy" })
  $("#completed_on_datepicker").datepicker({ dateFormat: "dd/mm/yy" })
+ #gotoCurrent = $("#completed_on_datepicker").datepicker({ dateFormat: "dd/mm/yy", gotoCurrent: true })
+ #$("#completed_on_datepicker").datepicker("option", "gotoCurrent", true )
 
  ###
  $('#due_date_datepicker').bind 'click', (event) =>
