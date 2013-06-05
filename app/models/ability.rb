@@ -31,6 +31,10 @@ class Ability
       can :destroy, Task
       can :update, TaskStatusType 
       can :destroy, TaskStatusType 
+      can :update, CustomerAddress
+      can :destroy, CustomerAddress
+      can :update, AddressType 
+      can :destroy, AddressType
 
       cannot :create, Role
       cannot :destroy, Role

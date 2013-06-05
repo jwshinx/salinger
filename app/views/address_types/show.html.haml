@@ -1,0 +1,20 @@
+#scan_column
+ = render 'shared/sidebar_menu'
+#content_area
+ 
+ %p
+  %b Name:
+  = @address_type.name
+ %p
+  %b Description:
+  = @address_type.description
+ %p
+  %b Created by:
+  = @address_type.creator.username
+ %p
+  %b Updated by:
+  = @address_type.updater.username
+ 
+ = link_to 'Edit', edit_address_type_path(@address_type)
+ \|
+ = link_to 'Back', address_types_path

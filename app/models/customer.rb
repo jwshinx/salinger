@@ -13,6 +13,7 @@ class Customer < ActiveRecord::Base
  accepts_nested_attributes_for :orders
  accepts_nested_attributes_for :todos, :reject_if => lambda { |a| a[:content].blank? }, :allow_destroy => true
  accepts_nested_attributes_for :fyis, :reject_if => lambda { |a| a[:content].blank? }, :allow_destroy => true
+ has_many :addresses, :class_name => 'CustomerAddress', :foreign_key => "customer_id"
 
  validates :email, :firstname, :lastname, :presence => true, :length => { :minimum => 1 }
 

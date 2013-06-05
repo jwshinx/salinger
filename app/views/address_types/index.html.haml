@@ -1,0 +1,28 @@
+#scan_column
+ = render 'shared/sidebar_menu'
+#content_area
+ %h1 Address Types
+ 
+ %table
+  %tr
+   %th Name
+   %th Description
+   %th Creator
+   %th Updater
+   %th
+   %th
+   %th
+ 
+  - @address_types.each do |address_type|
+   %tr
+    %td= address_type.name
+    %td= address_type.description
+    %td= address_type.creator.username
+    %td= address_type.updater.username
+    %td= link_to 'Show', address_type
+    %td= link_to 'Edit', edit_address_type_path(address_type)
+    %td= link_to 'Destroy', address_type, :method => :delete, :data => { :confirm => 'Are you sure?' }
+ 
+ %br
+ 
+ = link_to 'New Address Type', new_address_type_path

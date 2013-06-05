@@ -11,7 +11,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130604170736) do
+ActiveRecord::Schema.define(:version => 20130605214019) do
+
+  create_table "address_types", :force => true do |t|
+    t.string   "name",        :null => false
+    t.string   "description"
+    t.integer  "created_by",  :null => false
+    t.integer  "updated_by",  :null => false
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
 
   create_table "addresses", :force => true do |t|
     t.string   "street",     :null => false
@@ -27,6 +36,22 @@ ActiveRecord::Schema.define(:version => 20130604170736) do
 
   add_index "addresses", ["id"], :name => "index_addresses_on_id", :unique => true
   add_index "addresses", ["street"], :name => "index_addresses_on_street"
+
+  create_table "customer_addresses", :force => true do |t|
+    t.integer  "customer_id",     :null => false
+    t.integer  "address_type_id", :null => false
+    t.string   "name"
+    t.string   "line_one",        :null => false
+    t.string   "line_two"
+    t.string   "suite"
+    t.string   "city",            :null => false
+    t.string   "state",           :null => false
+    t.string   "zip",             :null => false
+    t.integer  "updated_by",      :null => false
+    t.integer  "created_by",      :null => false
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+  end
 
   create_table "customers", :force => true do |t|
     t.string   "firstname",   :null => false

@@ -18,6 +18,10 @@ class User < ActiveRecord::Base
  has_many :updated_email_types, :class_name => "EmailType", :foreign_key => "updated_by"
  has_many :created_task_status_types, :class_name => "TaskStatusType", :foreign_key => "created_by"
  has_many :updated_task_status_types, :class_name => "TaskStatusType", :foreign_key => "updated_by"
+ has_many :created_address_types, :class_name => "AddressType", :foreign_key => "created_by"
+ has_many :updated_address_types, :class_name => "AddressType", :foreign_key => "updated_by"
+ has_many :created_customer_addresses, :class_name => "CustomerAddress", :foreign_key => "created_by"
+ has_many :updated_customer_addresses, :class_name => "CustomerAddress", :foreign_key => "updated_by"
 
  has_many :created_fyis, 
   :class_name => "Note", :foreign_key => "created_by", :conditions => ['type = ?', 'Fyi'] 

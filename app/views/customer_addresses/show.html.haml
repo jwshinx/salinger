@@ -1,0 +1,28 @@
+#scan_column
+ = render 'shared/sidebar_menu'
+#content_area 
+ %p
+  %b Name:
+  = @customer_address.name
+ %p
+  %b Line one:
+  = @customer_address.line_one
+ %p
+  %b Line two:
+  = @customer_address.line_two
+ %p
+  %b Suite:
+  = @customer_address.suite
+ %p
+  %b City:
+  = @customer_address.city
+ %p
+  %b State:
+  = @customer_address.state
+ %p
+  %b Zip:
+  = @customer_address.zip
+ 
+ = link_to 'Edit', edit_customer_address_path(@customer_address)
+ \|
+ = link_to 'Back', customer_addresses_path

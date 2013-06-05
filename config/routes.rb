@@ -1,4 +1,10 @@
 Salinger::Application.routes.draw do
+  resources :address_types
+
+
+  resources :customer_addresses
+
+
   resources :tasks
 
 
