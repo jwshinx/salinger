@@ -16,4 +16,9 @@
 //= require jquery.validate
 // NO NO = require general 
 // NO NO = require users 
+//= require underscore
+//= require backbone
+//= require backbone_rails_sync
+//= require backbone_datalink
+//= require backbone/salinger
 //= require_tree .
