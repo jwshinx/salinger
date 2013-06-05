@@ -1,6 +1,6 @@
 #scan_column
  = render 'shared/sidebar_menu'
-#content
+#content_area
  %h1= @customer.fullname
  - if can? :edit, Customer
   = link_to 'Edit', edit_customer_path(@customer)

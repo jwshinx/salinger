@@ -1,6 +1,6 @@
 #scan_column
  = render 'shared/sidebar_menu'
-#content
+#content_area
  %h1= and_show_count_of @products 
  - unless @products.empty?
   %table{:id => 'products_table', :class => 'tablesorter' }
