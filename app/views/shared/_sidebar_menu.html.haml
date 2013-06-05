@@ -16,7 +16,10 @@
 %h3 Other 
 %ul
  - if can? :read, Task
-  %li= link_to 'Tasks', tasks_path
+  %li
+   = link_to 'Tasks', tasks_path
+   - if can? :create, Task
+    = link_to '[New]', new_task_path
  - if can? :read, TaskStatusType 
   %li= link_to 'Task Status Types', task_status_types_path
  - if can? :read, Note 

@@ -26,7 +26,7 @@
  = f.fields_for :orders do |builder|
   .field
    = builder.label :purchase_date, 'Purchase Date'
-   = builder.date_select :purchase_date, :id => 'purchase_date'
+   = builder.text_field :purchase_date, :id => 'purchase_date_datepicker'
   - count = 0
   = builder.fields_for :line_items do |line_item|
    %div{:class=>'field', :id => "product_#{count}", :style=>'width:700px;'}

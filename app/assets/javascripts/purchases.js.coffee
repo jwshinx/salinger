@@ -12,6 +12,8 @@ $(document).ready ->
   validLastname: (name) ->
    cleaned_name = @cleanName(name)
 
+ $("#purchase_date_datepicker").datepicker({ dateFormat: "dd/mm/yy" })
+
  $("#firstname").blur ->
   new_firstname = Customer.validFirstname(@value)
   if new_firstname
