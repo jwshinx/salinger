@@ -38,7 +38,8 @@ class TasksController < ApplicationController
     @task.creator = current_user
     @task.updater = current_user
     #@task.status = TaskStatusType.pending.first
-    @task.due_date = Date.parse(params[:task][:due_date])
+    @task.due_date = Date.parse(params[:task][:due_date]) unless params[:task][:due_date].blank?
+    @task.completed_on = Date.parse(params[:task][:completed_on]) unless params[:task][:completed_on].blank?
     @task.task_status_id = 1
 
     respond_to do |format|
@@ -55,8 +56,8 @@ class TasksController < ApplicationController
   def update
     #@task = Task.find(params[:id])
     @task.updater = current_user
-    @task.due_date = Date.parse(params[:task][:due_date])
-    @task.completed_on = Date.parse(params[:task][:completed_on])
+    @task.due_date = Date.parse(params[:task][:due_date]) unless params[:task][:due_date].blank?
+    @task.completed_on = Date.parse(params[:task][:completed_on]) unless params[:task][:completed_on].blank?
 
     respond_to do |format|
       if @task.update_attributes(params[:task])
