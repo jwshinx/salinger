@@ -2,6 +2,8 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 $(document).ready ->
+ $("#date_datepicker").datepicker({ dateFormat: "dd/mm/yy" })
+
  Fabric =
   cleanName: (name) ->
    name.replace /[-]/g, ""
@@ -25,9 +27,11 @@ $(document).ready ->
  $("#new_fabric_form").validate({
   rules: {
    'fabric[name]': { required: true },
+   'fabric[prices_attributes][0][date]': { required: true },
    'fabric[prices_attributes][0][amount]': { required: true, min: 0.01, number: true }
   },
   messages: { 
+   'fabric[prices_attributes][0][date]': { required: 'Date required.' },
    'fabric[prices_attributes][0][amount]': { required: "Please enter price greater than 1 cent.", min: "Please enter valid price.", number: "Please enter valid price." }
   }
  });

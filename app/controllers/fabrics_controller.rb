@@ -49,7 +49,7 @@ class FabricsController < ApplicationController
      logger.debug "---> 2.01: #{params[:fabric][:prices_attributes]['0'][:amount]}"
      p.amount = convert_dollars_to_cents( params[:fabric][:prices_attributes]['0'][:amount] )
      logger.debug "---> 2.02: #{p.amount}"
-     p.date = Date.today
+     p.date = Date.parse(params[:fabric][:prices_attributes]['0'][:date]) 
     end
     logger.debug "---> 2.1: #{@fabric.inspect}"
     logger.debug "---> 2.2: #{@fabric.prices.inspect}"

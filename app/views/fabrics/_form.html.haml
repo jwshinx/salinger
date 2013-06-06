@@ -7,10 +7,10 @@
   = f.text_field :name, :id => 'name'
  = f.fields_for :prices do |builder|
   .field
-   - if builder.object.date.nil?
-    = builder.label :amount, "Per-Yard Price"
-   - else
-    = builder.label :amount, "Per-Yard Price (on #{mmddyy_date(builder.object.date)})"
+   = builder.label :date
+   = builder.text_field :date, :id => 'date_datepicker'
+  .field
+   = builder.label :amount, "Per-Yard Price"
    = builder.text_field :amount
  .actions
   = f.submit 'Save', :id => 'fabric_form_button'
