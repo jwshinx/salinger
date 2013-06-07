@@ -9,7 +9,7 @@
   - @fabric.prices.order('date desc').all.each do |f|
    %tr
     %td= mmddyy_date( f.date )
-    %td= cents_to_dollars f.amount
+    %td= number_to_currency(cents_to_dollars(f.amount), :precision => 2)
     %td= f.creator.username
     %td= f.updater.username
 

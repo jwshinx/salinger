@@ -8,11 +8,6 @@ $(document).ready ->
  
  #console.log $('#new_fabric_price_record').attr('style')
  #console.log $('#new_fabric_price_record').children().length
- ###
- if ( $("#fabric_price_record_0").length)
-  $("#price_date_datepicker_0").datepicker({ dateFormat: "dd/mm/yy" })
- else
- ###
 
  $("#new_fabric_price").bind 'click', (event) =>
   $("#new_fabric_price_record").toggle()
@@ -37,21 +32,17 @@ $(document).ready ->
   else
    $('input[type=submit]').removeAttr('disabled')
 
-  #$("#price_date_datepicker_#{i}").datepicker({ dateFormat: "dd/mm/yy" })
- $("#new_fabric_form").validate()
- for i in [0..$('.price_record').length-2]
-  console.log "===> #{i}"
-
- $('#name').rules("add", "required") 
-
- $('#price_date_datepicker_0').rules("add", "required") 
- $('#price_date_datepicker_1').rules("add", "required") 
- $('#new_price_date_datepicker').rules("add", "required") 
-
- $('#fabric_prices_attributes_0_amount').rules("add", "required") 
- $('#fabric_prices_attributes_1_amount').rules("add", "required") 
- $('#fabric_prices_attributes_2_amount').rules("add", "required") 
-
+ 
+ if $("#new_fabric_form").length
+  $("#new_fabric_form").validate()
+  $('#name').rules("add", "required") 
+  $('#new_price_date_datepicker').rules("add", "required") 
+  count_of_price_records = $('.price_record').length
+  for i in [0..count_of_price_records-1]
+   $("#fabric_prices_attributes_#{i}_amount").rules("add", "required") 
+   if i < count_of_price_records-1
+    $("#price_date_datepicker_#{i}").rules("add", "required") 
+ 
 
  ###
  $("#new_fabric_form").validate({
