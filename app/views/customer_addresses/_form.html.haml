@@ -6,13 +6,13 @@
   = f.hidden_field :customer_id, :value => @customer.id
   .field
     = f.label :address_type_id
-    = f.select :address_type_id, AddressType.order('name asc').all.collect { |t| [t.name, t.id]}, {:include_blank => true }
+    = f.select :address_type_id, AddressType.order('name asc').all.collect { |t| [t.name, t.id]}, {:include_blank => true }, :id => 'address_type'
   .field
     = f.label :name
-    = f.text_field :name
+    = f.text_field :name, :id => 'name'
   .field
     = f.label :line_one
-    = f.text_field :line_one
+    = f.text_field :line_one, :id => 'line_one'
   .field
     = f.label :line_two
     = f.text_field :line_two
@@ -21,12 +21,12 @@
     = f.text_field :suite
   .field
     = f.label :city
-    = f.text_field :city
+    = f.text_field :city, :id => 'city'
   .field
     = f.label :state
-    = f.text_field :state
+    = f.text_field :state, :id => 'state'
   .field
     = f.label :zip
-    = f.text_field :zip
+    = f.text_field :zip, :id => 'zip'
   .actions
     = f.submit 'Save'

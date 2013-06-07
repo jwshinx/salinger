@@ -8,3 +8,17 @@ jQuery ->
    $('input[type=submit]').attr('disabled', 'disabled')
   else
    $('input[type=submit]').removeAttr('disabled')
+
+ $("#new_customer_address_form").validate(
+  rules: {
+   'customer_address[address_type_id]': { required: true },
+   'customer_address[name]': { required: true },
+   'customer_address[line_one]': { required: true },
+   'customer_address[city]': { required: true },
+   'customer_address[state]': { required: true },
+   'customer_address[zip]': { required: true }
+  },
+  messages: {
+   'customer_address[address_type_id]': { required: "Please select an address type."}
+  }
+ )
