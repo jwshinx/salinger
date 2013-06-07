@@ -22,6 +22,7 @@ class CustomerAddressesController < ApplicationController
 
   def new
     #@customer_address = CustomerAddress.new
+    @customer = Customer.find params[:customer_id] 
 
     respond_to do |format|
       format.html # new.html.erb
@@ -35,14 +36,16 @@ class CustomerAddressesController < ApplicationController
 
   def create
     #@customer_address = CustomerAddress.new(params[:customer_address])
+    
     @customer_address.creator = current_user
     @customer_address.updater = current_user
 
     respond_to do |format|
       if @customer_address.save
-        format.html { redirect_to @customer_address, notice: 'Customer address was successfully created.' }
+        format.html { redirect_to customer_url(@customer_address.customer), notice: 'Customer address was successfully created.' }
         format.json { render json: @customer_address, status: :created, location: @customer_address }
       else
+        @customer = Customer.find( params[:customer_id])
         format.html { render action: "new" }
         format.json { render json: @customer_address.errors, status: :unprocessable_entity }
       end

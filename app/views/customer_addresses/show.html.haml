@@ -23,6 +23,6 @@
   %b Zip:
   = @customer_address.zip
  
- = link_to 'Edit', edit_customer_address_path(@customer_address)
+ = link_to 'Edit', edit_customer_customer_address_path(@customer_address.customer.id, @customer_address)
  \|
  = link_to 'Back', customer_addresses_path

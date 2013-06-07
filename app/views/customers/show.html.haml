@@ -2,13 +2,7 @@
  = render 'shared/sidebar_menu'
 #content_area
  %h1= @customer.fullname
- - if can? :edit, Customer
-  = link_to 'Edit', edit_customer_path(@customer)
- - if can? :create, Note 
-  \|
-  = link_to 'Fyi', new_note_path(@customer, 'Customer', 'Fyi')
-  \|
-  = link_to 'Todo', new_note_path(@customer, 'Customer', 'Todo')
+ = render 'action_menu'
  %br
  %br
  = render 'customer_overview'

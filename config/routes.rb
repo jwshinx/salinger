@@ -1,18 +1,14 @@
 Salinger::Application.routes.draw do
   resources :address_types
-
-
-  resources :customer_addresses
-
+  #resources :customer_addresses
+  #match 'new_customer_address/:id' => 'customer_addresses#new', :as => :new_customer_address
 
   resources :tasks
-
-
   resources :emails
   resources :email_types
   resources :task_status_types
 
-
+  match 'customer_addresses' => 'customer_addresses#index', :as => :customer_addresses
   match 'new_purchase' => 'purchases#new', :as => :new_purchase
   match 'create_purchase' => 'purchases#create', :as => :create_purchase
   match 'email_signup' => 'home#email_signup', :as => :email_signup
@@ -27,6 +23,7 @@ Salinger::Application.routes.draw do
   resources :notes
   resources :customers do
    resources :orders
+   resources :customer_addresses
   end
   resources :fabrics
   resources :users

@@ -1,11 +1,12 @@
-= form_for @customer_address do |f|
+- # = form_for @customer_address do |f|
+= form_for @customer_address, :url => customer_customer_addresses_path, :method => :post, :html => {:id => 'new_customer_address_form'} do |f|
   - if @customer_address.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@customer_address.errors.count, "error")} prohibited this customer_address from being saved:"
-      %ul
-        - @customer_address.errors.full_messages.each do |msg|
-          %li= msg
+    = render :partial => 'shared/error_explanation', :object => @customer_address, :as => :object
 
+  = f.hidden_field :customer_id, :value => @customer.id
+  .field
+    = f.label :address_type_id
+    = f.select :address_type_id, AddressType.order('name asc').all.collect { |t| [t.name, t.id]}, {:include_blank => true }
   .field
     = f.label :name
     = f.text_field :name

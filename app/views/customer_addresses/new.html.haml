@@ -1,7 +1,9 @@
 #scan_column
  = render 'shared/sidebar_menu'
 #content_area
- %h1 New Customer Address
+ %h1 
+  New Address:
+  = link_to "#{@customer.fullname}", customer_path(@customer)
 
  = render 'form'
 
