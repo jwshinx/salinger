@@ -37,6 +37,37 @@ $(document).ready ->
   else
    $('input[type=submit]').removeAttr('disabled')
 
+  #$("#price_date_datepicker_#{i}").datepicker({ dateFormat: "dd/mm/yy" })
+ $("#new_fabric_form").validate()
+ for i in [0..$('.price_record').length-2]
+  console.log "===> #{i}"
+
+ $('#name').rules("add", "required") 
+
+ $('#price_date_datepicker_0').rules("add", "required") 
+ $('#price_date_datepicker_1').rules("add", "required") 
+ $('#new_price_date_datepicker').rules("add", "required") 
+
+ $('#fabric_prices_attributes_0_amount').rules("add", "required") 
+ $('#fabric_prices_attributes_1_amount').rules("add", "required") 
+ $('#fabric_prices_attributes_2_amount').rules("add", "required") 
+
+
+ ###
+ $("#new_fabric_form").validate({
+  rules: {
+   'fabric[name]': { required: true },
+   "fabric[prices_attributes][0][date]": { required: true },
+   "fabric[prices_attributes][0][amount]": { required: true, min: 0.01, number: true }
+  },
+  messages: { 
+   "fabric[prices_attributes][0][date]": { required: 'Date required.' },
+   "fabric[prices_attributes][0][amount]": { required: "Please enter price greater than 1 cent.", min: "Please enter valid price.", number: "Please enter valid price." }
+  }
+ })
+ ###
+
+ ###
  $("#new_fabric_form").validate({
   rules: {
    'fabric[name]': { required: true },
@@ -48,6 +79,7 @@ $(document).ready ->
    'fabric[prices_attributes][0][amount]': { required: "Please enter price greater than 1 cent.", min: "Please enter valid price.", number: "Please enter valid price." }
   }
  });
+ ###
 
  $("#fabrics_table").tablesorter({
   sortList: [[0,0]],
