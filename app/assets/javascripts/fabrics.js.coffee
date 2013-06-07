@@ -2,7 +2,24 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 $(document).ready ->
- $("#current_price_date_datepicker").datepicker({ dateFormat: "dd/mm/yy" })
+ #console.log $('#new_fabric_price_record').attr('style')
+ #console.log $('#new_fabric_price_record').children().length
+ if ( $("#fabric_price_record_0").length)
+  console.log '------> 0 is there'
+  $("#price_date_datepicker_0").datepicker({ dateFormat: "dd/mm/yy" })
+ else
+  console.log '------> 0 is not there'
+ if ( $("#fabric_price_record_1").length)
+  console.log '------> 1 is there'
+  $("#price_date_datepicker_1").datepicker({ dateFormat: "dd/mm/yy" })
+ else
+  console.log '------> 1 is not there'
+ if ( $("#fabric_price_record_2").length)
+  console.log '------> 2 is there'
+  $("#price_date_datepicker_2").datepicker({ dateFormat: "dd/mm/yy" })
+ else
+  console.log '------> 2 is not there'
+ $("#price_date_datepicker").datepicker({ dateFormat: "dd/mm/yy" })
  $("#new_price_date_datepicker").datepicker({ dateFormat: "dd/mm/yy" })
  $("#new_fabric_price").bind 'click', (event) =>
   $("#new_fabric_price_record").toggle()
