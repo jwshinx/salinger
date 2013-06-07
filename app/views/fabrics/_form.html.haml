@@ -15,7 +15,7 @@
   - # = builder.object.inspect
   - if builder.object.new_record?
    - if params[:action] == 'new'
-    %div{:class=>'field', :id => "new_fabric_price_record", :style=>'width:700px;'}
+    %div{:class=>'field price_record', :id => "new_fabric_price_record", :style=>'width:700px;'}
      %h4 New Current Price (Altogether new price, or there's been a price change!)
      .field
       = builder.label :date
@@ -25,7 +25,7 @@
       - # = builder.text_field :amount, :value => number_to_currency(cents_to_dollars(f.object.amount), :precision => 2, :unit => '')
       = builder.text_field :amount
    - else
-    %div{:class=>'field', :id => "new_fabric_price_record", :style=>'display:none;width:700px;'}
+    %div{:class=>'field price_record', :id => "new_fabric_price_record", :style=>'display:none;width:700px;'}
      %h4 New Current Price (Altogether new price, or there's been a price change!)
      .field
       = builder.label :date
@@ -34,7 +34,7 @@
       = builder.label :amount, "Per-Yard Price"
       = builder.text_field :amount
   - else 
-   %div{:class=>'field', :id => "fabric_price_record_#{count}", :style=>'width:700px;'}
+   %div{:class=>'field price_record', :id => "fabric_price_record_#{count}", :style=>'width:700px;'}
     %h4 Current Price (You made purchase given this price.)
     .field
      = builder.label :date
