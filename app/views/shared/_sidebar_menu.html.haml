@@ -10,7 +10,10 @@
  - if can? :read, Customer 
   %li= link_to 'Customers', customers_path
  - if can? :read, Fabric 
-  %li= link_to 'Fabrics', fabrics_path
+  %li
+   = link_to 'Fabrics', fabrics_path
+   - if can? :create, Fabric 
+    = link_to '[New]', new_fabric_path
  - if can? :read, Product
   %li= link_to 'Products', products_path
 %h3 Other 

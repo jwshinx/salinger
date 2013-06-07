@@ -5,12 +5,43 @@
  .field
   = f.label :name
   = f.text_field :name, :id => 'name'
+ - if params[:action] == 'edit'
+  %div{:id => "new_fabric_price", :class => 'open_another_item'}
+   = link_to "New Price?", :remote => true
+  - # %div{:class=>'field', :id => "new_fabric_price_record", :style=>'width:700px;'}
+  - #  Shite
  = f.fields_for :prices do |builder|
-  .field
-   = builder.label :date
-   = builder.text_field :date, :id => 'date_datepicker'
-  .field
-   = builder.label :amount, "Per-Yard Price"
-   = builder.text_field :amount
+  - # = builder.object.inspect
+  - if builder.object.new_record?
+   - if params[:action] == 'new'
+    %div{:class=>'field', :id => "new_fabric_price_record", :style=>'width:700px;'}
+     %h4 New Current Price (Altogether new price, or there's been a price change!)
+     .field
+      = builder.label :date
+      = builder.text_field :date, :id => 'new_price_date_datepicker'
+     .field
+      = builder.label :amount, "Per-Yard Price"
+      - # = builder.text_field :amount, :value => number_to_currency(cents_to_dollars(f.object.amount), :precision => 2, :unit => '')
+      = builder.text_field :amount
+   - else
+    %div{:class=>'field', :id => "new_fabric_price_record", :style=>'display:none;width:700px;'}
+     %h4 New Current Price (Altogether new price, or there's been a price change!)
+     .field
+      = builder.label :date
+      = builder.text_field :date, :id => 'new_price_date_datepicker'
+     .field
+      = builder.label :amount, "Per-Yard Price"
+      = builder.text_field :amount
+  - else 
+   %div{:class=>'field', :id => "current_fabric_price_record", :style=>'width:700px;'}
+    %h4 Current Price (You made purchase given this price.)
+    .field
+     = builder.label :date
+     = builder.text_field :date, :id => 'current_price_date_datepicker'
+    .field
+     = builder.label :amount, "Per-Yard Price"
+     - # = builder.text_field :amount, :value => "--> #{builder.object.amount}"
+     = builder.text_field :amount, :value => number_to_currency(cents_to_dollars(builder.object.amount), :precision => 2, :unit => '')
+
  .actions
   = f.submit 'Save', :id => 'fabric_form_button'

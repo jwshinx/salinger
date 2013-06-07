@@ -5,7 +5,7 @@ class Fabric < ActiveRecord::Base
  has_many :products, :through => :sewings
  has_many :prices, :class_name => "FabricPrice", :dependent => :destroy
 
- accepts_nested_attributes_for :prices
+ accepts_nested_attributes_for :prices, :allow_destroy => true, :reject_if => lambda { |a| a[:amount].blank? }
  belongs_to :creator, :class_name => "User", :foreign_key => "created_by"
  belongs_to :updater, :class_name => "User", :foreign_key => "updated_by"
 

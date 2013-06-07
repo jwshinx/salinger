@@ -2,7 +2,10 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 $(document).ready ->
- $("#date_datepicker").datepicker({ dateFormat: "dd/mm/yy" })
+ $("#current_price_date_datepicker").datepicker({ dateFormat: "dd/mm/yy" })
+ $("#new_price_date_datepicker").datepicker({ dateFormat: "dd/mm/yy" })
+ $("#new_fabric_price").bind 'click', (event) =>
+  $("#new_fabric_price_record").toggle()
 
  Fabric =
   cleanName: (name) ->
