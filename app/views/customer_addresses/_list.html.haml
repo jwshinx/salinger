@@ -1,0 +1,27 @@
+%table
+ %tr
+  %th Customer
+  %th Name 
+  %th Line one
+  %th Line two
+  %th Suite
+  %th City
+  %th State
+  %th Zip
+  %th
+  %th
+  %th
+
+ - @customer_addresses.each do |customer_address|
+  %tr
+   %td= customer_address.customer.fullname
+   %td= customer_address.name
+   %td= customer_address.line_one
+   %td= customer_address.line_two
+   %td= customer_address.suite
+   %td= customer_address.city
+   %td= customer_address.state
+   %td= customer_address.zip
+   %td= link_to 'Show', customer_address
+   %td= link_to 'Edit', edit_customer_address_path(customer_address)
+   %td= link_to 'Destroy', customer_address, :method => :delete, :data => { :confirm => 'Are you sure?' }

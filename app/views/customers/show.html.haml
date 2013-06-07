@@ -13,4 +13,9 @@
  %br
  = render 'customer_overview'
  = render 'shared/customer_orders'
+ - if @customer_addresses.empty?
+  %h4 No Addresses
+ - else
+  %h4= "Addresses (#{@customer_addresses.length})"
+  = render 'customer_addresses/list'
  
