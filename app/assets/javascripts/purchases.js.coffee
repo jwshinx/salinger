@@ -58,7 +58,13 @@ $(document).ready ->
    #'purchase_date_datepicker': { required: true },
    'customer[orders_attributes][0][paid_amount]': { required: true, digits: true },
    'customer[orders_attributes][0][line_items_attributes][0][product_id]': { required: true },
-   'customer[orders_attributes][0][line_items_attributes][0][quantity]': { required: true, digits: true, min: 1 }
+   'customer[orders_attributes][0][line_items_attributes][0][quantity]': { required: true, digits: true, min: 1 },
+   'customer[addresses_attributes][0][address_type_id]': { required: true },
+   'customer[addresses_attributes][0][name]': { required: true },
+   'customer[addresses_attributes][0][line_one]': { required: true },
+   'customer[addresses_attributes][0][city]': { required: true },
+   'customer[addresses_attributes][0][state]': { required: true },
+   'customer[addresses_attributes][0][zip]': { required: true }
   },
   messages: {
    'customer[firstname]': { required: 'Firstname must be alphanumeric.' },
@@ -67,6 +73,7 @@ $(document).ready ->
    'customer[orders_attributes][0][purchase_date]': { required: 'Date is required.' },
    'customer[orders_attributes][0][paid_amount]': { required: "A value (like zero) is required.", digits: "It needs to be a number." },
    'customer[orders_attributes][0][line_items_attributes][0][product_id]': { required: "Please select at least one item." },
-   'customer[orders_attributes][0][line_items_attributes][0][quantity]': { required: "Number of items is required.", digits: "It must be a number.", min: "Number must be greater than zero." }
+   'customer[orders_attributes][0][line_items_attributes][0][quantity]': { required: "Number of items is required.", digits: "It must be a number.", min: "Number must be greater than zero." },
+   'customer[addresses_attribute][0][address_type_id]': { required: "Please select an address type."}
   }
  });

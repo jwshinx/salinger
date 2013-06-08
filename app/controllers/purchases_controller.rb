@@ -13,6 +13,7 @@ class PurchasesController < ApplicationController
     @customer = Customer.new
     @customer.fyis.build
     @customer.todos.build
+    @customer.addresses.build 
     @customer.orders.build 
     5.times do 
      @customer.orders[0].line_items.build
@@ -28,6 +29,7 @@ class PurchasesController < ApplicationController
     set_creator_and_updater @customer, current_user 
     @customer.fyis.each { |f| set_creator_and_updater f, current_user }
     @customer.todos.each { |t| set_creator_and_updater t, current_user }
+    @customer.addresses.each { |a| set_creator_and_updater a, current_user }
     @customer.orders.each do |o| 
      o.paid_amount = convert_dollars_to_cents( params[:customer][:orders_attributes]['0'][:paid_amount] )
      order_total = 0

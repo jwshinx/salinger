@@ -3,7 +3,7 @@
  - if @customer.errors.any?
   = render :partial => 'shared/error_explanation', :object => @customer, :as => :object
 
-
+ %h4 General
  .field
   = f.label :firstname
   = f.text_field :firstname, :id => 'firstname'
@@ -24,6 +24,36 @@
   .field
    = builder.label :content, 'Fyi'
    = builder.text_field :content, :size => 30, :maxlength => 30
+
+ %h4 Shipping Address
+ %span.small_red_italics (If a second address is required, you can create additional addresses in the customers page.)
+ = f.fields_for :addresses do |a|
+  .field
+   = a.label :address_type_id
+   = a.select :address_type_id, AddressType.order('name asc').all.collect { |t| [t.name, t.id]}, {:include_blank => true }, :id => 'address_type'
+  .field
+   = a.label :name, "Nickname (eg: 'Home')"
+   = a.text_field :name, :id => 'name'
+  .field
+   = a.label :line_one, "Line 1 (eg: '123 Main St.')"
+   = a.text_field :line_one, :id => 'line_one'
+  .field
+   = a.label :line_two, "Line 2 (eg: 'c/o front desk')"
+   = a.text_field :line_two
+  .field
+   = a.label :suite
+   = a.text_field :suite
+  .field
+   = a.label :city
+   = a.text_field :city, :id => 'city'
+  .field
+   = a.label :state
+   = a.text_field :state, :id => 'state'
+  .field
+   = a.label :zip
+   = a.text_field :zip, :id => 'zip'
+
+ %h4 Order Information 
  = f.fields_for :orders do |builder|
   .field
    = builder.label :purchase_date, 'Purchase Date'
@@ -43,7 +73,6 @@
      %div{:id => "additional_line_item_#{count}", :class => 'open_another_item'}
       = link_to "+1", :remote => true 
    - count += 1
-
 
   .field
    = builder.label :paid_amount

@@ -473,6 +473,14 @@ table.tablesorter {
   background-color: #000;
  }
 }
+.small_red_italics {
+ position:relative;
+ top:-10px;
+ left:10px;
+ color: $red;
+ font-size:10px;
+ font-style:italic;
+}
 // .custable,
 //  .tablesorter {
 //    border:1px solid $babyblue;
