@@ -53,7 +53,20 @@ a {
 }
 
 div {
-  &.field, &.actions {
+  &.field {
+    //background-color:$taupe;
+    margin-bottom: 10px;
+    label {
+     //background-color:$violet;
+     //width: 300px;
+    }
+    input {
+     //background-color:$pink;
+     //width: 200px;
+    }
+  }
+  &.actions {
+    //background-color:$olive;
     margin-bottom: 10px;
   }
 }

@@ -19,11 +19,11 @@
  = f.fields_for :todos do |builder|
   .field
    = builder.label :content, 'Todo'
-   = builder.text_field :content, :size => 30, :maxlength => 30
+   = builder.text_field :content, :size => 50, :maxlength => 50
  = f.fields_for :fyis do |builder|
   .field
    = builder.label :content, 'Fyi'
-   = builder.text_field :content, :size => 30, :maxlength => 30
+   = builder.text_field :content, :size => 50, :maxlength => 50
 
  %h4 Shipping Address
  %span.small_red_italics (If a second address is required, you can create additional addresses in the customers page.)

@@ -10,7 +10,10 @@
   = f.text_area :description, :id => 'description', :cols => 40, :rows => 5
  .field
   = f.label :assigned_to
-  = f.select :assigned_to, User.managers.order('username asc').all.collect {|u| [u.username, u.id]}, {:include_blank => true}, :id => 'assigned_to'
+  - if is_admin_joel?( current_user )
+   = f.select :assigned_to, User.order('username asc').all.collect {|u| [u.username, u.id]}, {:include_blank => true}, :id => 'assigned_to'
+  - else
+   = f.select :assigned_to, User.managers.order('username asc').all.collect {|u| [u.username, u.id]}, {:include_blank => true}, :id => 'assigned_to'
  - if params[:action] == 'edit'
   .field
    = f.label :task_status_id
@@ -20,7 +23,10 @@
    = f.text_field :completed_on, :id => 'completed_on_datepicker'
   .field
    = f.label :completed_by
-   = f.select :completed_by, User.managers.order('username asc').all.collect {|u| [u.username, u.id]}, {:include_blank => true}, :id => 'completed_by'
+   - if is_admin_joel?( current_user )
+    = f.select :completed_by, User.all.order('username asc').all.collect {|u| [u.username, u.id]}, {:include_blank => true}, :id => 'completed_by'
+   - else
+    = f.select :completed_by, User.managers.order('username asc').all.collect {|u| [u.username, u.id]}, {:include_blank => true}, :id => 'completed_by'
  .field
   = f.label :due_date
   - # = f.date_select :due_date, :id => 'due_date'

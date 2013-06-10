@@ -1,4 +1,7 @@
 module ApplicationHelper
+ def is_admin_joel?( user )
+  ( user.username == 'joel' && user.role.name == 'admin' ) ? true : false
+ end
  def and_show_count_of collection
   return "No #{params[:controller].capitalize}" if collection.empty?
   "#{params[:controller].split('_').map{|t|t.capitalize}.join(' ')} (#{collection.length})"

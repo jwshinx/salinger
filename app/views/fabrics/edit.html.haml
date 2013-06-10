@@ -2,6 +2,7 @@
  = render 'shared/sidebar_menu'
 #content_area
  %h1 Editing fabric
+ %span.small_red_italics (To enter a new price, toggle the link at right.)
  = render 'form'
  - if can? :read, Fabric
   = link_to 'Show', @fabric
