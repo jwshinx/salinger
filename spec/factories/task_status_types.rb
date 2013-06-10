@@ -2,8 +2,8 @@
 
 FactoryGirl.define do
   factory :task_status_type do
-    name "MyString"
-    description "MyString"
+    name "Completed"
+    description "all done"
     created_by 1
     updated_by 1
   end

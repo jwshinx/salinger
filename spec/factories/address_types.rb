@@ -2,8 +2,8 @@
 
 FactoryGirl.define do
   factory :address_type do
-    name "MyString"
-    description "MyString"
+    name "Shipping"
+    description "Send here."
     created_by 1
     updated_by 1
   end

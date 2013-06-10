@@ -35,6 +35,8 @@ class Ability
       can :destroy, CustomerAddress
       can :update, AddressType 
       can :destroy, AddressType
+      can :update, FabricPrice 
+      can :destroy, FabricPrice 
 
       cannot :create, Role
       cannot :destroy, Role

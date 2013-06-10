@@ -2,7 +2,10 @@
 
 FactoryGirl.define do
   factory :fabric_price do
-    amount ""
-    date "2013-06-04"
+    amount 100
+    date Date.today 
+    updated_by 1
+    created_by 1
+    fabric_id 1
   end
 end
