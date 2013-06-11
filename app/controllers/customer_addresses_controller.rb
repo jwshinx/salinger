@@ -59,7 +59,8 @@ class CustomerAddressesController < ApplicationController
 
     respond_to do |format|
       if @customer_address.update_attributes(params[:customer_address])
-        format.html { redirect_to @customer_address, notice: 'Customer address was successfully updated.' }
+        #format.html { redirect_to @customer_address, notice: 'Customer address was successfully updated.' }
+        format.html { redirect_to customer_url(@customer_address.customer), notice: 'Customer address was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
