@@ -48,7 +48,7 @@
    = a.text_field :city, :id => 'city'
   .field
    = a.label :state
-   = a.text_field :state, :id => 'state'
+   = a.select :state, us_states, :id => 'state'
   .field
    = a.label :zip
    = a.text_field :zip, :id => 'zip'
