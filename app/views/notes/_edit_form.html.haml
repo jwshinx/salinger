@@ -4,7 +4,8 @@
   = render :partial => 'shared/error_explanation', :object => @note, :as => :object
 
  .field
-  = f.label :content
+  .width_medium
+   = f.label :content
   = f.text_field :content, :id => 'content', :size => 100
 
  .actions

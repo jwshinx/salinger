@@ -3,16 +3,20 @@
   = render :partial => 'shared/error_explanation', :object => @retailer, :as => :object
 
  .field
-  = f.label :name
+  .width_medium
+   = f.label :name
   = f.text_field :name
  .field
-  = f.label :address_id
+  .width_medium
+   = f.label :address_id
   = f.select :address_id, Address.order('street asc').all.collect { |a| [a.street, a.id]}, {:include_blank => true }
  .field
-  = f.label :contact
+  .width_medium
+   = f.label :contact
   = f.text_field :contact
  .field
-  = f.label :phone
+  .width_medium
+   = f.label :phone
   = f.text_field :phone
  .actions
   = f.submit 'Save'

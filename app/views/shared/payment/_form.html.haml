@@ -1,10 +1,12 @@
 = form_tag("/process_payment", {:id => 'credit_card_form'}) do
  .field
-  = label_tag :card_number, 'Credit Card Number'
+  .width_medium
+   = label_tag :card_number, 'Credit Card Number'
   = text_field_tag :card_number
   #credit_card_number_error.inline_block.red_font
  .field
-  = label_tag 'Expiration Date' 
+  .width_medium
+   = label_tag 'Expiration Date' 
   = select_date(Date.today, :order => [:year, :month, :day])
   #expiration_date_error.inline_block.red_font
  .actions

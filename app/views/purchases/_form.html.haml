@@ -5,63 +5,79 @@
 
  %h4 General
  .field
-  = f.label :firstname
+  .width_medium
+   = f.label :firstname
   = f.text_field :firstname, :id => 'firstname'
  .field
-  = f.label :lastname
+  .width_medium
+   = f.label :lastname
   = f.text_field :lastname, :id => 'lastname'
  .field
-  = f.label :email
+  .width_medium
+   = f.label :email
   = f.text_field :email, :id => 'email'
  .field
-  = f.label :description
+  .width_medium
+   = f.label :description
   = f.text_field :description, :id => 'description'
  = f.fields_for :todos do |builder|
   .field
-   = builder.label :content, 'Todo'
+   .width_medium
+    = builder.label :content, 'Todo'
    = builder.text_field :content, :size => 50, :maxlength => 50
  = f.fields_for :fyis do |builder|
   .field
-   = builder.label :content, 'FYI'
+   .width_medium
+    = builder.label :content, 'FYI'
    = builder.text_field :content, :size => 50, :maxlength => 50
 
  %h4 Shipping Address
  %span.small_red_italics (If a second address is required, you can create additional addresses in the customers page.)
  = f.fields_for :addresses do |a|
   .field
-   = a.label :address_type_id
+   .width_medium
+    = a.label :address_type_id
    = a.select :address_type_id, AddressType.order('name asc').all.collect { |t| [t.name, t.id]}, {:include_blank => true }, :id => 'address_type'
   .field
-   = a.label :name, "Nickname (eg: 'Home')"
+   .width_medium_2
+    = a.label :name, "Nickname (eg: 'Home')"
    = a.text_field :name, :id => 'name'
   .field
-   = a.label :line_one, "Line 1 (eg: '123 Main St.')"
+   .width_medium_2
+    = a.label :line_one, "Line 1 (eg: '123 Main St.')"
    = a.text_field :line_one, :id => 'line_one'
   .field
-   = a.label :line_two, "Line 2 (eg: 'c/o front desk')"
+   .width_medium_2
+    = a.label :line_two, "Line 2 (eg: 'c/o front desk')"
    = a.text_field :line_two
   .field
-   = a.label :suite
+   .width_medium
+    = a.label :suite
    = a.text_field :suite
   .field
-   = a.label :city
+   .width_medium
+    = a.label :city
    = a.text_field :city, :id => 'city'
   .field
-   = a.label :state
+   .width_medium
+    = a.label :state
    = a.select :state, us_states, :id => 'state'
   .field
-   = a.label :zip
+   .width_medium
+    = a.label :zip
    = a.text_field :zip, :id => 'zip'
 
  %h4 Order Information 
  = f.fields_for :orders do |builder|
   .field
-   = builder.label :purchase_date, 'Purchase Date'
+   .width_medium
+    = builder.label :purchase_date, 'Purchase Date'
    = builder.text_field :purchase_date, :id => 'purchase_date_datepicker'
   = builder.fields_for :fyis do |bb|
    .field
-    = bb.label :content, 'Note'
-    = bb.text_field :content, :size => 30, :maxlength => 30
+    .width_medium
+     = bb.label :content, 'Note'
+    = bb.text_field :content, :size => 50, :maxlength => 50
   - count = 0
   = builder.fields_for :line_items do |line_item|
    %div{:class=>'field', :id => "product_#{count}", :style=>'width:700px;'}
@@ -79,7 +95,8 @@
    - count += 1
 
   .field
-   = builder.label :paid_amount
+   .width_medium
+    = builder.label :paid_amount
    = builder.text_field :paid_amount
   
  .actions

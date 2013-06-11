@@ -3,10 +3,12 @@
     = render :partial => 'shared/error_explanation', :object => @role, :as => :object
 
   .field
-    = f.label :name
+    .width_medium
+      = f.label :name
     = f.text_field :name
   .field
-    = f.label :description
+    .width_medium
+      = f.label :description
     = f.text_field :description
   .actions
     = f.submit 'Save'

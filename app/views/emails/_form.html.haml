@@ -7,16 +7,20 @@
           %li= msg
 
   .field
-    = f.label :content
+    .width_medium
+      = f.label :content
     = f.text_field :content
   .field
-    = f.label :email_type_id
+    .width_medium
+      = f.label :email_type_id
     = f.number_field :email_type_id
   .field
-    = f.label :created_by
+    .width_medium
+      = f.label :created_by
     = f.number_field :created_by
   .field
-    = f.label :updated_by
+    .width_medium
+      = f.label :updated_by
     = f.number_field :updated_by
   .actions
     = f.submit 'Save'

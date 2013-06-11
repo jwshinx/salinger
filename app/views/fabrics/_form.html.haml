@@ -3,7 +3,8 @@
   = render :partial => 'shared/error_explanation', :object => @fabric, :as => :object
 
  .field
-  = f.label :name
+  .width_medium
+   = f.label :name
   = f.text_field :name, :id => 'name'
  - if params[:action] == 'edit'
   %div{:id => "new_fabric_price", :class => 'open_another_item'}
@@ -18,29 +19,35 @@
     %div{:class=>'field price_record', :id => "new_fabric_price_record", :style=>'width:700px;'}
      %h4 New Current Price (Altogether new price, or there's been a price change!)
      .field
-      = builder.label :date
+      .width_medium
+       = builder.label :date
       = builder.text_field :date, :id => 'new_price_date_datepicker'
      .field
-      = builder.label :amount, "Per-Yard Price"
+      .width_medium
+       = builder.label :amount, "Per-Yard Price"
       - # = builder.text_field :amount, :value => number_to_currency(cents_to_dollars(f.object.amount), :precision => 2, :unit => '')
       = builder.text_field :amount
    - else
     %div{:class=>'field price_record', :id => "new_fabric_price_record", :style=>'display:none;width:700px;'}
      %h4 New Current Price (Altogether new price, or there's been a price change!)
      .field
-      = builder.label :date
+      .width_medium
+       = builder.label :date
       = builder.text_field :date, :id => 'new_price_date_datepicker'
      .field
-      = builder.label :amount, "Per-Yard Price"
+      .width_medium
+       = builder.label :amount, "Per-Yard Price"
       = builder.text_field :amount
   - else 
    %div{:class=>'field price_record', :id => "fabric_price_record_#{count}", :style=>'width:700px;'}
     %h4 Current Price (You made purchase given this price.)
     .field
-     = builder.label :date
+     .width_medium
+      = builder.label :date
      = builder.text_field :date, :id => "price_date_datepicker_#{count}"
     .field
-     = builder.label :amount, "Per-Yard Price"
+     .width_medium
+      = builder.label :amount, "Per-Yard Price"
      - # = builder.text_field :amount, :value => "--> #{builder.object.amount}"
      = builder.text_field :amount, :value => number_to_currency(cents_to_dollars(builder.object.amount), :precision => 2, :unit => '')
    - count += 1

@@ -7,19 +7,24 @@
           %li= msg
 
   .field
-    = f.label :date
+    .width_medium
+      = f.label :date
     = f.date_select :date
   .field
-    = f.label :quantity
+    .width_medium
+      = f.label :quantity
     = f.number_field :quantity
   .field
-    = f.label :price
+    .width_medium
+      = f.label :price
     = f.number_field :price
   .field
-    = f.label :subtotal
+    .width_medium
+      = f.label :subtotal
     = f.number_field :subtotal
   .field
-    = f.label :order_id
+    .width_medium
+      = f.label :order_id
     = f.number_field :order_id
   .actions
     = f.submit 'Save'

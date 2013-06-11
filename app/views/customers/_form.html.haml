@@ -3,24 +3,30 @@
   = render :partial => 'shared/error_explanation', :object => @customer, :as => :object
 
  .field
-  = f.label :firstname
+  .width_medium
+   = f.label :firstname
   = f.text_field :firstname, :id => 'firstname'
  .field
-  = f.label :lastname
+  .width_medium
+   = f.label :lastname
   = f.text_field :lastname, :id => 'lastname'
  .field
-  = f.label :email
+  .width_medium
+   = f.label :email
   = f.text_field :email, :id => 'email'
  .field
-  = f.label :description
+  .width_medium
+   = f.label :description
   = f.text_field :description, :id => 'description'
  = f.fields_for :todos do |builder|
   .field
-   = builder.label :content, 'Todo'
+   .width_medium
+    = builder.label :content, 'Todo'
    = builder.text_field :content, :size => 30, :maxlength => 30
  = f.fields_for :fyis do |builder|
   .field
-   = builder.label :content, 'Fyi'
+   .width_medium
+    = builder.label :content, 'Fyi'
    = builder.text_field :content, :size => 30, :maxlength => 30
 
  .actions

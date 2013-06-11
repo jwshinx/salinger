@@ -4,28 +4,36 @@
 
   = f.hidden_field :customer_id, :value => @customer.id
   .field
-    = f.label :address_type_id
+    .width_medium
+      = f.label :address_type_id
     = f.select :address_type_id, AddressType.order('name asc').all.collect { |t| [t.name, t.id]}, {:include_blank => true }, :id => 'address_type'
   .field
-    = f.label :name
+    .width_medium
+      = f.label :name
     = f.text_field :name, :id => 'name'
   .field
-    = f.label :line_one
+    .width_medium
+      = f.label :line_one
     = f.text_field :line_one, :id => 'line_one'
   .field
-    = f.label :line_two
+    .width_medium
+      = f.label :line_two
     = f.text_field :line_two
   .field
-    = f.label :suite
+    .width_medium
+      = f.label :suite
     = f.text_field :suite
   .field
-    = f.label :city
+    .width_medium
+      = f.label :city
     = f.text_field :city, :id => 'city'
   .field
-    = f.label :state
+    .width_medium
+      = f.label :state
     = f.select :state, us_states, :id => 'state'
   .field
-    = f.label :zip
+    .width_medium
+      = f.label :zip
     = f.text_field :zip, :id => 'zip'
   .actions
     = f.submit 'Save'

@@ -5,22 +5,28 @@
  - if current_user.username == 'joel' 
   /- unless is_joel?
   .field
-   = f.label :username
+   .width_medium
+    = f.label :username
    = f.text_field :username
   .field
-   = f.label :email
+   .width_medium
+    = f.label :email
    = f.text_field :email
   .field
-   = f.label :active
+   .width_medium
+    = f.label :active
    = f.check_box :active
   .field
-   = f.label :role_id
+   .width_medium
+    = f.label :role_id
    = f.select :role_id, Role.all.collect {|r| [r.name, r.id]}
  .field
-  = f.label :password
+  .width_medium
+   = f.label :password
   = f.password_field :password
  .field
-  = f.label :password_confirmation
+  .width_medium
+   = f.label :password_confirmation
   = f.password_field :password_confirmation
  .actions
   = f.submit 'Save'
