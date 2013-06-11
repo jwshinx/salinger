@@ -1,16 +1,16 @@
 #scan_column
  = render 'shared/sidebar_menu'
 #content_area
- /= render 'shared/customer_notes'
-- #  %p
-- #   %b Content
-- #   = @note.content
-- #  %p
-- #   %b Type 
-- #   = @note.notable_type
-- #  %p
-- #   %b Info 
-- #   = @note.owner.inspect
-- # 
-- #  - if can? :edit, Note
-- #   = link_to 'Edit', edit_note_path(@note)
+ %h1 Note
+ %p
+  %b Content
+  = @note.content
+ %p
+  %b Type 
+  = @note.notable_type
+ %p
+  %b Info 
+  = @note.owner.inspect
+
+ - if can? :edit, Note
+  = link_to 'Edit', edit_note_path(@note)

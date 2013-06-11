@@ -1,24 +1,7 @@
 #scan_column
  = render 'shared/sidebar_menu'
 #content_area
- %p
-  %b Purchase date:
-  = mmddyy_date( @order.purchase_date )
- %p
-  %b Paid date:
-  = mmddyy_date( @order.paid_date )
- %p
-  %b Customer:
-  = @order.customer.fullname
- %p
-  %b Purchase amount:
-  = number_to_currency(cents_to_dollars(@order.purchase_amount), :precision => 2)
- %p
-  %b Paid amount:
-  = number_to_currency(cents_to_dollars(@order.paid_amount), :precision => 2)
- %p
-  %b Ispaid:
-  = @order.ispaid
+ = render 'single'
  - if can? :edit, Order 
   = link_to 'Edit', edit_customer_order_path(@order.customer, @order)
  - if can? :read, Order 

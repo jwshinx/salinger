@@ -1,8 +1,14 @@
 #scan_column
  = render 'shared/sidebar_menu'
 #content_area
- %h1 Editing note
- = render 'form'
+ %h1= "Editing #{@note.owner.class} Note"
+  
+ = render 'edit_form'
+ %br
+ %br
+ = @note.owner.inspect
+ %br
+ %br
  = link_to 'Show', note_path(@note)
  \|
  = link_to 'Back', notes_path

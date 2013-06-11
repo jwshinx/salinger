@@ -8,4 +8,5 @@ class Note < ActiveRecord::Base
   notable
  end
 
+ #alias_method :blurb, :content
 end

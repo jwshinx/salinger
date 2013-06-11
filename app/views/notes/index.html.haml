@@ -1,4 +1,7 @@
 #scan_column
  = render 'shared/sidebar_menu'
 #content_area
- = render 'shared/customer_notes'
+ %h1= and_show_count_of @notes
+ - # = render 'shared/customer_notes'
+ - unless @notes.empty?
+  = render 'list'

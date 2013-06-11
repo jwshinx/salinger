@@ -22,7 +22,7 @@
    = builder.text_field :content, :size => 50, :maxlength => 50
  = f.fields_for :fyis do |builder|
   .field
-   = builder.label :content, 'Fyi'
+   = builder.label :content, 'FYI'
    = builder.text_field :content, :size => 50, :maxlength => 50
 
  %h4 Shipping Address
@@ -58,6 +58,10 @@
   .field
    = builder.label :purchase_date, 'Purchase Date'
    = builder.text_field :purchase_date, :id => 'purchase_date_datepicker'
+  = builder.fields_for :fyis do |bb|
+   .field
+    = bb.label :content, 'Note'
+    = bb.text_field :content, :size => 30, :maxlength => 30
   - count = 0
   = builder.fields_for :line_items do |line_item|
    %div{:class=>'field', :id => "product_#{count}", :style=>'width:700px;'}

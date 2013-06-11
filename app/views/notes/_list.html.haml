@@ -1,0 +1,16 @@
+- unless @notes.empty?
+ %table{:id => 'notes_table', :class => 'tablesorter' }
+  %thead
+   %tr
+    %th Type 
+    %th Content
+    %th Notable 
+    %th NID 
+
+  %tbody
+   - @notes.each do |note|
+    %tr
+     %td= note.type
+     %td= note.get_content
+     %td= note.notable_type
+     %td= note.notable_id
