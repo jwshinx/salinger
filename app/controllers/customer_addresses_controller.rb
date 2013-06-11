@@ -32,6 +32,7 @@ class CustomerAddressesController < ApplicationController
 
   def edit
     #@customer_address = CustomerAddress.find(params[:id])
+    @customer = Customer.find params[:customer_id] 
   end
 
   def create

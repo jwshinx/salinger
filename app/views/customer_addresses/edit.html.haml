@@ -1,10 +1,12 @@
 #scan_column
  = render 'shared/sidebar_menu'
 #content_area
- %h1 Editing Customer Address
+ %h1 
+  Editing Customer Address:
+  = link_to "#{@customer_address.customer.fullname}", customer_path(@customer_address.customer)
  
  = render 'form'
  
- = link_to 'Show', @customer_address
+ = link_to 'Show', customer_customer_address_path(@customer_address.customer.id, @customer_address)
  \|
- = link_to 'Back', customer_addresses_path
+ = link_to 'Back', customer_customer_addresses_path

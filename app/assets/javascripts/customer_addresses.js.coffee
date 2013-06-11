@@ -22,3 +22,9 @@ jQuery ->
    'customer_address[address_type_id]': { required: "Please select an address type."}
   }
  )
+
+ $("#customer_addresses_table").tablesorter(
+  sortList: [[0,0]],
+  widgets: ['zebra'],
+  headers: { 9: { sorter: false }, 10: { sorter: false } }
+ )
