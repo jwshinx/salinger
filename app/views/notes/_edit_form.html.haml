@@ -1,11 +1,11 @@
 - # = form_for @note, {:url => notes_path(@note), :method => :post} do |f|
-= form_for @note, {:url => note_path(@note), :method => :put} do |f|
+= form_for @note, :url => note_path(@note), :method => :put, :html => {:id => 'new_note_form'} do |f|
  - if @note.errors.any?
   = render :partial => 'shared/error_explanation', :object => @note, :as => :object
 
  .field
   = f.label :content
-  = f.text_field :content, :size => 100
+  = f.text_field :content, :id => 'content', :size => 100
 
  .actions
   = f.submit 'Save'

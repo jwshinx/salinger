@@ -2,8 +2,14 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 jQuery ->
- $("#notes_table").tablesorter({
+
+ if $("#new_note_form").length
+  $("#new_note_form").validate()
+  $('#content').rules("add", "required")
+
+
+ $("#notes_table").tablesorter(
   sortList: [[0,0]],
   widgets: ['zebra'],
   #headers: { 5: { sorter: false }, 6: { sorter: false }, 7: { sorter: false } }
- })
+ )

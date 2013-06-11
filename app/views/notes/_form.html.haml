@@ -1,5 +1,5 @@
 - # = form_for @note do |f|
-= form_for @note, {:url => notes_path(@note), :method => :post} do |f|
+= form_for @note, :url => notes_path(@note), :method => :post, :html => {:id => 'new_note_form' } do |f|
  = f.hidden_field :notable_id, :value => @note_owner.id
  = f.hidden_field :notable_type, :value => 'Customer' 
  = f.hidden_field :type, :value => @type_of_note 
@@ -8,7 +8,7 @@
 
  .field
   = f.label :content
-  = f.text_field :content
+  = f.text_field :content, :id => 'content', :size => 100
 
  .actions
   = f.submit 'Save'
