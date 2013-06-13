@@ -2,10 +2,15 @@
  = render 'shared/sidebar_menu'
 #content_area
  %h1= and_show_count_of @fabrics
+
+ - if can? :create, Fabric
+  = link_to 'New Fabric', new_fabric_path
+
  - unless @fabrics.empty?
   %table{:id => 'fabrics_table', :class => 'tablesorter' }
    %thead
     %tr
+     %th ID 
      %th Name
      %th Price 
      %th Created By 
@@ -17,6 +22,7 @@
    %tbody
     - @fabrics.each do |fabric|
      %tr
+      %td= fabric.id
       - if can? :read, Fabric 
        %td= link_to fabric.name, fabric
       - else
@@ -28,6 +34,3 @@
        %td= link_to 'Edit', edit_fabric_path(fabric)
        %td= link_to 'Destroy', fabric, :method => :delete, :data => { :confirm => 'Are you sure?' }
   
- %br
- - if can? :create, Fabric
-  = link_to 'New Fabric', new_fabric_path

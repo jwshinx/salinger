@@ -73,7 +73,7 @@ $(document).ready ->
  ###
 
  $("#fabrics_table").tablesorter({
-  sortList: [[0,0]],
+  sortList: [[1,0]],
   widgets: ['zebra'],
-  headers: { 4: { sorter: false }, 5: { sorter: false } }
+  headers: { 5: { sorter: false }, 6: { sorter: false } }
  });

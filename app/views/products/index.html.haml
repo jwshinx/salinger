@@ -2,10 +2,15 @@
  = render 'shared/sidebar_menu'
 #content_area
  %h1= and_show_count_of @products 
+
+ - if can? :create, Product
+  = link_to 'New Product', new_product_path
+
  - unless @products.empty?
   %table{:id => 'products_table', :class => 'tablesorter' }
    %thead
     %tr
+     %th ID 
      %th Name
      %th Qty 
      - if can? :read, Note 
@@ -14,16 +19,19 @@
      %th Price
      %th Fabrics
      %th Description
-     - if can? :read, Product
-      %th
      - if can? :update, Product
       %th
+     - if can? :destroy, Product
       %th
    
    %tbody
     - @products.each do |product|
      %tr
-      %td= product.name
+      %td= product.id
+      - if can? :read, Product
+       %td= link_to product.name, product
+      - else
+       %td= product.name
       %td= product.count
       - if can? :read, Note 
        %td= product.string_array_of_fyis.join('<br />').html_safe
@@ -32,12 +40,8 @@
       - # %td= "#{product.sewings.collect{ |s| s.fabric.name}.flatten.join('<br />')}".html_safe
       %td= product.sewings.collect{ |s| s.fabric.name}.flatten.join(' / ')
       %td= product.description
-      - if can? :read, Product
-       %td= link_to 'Show', product
       - if can? :update, Product
        %td= link_to 'Edit', edit_product_path(product)
+      - if can? :destroy, Product
        %td= link_to 'Destroy', product, :method => :delete, :data => { :confirm => 'Are you sure?' }
   
- %br
- - if can? :create, Product
-  = link_to 'New Product', new_product_path

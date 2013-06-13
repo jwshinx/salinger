@@ -59,8 +59,8 @@ $(document).ready ->
   }
  });
  $("#products_table").tablesorter({
-  sortList: [[0,0]],
+  sortList: [[1,0]],
   widgets: ['zebra'],
-  headers: { 5: { sorter: false }, 6: { sorter: false }, 7: { sorter: false } }
+  headers: { 8: { sorter: false }, 9: { sorter: false } }
  });
 
