@@ -22,6 +22,7 @@ class ProductsController < ApplicationController
 
   def show
     #@product = Product.find(params[:id])
+    @notes = @product.fyis + @product.todos
 
     respond_to do |format|
       format.html # show.html.erb

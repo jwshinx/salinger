@@ -1,0 +1,14 @@
+%table.overview
+ %tr
+  %td.key Quantity:
+  %td.value= @product.count
+ %tr
+  %td.key Description:
+  %td.value= @product.description
+ %tr
+  %td.key Price:
+  %td.value= number_to_currency(cents_to_dollars(@product.price), :precision => 2)
+ %tr
+  %td.key Fabrics: 
+  %td.value= @product.sewings.collect{ |s| s.fabric.name}.flatten.join(' / ')
+

@@ -1,0 +1,5 @@
+- if can? :edit, Product
+ = link_to 'Edit', edit_product_path(@product)
+- if can? :show, Product
+ \|
+ = link_to 'Back', products_path

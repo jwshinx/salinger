@@ -24,12 +24,12 @@
   .field
    .width_medium
     = builder.label :content, 'Todo'
-   = builder.text_field :content, :size => 50, :maxlength => 50
+   = builder.text_field :content, :size => 75, :maxlength => 50
  = f.fields_for :fyis do |builder|
   .field
    .width_medium
     = builder.label :content, 'FYI'
-   = builder.text_field :content, :size => 50, :maxlength => 50
+   = builder.text_field :content, :size => 75, :maxlength => 50
 
  %h4 Shipping Address
  %span.small_red_italics (If a second address is required, you can create additional addresses in the customers page.)
@@ -77,7 +77,7 @@
    .field
     .width_medium
      = bb.label :content, 'Note'
-    = bb.text_field :content, :size => 50, :maxlength => 50
+    = bb.text_field :content, :size => 75, :maxlength => 50
   - count = 0
   = builder.fields_for :line_items do |line_item|
    %div{:class=>'field', :id => "product_#{count}", :style=>'width:700px;'}

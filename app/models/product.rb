@@ -30,6 +30,15 @@ class Product < ActiveRecord::Base
  attr_accessible :created_by, :updated_by, :description, :name, :count,
   :price, :sewings_attributes, :todos_attributes, :fyis_attributes
 
+ def string_array_of_todos
+  return [] if todos.empty?
+  todos.map{|f| f.content }
+ end
+ def string_array_of_fyis
+  return [] if fyis.empty?
+  fyis.map{|f| f.content }
+ end
+
 private
 
  before_validation do |product|

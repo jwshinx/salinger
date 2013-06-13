@@ -7,7 +7,10 @@
    %thead
     %tr
      %th Name
-     %th Quantity 
+     %th Qty 
+     - if can? :read, Note 
+      %th Fyi
+      %th Todo 
      %th Price
      %th Fabrics
      %th Description
@@ -22,6 +25,9 @@
      %tr
       %td= product.name
       %td= product.count
+      - if can? :read, Note 
+       %td= product.string_array_of_fyis.join('<br />').html_safe
+       %td= product.string_array_of_todos.join('<br />').html_safe
       %td= number_to_currency(cents_to_dollars(product.price), :precision => 2)
       - # %td= "#{product.sewings.collect{ |s| s.fabric.name}.flatten.join('<br />')}".html_safe
       %td= product.sewings.collect{ |s| s.fabric.name}.flatten.join(' / ')
