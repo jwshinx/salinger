@@ -9,6 +9,10 @@
  = @note.owner.inspect
  %br
  %br
- = link_to 'Show', note_path(@note)
- \|
- = link_to 'Back', notes_path
+ - if can? :read, Note 
+  = link_to 'Show', note_path(@note)
+  \|
+  = link_to 'All Notes', notes_path
+ - if can? :read, @note.owner.class 
+  \|
+  = link_to "Back to #{@note.owner.class.to_s}", send("#{@note.owner.class.to_s.downcase}_path", @note.owner.id)

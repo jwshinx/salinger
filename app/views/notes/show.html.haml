@@ -12,5 +12,15 @@
   %b Info 
   = @note.owner.inspect
 
+ - if can? :read, Note
+  = link_to 'All Notes', notes_path
+ - if can? :read, @note.owner.class
+  \|
+  - if @note.owner.class.to_s.downcase == 'order'
+   = link_to "Back to #{@note.owner.class.to_s}", send("customer_#{@note.owner.class.to_s.downcase}_path", @note.owner.customer, @note.owner)
+  - else
+   = link_to "Back to #{@note.owner.class.to_s}", send("#{@note.owner.class.to_s.downcase}_path", @note.owner.id)
  - if can? :edit, Note
+  \|
   = link_to 'Edit', edit_note_path(@note)
+

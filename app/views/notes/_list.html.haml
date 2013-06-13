@@ -16,8 +16,7 @@
     %tr
      %td= note.type
      - if can? :read, Note
-      %td
-       = link_to note.get_content, note_path(note) 
+      %td= link_to note.get_content, note_path(note) 
      - else
       %td= note.get_content
      %td= note.notable_type

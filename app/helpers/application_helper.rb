@@ -1,6 +1,4 @@
 module ApplicationHelper
- def linkable_privileged
- end
  def is_admin_joel?( user )
   ( user.username == 'joel' && user.role.name == 'admin' ) ? true : false
  end
