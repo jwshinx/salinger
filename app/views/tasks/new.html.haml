@@ -2,6 +2,7 @@
  = render 'shared/sidebar_menu'
 #content_area
  %h1 New Task 
+ %span.small_red_italics For basic placeholder, simply provide 'title' with 'Unassigned' task status.
  = render 'form'
  - if can? :read, Task 
   = link_to 'Back', tasks_path

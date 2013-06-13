@@ -26,7 +26,8 @@ jQuery ->
 
  $("#new_task_form").validate(
   rules: {
-   'task[title]': { required: true }
+   'task[title]': { required: true },
+   'task[task_status_id]': { required: true }
   }
  )
 

@@ -17,22 +17,21 @@
    = f.select :assigned_to, User.order('username asc').all.collect {|u| [u.username, u.id]}, {:include_blank => true}, :id => 'assigned_to'
   - else
    = f.select :assigned_to, User.managers.order('username asc').all.collect {|u| [u.username, u.id]}, {:include_blank => true}, :id => 'assigned_to'
- - if params[:action] == 'edit'
-  .field
-   .width_medium
-    = f.label :task_status_id
-   = f.select :task_status_id, TaskStatusType.order('name asc').all.collect {|s| [s.name, s.id]} 
-  .field
-   .width_medium
-    = f.label :completed_on
-   = f.text_field :completed_on, :id => 'completed_on_datepicker'
-  .field
-   .width_medium
-    = f.label :completed_by
-   - if is_admin_joel?( current_user )
-    = f.select :completed_by, User.order('username asc').all.collect {|u| [u.username, u.id]}, {:include_blank => true}, :id => 'completed_by'
-   - else
-    = f.select :completed_by, User.managers.order('username asc').all.collect {|u| [u.username, u.id]}, {:include_blank => true}, :id => 'completed_by'
+ .field
+  .width_medium
+   = f.label :task_status_id
+  = f.select :task_status_id, TaskStatusType.order('name asc').all.collect {|s| [s.name, s.id]}, {:include_blank => true}, :id => 'task_status'
+ .field
+  .width_medium
+   = f.label :completed_on
+  = f.text_field :completed_on, :id => 'completed_on_datepicker'
+ .field
+  .width_medium
+   = f.label :completed_by
+  - if is_admin_joel?( current_user )
+   = f.select :completed_by, User.order('username asc').all.collect {|u| [u.username, u.id]}, {:include_blank => true}, :id => 'completed_by'
+  - else
+   = f.select :completed_by, User.managers.order('username asc').all.collect {|u| [u.username, u.id]}, {:include_blank => true}, :id => 'completed_by'
  .field
   .width_medium
    = f.label :due_date

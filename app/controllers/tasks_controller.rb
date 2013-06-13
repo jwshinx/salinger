@@ -40,7 +40,7 @@ class TasksController < ApplicationController
     #@task.status = TaskStatusType.pending.first
     @task.due_date = Date.parse(params[:task][:due_date]) unless params[:task][:due_date].blank?
     @task.completed_on = Date.parse(params[:task][:completed_on]) unless params[:task][:completed_on].blank?
-    @task.task_status_id = 1
+    #@task.task_status_id = 1
 
     respond_to do |format|
       if @task.save

@@ -14,7 +14,7 @@
   = @task.creator.username
  %p
   %b Due date:
-  = mmddyy_date @task.due_date
+  = @task.due_date.blank? ? '---' : mmddyy_date(@task.due_date)
  %p
   %b Completed on:
   = @task.completed_on.blank? ? '---' : mmddyy_date(@task.completed_on)

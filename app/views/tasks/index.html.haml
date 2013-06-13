@@ -26,9 +26,9 @@
        %td{:style=>'width:250px'}= task.title
       %td{:style=>'width:150px'}= task.description 
       %td= task.assigned_to.blank? ? '---' : task.assignee
-      %td= mmddyy_date task.due_date
+      %td= task.due_date.blank? ? '---' : mmddyy_date(task.due_date)
       %td= task.status.name
-      %td= task.completed_on.blank? ? '---' : task.completed_on
+      %td= task.completed_on.blank? ? '---' : mmddyy_date(task.completed_on)
       %td= task.completed_by.blank? ? '---' : task.completer
       - if can? :update, Task 
        %td= link_to 'Edit', edit_task_path(task)
