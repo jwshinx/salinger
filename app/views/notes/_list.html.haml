@@ -6,8 +6,6 @@
     %th Content
     %th Notable 
     %th NID 
-    - if can? :read, Note
-     %th
     - if can? :update, Note
      %th
     - if can? :destroy, Note
@@ -17,11 +15,13 @@
    - @notes.each do |note|
     %tr
      %td= note.type
-     %td= note.get_content
+     - if can? :read, Note
+      %td
+       = link_to note.get_content, note_path(note) 
+     - else
+      %td= note.get_content
      %td= note.notable_type
      %td= note.notable_id
-     - if can? :read, Note
-      %td= link_to 'Show', note_path(note)
      - if can? :update, Note
       %td= link_to 'Edit', edit_note_path(note)
      - if can? :destroy, Note
