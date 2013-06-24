@@ -23,7 +23,8 @@ class NotesController < ApplicationController
 
   def new
     #@note = Note.new
-    @note_owner = Customer.find params[:notable_id]
+    #@note_owner = Customer.find params[:notable_id]
+    @note_owner = eval "#{params[:notable_type]}.find(#{params[:notable_id]})"
     @type_of_note = params[:type]
 
     respond_to do |format|

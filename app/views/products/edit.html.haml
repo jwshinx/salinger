@@ -28,8 +28,9 @@
  = render 'shared/sidebar_menu'
 #content_area
  %h1 Editing product
+ = render 'action_menu'
+ %br
+ %br
  = render 'form'
  - if can? :read, Product
   = link_to 'Show', @product
-  \|
-  = link_to 'Back', products_path

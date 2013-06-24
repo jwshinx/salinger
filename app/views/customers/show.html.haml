@@ -9,6 +9,10 @@
  %br
  = render 'customer_overview'
  = render 'shared/customer_orders'
+
+ %h4= and_show_count_of_notes @notes
+ = render 'shared/customer_notes'
+
  - if @customer_addresses.empty?
   %h4 No Addresses
  - else

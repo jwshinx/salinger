@@ -1,7 +1,10 @@
 - # = form_for @note do |f|
 = form_for @note, :url => notes_path(@note), :method => :post, :html => {:id => 'new_note_form' } do |f|
+ - if @note.new_record?
+  = f.hidden_field :notable_type, :value => @note_owner.class.to_s 
+ - else
+  = f.hidden_field :notable_type, :value => @note.notable_type
  = f.hidden_field :notable_id, :value => @note_owner.id
- = f.hidden_field :notable_type, :value => 'Customer' 
  = f.hidden_field :type, :value => @type_of_note 
  - if @note.errors.any?
   = render :partial => 'shared/error_explanation', :object => @note, :as => :object

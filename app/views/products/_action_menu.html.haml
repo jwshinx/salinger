@@ -2,4 +2,12 @@
  = link_to 'Edit', edit_product_path(@product)
 - if can? :show, Product
  \|
- = link_to 'Back', products_path
+ = link_to 'Show', @product
+ \|
+ = link_to 'All', products_path
+- if can? :create, Note 
+ \|
+ = link_to 'Fyi', new_note_path(@product.id, 'Product', 'Fyi')
+ \|
+ = link_to 'Todo', new_note_path(@product.id, 'Product', 'Todo')
+

@@ -14,6 +14,7 @@ class CustomersController < ApplicationController
   def show
     @orders = @customer.orders.order('created_at desc').includes(:line_items).all
     @customer_addresses = @customer.addresses.all
+    @notes = @customer.todos_and_fyis
 
     respond_to do |format|
       format.html # show.html.erb

@@ -27,6 +27,10 @@ class Customer < ActiveRecord::Base
   "#{firstname} #{lastname}"
  end
  
+ def todos_and_fyis
+  (todos + fyis)
+ end
+
  alias_method :blurb, :fullname
 end
 

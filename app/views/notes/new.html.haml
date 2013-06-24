@@ -5,6 +5,10 @@
   New 
   = "#{params[:type]} for "
   = "#{params[:notable_type]}: "
-  = link_to @note_owner.fullname, customer_path(@note_owner)
+  - if params[:notable_type] == 'Customer'
+   = link_to @note_owner.fullname, customer_path(@note_owner)
+  - elsif params[:notable_type] == 'Product'
+   = link_to @note_owner.name, product_path(@note_owner)
+  - else
  = render 'form'
 
