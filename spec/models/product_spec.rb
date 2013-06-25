@@ -14,7 +14,7 @@ describe Product do
   specify { subject.should be_valid } 
   its(:name) { should == 'orange argyle' }
   its(:name) { should_not be_blank }
-  its(:description) { should == 'orange color with yellow, white print' }
+  its(:description) { should == 'simple. comfy.' }
   its(:description) { should_not be_blank }
   its(:price) { should == 1999 }
   its(:price) { should_not be_blank }

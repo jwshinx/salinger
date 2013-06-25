@@ -1,20 +1,39 @@
 FactoryGirl.define do
- factory :orange_argyle, class: Product do
-  name 'orange argyle'
-  description 'orange color with yellow, white print'
-  price 1999 
+ factory :product, class: Product do
+  description 'simple. comfy.'
   count 1
   creator
   updater
- end
- factory :red_solid, class: Product do
-  name 'red solid'
-  description 'simple. comfy like a tshirt'
-  price 9999 
-  count 1
-  creator
-  updater
-  ignore { sewings_count 1 }
-  after(:create) { |product, evaluator| FactoryGirl.create_list(:red_sewing , evaluator.sewings_count, product: product) }
+
+  factory :orange_argyle do
+   name 'orange argyle'
+   price 1999 
+  end
+
+  factory :red_solid do
+   name 'red solid'
+   price 9999 
+   ignore { sewings_count 1 }
+   after(:create) { |product, evaluator| 
+    FactoryGirl.create_list(:red_cotton_sewing , evaluator.sewings_count, product: product) 
+   }
+  end
+  trait :packers_info do 
+   name 'packers home'
+   price 7500 
+  end
+  trait :has_green_fabric do 
+   ignore { sewings_count 1 }
+   after(:create) { |product, evaluator| 
+    FactoryGirl.create_list(:green_cotton_sewing , evaluator.sewings_count, product: product) 
+   }
+  end
+  trait :has_yellow_fabric do 
+   ignore { sewings_count 1 }
+   after(:create) { |product, evaluator| 
+    FactoryGirl.create_list(:yellow_cotton_sewing , evaluator.sewings_count, product: product) 
+   }
+  end
+  factory :packers_home, traits: [:has_yellow_fabric, :has_green_fabric, :packers_info ]
  end
 end
