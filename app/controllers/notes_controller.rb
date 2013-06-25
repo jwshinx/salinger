@@ -24,13 +24,21 @@ class NotesController < ApplicationController
   def new
     #@note = Note.new
     #@note_owner = Customer.find params[:notable_id]
-    @note_owner = eval "#{params[:notable_type]}.find(#{params[:notable_id]})"
+    if EvalSmetto.new(params[:notable_type]).is_evalable?
+     @note_owner = eval "#{params[:notable_type]}.find(#{params[:notable_id]})"
+    else
+     raise Exception
+    end
     @type_of_note = params[:type]
 
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @note }
     end
+  rescue Exception => exc
+    logger.error "---> maybe eval-smetto failed: #{exc}"
+    flash[:notice] = "An error occured. Take a printscreen and email Joel."
+    redirect_to notes_url
   end
 
   def edit
