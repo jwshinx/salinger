@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130626170124) do
+ActiveRecord::Schema.define(:version => 20130626230900) do
 
   create_table "address_types", :force => true do |t|
     t.string   "name",        :null => false
@@ -166,6 +166,7 @@ ActiveRecord::Schema.define(:version => 20130626170124) do
     t.boolean  "ispaid",          :default => false, :null => false
     t.datetime "created_at",                         :null => false
     t.datetime "updated_at",                         :null => false
+    t.integer  "order_status_id",                    :null => false
   end
 
   add_index "orders", ["id"], :name => "index_orders_on_id", :unique => true
