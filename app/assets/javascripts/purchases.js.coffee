@@ -58,6 +58,7 @@ $(document).ready ->
    #'purchase_date_datepicker': { required: true },
    #'customer[orders_attributes][0][paid_amount]': { required: true, digits: true },
    'customer[orders_attributes][0][paid_amount]': { required: true },
+   'customer[orders_attributes][0][order_status_id]': { required: true },
    'customer[orders_attributes][0][line_items_attributes][0][product_id]': { required: true },
    'customer[orders_attributes][0][line_items_attributes][0][quantity]': { required: true, digits: true, min: 1 },
    'customer[addresses_attributes][0][address_type_id]': { required: true },

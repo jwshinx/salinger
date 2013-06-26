@@ -7,6 +7,7 @@
    %tr
     %th{:style=>'width:40px;'} #
     %th Date 
+    %th Status 
     %th Total Due
     %th Paid?
     %th Paid Amt 
@@ -19,6 +20,7 @@
     %tr
      %td{:style=>'width:40px;'}= o.id 
      %td= mmddyy_date(o.purchase_date)
+     %td= o.status.title
      %td= number_to_currency(cents_to_dollars(o.purchase_amount), :precision => 2)
      %td= o.ispaid ? 'Yes' : 'No'
      %td= number_to_currency(cents_to_dollars(o.paid_amount), :precision => 2)

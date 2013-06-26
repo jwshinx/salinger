@@ -1,5 +1,5 @@
 class Order < ActiveRecord::Base
- attr_accessible :created_by, :customer_id, :ispaid, :paid_amount, :paid_date, :purchase_amount, :purchase_date, :updated_by, :line_items_attributes, :fyis_attributes
+ attr_accessible :created_by, :customer_id, :ispaid, :paid_amount, :paid_date, :purchase_amount, :purchase_date, :updated_by, :line_items_attributes, :fyis_attributes, :order_status_id
  has_many :line_items, :class_name => 'OrderLineItem', :dependent => :destroy
  has_many :fyis, :as => :notable, :dependent => :destroy
  belongs_to :status, :class_name => 'OrderStatus', :foreign_key => 'order_status_id'
