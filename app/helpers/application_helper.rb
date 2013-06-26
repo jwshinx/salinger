@@ -1,4 +1,13 @@
 module ApplicationHelper
+ 
+ def linkify display_text, model, ability, object, url_token
+  if can? ability, model
+   content_tag(:a, display_text, :href => "/#{url_token}/#{object.id}") 
+  else
+   content_tag(:span, display_text)
+  end
+ end
+
  def is_admin_joel?( user )
   ( user.username == 'joel' && user.role.name == 'admin' ) ? true : false
  end

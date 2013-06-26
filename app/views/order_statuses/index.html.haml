@@ -16,7 +16,7 @@
   %tbody
    - @order_statuses.each do |order_status|
     %tr
-     %td{:style => 'width:250px'}= make_link order_status.title, OrderStatus, :read, order_status, 'order_statuses'
+     %td{:style => 'width:250px'}= can_show_linkify order_status.title, order_status 
      %td= order_status.description
      %td= order_status.updater.username
      %td= order_status.creator.username
