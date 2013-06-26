@@ -16,10 +16,7 @@
   %tbody
    - @order_statuses.each do |order_status|
     %tr
-     - if can? :read, OrderStatus
-      %td{:style=>'width:250px'}= link_to order_status.title, order_status
-     - else
-      %td{:style=>'width:250px'}= order_status.title
+     %td{:style => 'width:250px'}= make_link order_status.title, OrderStatus, :read, order_status, 'order_statuses'
      %td= order_status.description
      %td= order_status.updater.username
      %td= order_status.creator.username
