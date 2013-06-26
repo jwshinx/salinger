@@ -1,0 +1,31 @@
+- unless @tasks.empty?
+ %table{:id => 'tasks_table', :class => 'tablesorter' }
+  %thead
+   %tr
+    %th{:style=>'width:250px'} Task
+    %th{:style=>'width:150px'} Description
+    %th Assigned to
+    %th Due
+    %th Status
+    %th Completed on
+    %th Completed by
+    - if can? :update, Task
+     %th
+     %th
+
+  %tbody
+   - @tasks.each do |task|
+    %tr
+     - if can? :read, Task
+      %td{:style=>'width:250px'}= link_to task.title, task
+     - else
+      %td{:style=>'width:250px'}= task.title
+     %td{:style=>'width:150px'}= task.description
+     %td= task.assigned_to.blank? ? '---' : task.assignee
+     %td= task.due_date.blank? ? '---' : mmddyy_date(task.due_date)
+     %td= task.status.name
+     %td= task.completed_on.blank? ? '---' : mmddyy_date(task.completed_on)
+     %td= task.completed_by.blank? ? '---' : task.completer
+     - if can? :update, Task
+      %td= link_to 'Edit', edit_task_path(task)
+      %td= link_to 'Destroy', task, :method => :delete, :data => { :confirm => 'Are you sure?' }

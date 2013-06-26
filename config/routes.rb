@@ -8,6 +8,7 @@ Salinger::Application.routes.draw do
   resources :email_types
   resources :task_status_types
 
+  match 'my_tasks' => 'tasks#my_tasks', :as => :my_tasks
   match 'customer_addresses' => 'customer_addresses#index', :as => :customer_addresses
   match 'new_purchase' => 'purchases#new', :as => :new_purchase
   match 'create_purchase' => 'purchases#create', :as => :create_purchase
