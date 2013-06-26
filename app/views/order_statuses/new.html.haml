@@ -1,0 +1,7 @@
+#scan_column
+ = render 'shared/sidebar_menu'
+#content_area
+ %h1 New Order Status
+ = render 'form'
+ - if can? :read, OrderStatus
+  = link_to 'Back', order_statuses_path

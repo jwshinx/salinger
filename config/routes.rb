@@ -1,4 +1,7 @@
 Salinger::Application.routes.draw do
+  resources :order_statuses
+
+
   resources :address_types
   #resources :customer_addresses
   #match 'new_customer_address/:id' => 'customer_addresses#new', :as => :new_customer_address

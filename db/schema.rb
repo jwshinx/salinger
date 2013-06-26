@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130605214019) do
+ActiveRecord::Schema.define(:version => 20130626170124) do
 
   create_table "address_types", :force => true do |t|
     t.string   "name",        :null => false
@@ -145,6 +145,15 @@ ActiveRecord::Schema.define(:version => 20130605214019) do
   end
 
   add_index "order_line_items", ["id"], :name => "index_order_line_items_on_id", :unique => true
+
+  create_table "order_statuses", :force => true do |t|
+    t.string   "title"
+    t.text     "description"
+    t.integer  "updated_by"
+    t.integer  "created_by"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
 
   create_table "orders", :force => true do |t|
     t.date     "purchase_date",                      :null => false

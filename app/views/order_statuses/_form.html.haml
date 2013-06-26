@@ -1,0 +1,15 @@
+%span.small_red_italics Caution. Changes may break existing order data. To be safe, email changes to Joel.
+= form_for @order_status, :html => {:id => 'new_order_status_form'} do |f|
+ - if @order_status.errors.any?
+  = render :partial => 'shared/error_explanation', :object => @order_status, :as => :object
+
+ .field
+  .width_medium
+   = f.label :title
+  = f.text_field :title, :id => 'title', :size => 50, :maxlength => 50
+ .field
+  .width_medium
+   = f.label :description
+  = f.text_area :description, :id => 'description', :cols => 40, :rows => 5
+ .actions
+  = f.submit 'Save', :id => 'order_status_form_button'

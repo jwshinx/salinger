@@ -1,0 +1,22 @@
+#scan_column
+ = render 'shared/sidebar_menu'
+#content_area 
+ %h3= "Order Status: #{@order_status.title}"
+ %p
+  %b Title:
+  = @order_status.title
+ %p
+  %b Description:
+  = @order_status.description
+ %p
+  %b Updated by:
+  = @order_status.updater.username
+ %p
+  %b Created by:
+  = @order_status.creator.username
+ 
+ - if can? :edit, OrderStatus 
+  = link_to 'Edit', edit_order_status_path(@order_status)
+ - if can? :show, OrderStatus 
+  \|
+  = link_to 'Back', order_statuses_path

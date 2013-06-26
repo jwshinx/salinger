@@ -47,6 +47,10 @@ class Ability
       can :read, User, :id => user.id
       cannot :create, User 
       can :update, User, :id => user.id
+
+      can :update, OrderStatus 
+      cannot :destroy, OrderStatus 
+
     else
      #cannot :destroy, Email #update and #read
     end

@@ -25,6 +25,8 @@
    %li= link_to 'Addr Types', address_types_path
   - if can? :read, CustomerAddress
    %li= link_to 'Cust Addrs', customer_addresses_path
+ - if can? :read, OrderStatus 
+  %li= link_to 'Order Statuses', order_statuses_path
  - if can? :read, Task
   %li
    = link_to 'Tasks', tasks_path
