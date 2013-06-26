@@ -10,8 +10,8 @@
     %th Description
     %th Updated by
     %th Created by
-    %th
-    %th
+    = create_table_header :update, OrderStatus
+    = create_table_header :destroy, OrderStatus
 
   %tbody
    - @order_statuses.each do |order_status|
@@ -20,8 +20,9 @@
      %td= order_status.description
      %td= order_status.updater.username
      %td= order_status.creator.username
-     %td= link_to 'Edit', edit_order_status_path(order_status)
-     %td= link_to 'Destroy', order_status, :method => :delete, :data => { :confirm => 'Are you sure?' }
+     = can_edit_linkify order_status 
+     - if can? :destroy, OrderStatus
+      %td= link_to 'Destroy', order_status, :method => :delete, :data => { :confirm => 'Are you sure?' }
 
  %br
  - if can? :create, OrderStatus 
