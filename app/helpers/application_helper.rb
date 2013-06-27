@@ -5,16 +5,16 @@ module ApplicationHelper
    content_tag(:th)
   end
  end
- def show_linkify display_text, model, ability, object, url_token
-  if can? ability, model
-   content_tag(:a, display_text, :href => "/#{url_token}/#{object.id}") 
+ def show_linkify display_text, ability, object, url_token
+  if can? ability, object.class 
+   content_tag(:a, display_text, :href => "/#{url_token}/#{object.id}")
   else
-   content_tag(:span, display_text)
+   content_tag(:td, display_text)
   end
  end
- def edit_linkify display_text, model, ability, object, url_token
-  if can? ability, model
-   content_tag(:td, content_tag(:a, display_text, :href => "/#{url_token}/#{object.id}/edit"))
+ def edit_linkify display_text, ability, object, url_token
+  if can? ability, object.class 
+   content_tag(:a, display_text, :href => "/#{url_token}/#{object.id}/edit")
   else
    content_tag(:span, display_text)
   end
