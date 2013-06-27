@@ -56,6 +56,14 @@ namespace :joel do
                            created_by: joel_admin.id, updated_by: joel_admin.id } )
     end
 
+    text = 'Complete'
+    object = OrderStatus.find_by_name text 
+    joel_admin = User.find_by_username 'joel'
+    with_display_msg( object, text ) do
+     OrderStatus.create( { name: text, description: 'Done, yay! Do not delete this.', 
+                           created_by: joel_admin.id, updated_by: joel_admin.id } )
+    end
+
    end 
 
   rescue Exception => e

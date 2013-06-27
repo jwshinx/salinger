@@ -6,10 +6,10 @@ module Printable
  end 
  def with_display_msg object, text
   if object
-   puts "---> #{text}: Found. Nothing Done."
+   puts "---> #{object.class.to_s} #{text}: Found. Nothing Done."
   else
    yield
-   puts "---> #{text}: Not found. Insert done."
+   puts "---> #{object.class.to_s} #{text}: Not found. Insert done."
   end
  end
 end
