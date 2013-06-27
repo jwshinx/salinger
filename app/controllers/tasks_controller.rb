@@ -1,9 +1,11 @@
 class TasksController < ApplicationController
   layout 'task'
-  load_and_authorize_resource
+  #load_and_authorize_resource :except => [:my_tasks]
+  load_and_authorize_resource 
   
   def my_tasks
     @tasks = Task.where(:assigned_to => current_user.id).order('due_date asc').all
+    #authorize! :read, @tasks
   end
   def index
     #@tasks = Task.all

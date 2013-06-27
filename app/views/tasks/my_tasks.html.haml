@@ -2,7 +2,6 @@
  = render 'shared/sidebar_menu'
 #content_area
  %h1= "#{current_user.username.capitalize}'s Tasks"
- = render 'list'
- %br
  - if can? :create, Task 
   = link_to 'New Task', new_task_path
+ = render 'list'
