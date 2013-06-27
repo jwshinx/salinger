@@ -57,7 +57,7 @@ namespace :joel do
     end
 
     text = 'Complete'
-    object = OrderStatus.find_by_name text 
+    object = OrderStatus.find_by_title text 
     joel_admin = User.find_by_username 'joel'
     with_display_msg( object, text ) do
      OrderStatus.create( { name: text, description: 'Done, yay! Do not delete this.', 
