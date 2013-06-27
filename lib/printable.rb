@@ -4,12 +4,12 @@ module Printable
   yield
   puts "\n---> Ending.\n\n"
  end 
- def with_display_msg object, text
+ def with_display_msg model, object, text
   if object
-   puts "---> #{object.class.to_s} #{text}: Found. Nothing Done."
+   puts "---> #{model} #{text}: Found. Nothing Done."
   else
    yield
-   puts "---> #{object.class.to_s} #{text}: Not found. Insert done."
+   puts "---> #{model} #{text}: Not found. Insert done."
   end
  end
 end

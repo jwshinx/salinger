@@ -11,7 +11,7 @@ namespace :joel do
     text = 'Shipping'
     object = AddressType.find_by_name text 
     joel_admin = User.find_by_username 'joel'
-    with_display_msg( object, text ) do
+    with_display_msg( 'AddressType', object, text ) do
      AddressType.create( { name: text, description: 'Product was shipped here. Do not delete this.', 
                            created_by: joel_admin.id, updated_by: joel_admin.id } )
     end
@@ -19,7 +19,7 @@ namespace :joel do
     text = 'Billing'
     object = AddressType.find_by_name text 
     joel_admin = User.find_by_username 'joel'
-    with_display_msg( object, text ) do
+    with_display_msg( 'AddressType', object, text ) do
      AddressType.create( { name: text, description: 'Product was billed here. Do not delete this.', 
                            created_by: joel_admin.id, updated_by: joel_admin.id } )
     end
@@ -27,7 +27,7 @@ namespace :joel do
     text = 'Email Signup'
     object = EmailType.find_by_name text 
     joel_admin = User.find_by_username 'joel'
-    with_display_msg( object, text ) do
+    with_display_msg( 'EmailType', object, text ) do
      EmailType.create( { name: text, description: 'Visitors submit these on website. Do not delete this.', 
                            created_by: joel_admin.id, updated_by: joel_admin.id } )
     end
@@ -35,7 +35,7 @@ namespace :joel do
     text = 'Pending'
     object = TaskStatusType.find_by_name text 
     joel_admin = User.find_by_username 'joel'
-    with_display_msg( object, text ) do
+    with_display_msg( 'TaskStatusType', object, text ) do
      TaskStatusType.create( { name: text, description: 'Work on it. Do not delete this.', 
                            created_by: joel_admin.id, updated_by: joel_admin.id } )
     end
@@ -43,7 +43,7 @@ namespace :joel do
     text = 'On Hold'
     object = TaskStatusType.find_by_name text 
     joel_admin = User.find_by_username 'joel'
-    with_display_msg( object, text ) do
+    with_display_msg( 'TaskStatusType', object, text ) do
      TaskStatusType.create( { name: text, description: 'No work being done. Do not delete this.', 
                            created_by: joel_admin.id, updated_by: joel_admin.id } )
     end
@@ -51,7 +51,7 @@ namespace :joel do
     text = 'Complete'
     object = TaskStatusType.find_by_name text 
     joel_admin = User.find_by_username 'joel'
-    with_display_msg( object, text ) do
+    with_display_msg( 'TaskStatusType', object, text ) do
      TaskStatusType.create( { name: text, description: 'Done, yay! Do not delete this.', 
                            created_by: joel_admin.id, updated_by: joel_admin.id } )
     end
@@ -59,8 +59,8 @@ namespace :joel do
     text = 'Complete'
     object = OrderStatus.find_by_title text 
     joel_admin = User.find_by_username 'joel'
-    with_display_msg( object, text ) do
-     OrderStatus.create( { name: text, description: 'Done, yay! Do not delete this.', 
+    with_display_msg( 'OrderStatus', object, text ) do
+     OrderStatus.create( { title: text, description: 'Done, yay! Do not delete this.', 
                            created_by: joel_admin.id, updated_by: joel_admin.id } )
     end
 
