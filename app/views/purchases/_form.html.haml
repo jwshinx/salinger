@@ -31,7 +31,7 @@
     = builder.label :content, 'FYI'
    = builder.text_field :content, :size => 75, :maxlength => 50
 
- %h4 Shipping Address
+ %h4 Address
  %span.small_red_italics (If a second address is required, you can create additional addresses in the customers page.)
  = f.fields_for :addresses do |a|
   .field
@@ -68,6 +68,7 @@
    = a.text_field :zip, :id => 'address_zip'
 
  %h4 Order Information 
+ %span.small_red_italics (Each order requires an address, unless the order status is 'On Hold - Customer'.)
  = f.fields_for :orders do |builder|
   .field
    .width_medium
