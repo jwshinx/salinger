@@ -12,30 +12,23 @@ $(document).ready ->
   validLastname: (name) ->
    cleaned_name = @cleanName(name)
 
- add_address_validation_rules = () ->
-  $("#address_type").rules("add", "required")
-  $("#address_name").rules("add", "required")
-  $("#address_line_one").rules("add", "required")
-  $("#address_state").rules("add", "required")
-  $("#address_city").rules("add", "required")
-  $("#address_zip").rules("add", "required")
-
- remove_address_validation_rules = () ->
-  $("#address_type").rules("remove", "required")
-  $("#address_name").rules("remove", "required")
-  $("#address_line_one").rules("remove", "required")
-  $("#address_state").rules("remove", "required")
-  $("#address_city").rules("remove", "required")
-  $("#address_zip").rules("remove", "required")
+ address_validation_rules = (x) ->
+  $("#new_order_form").validate()
+  $("#address_type").rules(x, "required")
+  $("#address_name").rules(x, "required")
+  $("#address_line_one").rules(x, "required")
+  $("#address_state").rules(x, "required")
+  $("#address_city").rules(x, "required")
+  $("#address_zip").rules(x, "required")
 
  $("#purchase_date_datepicker").datepicker({ dateFormat: "dd/mm/yy" })
  
  $("#order_status").blur ->
   status = $("#order_status").val()
   if status == '2' # on-hold-customer 
-   remove_address_validation_rules()
+   address_validation_rules('remove') 
   else
-   add_address_validation_rules()
+   address_validation_rules('add') 
 
  $("#firstname").blur ->
   new_firstname = Customer.validFirstname(@value)
