@@ -41,31 +41,31 @@
   .field
    .width_medium_2
     = a.label :name, "Nickname (eg: 'Home')"
-   = a.text_field :name, :id => 'name'
+   = a.text_field :name, :id => 'address_name'
   .field
    .width_medium_2
     = a.label :line_one, "Line 1 (eg: '123 Main St.')"
-   = a.text_field :line_one, :id => 'line_one'
+   = a.text_field :line_one, :id => 'address_line_one'
   .field
    .width_medium_2
     = a.label :line_two, "Line 2 (eg: 'c/o front desk')"
-   = a.text_field :line_two
+   = a.text_field :line_two, :id => 'address_line_two'
   .field
    .width_medium
     = a.label :suite
-   = a.text_field :suite
+   = a.text_field :suite, :id => 'address_suite'
   .field
    .width_medium
     = a.label :city
-   = a.text_field :city, :id => 'city'
+   = a.text_field :city, :id => 'address_city'
   .field
    .width_medium
     = a.label :state
-   = a.select :state, us_states, {:include_blank => true }, :id => 'state'
+   = a.select :state, us_states, {:include_blank => true }, :id => 'address_state'
   .field
    .width_medium
     = a.label :zip
-   = a.text_field :zip, :id => 'zip'
+   = a.text_field :zip, :id => 'address_zip'
 
  %h4 Order Information 
  = f.fields_for :orders do |builder|
@@ -101,7 +101,7 @@
   .field
    .width_medium
     = builder.label :paid_amount
-   = builder.text_field :paid_amount
+   = builder.text_field :paid_amount, :id => 'paid_amount'
   
  .actions
   = f.submit 'Save', :id => 'order_form_button'
