@@ -12,26 +12,30 @@ $(document).ready ->
   validLastname: (name) ->
    cleaned_name = @cleanName(name)
 
+ add_address_validation_rules = () ->
+  $("#address_type").rules("add", "required")
+  $("#address_name").rules("add", "required")
+  $("#address_line_one").rules("add", "required")
+  $("#address_state").rules("add", "required")
+  $("#address_city").rules("add", "required")
+  $("#address_zip").rules("add", "required")
+
+ remove_address_validation_rules = () ->
+  $("#address_type").rules("remove", "required")
+  $("#address_name").rules("remove", "required")
+  $("#address_line_one").rules("remove", "required")
+  $("#address_state").rules("remove", "required")
+  $("#address_city").rules("remove", "required")
+  $("#address_zip").rules("remove", "required")
+
  $("#purchase_date_datepicker").datepicker({ dateFormat: "dd/mm/yy" })
  
  $("#order_status").blur ->
   status = $("#order_status").val()
   if status == '2' # on-hold-customer 
-   #$("#new_order_form").validate()
-   $("#address_type").rules("remove", "required")
-   $("#address_name").rules("remove", "required")
-   $("#address_line_one").rules("remove", "required")
-   $("#address_state").rules("remove", "required")
-   $("#address_city").rules("remove", "required")
-   $("#address_zip").rules("remove", "required")
+   remove_address_validation_rules()
   else
-   #$("#new_order_form").validate()
-   $("#address_type").rules("add", "required")
-   $("#address_name").rules("add", "required")
-   $("#address_line_one").rules("add", "required")
-   $("#address_state").rules("add", "required")
-   $("#address_city").rules("add", "required")
-   $("#address_zip").rules("add", "required")
+   add_address_validation_rules()
 
  $("#firstname").blur ->
   new_firstname = Customer.validFirstname(@value)
@@ -80,12 +84,6 @@ $(document).ready ->
    'customer[orders_attributes][0][order_status_id]': { required: true },
    'customer[orders_attributes][0][line_items_attributes][0][product_id]': { required: true },
    'customer[orders_attributes][0][line_items_attributes][0][quantity]': { required: true, digits: true, min: 1 },
-   #'customer[addresses_attributes][0][address_type_id]': { required: true },
-   #'customer[addresses_attributes][0][name]': { required: true },
-   #'customer[addresses_attributes][0][line_one]': { required: true },
-   #'customer[addresses_attributes][0][city]': { required: true },
-   #'customer[addresses_attributes][0][state]': { required: true },
-   #'customer[addresses_attributes][0][zip]': { required: true }
   },
   messages: {
    'customer[firstname]': { required: 'Firstname must be alphanumeric.' },
@@ -95,6 +93,5 @@ $(document).ready ->
    'customer[orders_attributes][0][paid_amount]': { required: "A value is required (eg: 0, 10.50, 20)." },
    'customer[orders_attributes][0][line_items_attributes][0][product_id]': { required: "Please select at least one item." },
    'customer[orders_attributes][0][line_items_attributes][0][quantity]': { required: "Number of items is required.", digits: "It must be a number.", min: "Number must be greater than zero." },
-   #'customer[addresses_attribute][0][address_type_id]': { required: "Please select an address type."}
   }
  });
