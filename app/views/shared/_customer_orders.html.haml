@@ -28,5 +28,7 @@
      %td= o.fyis.collect{|fyi| fyi.content}.join('<br />').html_safe
      - if can? :update, Note
       %td
-       - o.fyis.each do |fyi|
-        %span= link_to 'Edit Note', edit_note_path(fyi.id)
+       - if o.fyis.empty?
+       - else
+        - o.fyis.each do |fyi|
+         %span= link_to 'Edit Note', edit_note_path(fyi.id)

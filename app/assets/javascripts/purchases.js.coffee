@@ -17,7 +17,7 @@ $(document).ready ->
  $("#order_status").blur ->
   status = $("#order_status").val()
   if status == '2' # on-hold-customer 
-   $("#new_order_form").validate()
+   #$("#new_order_form").validate()
    $("#address_type").rules("remove", "required")
    $("#address_name").rules("remove", "required")
    $("#address_line_one").rules("remove", "required")
@@ -25,7 +25,7 @@ $(document).ready ->
    $("#address_city").rules("remove", "required")
    $("#address_zip").rules("remove", "required")
   else
-   $("#new_order_form").validate()
+   #$("#new_order_form").validate()
    $("#address_type").rules("add", "required")
    $("#address_name").rules("add", "required")
    $("#address_line_one").rules("add", "required")
