@@ -2,27 +2,40 @@ require 'spec_helper'
 require 'cancan/matchers'
 
 describe Address do
-  #its(:creator) { should == '95555' }
-
- describe "when perfect" do
-  subject { FactoryGirl.create(:el_cerrito_address) }
-  specify { subject.should be_valid }
-  its(:street) { should == '2000 San Pablo Blvd' }
-  its(:suite) { should == '#1500' }
-  its(:city) { should == 'El Cerrito' }
-  its(:state) { should == 'CA' }
-  its(:zip) { should == '95555' }
- end
- describe "when street" do
-  it "is blank throws exception" do
-   expect {
-    FactoryGirl.create(:address, :street => '')
-   }.to raise_error(ActiveRecord::RecordInvalid, /Street is too short/)
+ describe "normally" do
+  before do
+   @address = Address.new( { created_by: 1, updated_by: 1 } )
+   @street = random_street_address
+   @suite = random_number
+   @city = random_string
+   @state = random_string
+   @zip = random_5_digit_number
+   @address.street = @street
+   @address.suite = @suite
+   @address.city = @city
+   @address.state = @state
+   @address.zip = @zip
   end
-  it "is nil throws exception" do
-   expect {
-    FactoryGirl.create(:address, :street=> nil)
-   }.to raise_error(ActiveRecord::RecordInvalid, /Street can't be blank/)
+  subject { @address }
+  specify { subject.should be_valid }
+  its(:street) { should == @street }
+  its(:suite) { should == @suite }
+  its(:city) { should == @city }
+  its(:state) { should == @state }
+  its(:zip) { should == @zip }
+  describe "when street" do
+   it "is blank throws exception" do
+    @address.street = '' 
+    expect {
+     @address.save!
+    }.to raise_error(ActiveRecord::RecordInvalid, /Street is too short/)
+   end
+   it "is nil throws exception" do
+    @address.street = nil
+    expect {
+     @address.save!
+    }.to raise_error(ActiveRecord::RecordInvalid, /Street can't be blank/)
+   end
   end
  end
 

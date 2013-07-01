@@ -35,8 +35,17 @@ RSpec.configure do |config|
   # the seed, which is printed after each run.
   #     --seed 1234
   config.order = "random"
+  def random_number
+    ('1'..'9').to_a.sample(3).join 
+  end
+  def random_5_digit_number
+    ('1'..'9').to_a.sample(5).join 
+  end
   def random_string
     ('a'..'z').to_a.sample(5).join 
+  end
+  def random_street_address
+    [ random_number, random_string, 'Street'].join(' ')
   end
   def random_email
     random_string + '@' + random_string + '.com'
