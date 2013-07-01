@@ -2,13 +2,20 @@ require 'spec_helper'
 require 'cancan/matchers'
 
 describe AddressType do
- describe "normally" do
-  subject { FactoryGirl.create(:address_type) }
-  its(:name) { should == 'Shipping' }
-  its(:description) { should == 'Send here.' }
-  its(:created_by) { should == 1 }
-  its(:updated_by) { should == 1 }
+ 
+ describe "fun" do
+  before do
+   @type = AddressType.new
+   @name = random_string
+   @description = random_string
+   @type.name = @name
+   @type.description = @description
+  end
+  subject { @type }
+  its(:name) { should == @name }
+  its(:description) { should == @description }
  end
+
  describe "privilege" do
   subject { my_ability }
   let(:my_ability) { Ability.new(@user) }
