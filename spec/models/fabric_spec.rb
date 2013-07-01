@@ -2,22 +2,29 @@ require "spec_helper"
 require 'cancan/matchers'
 
 describe Fabric do
- describe "when perfect" do
-  subject { FactoryGirl.create(:blue_flannel) }
-  specify { subject.should be_valid } 
-  its(:name) { should == 'blue flannel' }
-  its(:name) { should_not be_blank }
- end
- describe "when name" do
-  it "is blank throws exception" do 
-   expect { 
-    FactoryGirl.create(:blue_flannel, :name => '') 
-   }.to raise_error(ActiveRecord::RecordInvalid, /Name is too short/) 
+ describe "normally" do
+  before do
+   @fabric = Fabric.new({created_by: 1, updated_by: 1})
+   @name = random_string; @fabric.name = @name
   end
-  it "is nil throws exception" do 
-   expect { 
-    FactoryGirl.create(:blue_flannel, :name => nil) 
-   }.to raise_error(ActiveRecord::RecordInvalid, /Name can't be blank/) 
+  subject { @fabric }
+  specify { subject.should be_valid } 
+  its(:name) { should == @name }
+  describe "with blank name" do
+   its "returns error" do
+    @fabric.name = ''
+    expect {
+     @fabric.save!
+    }.to raise_error(ActiveRecord::RecordInvalid, /Name is too short/) 
+   end
+  end
+  describe "with nil name" do
+   its "returns error" do
+    @fabric.name = nil 
+    expect {
+     @fabric.save!
+    }.to raise_error(ActiveRecord::RecordInvalid, /Name can't be blank/) 
+   end
   end
  end
  describe "privilege" do
