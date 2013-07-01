@@ -2,6 +2,27 @@ require 'spec_helper'
 require 'cancan/matchers'
 
 describe Email do
+ 
+ describe "mocking" do
+  before do
+   @email = Email.new 
+   @text = random_email
+   @email.content = @text 
+  end
+  describe "with double" do
+   it "should return email" do
+    @email.stub email_type: double(id: 2) 
+    @email.content.should == @text 
+   end
+  end
+  describe "with mock_model" do
+   it "should return email" do
+    type = mock_model EmailType, id: 2
+    @email.email_type = type
+    @email.content.should == @text 
+   end
+  end
+ end
  describe "normally" do
   subject{ FactoryGirl.create(:valid_email) }
   its(:content) { should == 'one@yahoo.com' }

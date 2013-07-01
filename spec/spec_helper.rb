@@ -35,4 +35,7 @@ RSpec.configure do |config|
   # the seed, which is printed after each run.
   #     --seed 1234
   config.order = "random"
+  def random_email
+    ('a'..'z').to_a.sample(5).join + '@' + ('a'..'z').to_a.sample(5).join + '.com'
+  end
 end
