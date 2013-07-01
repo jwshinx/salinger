@@ -21,6 +21,7 @@ gem 'therubyracer'
 gem 'starburstroma'
 
 group :test do
+  gem 'steak'
   gem 'factory_girl_rails'
   gem "rspec-rails", ">= 2.0.0"
   gem "cucumber-rails", ">= 0.3.2", :require => false
