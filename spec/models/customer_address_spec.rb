@@ -3,16 +3,34 @@ require 'cancan/matchers'
 
 describe CustomerAddress do
  describe "normally" do
-  subject { FactoryGirl.create(:customer_address) }
-  its(:name) { should == 'Home' }
-  its(:line_one) { should == '1 Main St' }
-  its(:line_two) { should == 'c/o mom' }
-  its(:suite) { should == '101' }
-  its(:city) { should == 'La' }
-  its(:state) { should == 'CA' }
-  its(:zip) { should == '90000' }
-  its(:customer_id) { should == 1 }
-  its(:address_type_id) { should == 1 }
+  before do
+   @address = CustomerAddress.new( {created_by: 1, updated_by: 1})
+   @home = random_string
+   @line_one = random_street_address
+   @line_two = random_string
+   @suite = random_number
+   @city = random_string
+   @state = random_string
+   @zip = random_5_digit_number
+   @address.name = @home
+   @address.line_one = @line_one
+   @address.line_two = @line_two
+   @address.suite = @suite
+   @address.city = @city
+   @address.state = @state
+   @address.zip = @zip
+   @address.stub customer: double(id: 1)
+   @address.stub type: double(id: 1)
+  end
+  subject { @address }
+  specify { subject.should be_valid }
+  its(:name) { should == @home }
+  its(:line_one) { should == @line_one }
+  its(:line_two) { should == @line_two }
+  its(:suite) { should == @suite }
+  its(:city) { should == @city }
+  its(:state) { should == @state }
+  its(:zip) { should == @zip }
   its(:created_by) { should == 1 }
   its(:updated_by) { should == 1 }
  end
