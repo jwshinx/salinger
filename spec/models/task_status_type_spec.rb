@@ -3,11 +3,14 @@ require 'cancan/matchers'
 
 describe TaskStatusType do
  describe "normally" do
-  subject { FactoryGirl.create(:task_status_type) }
-  its(:name) { should == 'Completed' }
-  its(:description) { should ==  'all done' }
-  its(:created_by) { should == 1 }
-  its(:updated_by) { should == 1 }
+  before do
+   @status = TaskStatusType.new({created_by: 1, updated_by: 1})
+   @name = random_string; @status.name = @name
+   @description = random_string; @status.description = @description
+  end
+  subject { @status }
+  its(:name) { should == @name }
+  its(:description) { should == @description }
  end
  describe "privilege" do
   subject { my_ability }
