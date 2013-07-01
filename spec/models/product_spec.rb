@@ -84,12 +84,16 @@ describe Product do
     }.to raise_error(ActiveRecord::RecordInvalid, /Price xxx/) 
    end
   end
- end
- describe "red solid" do
-  let(:length) { FactoryGirl.create(:red_solid).fabrics.length }
-  let(:fabric_name) { FactoryGirl.create(:red_solid).fabrics.first.name }
-  it "has one fabric" do length.should == 1 end 
-  it "has fabric red-cotton" do fabric_name.should == 'red cotton' end 
+  describe "with fabrics" do
+   it "returns count" do
+    fabric1 = mock_model Fabric, name: 'red'
+    fabric2 = mock_model Fabric, name: 'blue'
+    @product.fabrics << fabric1 << fabric2
+    @product.fabrics.length.should == 2 
+    @product.fabrics.map{|f| f.name}.include?('red').should be_true 
+    @product.fabrics.map{|f| f.name}.include?('blue').should be_true 
+   end
+  end
  end
 
  describe "privilege" do
