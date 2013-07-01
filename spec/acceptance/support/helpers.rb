@@ -1,5 +1,8 @@
 module HelperMethods
   # Put helper methods you need to be available in all acceptance specs here.
+  def log_out
+    visit "/logout"
+  end
   def log_in
     visit "/login"
     fill_in "Username", :with => "joel"
@@ -13,6 +16,9 @@ module HelperMethods
       email: "admin@example.com", password: "password", 
       password_confirmation: 'password' 
     })
+  end
+  def should_be_on(path)
+    page.current_url.should match(Regexp.new(path))
   end
 end
 
