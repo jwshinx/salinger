@@ -16,7 +16,7 @@ module ExampleHelper
  def valid_order_params item
   today = Date.today
   {"purchase_date(1i)"=>today.year.to_s, "purchase_date(2i)"=>today.month.to_s,
-   "purchase_date(3i)"=>today.day.to_s, :paid_amount=>"8000",
+   "purchase_date(3i)"=>today.day.to_s, :paid_amount=>"8000", :order_status_id => 1,
    :line_items_attributes=>{
     "0" => valid_line_item_params( item.id )
    }
