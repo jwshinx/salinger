@@ -6,7 +6,14 @@ module HelperMethods
     fill_in "Password", :with => "password"
     click_button "Login"
   end
-
+  def create_admin_user
+    role = Role.create({name: 'admin', description: 'blah'})
+    User.create({ 
+      active: true, username: 'joel', role_id: role.id, 
+      email: "admin@example.com", password: "password", 
+      password_confirmation: 'password' 
+    })
+  end
 end
 
 RSpec.configuration.include HelperMethods, :type => :acceptance

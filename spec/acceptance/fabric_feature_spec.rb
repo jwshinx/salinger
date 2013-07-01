@@ -7,8 +7,7 @@ feature 'Fabric feature', %q{
 } do
 
   before(:each) do
-    role = Role.create({name: 'admin', description: 'blah'})
-    user = User.create({active: true, username: 'joel', role_id: role.id, email: "admin@example.com", password: "password", password_confirmation: 'password' })
+    user = create_admin_user
     Fabric.create({name: 'Black', created_by: user.id, updated_by: user.id})
   end
 
