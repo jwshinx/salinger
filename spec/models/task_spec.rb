@@ -3,16 +3,30 @@ require 'cancan/matchers'
 
 describe Task do
  describe "normally" do
-  subject { FactoryGirl.create(:task) }
-  its(:title) { should == 'Wash Dishes' }
-  its(:description) { should ==  'asap' }
-  its(:due_date) { should ==  Date.today }
-  its(:assigned_to) { should == 1 }
-  its(:completed_on) { should == Date.today }
-  its(:completed_by) { should ==  1 }
-  its(:task_status_id) { should == 1 }
-  its(:created_by) { should == 1 }
-  its(:updated_by) { should == 1 }
+  before do
+   @task = Task.new({created_by: 1, updated_by:1 })
+   @title = random_string; @task.title = @title
+   @description = random_string; @task.description = @description
+   @due_date = Date.today; @task.due_date = @due_date
+   @completed_on = Date.today; @task.completed_on = @completed_on
+  end
+  subject { @task }
+  its(:title) { should == @title } 
+  its(:description) { should == @description } 
+  its(:due_date) { should == @due_date } 
+  its(:completed_on) { should == @completed_on }
+  it "returns status" do
+   task_status = mock_model TaskStatusType, name: 'Complete'
+   @task.status = task_status 
+   @task.status.name.should == 'Complete'
+  end
+  describe "without task status" do
+   it "returns error" do
+    expect {
+     @task.save!
+    }.to raise_error(ActiveRecord::StatementInvalid)
+   end
+  end
  end
  describe "privilege" do
   subject { my_ability }
