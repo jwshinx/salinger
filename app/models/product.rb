@@ -27,6 +27,7 @@ class Product < ActiveRecord::Base
  accepts_nested_attributes_for :todos, :reject_if => lambda { |a| a[:content].blank? }, :allow_destroy => true
  accepts_nested_attributes_for :fyis, :reject_if => lambda { |a| a[:content].blank? }, :allow_destroy => true
 
+ before_save :ensure_that_one_fabric_belongs_to_a_product
  attr_accessible :created_by, :updated_by, :description, :name, :count,
   :price, :sewings_attributes, :todos_attributes, :fyis_attributes
 
@@ -49,5 +50,14 @@ private
    false
   end
  end
- 
+
+
+ def ensure_that_one_fabric_belongs_to_a_product
+  if self.sewings.length < 1 
+   errors.add(:base, "Product must be made of at least one fabric.")
+    return false
+  else
+   return true
+  end
+ end 
 end
