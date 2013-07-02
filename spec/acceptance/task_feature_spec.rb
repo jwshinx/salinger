@@ -1,87 +1,66 @@
 require 'acceptance/acceptance_helper'
 
 feature 'Task feature', %q{
-  In order to manage tasks 
+  In order to manage tasks
   As an authenticated user 
-  I want to list, create, update, destroy tasks
+  I want to list, create, update, destroy tasks 
 } do
 
   before(:each) do
     @user = create_admin_user
-    Task.create({name: 'Black', created_by: @user.id, updated_by: @user.id})
+    @pending = TaskStatusType.create({name: 'Pending', description: 'blah', created_by: @user.id, updated_by: @user.id})
+    @pending.tasks.create({title: 'Do homework', description: 'blah', created_by: @user.id, updated_by: @user.id})
   end
 
   scenario 'listing tasks' do
     log_in
     visit "/tasks"
-    page.should have_content("Tasks")
-    page.should have_content("Black")
+    page.should have_content("Do homework")
+    page.should have_content("blah")
   end
-  scenario 'adding a task' do
+  scenario 'showing a task status type' do
+    log_in
+    visit "/tasks/#{Task.first.id}"
+    page.should have_content("Do homework")
+    page.should have_content("blah")
+  end
+  scenario 'adding a tasks ' do
     log_in
     visit "/tasks/new"
-    fill_in "task[name]", :with => "Polka Dots"
-    fill_in "new_price_date_datepicker", :with => '02/13/2013'
-    fill_in "task_prices_attributes_0_amount", :with => '2'
+    fill_in "task[title]", :with => "Do dishes"
+    fill_in "task[description]", :with => "kitchen stuff"
+    select 'Pending', :from => 'task_status'
     click_button "Save"
-    should_be_on "/tasks/#{Task.find_by_name('Polka Dots').id}"
-    page.should have_content("Polka Dots")
-    page.should have_content("$2.00")
-    page.should have_content("02/13/2013")
+    should_be_on "/tasks/#{Task.find_by_title('Do dishes').id}"
+    page.should have_content("Do dishes")
+    page.should have_content("kitchen stuff")
   end
   scenario 'editing a task' do
     log_in
     visit "/tasks/#{Task.first.id}/edit"
-    fill_in "task[name]", :with => "Negro"
+    fill_in "task[title]", :with => "Do dirty dishes"
+    fill_in "task[description]", :with => "Gaa"
+    select 'Pending', :from => 'task_status'
     click_button "Save"
     should_be_on "/tasks/#{Task.first.id}"
-    page.should have_content("Negro")
-  end
-  scenario 'editing an existing task price' do
-    Task.first.prices.create({amount:100, date:Date.today, updated_by: @user.id, created_by: @user.id})
-    log_in
-    visit "/tasks/#{Task.first.id}/edit"
-    fill_in "task[prices_attributes][0][amount]", :with => "1.25"
-    click_button "Save"
-    should_be_on "/tasks/#{Task.first.id}"
-    page.should have_content("1.25")
-  end
-  scenario 'adding a new task price' do
-    Task.first.prices.create({amount:100, date:Date.today, updated_by: @user.id, created_by: @user.id})
-    log_in
-    visit "/tasks/#{Task.first.id}/edit"
-    fill_in "task[prices_attributes][1][amount]", :with => "1.50"
-    fill_in "task[prices_attributes][1][date]", :with => "02/14/2013"
-    click_button "Save"
-    should_be_on "/tasks/#{Task.first.id}"
-    page.should have_content("1.00")
-    page.should have_content("02/14/2013")
-    page.should have_content("1.50")
+    page.should have_content("Do dirty dishes")
+    page.should have_content("Gaa")
   end
   scenario 'removing a task' do
     log_in
     visit "/tasks"
     click_link "Destroy"
     should_be_on "/tasks"
-    page.has_no_content?("Black").should be true
+    page.has_no_content?("Do homework").should be true
   end
-  scenario 'task name cannot be blank' do
+  scenario 'task title cannot be blank' do
     log_in
     visit "/tasks/#{Task.first.id}/edit"
-    fill_in "task[name]", :with => ""
+    fill_in "task[title]", :with => ""
     click_button "Save"
-    page.should have_content("Name can't be blank")
+    page.should have_content("Title can't be blank")
   end
-  scenario 'task name must be unique' do
-    log_in
-    visit "/tasks/new"
-    fill_in "task[name]", :with => "Black"
-    fill_in "new_price_date_datepicker", :with => '02/15/2013'
-    fill_in "task_prices_attributes_0_amount", :with => '2'
-    click_button "Save"
-    page.should have_content("Name has already been taken")
-  end
-  scenario 'only authenticated user can manage tasks' do
+  scenario 'only authenticated user can manage task statuses' do
     log_in
     log_out
     visit "/tasks"
