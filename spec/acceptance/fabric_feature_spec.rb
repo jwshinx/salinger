@@ -80,4 +80,11 @@ feature 'Fabric feature', %q{
     click_button "Save"
     page.should have_content("Name has already been taken")
   end
+  scenario 'only authenticated user can manage fabrics' do
+    log_in
+    log_out
+    visit "/fabrics"
+    should_be_on "/login"
+    page.should have_content("You are not authorized to access this page") 
+  end
 end
