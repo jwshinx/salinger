@@ -44,14 +44,14 @@ feature 'Fabric feature', %q{
     should_be_on "/fabrics"
     page.has_no_content?("Black").should be true
   end
-  scenario 'fabric name can not be blank' do
+  scenario 'fabric name cannot be blank' do
     log_in
     visit "/fabrics/#{Fabric.first.id}/edit"
     fill_in "fabric[name]", :with => ""
     click_button "Save"
     page.should have_content("Name can't be blank")
   end
-  scenario 'fabric must be unique' do
+  scenario 'fabric name must be unique' do
     # rememeber that when adding, it redirects to show page
     log_in
     visit "/fabrics/new"
@@ -59,6 +59,6 @@ feature 'Fabric feature', %q{
     fill_in "new_price_date_datepicker", :with => '10/10/2013'
     fill_in "fabric_prices_attributes_0_amount", :with => '2'
     click_button "Save"
-    page.should have_content("Fabric already exists")
+    page.should have_content("Name has already been taken")
   end
 end
