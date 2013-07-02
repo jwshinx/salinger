@@ -21,7 +21,7 @@
      .field
       .width_medium
        = builder.label :date
-      = builder.text_field :date, :id => 'new_price_date_datepicker'
+      = builder.text_field :date, :id => 'new_price_date_datepicker', :value => builder.object.date.blank? ? '' : builder.object.date.strftime('%m/%d/%Y') 
      .field
       .width_medium
        = builder.label :amount, "Per-Yard Price"
@@ -33,7 +33,7 @@
      .field
       .width_medium
        = builder.label :date
-      = builder.text_field :date, :id => 'new_price_date_datepicker'
+      = builder.text_field :date, :id => 'new_price_date_datepicker', :value => builder.object.date.blank? ? '' : builder.object.date.strftime('%m/%d/%Y')
      .field
       .width_medium
        = builder.label :amount, "Per-Yard Price"
@@ -44,7 +44,7 @@
     .field
      .width_medium
       = builder.label :date
-     = builder.text_field :date, :id => "price_date_datepicker_#{count}"
+     = builder.text_field :date, :id => "price_date_datepicker_#{count}", :value => builder.object.date.blank? ? '' : builder.object.date.strftime('%m/%d/%Y')
     .field
      .width_medium
       = builder.label :amount, "Per-Yard Price"

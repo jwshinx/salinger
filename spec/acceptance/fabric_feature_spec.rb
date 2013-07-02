@@ -21,13 +21,13 @@ feature 'Fabric feature', %q{
     log_in
     visit "/fabrics/new"
     fill_in "fabric[name]", :with => "Polka Dots"
-    fill_in "new_price_date_datepicker", :with => '10/10/2013'
+    fill_in "new_price_date_datepicker", :with => '02/13/2013'
     fill_in "fabric_prices_attributes_0_amount", :with => '2'
     click_button "Save"
     should_be_on "/fabrics/#{Fabric.find_by_name('Polka Dots').id}"
     page.should have_content("Polka Dots")
     page.should have_content("$2.00")
-    page.should have_content("10/10/2013")
+    page.should have_content("02/13/2013")
   end
   scenario 'editing a fabric' do
     log_in
@@ -51,10 +51,11 @@ feature 'Fabric feature', %q{
     log_in
     visit "/fabrics/#{Fabric.first.id}/edit"
     fill_in "fabric[prices_attributes][1][amount]", :with => "1.50"
-    fill_in "fabric[prices_attributes][1][date]", :with => "10/10/2013"
+    fill_in "fabric[prices_attributes][1][date]", :with => "02/14/2013"
     click_button "Save"
     should_be_on "/fabrics/#{Fabric.first.id}"
     page.should have_content("1.00")
+    page.should have_content("02/14/2013")
     page.should have_content("1.50")
   end
   scenario 'removing a fabric' do
@@ -75,7 +76,7 @@ feature 'Fabric feature', %q{
     log_in
     visit "/fabrics/new"
     fill_in "fabric[name]", :with => "Black"
-    fill_in "new_price_date_datepicker", :with => '10/10/2013'
+    fill_in "new_price_date_datepicker", :with => '02/15/2013'
     fill_in "fabric_prices_attributes_0_amount", :with => '2'
     click_button "Save"
     page.should have_content("Name has already been taken")

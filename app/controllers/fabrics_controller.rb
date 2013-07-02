@@ -46,7 +46,7 @@ class FabricsController < ApplicationController
      p.creator = current_user 
      p.updater = current_user
      p.amount = convert_dollars_to_cents( params[:fabric][:prices_attributes]['0'][:amount] )
-     p.date = Date.parse(params[:fabric][:prices_attributes]['0'][:date]) 
+     p.date = Date.strptime(params[:fabric][:prices_attributes]['0'][:date], '%m/%d/%Y') 
     end
     #@fabric.prices = convert_dollars_to_cents( params[:product][:price] )
 
@@ -68,6 +68,7 @@ class FabricsController < ApplicationController
       params[:fabric][:prices_attributes][i.to_s][:updated_by] = current_user.id
       dollared_price = convert_dollars_to_cents( params[:fabric][:prices_attributes][i.to_s][:amount] ) 
       params[:fabric][:prices_attributes][i.to_s][:amount] = dollared_price
+      params[:fabric][:prices_attributes][i.to_s][:date] = Date.strptime(params[:fabric][:prices_attributes][i.to_s][:date], '%m/%d/%Y') 
      end
     end
     @fabric.updater = current_user

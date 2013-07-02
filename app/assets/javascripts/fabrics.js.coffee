@@ -2,9 +2,9 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 $(document).ready ->
- $("#new_price_date_datepicker").datepicker({ dateFormat: "dd/mm/yy" })
+ $("#new_price_date_datepicker").datepicker({ dateFormat: "mm/dd/yy" })
  for i in [0..$('.price_record').length-1]
-  $("#price_date_datepicker_#{i}").datepicker({ dateFormat: "dd/mm/yy" })
+  $("#price_date_datepicker_#{i}").datepicker({ dateFormat: "mm/dd/yy" })
  
  #console.log $('#new_fabric_price_record').attr('style')
  #console.log $('#new_fabric_price_record').children().length

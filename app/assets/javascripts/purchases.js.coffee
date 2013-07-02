@@ -21,7 +21,7 @@ $(document).ready ->
   $("#address_city").rules(x, "required")
   $("#address_zip").rules(x, "required")
 
- $("#purchase_date_datepicker").datepicker({ dateFormat: "dd/mm/yy" })
+ $("#purchase_date_datepicker").datepicker({ dateFormat: "mm/dd/yy" })
  
  $("#order_status").blur ->
   status = $("#order_status").val()
