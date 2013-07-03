@@ -27,6 +27,12 @@ class Purchase
     oli.subtotal = price * quantity
    end
    o.purchase_amount = order_total
+   o.purchase_date = Date.strptime(
+    options[:customer][:orders_attributes]['0'][:purchase_date], '%m/%d/%Y'
+   )
+   o.paid_date = Date.strptime(
+    options[:customer][:orders_attributes]['0'][:paid_date], '%m/%d/%Y'
+   ) unless options[:customer][:orders_attributes]['0'][:line_items_attributes]['0'][:paid_date].blank?
   end
   #@customer.save
  end

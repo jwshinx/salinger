@@ -22,6 +22,7 @@ $(document).ready ->
   $("#address_zip").rules(x, "required")
 
  $("#purchase_date_datepicker").datepicker({ dateFormat: "mm/dd/yy" })
+ $("#paid_date_datepicker").datepicker({ dateFormat: "mm/dd/yy" })
  
  $("#order_status").blur ->
   status = $("#order_status").val()

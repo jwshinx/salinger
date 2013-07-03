@@ -103,6 +103,10 @@
    .width_medium
     = builder.label :paid_amount
    = builder.text_field :paid_amount, :id => 'paid_amount'
+  .field
+   .width_medium
+    = builder.label :paid_date
+   = builder.text_field :paid_date, :id => 'paid_date_datepicker'
   
  .actions
   = f.submit 'Save', :id => 'order_form_button'
