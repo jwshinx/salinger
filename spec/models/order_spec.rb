@@ -23,23 +23,6 @@ describe Order do
    @order.line_items.length == 2
   end
  end
- describe "when multiple " do
-  before do 
-   @order = mock_model Order, id: 1
-   #@purchase_date = Date.today; @order.purchase_date = @purchase_date
-   #@purchase_amount = random_number; @order.purchase_amount = @purchase_amount
-   #@ispaid = false; @order.ispaid = @ispaid
-   @order.stub customer_id: double(id: 1)
-   @product1 = mock_model Product, id: 1 
-   @product2 = mock_model Product, id: 2
-   @line_item1 = mock_model OrderLineItem, id: 1
-   @line_item2 = mock_model OrderLineItem, id: 2 
-   @order.line_items << @line_item1 << @line_item2
-  end
-  it "slsl" do
-   puts "---> 1 #{@order.inspect}"
-  end
- end
  describe "privileges" do
   subject { my_ability }
   let(:my_ability) { Ability.new(@user) }
