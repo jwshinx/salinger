@@ -36,43 +36,40 @@ describe Customer do
    cust.stub fullname: fullname
    cust.fullname.should == fullname
   end
+  it "returns todos and fyis" do
+   todos_and_fyis = ['todo1', 'todo2', 'fyi1', 'fyi2']
+   cust.stub todos_and_fyis: todos_and_fyis
+   cust.todos_and_fyis.should == todos_and_fyis 
+  end
+  describe "when complete" do
+   it "returns valid" do
+    FactoryGirl.build(:mark_twain).should be_valid
+   end
+  end
  end
- describe "incomplete with" do
-  before { @c = Customer.new :firstname => 'John', :lastname => 'Smith', :email => 'js@gmail.com', :description => 'dkdk' }
-  describe "blank firstname" do
-   its "is not valid" do
-    @c.firstname = ''
-    @c.should_not be_valid
+ describe "when incomplete" do
+  describe "email" do
+   describe "nil" do
+    it "returns invalid" do FactoryGirl.build(:mark_twain, :email => nil).should_not be_valid end
+   end
+   describe "blank" do
+    it "returns invalid" do FactoryGirl.build(:mark_twain, :email => '').should_not be_valid end
    end
   end
-  describe "nil firstname" do
-   its "is not valid" do
-    @c.firstname = nil 
-    @c.should_not be_valid
+  describe "lastname" do
+   describe "nil" do
+    it "returns invalid" do FactoryGirl.build(:mark_twain, :lastname => nil).should_not be_valid end
+   end
+   describe "blank" do
+    it "returns invalid" do FactoryGirl.build(:mark_twain, :lastname => '').should_not be_valid end
    end
   end
-  describe "blank lastname" do
-   its "is not valid" do
-    @c.lastname = ''
-    @c.should_not be_valid
+  describe "firstname" do
+   describe "nil" do
+    it "returns invalid" do FactoryGirl.build(:mark_twain, :firstname => nil).should_not be_valid end
    end
-  end
-  describe "nil lastname" do
-   its "is not valid" do
-    @c.lastname = nil 
-    @c.should_not be_valid
-   end
-  end
-  describe "blank email" do
-   its "is not valid" do
-    @c.email = ''
-    @c.should_not be_valid
-   end
-  end
-  describe "nil email" do
-   its "is not valid" do
-    @c.email = nil 
-    @c.should_not be_valid
+   describe "blank" do
+    it "returns invalid" do FactoryGirl.build(:mark_twain, :firstname => '').should_not be_valid end
    end
   end
  end
