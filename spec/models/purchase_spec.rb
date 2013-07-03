@@ -4,22 +4,27 @@ require 'example_helper'
 
 describe Purchase do 
  include ExampleHelper
- describe "xxx" do 
-  it "vvv" do
-   user = FactoryGirl.create(:admin_user)
+ describe "when successful" do 
+  before do
+   @user = FactoryGirl.create(:admin_user)
    FactoryGirl.create(:address_type)
    FactoryGirl.create(:completed_order)
-   create_product user
-   @purchase = Purchase.new( customer_hash_of_purchase, user ) 
-   puts "---> 1 #{Customer.all.inspect}" 
-   puts "---> 2 #{Product.all.inspect}" 
-   puts "---> 3 #{Fabric.all.inspect}" 
-   puts "---> 4 #{Sewing.all.inspect}" 
-   puts "---> 5 #{Order.all.inspect}" 
-   puts "---> 5.1 #{OrderStatus.all.inspect}" 
-   puts "---> 6 #{OrderLineItem.all.inspect}" 
-   puts "---> 7 #{CustomerAddress.all.inspect}" 
-   puts "---> 8 #{AddressType.all.inspect}" 
+   create_product @user
+   @purchase = Purchase.new( customer_hash_of_purchase, @user ) 
+   @purchase.save
+   @cust = Customer.first
+  end
+  it "creates a customer" do
+   @cust.firstname.should == 'Johanne' 
+   @cust.lastname.should == 'Bach' 
+  end
+  it "creates an address" do
+   @cust.addresses.first.line_one.should == '2 Yellow Way'
+  end
+  it "creates an order" do
+   @cust.orders.length.should == 1
+   @cust.orders.first.line_items.length.should == 1
+   @cust.orders.first.line_items.first.product.name.should == 'Jimmyz'
   end
  end
 end

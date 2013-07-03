@@ -24,9 +24,12 @@ class Purchase
    end
    o.purchase_amount = order_total
   end
-  @customer.save
+  #@customer.save
  end
 
+ def save
+  customer.save
+ end
  def to_s
   'purchase'
  end
