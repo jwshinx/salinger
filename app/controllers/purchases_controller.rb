@@ -50,7 +50,7 @@ class PurchasesController < ApplicationController
 
     respond_to do |format|
       if @customer.save
-        format.html { redirect_to @customer, notice: 'Purchase was successfully created.' }
+        format.html { redirect_to @customer, notice: 'Order was successfully created.' }
         format.json { render json: @customer, status: :created, location: @customer }
       else
         format.html { render action: "new" }
