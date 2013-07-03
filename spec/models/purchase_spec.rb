@@ -14,14 +14,10 @@ describe Purchase do
    @purchase.save
    @cust = Customer.first
   end
-  it "creates a customer" do
+  it "creates a customer, address and order" do
    @cust.firstname.should == 'Johanne' 
    @cust.lastname.should == 'Bach' 
-  end
-  it "creates an address" do
    @cust.addresses.first.line_one.should == '2 Yellow Way'
-  end
-  it "creates an order" do
    @cust.orders.length.should == 1
    @cust.orders.first.line_items.length.should == 1
    @cust.orders.first.line_items.first.product.name.should == 'Jimmyz'
