@@ -1,5 +1,23 @@
 module ExampleHelper
  
+ def customer_hash_of_purchase  
+  {:customer=>{:firstname=>"Johanne", :lastname=>"Bach", :email=>"jb@ieiie.com", 
+   :description=>"", :todos_attributes=>{"0"=>{:content=>""}}, :fyis_attributes=>{"0"=>{:content=>""}}, :addresses_attributes=>{"0"=>{:address_type_id=>"#{AddressType.first.id}", :name=>"Office", :line_one=>"2 Yellow Way", :line_two=>"", :suite=>"12", :city=>"Tulsa", :state=>"AL", :zip=>"44445"}}, 
+   :orders_attributes=>{"0"=>{:order_status_id=>"#{OrderStatus.first.id}", 
+    :purchase_date=>"07/02/2013", :fyis_attributes=>{"0"=>{:content=>""}}, :line_items_attributes =>{"0"=>{:product_id=>"#{Product.first.id}", :quantity=>"1"}, "1"=>{:product_id=>"", :quantity=>"1"}, "2"=>{:product_id=>"", :quantity=>"1"}, "3"=>{:product_id=>"", :quantity=>"1"}, "4"=>{:product_id=>"", :quantity=>"1"}}, :paid_amount=>"8"}}}
+  }
+ end
+ def create_product user
+  f1 = Fabric.create({name: 'Black', updated_by: user.id, created_by: user.id})
+  f2 = Fabric.create({name: 'Red', updated_by: user.id, created_by: user.id})
+  p = Product.new({
+   name: 'Jimmyz', description: 'blah',
+   price: 5000, count: 10, created_by: user.id, updated_by: user.id
+  })
+  p.sewings.new({fabric_id:f1.id, updated_by: user.id, created_by: user.id})
+  p.sewings.new({fabric_id:f2.id, updated_by: user.id, created_by: user.id})
+  p.save
+ end
  def valid_customer_params item
   cust = FactoryGirl.create(:customer)
   random = Random.rand(5 ** 5)
