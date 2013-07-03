@@ -8,15 +8,14 @@ feature 'Purchase feature', %q{
 
   before(:each) do
     @user = create_admin_user
-    @status = OrderStatus.create({title: "Complete", description: "All done.", 
-     updated_by: @user.id, created_by: @user.id})
-    @fabric = Fabric.create({name: 'Black', updated_by: @user.id, created_by: @user.id})
+    @status = FactoryGirl.create(:completed_order)
+    @mark= FactoryGirl.create(:mark_twain) 
+    FactoryGirl.create(:address_type)
+    @fabric = FactoryGirl.create(:white_cotton)
     @product = Product.new({name: 'Raiders', description: 'blah', price: 5000, count: 10, 
      created_by: @user.id, updated_by: @user.id})
     @product.sewings.new({fabric_id:@fabric.id, updated_by: @user.id, created_by: @user.id})
     @product.save
-    @mark= FactoryGirl.create(:mark_twain) 
-    AddressType.create({name: "Shipping", description: "s blah", created_by: @user.id, updated_by:@user.id}) 
     @order = Order.new({purchase_date: "2013-01-23", paid_date: nil, customer_id: @mark.id, 
      purchase_amount: 8950, paid_amount: 3000, updated_by: @user.id, created_by: @user.id, 
      ispaid: false, order_status_id: @status.id})
