@@ -16,4 +16,12 @@ FactoryGirl.define do
   creator
   updater
  end
+ factory :blue_solid_line_item, class: OrderLineItem do 
+  quantity 1 
+  price 2000
+  subtotal 2000 
+  association :product, factory: :blue_solid
+  creator
+  updater
+ end
 end
