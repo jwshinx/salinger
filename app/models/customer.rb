@@ -23,6 +23,13 @@ class Customer < ActiveRecord::Base
   c.lastname = cleaned_up(c.lastname) 
  end
 
+ def recent_orders
+  orders.order('purchase_date desc')
+ end
+ def last_order
+  return nil if recent_orders.blank?
+  recent_orders.first
+ end
  def fullname
   "#{firstname} #{lastname}"
  end

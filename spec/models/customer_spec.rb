@@ -46,6 +46,20 @@ describe Customer do
     FactoryGirl.build(:mark_twain).should be_valid
    end
   end
+  describe "recent orders" do
+   it "returns array of orders" do
+    orders = [] << mock_model(Order, purchase_date: Date.today) << mock_model(Order, purchase_date: 3.days.ago) 
+    cust.stub recent_orders: orders 
+    cust.recent_orders.should == orders 
+   end
+  end
+  describe "last order" do
+   it "returns order object" do
+    order = mock_model(Order)
+    cust.stub last_order: order 
+    cust.last_order.should == order 
+   end
+  end
  end
  describe "when incomplete" do
   describe "email" do
