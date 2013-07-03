@@ -27,6 +27,8 @@ class PurchasesController < ApplicationController
     end
   end
   def create
+    @purchase = Purchase.new(params, current_user)
+=begin
     @customer = Customer.new(params[:customer])
     set_creator_and_updater @customer, current_user 
     @customer.fyis.each { |f| set_creator_and_updater f, current_user }
@@ -47,10 +49,12 @@ class PurchasesController < ApplicationController
      end
      o.purchase_amount = order_total 
     end
+=end
 
     respond_to do |format|
-      if @customer.save
-        format.html { redirect_to @customer, notice: 'Order was successfully created.' }
+      #if @customer.save
+      if @purchase.save
+        format.html { redirect_to @purchase.customer, notice: 'Order was successfully created.' }
         format.json { render json: @customer, status: :created, location: @customer }
       else
         format.html { render action: "new" }

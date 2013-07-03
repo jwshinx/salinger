@@ -1,7 +1,9 @@
 require 'trackable'
+require 'formatable'
 
 class Purchase
  include Trackable
+ include Formatable
 
  attr_accessor :customer
 
@@ -12,9 +14,11 @@ class Purchase
   @customer.todos.each { |t| set_creator_and_updater t, current_user }
   @customer.addresses.each { |a| set_creator_and_updater a, current_user }
   @customer.orders.each do |o|
+   o.fyis.each { |ofyi| set_creator_and_updater ofyi, current_user }
+   o.paid_amount = convert_dollars_to_cents( options[:customer][:orders_attributes]['0'][:paid_amount] )
    order_total = 0
    set_creator_and_updater o, current_user
-   o.line_items.each do |oli|
+   o.line_items.each_with_index do |oli, i|
     set_creator_and_updater oli, current_user
     price = Product.find(options[:customer][:orders_attributes]['0'][:line_items_attributes]['0'][:product_id]).price
     oli.price = price
@@ -34,7 +38,7 @@ class Purchase
   'purchase'
  end
  def todos
-  @customer.todos
+  customer.todos
  end
 
 end

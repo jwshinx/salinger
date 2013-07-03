@@ -1,6 +1,6 @@
 require 'acceptance/acceptance_helper'
 
-feature 'purchase feature', %q{
+feature 'Purchase feature', %q{
   In order to manage purchases
   As an authenticated user 
   I want to view and create purchases 
