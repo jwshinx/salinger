@@ -3,11 +3,39 @@ require 'cancan/matchers'
 
 describe Customer do
  describe "normally" do
-  subject { FactoryGirl.create(:customer) }
-  its(:firstname) { should == 'Mark' }
-  its(:lastname) { should == 'Twain' }
-  its(:email) { should == 'mt@yahoo.com' }
-  its(:description) { should == 'he used to be samuel clemens' }
+  let(:cust) { Customer.new }
+  it "returns creator and updater" do
+   username = "#{random_string}"
+   cust.stub creator: double(username: username)
+   cust.stub updater: double(username: username)
+   cust.creator.username.should == username 
+   cust.updater.username.should == username 
+  end
+  it "returns email" do
+   email = "#{random_email}" 
+   cust.stub email: email 
+   cust.email.should == email 
+  end
+  it "returns firstname" do
+   firstname = "#{random_string}" 
+   cust.stub firstname: firstname
+   cust.firstname.should == firstname
+  end
+  it "returns description" do
+   description = "#{random_string}" 
+   cust.stub description: description
+   cust.description.should == description
+  end
+  it "returns lastname" do
+   lastname = "#{random_string}" 
+   cust.stub lastname: lastname
+   cust.lastname.should == lastname
+  end
+  it "returns fullname" do
+   fullname = "#{random_string} #{random_string}"  
+   cust.stub fullname: fullname
+   cust.fullname.should == fullname
+  end
  end
  describe "incomplete with" do
   before { @c = Customer.new :firstname => 'John', :lastname => 'Smith', :email => 'js@gmail.com', :description => 'dkdk' }
