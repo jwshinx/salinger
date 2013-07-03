@@ -28,31 +28,7 @@ class PurchasesController < ApplicationController
   end
   def create
     @purchase = Purchase.new(params, current_user)
-=begin
-    @customer = Customer.new(params[:customer])
-    set_creator_and_updater @customer, current_user 
-    @customer.fyis.each { |f| set_creator_and_updater f, current_user }
-    @customer.todos.each { |t| set_creator_and_updater t, current_user }
-    @customer.addresses.each { |a| set_creator_and_updater a, current_user }
-    @customer.orders.each do |o| 
-     o.fyis.each { |ofyi| set_creator_and_updater ofyi, current_user }
-     o.paid_amount = convert_dollars_to_cents( params[:customer][:orders_attributes]['0'][:paid_amount] )
-     order_total = 0
-     set_creator_and_updater o, current_user
-     o.line_items.each_with_index do |oli, i|
-      set_creator_and_updater oli, current_user
-      price = Product.find(params[:customer][:orders_attributes]['0'][:line_items_attributes][i.to_s][:product_id]).price 
-      oli.price = price 
-      quantity = params[:customer][:orders_attributes]['0'][:line_items_attributes][i.to_s][:quantity].to_i
-      order_total += price * quantity
-      oli.subtotal = price * quantity 
-     end
-     o.purchase_amount = order_total 
-    end
-=end
-
     respond_to do |format|
-      #if @customer.save
       if @purchase.save
         format.html { redirect_to @purchase.customer, notice: 'Order was successfully created.' }
         format.json { render json: @customer, status: :created, location: @customer }
