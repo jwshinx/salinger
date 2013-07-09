@@ -3,7 +3,7 @@ require 'cancan/matchers'
 
 describe AddressType do
  
- describe "fun" do
+ describe "normally" do
   before do
    @type = AddressType.new
    @name = random_string

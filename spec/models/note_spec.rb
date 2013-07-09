@@ -10,15 +10,57 @@ describe Note do
  end
 
  describe "fyi" do
-  subject { FactoryGirl.create(:customer_fyi) }
-  its(:content) { should == 'remember to mark it' }
-  it_should_behave_like "customer owner"
+  it "dkdk" do
+    text = random_string
+    @fyi = Note.new
+    @fyi.content = text
+    @fyi.content.should == text
+  #subject { FactoryGirl.create(:customer_fyi) }
+  #its(:content) { should == 'remember to mark it' }
+  #it_should_behave_like "customer owner"
+  end
  end
  describe "todo" do
-  subject { FactoryGirl.create(:customer_todo) }
-  its(:content) { should == 'send him bill' }
-  it_should_behave_like "customer owner"
+   it "sl" do
+     text = random_string
+     @todo = Note.new
+     @todo.content = text
+     @todo.content.should == text
+   end
+   it "kdksl" do
+     @user = mock_model User, fullname: 'mad max'
+    @todo = Note.new
+    @todo.notable = @user
+    @todo.owner.fullname.should == 'mad max'
+   end
+  
  end
+ describe "privilege" do
+   subject { my_ability }
+   let(:my_ability) { Ability.new(@user) }
+   describe "for admin" do
+    before(:each) { @user = mock_model User, admin?: true }
+    it { should be_able_to(:read, Note.new) }
+    it { should be_able_to(:update, Note.new) }
+    it { should be_able_to(:create, Note.new) }
+    it { should be_able_to(:destroy, Note.new) }
+   end
+   describe "for manager" do
+    before(:each) { @user = mock_model User, manager?: true, admin?: false }
+    it { should be_able_to(:read, Note.new) }
+    it { should be_able_to(:update, Note.new) }
+    it { should be_able_to(:create, Note.new) }
+    it { should be_able_to(:destroy, Note.new) }
+   end
+   describe "for all else" do
+    before(:each) { @user = mock_model User, manager?: false, admin?: false }
+    it { should_not be_able_to(:read, Note.new) }
+    it { should_not be_able_to(:update, Note.new) }
+    it { should_not be_able_to(:create, Note.new) }
+    it { should_not be_able_to(:destroy, Note.new) }
+   end
+ end
+=begin
  describe "privilege" do
   subject { my_ability }
   let(:my_ability) { Ability.new(@user) }
@@ -44,4 +86,5 @@ describe Note do
    it { should_not be_able_to(:destroy, Note.new) }
   end
  end
+=end
 end
