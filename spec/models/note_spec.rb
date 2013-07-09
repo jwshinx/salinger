@@ -9,27 +9,15 @@ describe Note do
   end
  end
 
- describe "fyi" do
-  it "dkdk" do
-    text = random_string
-    @fyi = Note.new
-    @fyi.content = text
-    @fyi.content.should == text
-  #subject { FactoryGirl.create(:customer_fyi) }
-  #its(:content) { should == 'remember to mark it' }
-  #it_should_behave_like "customer owner"
-  end
- end
- describe "todo" do
-   it "sl" do
+ describe "todo note" do
+   before(:each) { @todo = Note.new }
+   it "returns content" do
      text = random_string
-     @todo = Note.new
      @todo.content = text
      @todo.content.should == text
    end
-   it "kdksl" do
-     @user = mock_model User, fullname: 'mad max'
-    @todo = Note.new
+   it "returns owner fullname" do
+    @user = mock_model User, fullname: 'mad max'
     @todo.notable = @user
     @todo.owner.fullname.should == 'mad max'
    end
