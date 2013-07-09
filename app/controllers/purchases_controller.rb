@@ -27,6 +27,11 @@ class PurchasesController < ApplicationController
     end
   end
   def create
+    if params[:discount].blank?
+      logger.debug "---> discount is blank"
+    else
+      logger.debug "---> discount is not blank: #{params[:discount]}"
+    end
     @purchase = Purchase.new(params, current_user)
     respond_to do |format|
       if @purchase.save

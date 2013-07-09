@@ -6,6 +6,12 @@
  %h4 General
  .field
   .width_medium
+   = label_tag :discount, 'Discount $'
+  = text_field_tag :discount
+
+
+ .field
+  .width_medium
    = f.label :firstname
   = f.text_field :firstname, :id => 'firstname'
  .field
