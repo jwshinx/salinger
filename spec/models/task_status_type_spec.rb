@@ -13,30 +13,29 @@ describe TaskStatusType do
   its(:description) { should == @description }
  end
  describe "privilege" do
-  subject { my_ability }
-  let(:my_ability) { Ability.new(@user) }
-  describe "for admin" do
-   before(:each) { @user = FactoryGirl.create(:admin_user) }
-   it { should be_able_to(:read, Task.new) }
-   it { should be_able_to(:update, Task.new) }
-   it { should be_able_to(:create, Task.new) }
-   it { should be_able_to(:destroy, Task.new) }
-  end
-  describe "for manager" do
-   before(:each) { @user = FactoryGirl.create(:manager_user) }
-   it { should be_able_to(:read, Task.new) }
-   it { should be_able_to(:update, Task.new) }
-   it { should be_able_to(:create, Task.new) }
-   it { should be_able_to(:destroy, Task.new) }
-  end
-  describe "for all else" do
-   before(:each) { @user = FactoryGirl.create(:member_user) }
-   it { should_not be_able_to(:read, Task.new) }
-   it { should_not be_able_to(:update, Task.new) }
-   it { should_not be_able_to(:create, Task.new) }
-   it { should_not be_able_to(:destroy, Task.new) }
-  end
- end
-
+   subject { my_ability }
+   let(:my_ability) { Ability.new(@user) }
+   describe "for admin" do
+    before(:each) { @user = mock_model User, admin?: true }
+    it { should be_able_to(:read, TaskStatusType.new) }
+    it { should be_able_to(:update, TaskStatusType.new) }
+    it { should be_able_to(:create, TaskStatusType.new) }
+    it { should be_able_to(:destroy, TaskStatusType.new) }
+   end
+   describe "for manager" do
+    before(:each) { @user = mock_model User, manager?: true, admin?: false }
+    it { should be_able_to(:read, TaskStatusType.new) }
+    it { should be_able_to(:update, TaskStatusType.new) }
+    it { should be_able_to(:create, TaskStatusType.new) }
+    it { should be_able_to(:destroy, TaskStatusType.new) }
+   end
+   describe "for all else" do
+    before(:each) { @user = mock_model User, manager?: false, admin?: false }
+    it { should_not be_able_to(:read, TaskStatusType.new) }
+    it { should_not be_able_to(:update, TaskStatusType.new) }
+    it { should_not be_able_to(:create, TaskStatusType.new) }
+    it { should_not be_able_to(:destroy, TaskStatusType.new) }
+   end
+ end 
 end
 
