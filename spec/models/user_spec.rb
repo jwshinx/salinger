@@ -21,14 +21,14 @@ describe User do
   subject { my_ability }
   let(:my_ability) { Ability.new(@user) }
   describe "for admin" do
-   before(:each) { @user = FactoryGirl.create(:admin_user) }
+   before(:each) { @user = mock_model User, admin?: true }
    it { should be_able_to(:read, User.new) }
    it { should be_able_to(:update, User.new) }
    it { should be_able_to(:create, User.new) }
    it { should be_able_to(:destroy, User.new) }
   end
   describe "for manager" do
-   before(:each) { @user = FactoryGirl.create(:manager_user) }
+   before(:each) { @user = mock_model User, manager?: true, admin?: false }
    it { should_not be_able_to(:read, User.new) }
    it { should_not be_able_to(:update, User.new) }
    it { should_not be_able_to(:create, User.new) }
@@ -38,7 +38,7 @@ describe User do
    end
   end
   describe "for all else" do
-   before(:each) { @user = FactoryGirl.create(:member_user) }
+   before(:each) { @user = mock_model User, manager?: false, admin?: false }
    it { should_not be_able_to(:read, User.new) }
    it { should_not be_able_to(:update, User.new) }
    it { should_not be_able_to(:create, User.new) }
