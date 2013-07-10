@@ -9,7 +9,8 @@ feature 'Purchase feature', %q{
   before(:each) do
     @user = create_admin_user
     @status = FactoryGirl.create(:completed_order)
-    @mark= FactoryGirl.create(:mark_twain) 
+    #@mark= FactoryGirl.create(:mark_twain, username: "mt#{random_string}", email: "mt#{random_string}@yahoo.com") 
+    @mark= FactoryGirl.create(:charles_dickens, email: "cd#{random_string}@yahoo.com") 
     FactoryGirl.create(:address_type)
     @fabric = FactoryGirl.create(:white_cotton)
     @product = Product.new({name: 'Raiders', description: 'blah', price: 5000, count: 10, 
@@ -29,7 +30,7 @@ feature 'Purchase feature', %q{
     visit "/new_purchase"
     fill_in 'firstname', :with => 'Jimmy'
     fill_in 'lastname', :with => 'Carter'
-    fill_in 'email', :with => 'jc@yahoo.com'
+    fill_in 'email', :with => 'jcarter@yahoo.com'
     select 'Shipping', :from => 'address_type'
     fill_in 'address_name', :with => 'Home'
     fill_in 'address_line_one', :with => '1 Main Street'
@@ -42,14 +43,14 @@ feature 'Purchase feature', %q{
     select 'Raiders - $50.00', :from => 'customer_orders_attributes_0_line_items_attributes_0_product_id'
     fill_in 'paid_amount', :with => '20'
     click_button 'Save'
-    should_be_on "/customers/#{Customer.find_by_email('jc@yahoo.com').id}"
+    should_be_on "/customers/#{Customer.find_by_email('jcarter@yahoo.com').id}"
     page.should have_content("Jimmy Carter")
     page.should have_content("Order was successfully created.")
   end
   scenario 'viewing order' do
     log_in
     visit "/orders"
-    page.should have_content("Mark Twain")
+    page.should have_content("Charles Dickens")
     page.should have_content("Complete")
     page.should have_content("89.50")
   end
