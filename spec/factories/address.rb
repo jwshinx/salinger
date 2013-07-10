@@ -10,4 +10,14 @@ FactoryGirl.define do
    zip '95555'
   end
  end
+ factory :berkeley_address, class: Address do
+  created_by 1
+  updated_by 1
+  street '1500 MLK Blvd' 
+  suite '#1500' 
+  city 'Berkeley'
+  state 'CA'
+  zip '94005'
+ end
+
 end
