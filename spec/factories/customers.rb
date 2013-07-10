@@ -10,6 +10,15 @@ FactoryGirl.define do
   updater
  end
 
+ factory :charles_dickens, class: Customer do
+  firstname "Charles"
+  lastname "Dickens"
+  email "cd@yahoo.com"
+  description "a far better place"
+  created_by 1
+  updated_by 1
+ end
+ 
  factory :lebron, class: Customer do
   firstname "Lebron"
   lastname "James"

@@ -43,7 +43,7 @@ describe Customer do
   end
   describe "when complete" do
    it "returns valid" do
-    FactoryGirl.build(:mark_twain).should be_valid
+    FactoryGirl.build(:charles_dickens).should be_valid
    end
   end
   describe "recent orders" do
@@ -64,26 +64,26 @@ describe Customer do
  describe "when incomplete" do
   describe "email" do
    describe "nil" do
-    it "returns invalid" do FactoryGirl.build(:mark_twain, :email => nil).should_not be_valid end
+    it "returns invalid" do FactoryGirl.build(:charles_dickens, :email => nil).should_not be_valid end
    end
    describe "blank" do
-    it "returns invalid" do FactoryGirl.build(:mark_twain, :email => '').should_not be_valid end
+    it "returns invalid" do FactoryGirl.build(:charles_dickens, :email => '').should_not be_valid end
    end
   end
   describe "lastname" do
    describe "nil" do
-    it "returns invalid" do FactoryGirl.build(:mark_twain, :lastname => nil).should_not be_valid end
+    it "returns invalid" do FactoryGirl.build(:charles_dickens, :lastname => nil).should_not be_valid end
    end
    describe "blank" do
-    it "returns invalid" do FactoryGirl.build(:mark_twain, :lastname => '').should_not be_valid end
+    it "returns invalid" do FactoryGirl.build(:charles_dickens, :lastname => '').should_not be_valid end
    end
   end
   describe "firstname" do
    describe "nil" do
-    it "returns invalid" do FactoryGirl.build(:mark_twain, :firstname => nil).should_not be_valid end
+    it "returns invalid" do FactoryGirl.build(:charles_dickens, :firstname => nil).should_not be_valid end
    end
    describe "blank" do
-    it "returns invalid" do FactoryGirl.build(:mark_twain, :firstname => '').should_not be_valid end
+    it "returns invalid" do FactoryGirl.build(:charles_dickens, :firstname => '').should_not be_valid end
    end
   end
  end
