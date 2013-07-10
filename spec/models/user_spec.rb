@@ -3,12 +3,13 @@ require 'cancan/matchers'
 
 describe User do
  describe "admin joel" do
-  before { @joel = FactoryGirl.create(:admin_user) }
+  #before { @joel = mock_model User, admin?: true }
+  before { @joel = FactoryGirl.create(:admin_user, username: "joel#{random_string}", email: "j#{random_string}@yahkdi.com") }
   subject { @joel }
   specify { @joel.should be_valid } 
-  its(:username) { should =~ /joel/}
+  its(:username) { should =~ /joel\w+/}
   its(:username) { should_not be_blank }
-  its(:email) { should =~ /joel\d*@yahoo.com/}
+  its(:email) { should =~ /j\w+@yahkdi.com/ }
   its(:active) { should be_true }
   describe "role" do
    subject { @joel.role }
