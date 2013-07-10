@@ -1,11 +1,13 @@
 require 'trackable'
 require 'formatable'
+require 'exceptions'
 
 class PurchasesController < ApplicationController
   layout "purchase"
   #load_and_authorize_resource 
   include Trackable
   include Formatable
+  include Exceptions
 
   def new
     #@purchase = Retailer.new
@@ -27,11 +29,6 @@ class PurchasesController < ApplicationController
     end
   end
   def create
-    if params[:discount].blank?
-      logger.debug "---> discount is blank"
-    else
-      logger.debug "---> discount is not blank: #{params[:discount]}"
-    end
     @purchase = Purchase.new(params, current_user)
     respond_to do |format|
       if @purchase.save
@@ -42,6 +39,16 @@ class PurchasesController < ApplicationController
         format.json { render json: @customer.errors, status: :unprocessable_entity }
       end
     end
+  rescue Exceptions::ExcessiveDiscountAmount => exc    
+    logger.error "----> purchase.create excessive-discount exc: #{exc}"
+    flash[:error] = 'Discount cannot be more than the total order amount.'
+    @customer = Customer.new(params[:customer])
+    render :action => 'new'
+  rescue Exception => exc
+   logger.error "----> purchase.create exc: #{exc}"
+   flash[:error] = 'There was an unexpected error in your order. Email Joel at jwshin@gmail.com'
+   @customer = Customer.new(params[:customer])
+   render :action => 'new'    
   end
 
 =begin

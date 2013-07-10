@@ -30,6 +30,7 @@ class Purchase
       oli.subtotal = price * quantity
      end
      o.purchase_amount = apply_discount(o, order_total, options[:discount], current_user)
+     raise Exceptions::ExcessiveDiscountAmount if o.purchase_amount < 0
      o.purchase_date = Date.strptime(options[:customer][:orders_attributes]['0'][:purchase_date], '%m/%d/%Y')
      o.paid_date = Date.strptime(
       options[:customer][:orders_attributes]['0'][:paid_date], '%m/%d/%Y'
