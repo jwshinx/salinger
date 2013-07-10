@@ -31,4 +31,4 @@
        - if o.fyis.empty?
        - else
         - o.fyis.each do |fyi|
-         %span= link_to 'Edit Note', edit_note_path(fyi.id)
+         %span= link_to "Edit Note<br />".html_safe, edit_note_path(fyi.id)

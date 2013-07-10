@@ -15,4 +15,5 @@
   = link_to 'All Notes', notes_path
  - if can? :read, @note.owner.class 
   \|
-  = link_to "Back to #{@note.owner.class.to_s}", send("#{@note.owner.class.to_s.downcase}_path", @note.owner.id)
+  - # = link_to "Back to #{@note.owner.class.to_s}", send("#{@note.owner.class.to_s.downcase}_path", @note.owner.id)
+  [Back to #{@note.owner.class.to_s}]

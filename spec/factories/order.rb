@@ -32,5 +32,5 @@ FactoryGirl.define do
   after(:create) do |order, evaluator|
    FactoryGirl.create_list(:red_solid_line_item, evaluator.line_item_count, order: order)
   end
- end
+ end 
 end

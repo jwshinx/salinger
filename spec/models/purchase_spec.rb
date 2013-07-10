@@ -13,15 +13,25 @@ describe Purchase do
   describe "not provided" do
     it "returns identical amount" do
      discount_dollars = ''
-     new_total = @purchase.apply_discount(@total, discount_dollars)
+     new_total = @purchase.apply_discount(mock_model(Order), @total, discount_dollars, mock_model(User))
      new_total.should == @total
     end  
   end
   describe "provided" do
    it "returns smaller, discounted amount" do
-    discount_dollars = 0.25
-    new_total = @purchase.apply_discount(@total, discount_dollars)
-    new_total.should <= @total
+    discount_dollars = '1.25'
+    bs_order = FactoryGirl.build(:red_solid_order, customer: FactoryGirl.create(:charles_dickens))
+    new_total = @purchase.apply_discount(bs_order, @total, discount_dollars, mock_model(User))
+    new_total.should == @total - 125
+=begin     
+     mock_user = mock_model(User, id:1)
+     mock_note = mock_model(Note, creator: mock_user)
+     mock_note.stub creator: mock_user
+     mock_note.stub updater: mock_user
+     mock_order = mock_model(Order, fyis: double(build: mock_note))
+     new_total = @purchase.apply_discount(mock_order, @total, discount_dollars, mock_model(User))
+     new_total.should <= @total
+=end
    end  
   end
  end
