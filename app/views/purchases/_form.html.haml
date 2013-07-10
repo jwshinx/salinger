@@ -6,12 +6,6 @@
  %h4 General
  .field
   .width_medium
-   = label_tag :discount, 'Discount $'
-  = text_field_tag :discount
-
-
- .field
-  .width_medium
    = f.label :firstname
   = f.text_field :firstname, :id => 'firstname'
  .field
@@ -42,7 +36,7 @@
  = f.fields_for :addresses do |a|
   .field
    .width_medium
-    = a.label :address_type_id
+    = a.label :address_type_id, 'Address Type'
    = a.select :address_type_id, AddressType.order('name asc').all.collect { |t| [t.name, t.id]}, {:include_blank => true }, :id => 'address_type'
   .field
    .width_medium_2
@@ -89,6 +83,10 @@
     .width_medium
      = bb.label :content, 'Note'
     = bb.text_field :content, :size => 75, :maxlength => 50
+  .field
+   .width_medium
+    = label_tag :discount, 'Discount $'
+   = text_field_tag :discount, '0'
   - count = 0
   = builder.fields_for :line_items do |line_item|
    %div{:class=>'field', :id => "product_#{count}", :style=>'width:700px;'}
@@ -107,11 +105,11 @@
 
   .field
    .width_medium
-    = builder.label :paid_amount
+    = builder.label :paid_amount, 'Paid Amount $'
    = builder.text_field :paid_amount, :id => 'paid_amount'
   .field
    .width_medium
-    = builder.label :paid_date
+    = builder.label :paid_date, 'Paid Date'
    = builder.text_field :paid_date, :id => 'paid_date_datepicker'
   
  .actions

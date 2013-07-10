@@ -68,6 +68,7 @@ $(document).ready ->
 
  $("#new_order_form").validate({
   rules: {
+   'discount': { required: true },
    'customer[firstname]': { required: true },
    'customer[lastname]': { required: true },
    'customer[email]': { required: true, email: true },
@@ -80,6 +81,7 @@ $(document).ready ->
    'customer[orders_attributes][0][line_items_attributes][0][quantity]': { required: true, digits: true, min: 1 },
   },
   messages: {
+   'discount': { required: 'Enter dollar amount (eg: 25.00), or enter 0.' },
    'customer[firstname]': { required: 'Firstname must be alphanumeric.' },
    'customer[lastname]': { required: 'Lastname must be alphanumeric.' },
    'customer[email]': { required: "Email is required.", email: "It should look like an email." },
