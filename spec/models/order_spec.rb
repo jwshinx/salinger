@@ -17,11 +17,8 @@ describe Order do
  describe "normally" do
   it "returns blurb" do                                                          
    fullname = "#{random_string} #{random_string}"
-   customer = mock_model(Customer, fullname: fullname)
-   @order.stub id: 1         
-   @order.stub purchase_date: Date.today
-   @order.stub purchase_amount: 1999
-   @order.stub customer: customer
+   @order.stub id: 1
+   @order.stub customer: double(fullname: fullname)
    @order.blurb.should == "#{fullname}: Order ##{@order.id}  Amount: $#{@order.purchase_amount/100.0}  Date: #{@order.purchase_date.strftime('%m/%d/%Y')}"
   end
  end
