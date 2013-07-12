@@ -1,9 +1,11 @@
 require 'trackable'
 require 'formatable'
+require 'exceptions'
 
 class Purchase
  include Trackable
- include Formatable
+ include Formatable     
+ include Exceptions
 
  attr_accessor :customer
 
@@ -16,6 +18,7 @@ class Purchase
  def process_order options, current_user
    @customer.orders.each do |o|
     if o.new_record?
+     o.reduce_inventory
      Rails.logger.debug "---> Purchase.init 3: yes, its a new order"
      o.fyis.each { |ofyi| set_creator_and_updater ofyi, current_user }
      o.paid_amount = convert_dollars_to_cents( options[:customer][:orders_attributes]['0'][:paid_amount] )
@@ -38,7 +41,7 @@ class Purchase
      ) unless options[:customer][:orders_attributes]['0'][:paid_date].blank?     
     end
    end
- end
+ end                     
  def set_creator_and_updater_to_customer_children current_user
    @customer.fyis.each { |f| set_creator_and_updater f, current_user }
    @customer.todos.each { |t| set_creator_and_updater t, current_user }

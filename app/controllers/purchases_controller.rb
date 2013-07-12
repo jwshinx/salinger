@@ -39,6 +39,11 @@ class PurchasesController < ApplicationController
         format.json { render json: @customer.errors, status: :unprocessable_entity }
       end
     end
+  rescue Exceptions::InadequateInventory => exc    
+    logger.error "----> purchase.create inadequate inventory exc: #{exc}"
+    flash[:error] = 'Inventory is inadequate.'
+    @customer = Customer.new(params[:customer])
+    render :action => 'new'
   rescue Exceptions::ExcessiveDiscountAmount => exc    
     logger.error "----> purchase.create excessive-discount exc: #{exc}"
     flash[:error] = 'Discount cannot be more than the total order amount.'

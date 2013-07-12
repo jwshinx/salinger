@@ -21,6 +21,10 @@ describe Order do
    @order.stub customer: double(fullname: fullname)
    @order.blurb.should == "#{fullname}: Order ##{@order.id}  Amount: $#{@order.purchase_amount/100.0}  Date: #{@order.purchase_date.strftime('%m/%d/%Y')}"
   end
+  it "reduces inventory" do     
+    pending
+    @order.reduce_inventory.should be_true
+  end
  end
  describe "with line items" do
   it "returns count" do
