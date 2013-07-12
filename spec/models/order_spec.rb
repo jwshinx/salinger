@@ -14,7 +14,17 @@ describe Order do
  its(:purchase_date) { should == @purchase_date } 
  its(:purchase_amount) { should == @purchase_amount.to_i } 
  its(:ispaid) { should be_false }
- 
+ describe "normally" do
+  it "returns blurb" do                                                          
+   fullname = "#{random_string} #{random_string}"
+   customer = mock_model(Customer, fullname: fullname)
+   @order.stub id: 1         
+   @order.stub purchase_date: Date.today
+   @order.stub purchase_amount: 1999
+   @order.stub customer: customer
+   @order.blurb.should == "#{fullname}: Order ##{@order.id}  Amount: $#{@order.purchase_amount/100.0}  Date: #{@order.purchase_date.strftime('%m/%d/%Y')}"
+  end
+ end
  describe "with line items" do
   it "returns count" do
    line_item1 = mock_model OrderLineItem, id: 1 

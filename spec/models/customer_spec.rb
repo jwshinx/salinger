@@ -35,7 +35,13 @@ describe Customer do
    fullname = "#{random_string} #{random_string}"  
    cust.stub fullname: fullname
    cust.fullname.should == fullname
-  end
+  end  
+  it "returns blurb" do
+   blurb = "#{random_string}" 
+   cust.stub blurb: blurb
+   cust.blurb.should == blurb
+  end   
+  
   it "returns todos and fyis" do
    todos_and_fyis = ['todo1', 'todo2', 'fyi1', 'fyi2']
    cust.stub todos_and_fyis: todos_and_fyis

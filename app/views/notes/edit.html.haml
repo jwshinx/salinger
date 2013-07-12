@@ -6,7 +6,8 @@
  = render 'edit_form'
  %br
  %br
- = @note.owner.inspect
+ - # = @note.owner.inspect
+ = @note.owner.blurb
  %br
  %br
  - if can? :read, Note 
@@ -14,6 +15,11 @@
   \|
   = link_to 'All Notes', notes_path
  - if can? :read, @note.owner.class 
-  \|
-  - # = link_to "Back to #{@note.owner.class.to_s}", send("#{@note.owner.class.to_s.downcase}_path", @note.owner.id)
-  [Back to #{@note.owner.class.to_s}]
+  - if @note.notable_type == 'Order'
+   \|
+   = link_to "Back to #{@note.owner.class.to_s}", send("customer_#{@note.owner.class.to_s.downcase}_path", @note.owner.customer.id, @note.owner.id)
+   \|
+   = link_to "Back to Customer", customer_path(@note.owner.customer.id)
+  - if @note.notable_type == 'Customer'
+   \|
+   = link_to "Back to #{@note.owner.class.to_s}", send("#{@note.owner.class.to_s.downcase}_path", @note.owner.id)

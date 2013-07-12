@@ -3,4 +3,7 @@ module Formatable
   return 0 unless dollar_string =~ /^((\d*)|(\d*\.\d{2})|(\d*\.\d{1}))$/
   (dollar_string.to_f * 100.0).round
  end
+ def mmddyy_date date
+  date.nil? ? '' : date.strftime("%m/%d/%Y")
+ end
 end
