@@ -41,7 +41,7 @@ class PurchasesController < ApplicationController
     end
   rescue Exceptions::InadequateInventory => exc    
     logger.error "----> purchase.create inadequate inventory exc: #{exc}"
-    flash[:error] = 'Inventory is inadequate.'
+    flash[:error] = 'Inventory is inadequate. Please check product quantities.'
     @customer = Customer.new(params[:customer])
     render :action => 'new'
   rescue Exceptions::ExcessiveDiscountAmount => exc    

@@ -19,15 +19,15 @@ class Order < ActiveRecord::Base
  accepts_nested_attributes_for :line_items, :reject_if => lambda { |a| a[:product_id].blank? }, :allow_destroy => true
  accepts_nested_attributes_for :fyis, :reject_if => lambda { |a| a[:content].blank? }, :allow_destroy => true              
  
- def blurb
+ def summary
    "#{customer.fullname}: Order ##{id}  Amount: $#{cents_to_dollars(purchase_amount)}  Date: #{mmddyy_date(purchase_date)}"
  end
  def reduce_inventory         
    line_items.each { |li| raise Exceptions::InadequateInventory if li.quantity > li.product.count }
    line_items.each do |li|  
-     puts "---> ri: #{li.product.name} - #{li.product.count}"
      reduced_count = li.product.count - li.quantity
      li.product.update_attributes({count: reduced_count})
    end
- end                  
+ end  
+ alias_method :blurb, :summary                
 end

@@ -25,6 +25,29 @@ feature 'Purchase feature', %q{
     @order.save
   end
 
+  scenario "throws error when creating an order with quantity beyond inventory" do
+    log_in
+    visit "/new_purchase"
+    fill_in 'firstname', :with => 'Jimmy'
+    fill_in 'lastname', :with => 'Carter'
+    fill_in 'email', :with => 'jcarter@yahoo.com'
+    select 'Shipping', :from => 'address_type'
+    fill_in 'address_name', :with => 'Home'
+    fill_in 'address_line_one', :with => '1 Main Street'
+    fill_in 'address_suite', :with => '101'
+    fill_in 'address_city', :with => 'LA'
+    select 'California', :from => 'address_state'
+    fill_in 'address_zip', :with => '90011'
+    select 'Complete', :from => 'order_status'
+    fill_in 'discount', :with => '9.99'
+    fill_in 'purchase_date_datepicker', :with => '07/05/2013'
+    select 'Raiders - $50.00', :from => 'customer_orders_attributes_0_line_items_attributes_0_product_id'
+    fill_in 'customer_orders_attributes_0_line_items_attributes_0_quantity', :with => '11'
+    fill_in 'paid_amount', :with => '20'
+    click_button 'Save'                      
+    page.should have_content("Inventory is inadequate. Please check product quantities.")    
+  end
+
   scenario "adding an order with a valid discount '9.99'" do
     log_in
     visit "/new_purchase"
