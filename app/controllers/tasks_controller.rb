@@ -1,5 +1,7 @@
+require 'trackable'
 class TasksController < ApplicationController
-  layout 'task'
+  include Trackable
+  layout 'task'   
   #load_and_authorize_resource :except => [:my_tasks]
   load_and_authorize_resource 
   
@@ -40,13 +42,11 @@ class TasksController < ApplicationController
 
   def create
     #@task = Task.new(params[:task])
-    @task.creator = current_user
-    @task.updater = current_user
+    set_creator_and_updater @task, current_user    
     #@task.status = TaskStatusType.pending.first
-    @task.due_date = Date.parse(params[:task][:due_date]) unless params[:task][:due_date].blank?
-    @task.completed_on = Date.parse(params[:task][:completed_on]) unless params[:task][:completed_on].blank?
-    #@task.task_status_id = 1
-
+    @task.due_date = Date.strptime(params[:task][:due_date], '%m/%d/%Y') unless params[:task][:due_date].blank?
+    @task.completed_on = Date.strptime(params[:task][:completed_on], '%m/%d/%Y') unless params[:task][:completed_on].blank?
+  
     respond_to do |format|
       if @task.save
         format.html { redirect_to @task, notice: 'Task was successfully created.' }
