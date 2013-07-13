@@ -38,6 +38,8 @@ class Ability
       can :destroy, AddressType
       can :update, FabricPrice 
       can :destroy, FabricPrice 
+      can :update, Version 
+      can :destroy, Version                               
 
       cannot :create, Role
       cannot :destroy, Role

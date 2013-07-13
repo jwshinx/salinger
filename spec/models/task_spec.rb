@@ -20,6 +20,11 @@ describe Task do
    @task.status = task_status 
    @task.status.name.should == 'Complete'
   end
+  describe "blurb" do
+    it "returns title" do
+      pending
+    end
+  end
   describe "without task status" do
    it "returns error" do
     expect {

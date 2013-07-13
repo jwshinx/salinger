@@ -1,4 +1,6 @@
-Salinger::Application.routes.draw do
+Salinger::Application.routes.draw do 
+  post "versions/:id/revert" => "versions#revert", :as => "revert_version"
+  resources :versions
   resources :order_statuses
   resources :address_types
   #resources :customer_addresses

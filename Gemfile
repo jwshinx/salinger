@@ -14,6 +14,7 @@ gem "authlogic"
 gem 'activemerchant', :require => 'active_merchant'
 gem "cancan"
 gem "jquery-validation-rails"
+gem 'paper_trail', '~> 2'
 
 gem 'execjs'
 gem 'therubyracer'

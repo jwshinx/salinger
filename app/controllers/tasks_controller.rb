@@ -65,8 +65,9 @@ class TasksController < ApplicationController
     @task.completed_on = Date.parse(params[:task][:completed_on]) unless params[:task][:completed_on].blank?
 
     respond_to do |format|
-      if @task.update_attributes(params[:task])
-        format.html { redirect_to @task, notice: 'Task was successfully updated.' }
+      if @task.update_attributes(params[:task])                                
+        undo_link = view_context.link_to("Undo.", revert_version_path(@task.versions.last), :method => :post)
+        format.html { redirect_to @task, notice: "Task was successfully updated. #{undo_link}" }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

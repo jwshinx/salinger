@@ -21,6 +21,8 @@
 %h3 Other 
 %ul
  - if !current_user.nil? && current_user.username == 'joel'
+  - if can? :read, Version
+   %li= link_to 'Versions', versions_path
   - if can? :read, AddressType 
    %li= link_to 'Addr Types', address_types_path
   - if can? :read, CustomerAddress

@@ -1,0 +1,34 @@
+#scan_column
+ = render 'shared/sidebar_menu'
+#content_area
+ %h1= and_show_count_of @versions
+ - unless @versions.empty?
+  %table
+   %tr
+    %th ID
+    %th Item-ID
+    %th Event
+    %th Who
+    %th Object
+    %th Created
+          
+   - @versions.each do |version|
+    %tr
+     %td= version.id
+     %td= "#{version.item_type}-#{version.item_id}" 
+     %td= version.event
+     %td= version.whodunnit
+     %td= version.object.nil? ? 'NA' : truncate(version.object)
+     %td= version.created_at.strftime('%m/%d/%Y %b:%p')
+
+     /%td
+     / - if can? :read, version
+     /  = link_to 'Show', version
+     /%td
+     / - if can? :edit, version
+     /  = link_to 'Edit', edit_version_path(version)
+  
+  - # %br
+  - # - if can? :create, version
+  - #  = link_to 'New version', new_version_path
+          
