@@ -1,8 +1,8 @@
-#scan_column
+%div.span2
  = render 'shared/sidebar_menu'
-#content_area
+%div.span10
  %h1= and_show_count_of @tasks
  = render 'list'
  %br
  - if can? :create, Task 
-  = link_to 'New Task', new_task_path
+  = link_to 'New Task', new_task_path       

@@ -1,23 +1,24 @@
-- unless @notes.empty?
- %table
-  %thead
-   %tr
-    %th Type 
-    %th Owner 
-    %th Content 
-    %th Date 
-    - if can? :update, Note
-     %th 
-    - if can? :destroy, Note
-     %th 
-  %tbody
-   - @notes.each do |n|
+%div
+ - unless @notes.empty?
+  %table.table.table-condensed.table-striped
+   %thead
     %tr
-     %td= n.type
-     %td= "#{n.notable_type}: #{n.notable.blurb}"
-     %td= n.content 
-     %td= mmddyy_date(n.created_at)
+     %th Type 
+     %th Owner 
+     %th Content 
+     %th Date 
      - if can? :update, Note
-      %td= link_to 'Edit', edit_note_path(n) 
+      %th 
      - if can? :destroy, Note
-      %td= link_to 'Destroy', note_path(n), :method => :delete, :data => { :confirm => 'Are you sure?' }
+      %th 
+   %tbody
+    - @notes.each do |n|
+     %tr
+      %td= n.type
+      %td= "#{n.notable_type}: #{n.notable.blurb}"
+      %td= n.content 
+      %td= mmddyy_date(n.created_at)
+      - if can? :update, Note
+       %td= link_to 'Edit', edit_note_path(n) 
+      - if can? :destroy, Note
+       %td= link_to 'Destroy', note_path(n), :method => :delete, :data => { :confirm => 'Are you sure?' }

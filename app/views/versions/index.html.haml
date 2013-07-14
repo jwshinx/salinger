@@ -1,9 +1,9 @@
-#scan_column
+%div.span2
  = render 'shared/sidebar_menu'
-#content_area
+%div.span10
  %h1= and_show_count_of @versions
  - unless @versions.empty?
-  %table
+  %table.table.table-condensed.table-striped
    %tr
     %th ID
     %th Item-ID

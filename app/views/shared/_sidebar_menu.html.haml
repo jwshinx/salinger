@@ -1,25 +1,25 @@
-%ul
+%ul.nav.nav-list.bs-docs-sidenav    
  - if can? :read, Task
   %li= link_to 'My Tasks', my_tasks_path
  - if can? :read, Customer 
   %li= link_to 'New Order', new_purchase_path
  - if can? :read, Order 
-  %li
-   = link_to 'All Orders', orders_path
-   = link_to '[Items]', order_line_items_path
-%h3 Manage 
-%ul
+  %li= link_to 'All Orders', orders_path  
+  %li= link_to 'Order Items', order_line_items_path
+%h5 Manage 
+%ul.nav.nav-list.bs-docs-sidenav    
  - if can? :read, Customer 
   %li= link_to 'Customers', customers_path
  - if can? :read, Fabric 
   %li
    = link_to 'Fabrics', fabrics_path
-   - if can? :create, Fabric 
-    = link_to '[New]', new_fabric_path
+  - if can? :create, Fabric         
+   %li
+    = link_to 'New Fabric', new_fabric_path
  - if can? :read, Product
   %li= link_to 'Products', products_path
-%h3 Other 
-%ul
+%h5 Other 
+%ul.nav.nav-list.bs-docs-sidenav  
  - if !current_user.nil? && current_user.username == 'joel'
   - if can? :read, Version
    %li= link_to 'Versions', versions_path
@@ -32,8 +32,9 @@
  - if can? :read, Task
   %li
    = link_to 'Tasks', tasks_path
-   - if can? :create, Task
-    = link_to '[New]', new_task_path
+  - if can? :create, Task
+   %li
+    = link_to 'New Task', new_task_path
  - if can? :read, TaskStatusType 
   %li= link_to 'Task Status Types', task_status_types_path
  - if can? :read, Note 
@@ -44,9 +45,9 @@
   %li= link_to 'Farms', farms_path
  - if can? :read, Address 
   %li= link_to 'Addresses', addresses_path
-%ul
+%ul.nav.nav-list.bs-docs-sidenav    
 - if !current_user.nil? && current_user.username == 'joel'
- %h3 Joel Only 
+ %h5 Joel Only 
  %ul
   - if can? :read, Role 
    %li= link_to 'Roles', roles_path

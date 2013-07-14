@@ -1,6 +1,6 @@
-#scan_column
+%div.span2
  = render 'shared/sidebar_menu'
-#content_area
+%div.span10
  %h1= and_show_count_of @order_line_items 
  - unless @order_line_items.empty?
   %table{:id => 'order_line_items_table', :class => 'tablesorter' }

@@ -10,12 +10,17 @@
   = javascript_include_tag "application" 
   = csrf_meta_tags 
  %body 
-  #wrapper
-   #masthead
+  %div.row-fluid
+   %div.span2.offset1
     #logo
-    = render 'shared/login_nav'
-   #content_container
-    = render 'shared/notice'
-    = yield 
+    %div= render 'shared/login_nav'
 
-  = render 'layouts/footer'
+  %div.row
+   %div.span5.offset3
+    = render 'shared/notice'
+  %div.row-fluid
+   = yield
+
+  %div.row-fluid
+   %div.span12= render 'layouts/footer'
+

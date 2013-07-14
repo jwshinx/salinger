@@ -22,6 +22,7 @@ class Customer < ActiveRecord::Base
   c.firstname = cleaned_up(c.firstname) 
   c.lastname = cleaned_up(c.lastname) 
  end
+ scope :with_name_like, ->(fname, lname) { where('firstname like ? and lastname like ?', '%' + fname + '%', '%' + lname + '%') }
 
  def recent_orders
   orders.order('purchase_date desc')

@@ -20,7 +20,8 @@
   = f.text_field :price, :value => number_to_currency(cents_to_dollars(f.object.price), :precision => 2, :unit => ''), :id => 'price'
  - count = 0 
  = f.fields_for :sewings do |builder|
-  %div{:class=>'field', :id => "fabric_#{count}", :style=>'width:650px;'}
+  - # %div{:class=>'field', :id => "fabric_#{count}", :style=>'width:650px;'}
+  %div{:id => "fabric_#{count}"}
    = builder.label :fabric
    = builder.select :fabric_id, Fabric.order('name asc').all.collect {|r| [r.name, r.id]}, {:include_blank => true}
    - unless f.object.new_record?

@@ -1,6 +1,6 @@
-#scan_column
+%div.span2
  = render 'shared/sidebar_menu'
-#content_area
+%div.span10     
  = render 'single'
  - if can? :edit, Order 
   = link_to 'Edit', edit_customer_order_path(@order.customer, @order)

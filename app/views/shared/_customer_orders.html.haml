@@ -1,34 +1,35 @@
-- if @orders.empty?
- %h4 No Orders
-- else 
- %h4= "Orders (#{@orders.length})"
- %table
-  %thead
-   %tr
-    %th{:style=>'width:40px;'} #
-    %th Date 
-    %th Status 
-    %th Total Due
-    %th Paid?
-    %th Paid Amt 
-    %th Items
-    %th Note 
-    - if can? :update, Note
-     %th
-  %tbody
-   - @orders.each do |o|
+%div
+ - if @orders.empty?
+  %h4 No Orders
+ - else 
+  %h4= "Orders (#{@orders.length})"
+  %table.table.table-condensed.table-striped
+   %thead
     %tr
-     %td{:style=>'width:40px;'}= o.id 
-     %td= mmddyy_date(o.purchase_date)
-     %td= o.status.title
-     %td= number_to_currency(cents_to_dollars(o.purchase_amount), :precision => 2)
-     %td= o.ispaid ? 'Yes' : 'No'
-     %td= number_to_currency(cents_to_dollars(o.paid_amount), :precision => 2)
-     %td= o.line_items.collect{|li| li.to_s}.join('<br />').html_safe
-     %td= o.fyis.collect{|fyi| fyi.content}.join('<br />').html_safe
+     %th{:style=>'width:40px;'} #
+     %th Date 
+     %th Status 
+     %th Total Due
+     %th Paid?
+     %th Paid Amt 
+     %th Items
+     %th Note 
      - if can? :update, Note
-      %td
-       - if o.fyis.empty?
-       - else
-        - o.fyis.each do |fyi|
-         %span= link_to "Edit Note<br />".html_safe, edit_note_path(fyi.id)
+      %th
+   %tbody
+    - @orders.each do |o|
+     %tr
+      %td{:style=>'width:40px;'}= o.id 
+      %td= mmddyy_date(o.purchase_date)
+      %td= o.status.title
+      %td= number_to_currency(cents_to_dollars(o.purchase_amount), :precision => 2)
+      %td= o.ispaid ? 'Yes' : 'No'
+      %td= number_to_currency(cents_to_dollars(o.paid_amount), :precision => 2)
+      %td= o.line_items.collect{|li| li.to_s}.join('<br />').html_safe
+      %td= o.fyis.collect{|fyi| fyi.content}.join('<br />').html_safe
+      - if can? :update, Note
+       %td
+        - if o.fyis.empty?
+        - else
+         - o.fyis.each do |fyi|
+          %span= link_to "Edit Note<br />".html_safe, edit_note_path(fyi.id)

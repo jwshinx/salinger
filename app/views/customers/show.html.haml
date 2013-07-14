@@ -1,6 +1,9 @@
-#scan_column
+- # #scan_column.row
+%div.span2
  = render 'shared/sidebar_menu'
-#content_area
+ 
+- # #content_area.row
+%div.span10
  %h1
   Customer:
   = @customer.fullname
@@ -9,13 +12,13 @@
  %br
  = render 'customer_overview'
  = render 'shared/customer_orders'
-
+ 
  %h4= and_show_count_of_notes @notes
  = render 'shared/customer_notes'
-
+ 
  - if @customer_addresses.empty?
   %h4 No Addresses
  - else
   %h4= "Addresses (#{@customer_addresses.length})"
   = render 'customer_addresses/list'
- 
+

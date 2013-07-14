@@ -16,6 +16,8 @@ gem "cancan"
 gem "jquery-validation-rails"
 gem 'paper_trail', '~> 2'
 
+gem 'bootstrap-sass', '~> 2.3.2.0'
+                   
 gem 'execjs'
 gem 'therubyracer'
 

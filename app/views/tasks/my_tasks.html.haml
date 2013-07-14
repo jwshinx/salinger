@@ -1,6 +1,6 @@
-#scan_column
+%div.span2
  = render 'shared/sidebar_menu'
-#content_area
+%div.span10
  %h1= "#{current_user.username.capitalize}'s Tasks"
  - if can? :create, Task 
   = link_to 'New Task', new_task_path
