@@ -1,4 +1,6 @@
-%ul.nav.nav-list.bs-docs-sidenav    
+%div{:style=>'margin:5px;position:relative;top:15px;'} 
+ %h5 Everyday 
+%ul.nav.nav-list.bs-docs-sidenav{:style=>'margin-left:5px;'}  
  - if can? :read, Task
   %li= link_to 'My Tasks', my_tasks_path
  - if can? :read, Customer 
@@ -6,8 +8,9 @@
  - if can? :read, Order 
   %li= link_to 'All Orders', orders_path  
   %li= link_to 'Order Items', order_line_items_path
-%h5 Manage 
-%ul.nav.nav-list.bs-docs-sidenav    
+%div{:style=>'margin:5px;position:relative;top:15px;'}
+ %h5 Manage 
+%ul.nav.nav-list.bs-docs-sidenav{:style=>'margin-left:5px;'}  
  - if can? :read, Customer 
   %li= link_to 'Customers', customers_path
  - if can? :read, Fabric 
@@ -18,8 +21,9 @@
     = link_to 'New Fabric', new_fabric_path
  - if can? :read, Product
   %li= link_to 'Products', products_path
-%h5 Other 
-%ul.nav.nav-list.bs-docs-sidenav  
+%div{:style=>'margin:5px;position:relative;top:15px;'}
+ %h5 Other 
+%ul.nav.nav-list.bs-docs-sidenav{:style=>'margin-left:5px;'}  
  - if !current_user.nil? && current_user.username == 'joel'
   - if can? :read, Version
    %li= link_to 'Versions', versions_path
@@ -45,7 +49,7 @@
   %li= link_to 'Farms', farms_path
  - if can? :read, Address 
   %li= link_to 'Addresses', addresses_path
-%ul.nav.nav-list.bs-docs-sidenav    
+%ul.nav.nav-list.bs-docs-sidenav{:style=>'margin-left:5px;'}  
 - if !current_user.nil? && current_user.username == 'joel'
  %h5 Joel Only 
  %ul
