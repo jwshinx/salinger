@@ -67,6 +67,7 @@ $(document).ready ->
   $("#product_4").show()
 
  $("#new_order_form").validate({
+  errorClass: 'red_font',
   rules: {
    'discount': { required: true },
    'customer[firstname]': { required: true },
@@ -88,6 +89,6 @@ $(document).ready ->
    'customer[orders_attributes][0][purchase_date]': { required: 'Date is required.' },
    'customer[orders_attributes][0][paid_amount]': { required: "A value is required (eg: 0, 10.50, 20)." },
    'customer[orders_attributes][0][line_items_attributes][0][product_id]': { required: "Please select at least one item." },
-   'customer[orders_attributes][0][line_items_attributes][0][quantity]': { required: "Number of items is required.", digits: "It must be a number.", min: "Number must be greater than zero." }   
+   'customer[orders_attributes][0][line_items_attributes][0][quantity]': { required: "Number of items is required.", digits: "It must be a number.", min: "Number must be greater than zero." }
   }
  });
