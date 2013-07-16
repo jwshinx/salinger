@@ -78,7 +78,7 @@ $(document).ready ->
    'customer[orders_attributes][0][paid_amount]': { required: true },
    'customer[orders_attributes][0][order_status_id]': { required: true },
    'customer[orders_attributes][0][line_items_attributes][0][product_id]': { required: true },
-   'customer[orders_attributes][0][line_items_attributes][0][quantity]': { required: true, digits: true, min: 1 },
+   'customer[orders_attributes][0][line_items_attributes][0][quantity]': { required: true, digits: true, min: 1 }
   },
   messages: {
    'discount': { required: 'Enter dollar amount (eg: 25.00), or enter 0.' },
@@ -88,6 +88,6 @@ $(document).ready ->
    'customer[orders_attributes][0][purchase_date]': { required: 'Date is required.' },
    'customer[orders_attributes][0][paid_amount]': { required: "A value is required (eg: 0, 10.50, 20)." },
    'customer[orders_attributes][0][line_items_attributes][0][product_id]': { required: "Please select at least one item." },
-   'customer[orders_attributes][0][line_items_attributes][0][quantity]': { required: "Number of items is required.", digits: "It must be a number.", min: "Number must be greater than zero." },   
+   'customer[orders_attributes][0][line_items_attributes][0][quantity]': { required: "Number of items is required.", digits: "It must be a number.", min: "Number must be greater than zero." }   
   }
  });
