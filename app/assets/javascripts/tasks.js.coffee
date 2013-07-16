@@ -24,7 +24,8 @@ jQuery ->
   else
    $('input[type=submit]').removeAttr('disabled')
 
- $("#new_task_form").validate(
+ $("#new_task_form").validate(     
+  errorClass: 'red_font',
   rules: {
    'task[title]': { required: true },
    'task[task_status_id]': { required: true }

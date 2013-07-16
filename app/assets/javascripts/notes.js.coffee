@@ -4,7 +4,7 @@
 jQuery ->
 
  if $("#new_note_form").length
-  $("#new_note_form").validate()
+  $("#new_note_form").validate(  errorClass: 'red_font'  )
   $('#content').rules("add", "required")
 
 

@@ -34,7 +34,7 @@ $(document).ready ->
 
  
  if $("#new_fabric_form").length
-  $("#new_fabric_form").validate()
+  $("#new_fabric_form").validate(errorClass: 'red_font')
   $('#name').rules("add", "required") 
   $('#new_price_date_datepicker').rules("add", "required") 
   count_of_price_records = $('.price_record').length

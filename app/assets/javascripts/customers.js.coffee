@@ -31,7 +31,8 @@ $(document).ready ->
   else
    $('input[type=submit]').removeAttr('disabled')
 
- $("#new_customer_form").validate({
+ $("#new_customer_form").validate({     
+  errorClass: 'red_font',
   rules: {
    'customer[firstname]': { required: true },
    'customer[lastname]': { required: true },

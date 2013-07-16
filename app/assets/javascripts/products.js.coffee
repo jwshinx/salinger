@@ -45,7 +45,8 @@ $(document).ready ->
   
  #$("#product_form_button").bind 'click', (event) =>
 
- $("#new_product_form").validate({
+ $("#new_product_form").validate({   
+  errorClass: 'red_font',
   rules: {
    'product[name]': { required: true },
    'product[description]': { required: true },

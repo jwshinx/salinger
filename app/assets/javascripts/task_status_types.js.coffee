@@ -11,6 +11,7 @@ $(document).ready ->
    $('input[type=submit]').removeAttr('disabled')
   
  $("#new_task_status_type_form").validate({
+  errorClass: 'red_font',
   rules: {
    'task_status_type[name]': { required: true },
   }

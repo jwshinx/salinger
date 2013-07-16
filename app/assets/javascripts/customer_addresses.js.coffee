@@ -9,7 +9,8 @@ jQuery ->
   else
    $('input[type=submit]').removeAttr('disabled')
 
- $("#new_customer_address_form").validate(
+ $("#new_customer_address_form").validate(    
+  errorClass: 'red_font',
   rules: {
    'customer_address[address_type_id]': { required: true },
    'customer_address[name]': { required: true },
