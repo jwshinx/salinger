@@ -3,114 +3,98 @@
  - if @customer.errors.any?
   = render :partial => 'shared/error_explanation', :object => @customer, :as => :object
 
- %h4 General
- .field
-  .width_medium
-   = f.label :firstname
+ .row
+  %h4 General
+ .row
+  = f.label :firstname
   = f.text_field :firstname, :id => 'firstname'
- .field
-  .width_medium
-   = f.label :lastname
+ .row
+  = f.label :lastname
   = f.text_field :lastname, :id => 'lastname'
- .field
-  .width_medium
-   = f.label :email
+ .row
+  = f.label :email
   = f.text_field :email, :id => 'email'
- .field
-  .width_medium
-   = f.label :description
+ .row
+  = f.label :description
   = f.text_field :description, :id => 'description'
  = f.fields_for :todos do |builder|
-  .field
-   .width_medium
-    = builder.label :content, 'Todo'
+  .row
+   = builder.label :content, 'Customer Todo'
    = builder.text_field :content, :size => 75, :maxlength => 50
  = f.fields_for :fyis do |builder|
-  .field
-   .width_medium
-    = builder.label :content, 'FYI'
+  .row
+   = builder.label :content, 'Customer FYI'
    = builder.text_field :content, :size => 75, :maxlength => 50
 
- %h4 Address
- %span.small_red_italics (If a second address is required, you can create additional addresses in the customers page.)
+ .row 
+  %h4 Address
+  %span.small_red_italics (If a second address is required, you can create additional addresses in the customers page.)
  = f.fields_for :addresses do |a|
-  .field
-   .width_medium
-    = a.label :address_type_id, 'Address Type'
+  .row
+   = a.label :address_type_id, 'Address Type'
    = a.select :address_type_id, AddressType.order('name asc').all.collect { |t| [t.name, t.id]}, {:include_blank => true }, :id => 'address_type'
-  .field
-   .width_medium_2
-    = a.label :name, "Nickname (eg: 'Home')"
+  .row
+   = a.label :name, "Nickname (eg: 'Home')"
    = a.text_field :name, :id => 'address_name'
-  .field
-   .width_medium_2
-    = a.label :line_one, "Line 1 (eg: '123 Main St.')"
+  .row
+   = a.label :line_one, "Line 1 (eg: '123 Main St.')"
    = a.text_field :line_one, :id => 'address_line_one'
-  .field
-   .width_medium_2
-    = a.label :line_two, "Line 2 (eg: 'c/o front desk')"
+  .row
+   = a.label :line_two, "Line 2 (eg: 'c/o front desk')"
    = a.text_field :line_two, :id => 'address_line_two'
-  .field
-   .width_medium
-    = a.label :suite
+  .row
+   = a.label :suite
    = a.text_field :suite, :id => 'address_suite'
-  .field
-   .width_medium
-    = a.label :city
+  .row
+   = a.label :city
    = a.text_field :city, :id => 'address_city'
-  .field
-   .width_medium
-    = a.label :state
+  .row
+   = a.label :state
    = a.select :state, us_states, {:include_blank => true }, :id => 'address_state'
-  .field
-   .width_medium
-    = a.label :zip
+  .row
+   = a.label :zip
    = a.text_field :zip, :id => 'address_zip'
-
- %h4 Order Information 
- %span.small_red_italics (Each order requires an address, unless the order status is 'On Hold - Customer'.)
+ .row
+  %h4 Order Information 
+  %span.small_red_italics (Each order requires an address, unless the order status is 'On Hold - Customer'.)
  = f.fields_for :orders do |builder|
-  .field
-   .width_medium
-    = builder.label :order_status_id, 'Status'
+  .row
+   = builder.label :order_status_id, 'Status'
    = builder.select :order_status_id, OrderStatus.order('title asc').all.collect { |t| [t.title, t.id]}, {:include_blank => true }, :id => 'order_status'
-  .field
-   .width_medium
-    = builder.label :purchase_date, 'Purchase Date'
+  .row
+   = builder.label :purchase_date, 'Purchase Date'
    = builder.text_field :purchase_date, :id => 'purchase_date_datepicker'
   = builder.fields_for :fyis do |bb|
-   .field
-    .width_medium
-     = bb.label :content, 'Note'
+   .row
+    = bb.label :content, 'Order Note'
     = bb.text_field :content, :size => 75, :maxlength => 50
-  .field
-   .width_medium
-    = label_tag :discount, 'Discount $'
+  .row
+   = label_tag :discount, 'Discount $'
    = text_field_tag :discount, '0'
   - count = 0
   = builder.fields_for :line_items do |line_item|
-   %div{:class=>'field', :id => "product_#{count}", :style=>'width:700px;'}
-    = line_item.label :product
-    = line_item.select :product_id, Product.order('name asc').all.collect {|p| ["#{p.name } - $#{("%0.02f" % (p.price/100.0))}", p.id]}, {:include_blank => true}
-    = line_item.label :quantity
-    = line_item.text_field :quantity, :size => 5, :maxlength => 5
-    - unless f.object.new_record?
-     = builder.check_box :_destroy
-     = builder.label :_destroy, "Remove"
-     - # if count < f.object.orders.length-1
+   - # %div{:class=>'field', :id => "product_#{count}", :style=>'width:700px;'}
+   .row{:id => "product_#{count}"}
+    %div{:style=>'width:300px;display:inline;float:left;'}
+     = line_item.label :product
+     = line_item.select :product_id, Product.order('name asc').all.collect {|p| ["#{p.name } - $#{("%0.02f" % (p.price/100.0))}", p.id]}, {:include_blank => true}
+    %div{:style=>'display:inline;float:left;'}
+     = line_item.label :quantity
+     = line_item.text_field :quantity, :size => 3, :maxlength => 3
+     - unless f.object.new_record?
+      = builder.check_box :_destroy
+      = builder.label :_destroy, "Remove"
+    - # if count < f.object.orders.length-1
     - if count < builder.object.line_items.length-1
-     %div{:id => "additional_line_item_#{count}", :class => 'open_another_item'}
-      = link_to "+1", :remote => true 
+     %div{:id => "additional_line_item_#{count}", :class => 'open_another_item span1'}
+      = link_to "Another", :remote => true 
    - count += 1
-
-  .field
-   .width_medium
-    = builder.label :paid_amount, 'Paid Amount $'
+  .row
+   = builder.label :paid_amount, 'Paid Amount $'
    = builder.text_field :paid_amount, :id => 'paid_amount'
-  .field
-   .width_medium
-    = builder.label :paid_date, 'Paid Date'
+  .row
+   = builder.label :paid_date, 'Paid Date'
    = builder.text_field :paid_date, :id => 'paid_date_datepicker'
   
- .actions
+ .row
   = f.submit 'Save', :id => 'order_form_button'
