@@ -17,7 +17,8 @@ class Customer < ActiveRecord::Base
  accepts_nested_attributes_for :addresses, :reject_if => lambda { |a| a[:line_one].blank? }, :allow_destroy => true
 
  validates :email, :firstname, :lastname, :presence => true, :length => { :minimum => 1 }
-
+ validate :requires_unique_name
+ 
  after_validation do |c|
   c.firstname = cleaned_up(c.firstname) 
   c.lastname = cleaned_up(c.lastname) 
@@ -40,5 +41,12 @@ class Customer < ActiveRecord::Base
  end
 
  alias_method :blurb, :fullname
+
+private
+ def requires_unique_name  
+  if Customer.find_by_firstname_and_lastname(firstname, lastname)    
+   errors.add(:base, "Firstname/lastname combination already exists. Send information to jwshin@gmail.com.")
+  end   
+ end
 end
 

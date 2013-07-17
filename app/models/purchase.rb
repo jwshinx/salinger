@@ -18,7 +18,7 @@ class Purchase
  def process_order options, current_user
    @customer.orders.each do |o|
     if o.new_record?
-     o.reduce_inventory
+     check_for_adequate_inventory o
      Rails.logger.debug "---> Purchase.init 3: yes, its a new order"
      o.fyis.each { |ofyi| set_creator_and_updater ofyi, current_user }
      o.paid_amount = convert_dollars_to_cents( options[:customer][:orders_attributes]['0'][:paid_amount] )
@@ -37,11 +37,13 @@ class Purchase
      o.purchase_date = Date.strptime(options[:customer][:orders_attributes]['0'][:purchase_date], '%m/%d/%Y')
      o.paid_date = Date.strptime(
       options[:customer][:orders_attributes]['0'][:paid_date], '%m/%d/%Y'
-      #) unless options[:customer][:orders_attributes]['0'][:line_items_attributes]['0'][:paid_date].blank?
      ) unless options[:customer][:orders_attributes]['0'][:paid_date].blank?     
     end
    end
  end                     
+ def check_for_adequate_inventory(order)
+   order.line_items.each { |li| raise Exceptions::InadequateInventory if li.quantity > li.product.count }
+ end
  def set_creator_and_updater_to_customer_children current_user
    @customer.fyis.each { |f| set_creator_and_updater f, current_user }
    @customer.todos.each { |t| set_creator_and_updater t, current_user }
@@ -54,7 +56,10 @@ class Purchase
    total - cents_discount
  end
  def save
-  customer.save
+  ActiveRecord::Base.transaction do
+   customer.save!
+   customer.orders.latest.first.reduce_inventory
+  end
  end
  def to_s
   'purchase'

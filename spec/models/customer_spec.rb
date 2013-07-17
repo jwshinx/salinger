@@ -1,7 +1,15 @@
 require 'spec_helper'
 require 'cancan/matchers'
 
-describe Customer do
+describe Customer do                 
+ describe "check uniqueness of" do
+  describe "firstname-lastname combination" do
+   it "sss" do                              
+    pending 
+    Customer.find_by_firstname_and_lastname('Charles', 'Dickens').should_not be_nil
+   end
+  end
+ end
  describe "normally" do
   let(:cust) { Customer.new }
   it "returns creator and updater" do
