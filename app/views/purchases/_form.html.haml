@@ -6,64 +6,79 @@
  .row
   %h4 General
  .row
-  = f.label :firstname
-  = f.text_field :firstname, :id => 'firstname'
+  .span3
+   = f.label :firstname
+   = f.text_field :firstname, :id => 'firstname'
+  .span3
+   = f.label :lastname
+   = f.text_field :lastname, :id => 'lastname'
+  .span3
+   = f.fields_for :todos do |builder|
+    = builder.label :content, 'Customer Todo'
+    = builder.text_field :content, :size => 75, :maxlength => 50
  .row
-  = f.label :lastname
-  = f.text_field :lastname, :id => 'lastname'
- .row
-  = f.label :email
-  = f.text_field :email, :id => 'email'
- .row
-  = f.label :description
-  = f.text_field :description, :id => 'description'
- = f.fields_for :todos do |builder|
-  .row
-   = builder.label :content, 'Customer Todo'
-   = builder.text_field :content, :size => 75, :maxlength => 50
- = f.fields_for :fyis do |builder|
-  .row
-   = builder.label :content, 'Customer FYI'
-   = builder.text_field :content, :size => 75, :maxlength => 50
+  .span3
+   = f.label :email
+   = f.text_field :email, :id => 'email'
+  .span3
+   = f.label :description
+   = f.text_field :description, :id => 'description'
+  .span3
+   = f.fields_for :fyis do |builder|
+    = builder.label :content, 'Customer FYI'
+    = builder.text_field :content, :size => 75, :maxlength => 50
 
  .row 
   %h4 Address
   %span.small_red_italics (If a second address is required, you can create additional addresses in the customers page.)
  = f.fields_for :addresses do |a|
   .row
-   = a.label :address_type_id, 'Address Type'
-   = a.select :address_type_id, AddressType.order('name asc').all.collect { |t| [t.name, t.id]}, {:include_blank => true }, :id => 'address_type'
+   .span3
+    = a.label :address_type_id, 'Address Type'
+    = a.select :address_type_id, AddressType.order('name asc').all.collect { |t| [t.name, t.id]}, {:include_blank => true }, :id => 'address_type'
+   .span3
+    = a.label :suite
+    = a.text_field :suite, :id => 'address_suite'
   .row
-   = a.label :name, "Nickname (eg: 'Home')"
-   = a.text_field :name, :id => 'address_name'
+   .span3
+    = a.label :name, "Nickname (eg: 'Home')"
+    = a.text_field :name, :id => 'address_name'   
+   .span3
+    = a.label :city
+    = a.text_field :city, :id => 'address_city'
   .row
-   = a.label :line_one, "Line 1 (eg: '123 Main St.')"
-   = a.text_field :line_one, :id => 'address_line_one'
+   .span3
+    = a.label :line_one, "Line 1 (eg: '123 Main St.')"
+    = a.text_field :line_one, :id => 'address_line_one'
+   .span3
+    = a.label :state
+    = a.select :state, us_states, {:include_blank => true }, :id => 'address_state'
   .row
-   = a.label :line_two, "Line 2 (eg: 'c/o front desk')"
-   = a.text_field :line_two, :id => 'address_line_two'
-  .row
-   = a.label :suite
-   = a.text_field :suite, :id => 'address_suite'
-  .row
-   = a.label :city
-   = a.text_field :city, :id => 'address_city'
-  .row
-   = a.label :state
-   = a.select :state, us_states, {:include_blank => true }, :id => 'address_state'
-  .row
-   = a.label :zip
-   = a.text_field :zip, :id => 'address_zip'
+   .span3
+    = a.label :line_two, "Line 2 (eg: 'c/o front desk')"
+    = a.text_field :line_two, :id => 'address_line_two'
+   .span3
+    = a.label :zip
+    = a.text_field :zip, :id => 'address_zip'
  .row
   %h4 Order Information 
   %span.small_red_italics (Each order requires an address, unless the order status is 'On Hold - Customer'.)
  = f.fields_for :orders do |builder|
+  .row  
+   .span3
+    = builder.label :order_status_id, 'Status'
+    = builder.select :order_status_id, OrderStatus.order('title asc').all.collect { |t| [t.title, t.id]}, {:include_blank => true }, :id => 'order_status'  
+   .span3
+    = builder.label :paid_amount, 'Paid Amount $'
+    = builder.text_field :paid_amount, :id => 'paid_amount'
   .row
-   = builder.label :order_status_id, 'Status'
-   = builder.select :order_status_id, OrderStatus.order('title asc').all.collect { |t| [t.title, t.id]}, {:include_blank => true }, :id => 'order_status'
-  .row
-   = builder.label :purchase_date, 'Purchase Date'
-   = builder.text_field :purchase_date, :id => 'purchase_date_datepicker'
+   .span3
+    = builder.label :purchase_date, 'Purchase Date'
+    = builder.text_field :purchase_date, :id => 'purchase_date_datepicker'
+   .span3
+    = builder.label :paid_date, 'Paid Date'
+    = builder.text_field :paid_date, :id => 'paid_date_datepicker'
+
   = builder.fields_for :fyis do |bb|
    .row
     = bb.label :content, 'Order Note'
@@ -89,12 +104,6 @@
      %div{:id => "additional_line_item_#{count}", :class => 'open_another_item span1'}
       = link_to "Another", :remote => true 
    - count += 1
-  .row
-   = builder.label :paid_amount, 'Paid Amount $'
-   = builder.text_field :paid_amount, :id => 'paid_amount'
-  .row
-   = builder.label :paid_date, 'Paid Date'
-   = builder.text_field :paid_date, :id => 'paid_date_datepicker'
   
  .row
   = f.submit 'Save', :id => 'order_form_button'
