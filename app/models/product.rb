@@ -1,7 +1,11 @@
-require 'my_validators'
+require 'my_validators'                                                 
+require 'moneyable'
 
 class Product < ActiveRecord::Base
  include MyValidators
+ include Moneyable
+           
+ has_paper_trail
 
  validates :name, :presence => true, :length => { :minimum => 1 }
  validates :count, :presence => true, :length => { :minimum => 1 }
@@ -30,7 +34,10 @@ class Product < ActiveRecord::Base
  before_save :ensure_that_one_fabric_belongs_to_a_product
  attr_accessible :created_by, :updated_by, :description, :name, :count,
   :price, :sewings_attributes, :todos_attributes, :fyis_attributes
-
+             
+ def to_s
+  "#{name} - #{description}: $#{cents_to_dollars(price)}, Count: #{count}"
+ end
  def string_array_of_todos
   return [] if todos.empty?
   todos.map{|f| f.content }
@@ -39,6 +46,8 @@ class Product < ActiveRecord::Base
   return [] if fyis.empty?
   fyis.map{|f| f.content }
  end
+
+ alias_method :blurb, :to_s
 
 private
 
@@ -50,7 +59,6 @@ private
    false
   end
  end
-
 
  def ensure_that_one_fabric_belongs_to_a_product
   if self.sewings.length < 1 

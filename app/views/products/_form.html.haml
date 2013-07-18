@@ -2,46 +2,56 @@
  - if @product.errors.any?
   = render :partial => 'shared/error_explanation', :object => @product , :as => :object
 
- .field
-  .width_medium
+ .row
+  .span5
    = f.label :name
-  = f.text_field :name, :id => 'name'
- .field
-  .width_medium
+   = f.text_field :name, :id => 'name'
+ .row
+  .span5
    = f.label :description
-  = f.text_area :description, :cols => 40, :rows => 5, :id => 'description'
- .field
-  .width_medium
+   = f.text_area :description, :cols => 40, :rows => 5, :id => 'description'
+ .row
+  .span5
    = f.label :count, 'Unsold Quantity'
-  = f.text_field :count, :id => 'count'
- .field
-  .width_medium
+   = f.text_field :count, :id => 'count'
+ .row
+  .span5
    = f.label :price
-  = f.text_field :price, :value => number_to_currency(cents_to_dollars(f.object.price), :precision => 2, :unit => ''), :id => 'price'
+   = f.text_field :price, :value => number_to_currency(cents_to_dollars(f.object.price), :precision => 2, :unit => ''), :id => 'price'
  - count = 0 
  = f.fields_for :sewings do |builder|
-  - # %div{:class=>'field', :id => "fabric_#{count}", :style=>'width:650px;'}
-  %div{:id => "fabric_#{count}"}
-   = builder.label :fabric
-   = builder.select :fabric_id, Fabric.order('name asc').all.collect {|r| [r.name, r.id]}, {:include_blank => true}
-   - unless f.object.new_record?
-    = builder.check_box :_destroy 
-    = builder.label :_destroy, "Remove"
-   - if count < f.object.sewings.length-1
-    %div{:id => "additional_fabric_#{count}", :class => 'open_another_item'}
-     = link_to "Another Fabric?", :remote => true
+  .row 
+   %div.span10{:id => "fabric_#{count}"}
+    .span6
+     .span4
+      = builder.label :fabric
+      = builder.select :fabric_id, Fabric.order('name asc').all.collect {|r| [r.name, r.id]}, {:include_blank => true}
+     .span2{:style => 'display:inline;float:left;'} 
+      - unless f.object.new_record?
+       - # .span1{:style => 'display:inline;float:left;'} 
+       .span1{:style=>'margin-right:15px;margin-top:-3px;'}
+        = builder.check_box :_destroy
+       .span1
+        = builder.label :_destroy, "Remove"
+    .span4
+     - if count < f.object.sewings.length-1
+      %div{:id => "additional_fabric_#{count}", :class => 'open_another_item'}
+       = link_to "Another Fabric?", :remote => true
+
   - count += 1
   
  = f.fields_for :todos do |builder|
-  .field
-   .width_medium
-    = builder.label :content, 'Todo'
-   = builder.text_field :content, :size => 75, :maxlength => 50
+  .row
+   .span5
+    = builder.label :content, 'Product Todo'
+    = builder.text_field :content, :size => 75, :maxlength => 50
  = f.fields_for :fyis do |builder|
-  .field
-   .width_medium
-    = builder.label :content, 'Fyi'
-   = builder.text_field :content, :size => 75, :maxlength => 50
-  
- .actions
-  = f.submit 'Save', :id => 'product_form_button'
+  .row
+   .span5
+    = builder.label :content, 'Product Fyi'
+    = builder.text_field :content, :size => 75, :maxlength => 50
+         
+ .row     
+  %br
+  .actions
+   = f.submit 'Save', :id => 'product_form_button', :class => 'btn btn-primary'

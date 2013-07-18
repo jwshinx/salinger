@@ -84,7 +84,7 @@
     = bb.label :content, 'Order Note'
     = bb.text_field :content, :size => 75, :maxlength => 50
   .row
-   = label_tag :discount, 'Discount $'
+   = label_tag :discount, 'Order Discount $'
    = text_field_tag :discount, '0'
   - count = 0
   = builder.fields_for :line_items do |line_item|
@@ -105,5 +105,6 @@
       = link_to "Another", :remote => true 
    - count += 1
   
- .row
-  = f.submit 'Save', :id => 'order_form_button'
+ .row                            
+  %br
+  = f.submit 'Save', :id => 'order_form_button', :class => 'btn btn-primary'

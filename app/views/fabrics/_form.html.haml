@@ -52,4 +52,4 @@
      = builder.text_field :amount, :value => number_to_currency(cents_to_dollars(builder.object.amount), :precision => 2, :unit => '')
    - count += 1
  .actions
-  = f.submit 'Save', :id => 'fabric_form_button'
+  = f.submit 'Save', :id => 'fabric_form_button', :class => 'btn btn-primary'

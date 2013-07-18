@@ -18,7 +18,15 @@ describe Product do
   specify { subject.should be_valid } 
   its(:description) { should == @description }
   its(:count) { should == @count.to_i }
-  its(:price) { should == @price.to_i }
+  its(:price) { should == @price.to_i }   
+  it "returns blurb of name/description/price/count" do                                    
+   @product.stub name: 'Green', description: 'Bright', price: 4999, count: 10
+   @product.blurb.should == 'Green - Bright: $49.99, Count: 10'
+  end
+  it "returns to_s of name/description/price/count" do                                    
+   @product.stub name: 'Green', description: 'Bright', price: 4999, count: 10
+   @product.to_s.should == 'Green - Bright: $49.99, Count: 10'
+  end
   describe "when name" do
    it "is blank throws exception" do 
     @product.name = '' 

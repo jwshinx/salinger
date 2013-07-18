@@ -49,5 +49,15 @@ RSpec.configure do |config|
   end
   def random_email
     random_string + '@' + random_string + '.com'
+  end     
+  
+  def with_versioning
+    was_enabled = PaperTrail.enabled?
+    PaperTrail.enabled = true
+    begin
+      yield
+    ensure
+      PaperTrail.enabled = was_enabled
+    end
   end
 end

@@ -1,12 +1,15 @@
 require 'acceptance/acceptance_helper'
 
-feature 'product feature', %q{
+feature 'Product feature', %q{
   In order to manage products
   As an authenticated user 
   I want to list, create, update, destroy products 
 } do
-
-  before(:each) do
+          
+  #before(:all) { @user = create_admin_user }
+  before(:each) do              
+    User.delete_all
+              
     @user = create_admin_user
     @fabric = Fabric.create({name: 'Black', updated_by: @user.id, created_by: @user.id})
     #@redfabric = Fabric.create({name: 'Red', updated_by: @user.id, created_by: @user.id})
@@ -21,13 +24,15 @@ feature 'product feature', %q{
     visit "/products"
     page.should have_content("Jimmyz")
     page.should have_content("blah")
-  end
+  end 
+
   scenario 'showing a product' do
     log_in
     visit "/products/#{Product.first.id}"
     page.should have_content("Jimmyz")
     page.should have_content("blah")
-  end
+  end                          
+
   scenario 'adding a product' do
     log_in
     visit "/products/new"
@@ -102,5 +107,6 @@ feature 'product feature', %q{
     visit "/products"
     should_be_on "/login"
     page.should have_content("You are not authorized to access this page") 
-  end
+  end      
+
 end

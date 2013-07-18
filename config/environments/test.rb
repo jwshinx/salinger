@@ -33,5 +33,8 @@ Salinger::Application.configure do
   config.active_record.mass_assignment_sanitizer = :strict
 
   # Print deprecation notices to the stderr
-  config.active_support.deprecation = :stderr
+  config.active_support.deprecation = :stderr   
+  config.after_initialize do
+    PaperTrail.enabled = false
+  end
 end

@@ -36,15 +36,17 @@ feature 'Task feature', %q{
     page.should have_content("kitchen stuff")
   end
   scenario 'editing a task' do
-    log_in
-    visit "/tasks/#{Task.first.id}/edit"
-    fill_in "task[title]", :with => "Do dirty dishes"
-    fill_in "task[description]", :with => "Gaa"
-    select 'Pending', :from => 'task_status'
-    click_button "Save"
-    should_be_on "/tasks/#{Task.first.id}"
-    page.should have_content("Do dirty dishes")
-    page.should have_content("Gaa")
+    with_versioning do
+      log_in
+      visit "/tasks/#{Task.first.id}/edit"
+      fill_in "task[title]", :with => "Do dirty dishes"
+      fill_in "task[description]", :with => "Gaa"
+      select 'Pending', :from => 'task_status'
+      click_button "Save"
+      should_be_on "/tasks/#{Task.first.id}"
+      page.should have_content("Do dirty dishes")
+      page.should have_content("Gaa")
+    end   
   end
   scenario 'removing a task' do
     log_in

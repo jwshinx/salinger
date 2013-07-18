@@ -1,0 +1,25 @@
+.row
+ .span10
+  - if @product.versions.empty?
+   %h4 No Change History
+  - else
+   %h4= "Change History (#{@product.versions.length})"
+   %table.table.table-condensed.table-striped
+    %thead
+     %tr
+      %th Change Date
+      %th Action
+      %th Changer
+      %th Prior
+      %th Prior By
+
+    %tbody
+     - # - @product.versions.order('created_at desc').each do |v|
+     - @product.versions.reverse.each do |v|
+      %tr
+       %td= mmddyy_hhmm_time(v.created_at)   
+       %td= v.event   
+       %td= "#{v.whodunnit.blank? ? 'None' : User.find(v.whodunnit).username}"   
+       %td= v.reify.nil? ? 'None' : v.reify.blurb
+       %td= "#{v.originator.blank? ? 'None' : User.find(v.originator).username}"   
+

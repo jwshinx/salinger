@@ -1,6 +1,8 @@
 - if flash[:notice] 
  - # %p#notice= flash[:notice]
+ %br
  = content_tag :p, raw(flash[:notice]), :id => "notice"
 - if flash[:error] 
  - # %p.red_font.red_area= flash[:error]    
+ %br
  = content_tag :p, raw(flash[:error]), :class => "red_font red_area"

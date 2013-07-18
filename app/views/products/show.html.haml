@@ -1,15 +1,23 @@
-%div.span2
+.span2
  = render 'shared/sidebar_menu'
-%div.span10
- %h1
-  Product:
-  = @product.name
- = render 'action_menu'
- %br
- %br
- = render 'product_overview'
- - if @notes.empty?
-  %h4 No Notes
- - else
-  %h4= "Notes (#{@notes.length})"
-  = render 'notes/list'
+.span10
+ .row
+  .span5
+   %h1
+    Product:
+    = @product.name
+ .row
+  .span5
+   = render 'action_menu'
+ .row
+  .span5
+   = render 'product_overview'
+ .row
+  .span10
+   - if @notes.empty?
+    %h4 No Notes
+   - else
+    %h4= "Notes (#{@notes.length})"
+    = render 'notes/list'
+ 
+ = render 'history'

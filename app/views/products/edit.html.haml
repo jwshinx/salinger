@@ -27,10 +27,8 @@
 %div.span2
  = render 'shared/sidebar_menu'
 %div.span9
- %h1 Editing product III
+ %h1 Editing Product
  = render 'action_menu'
  %br
  %br
  = render 'form'
- - if can? :read, Product
-  = link_to 'Show', @product
