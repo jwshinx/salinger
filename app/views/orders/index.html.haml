@@ -21,8 +21,9 @@
    %tbody
     - @orders.each do |order|
      %tr
-      %td= mmddyy_date( order.purchase_date )
-      %td= order.customer.fullname
+      %td= mmddyy_date( order.purchase_date )       
+      %td= can_show_linkify order.customer.fullname, order.customer
+      - # %td= order.customer.fullname
       %td= order.status.title
       %td= "#{order.line_items.map{|i| i.to_s }.join('<br /> ')}".html_safe
       - if can? :read, Order
