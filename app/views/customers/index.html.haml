@@ -3,7 +3,8 @@
 %div.span10
  %h1= and_show_count_of @customers
  - unless @customers.empty?
-  %table{:id => 'customers_table', :class => 'tablesorter' }
+  - # %table{:id => 'customers_table', :class => 'tablesorter' }.table.table-condensed.table-striped.tablesorter
+  %table.table.table-condensed.table-striped.tablesorter{:id => 'customers_table'}
    %thead
     %tr
      %th Firstname 

@@ -209,16 +209,10 @@ $fifteenpx: 15px;
  }
 } 
 table.tablesorter {
- font-family:arial;
- background-color: #CDCDCD;
  margin:10px 0pt 15px;
- font-size: 8pt;
  width: 100%;
  text-align: left;
  thead tr th, tfoot tr th {
-  background-color: #e6EEEE;
-  border: 1px solid #FFF;
-  font-size: 8pt;
   padding: 4px;
  }
  thead tr { 
@@ -236,15 +230,18 @@ table.tablesorter {
    background-color: #8dbdd8;
    background-image: url(desc.gif);
   }
- }
+ }    
  tbody td {
-  color: #3D3D3D;
+  //color: #3D3D3D;
   padding: 4px;
-  background-color: #FFF;
-  vertical-align: top;
+  //background-color: #FFF;
+  vertical-align: top;     
+  border-top: 1px solid #D0D0D0;
  }
+ 
  tbody tr.odd td {
-  background-color:#F0F0F6;
+  background-color:#F9F9F9;
  }
+  
 }
 

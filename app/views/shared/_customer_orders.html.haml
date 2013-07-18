@@ -3,7 +3,8 @@
   %h4 No Orders
  - else 
   %h4= "Orders (#{@orders.length})"
-  %table.table.table-condensed.table-striped
+  - # %table.table.table-condensed.table-striped
+  %table.table.table-condensed.table-striped.tablesorter
    %thead
     %tr
      %th{:style=>'width:40px;'} #
