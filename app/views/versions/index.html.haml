@@ -17,7 +17,7 @@
      %td= version.id
      %td= "#{version.item_type}-#{version.item_id}" 
      %td= version.event
-     %td= version.whodunnit
+     %td= User.find(version.whodunnit).username
      %td= version.object.nil? ? 'NA' : truncate(version.object)
      %td= version.created_at.strftime('%m/%d/%Y %b:%p')
 

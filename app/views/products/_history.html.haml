@@ -9,17 +9,45 @@
      %tr
       %th Change Date
       %th Action
+      %th Data 
       %th Changer
       %th Prior
       %th Prior By
 
     %tbody
-     - # - @product.versions.order('created_at desc').each do |v|
      - @product.versions.reverse.each do |v|
       %tr
        %td= mmddyy_hhmm_time(v.created_at)   
-       %td= v.event   
+       %td= v.event 
+       %td= v.item_type
        %td= "#{v.whodunnit.blank? ? 'None' : User.find(v.whodunnit).username}"   
        %td= v.reify.nil? ? 'None' : v.reify.blurb
        %td= "#{v.originator.blank? ? 'None' : User.find(v.originator).username}"   
+
+   %table.table.table-condensed.table-striped
+    %thead
+     %tr
+      %th Fabric
+      %th Date / Action
+
+    %tbody
+     - @product.sewings.order('created_by asc').reverse.each do |s|
+      %tr
+       %td= s.fabric.name
+       %td= s.versions.reverse.map{|v| "#{v.event} #{mmddyy_hhmm_time(v.created_at)}"}.join('...')  
+
+   %table.table.table-condensed.table-striped
+    %thead
+     %tr
+      %th Discontinued Fabric
+      %th Date
+      %th Action
+      %th Data
+    %tbody
+     - Version.where(event: 'destroy').select{ |v| v.reify.product_id == @product.id }.each do |v|
+      %tr
+       %td= v.reify.fabric.name
+       %td= mmddyy_hhmm_time(v.reify.created_at)
+       %td= v.event
+       %td= v.reify.inspect
 

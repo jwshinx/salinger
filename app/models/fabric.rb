@@ -11,7 +11,8 @@ class Fabric < ActiveRecord::Base
  #belongs_to :updater, :class_name => "User", :foreign_key => "updated_by"
 
  attr_accessible :name, :created_by, :updated_by, :prices_attributes
-
+ has_paper_trail
+ 
  def current_price
   prices.order('date desc').empty? ? 0 : prices.order('date desc').first.amount
  end
