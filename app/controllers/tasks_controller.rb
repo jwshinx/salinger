@@ -1,4 +1,3 @@
-require 'trackable'
 class TasksController < ApplicationController
   include Trackable
   layout 'task'   

@@ -1,5 +1,3 @@
-require 'formatable'
-
 class ProductsController < ApplicationController
   layout "product"
   load_and_authorize_resource

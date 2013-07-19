@@ -1,10 +1,5 @@
-require 'trackable'
-require 'formatable'
-require 'exceptions'
-
 class PurchasesController < ApplicationController
   layout "purchase"
-  #load_and_authorize_resource 
   include Trackable
   include Formatable
   include Exceptions

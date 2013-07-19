@@ -1,5 +1,3 @@
-require 'formatable'
-
 class FabricsController < ApplicationController
   layout "fabric"
   load_and_authorize_resource

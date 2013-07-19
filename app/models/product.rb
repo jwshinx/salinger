@@ -1,6 +1,3 @@
-require 'my_validators'                                                 
-require 'moneyable'
-
 class Product < ActiveRecord::Base
  include MyValidators
  include Moneyable

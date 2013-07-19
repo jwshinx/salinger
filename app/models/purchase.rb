@@ -1,6 +1,6 @@
-require 'trackable'
-require 'formatable'
-require 'exceptions'
+#require 'trackable'
+#require 'formatable'
+#require 'exceptions'
 
 class Purchase
  include Trackable
