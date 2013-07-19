@@ -13,7 +13,14 @@ describe AddressType do
   end
   subject { @type }
   its(:name) { should == @name }
-  its(:description) { should == @description }
+  its(:description) { should == @description } 
+  it "returns creator and updater" do
+   username = "#{random_string}"
+   @type.creator = mock_model(User, id: 1, username: username)
+   @type.updater = mock_model(User, id: 1, username: username)
+   @type.creator.username.should == username 
+   @type.updater.username.should == username 
+  end  
  end
 
  describe "privilege" do

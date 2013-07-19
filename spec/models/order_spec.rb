@@ -3,17 +3,23 @@ require 'cancan/matchers'
 
 describe Order do
  before do
-  @order = Order.new( {created_by:1, updated_by:1}) 
+  @order = Order.new
   @purchase_date = Date.today; @order.purchase_date = @purchase_date
   @purchase_amount = random_number; @order.purchase_amount = @purchase_amount
   @ispaid = false
-  #order_status_id
-  #customer_id
  end
  subject { @order } 
  its(:purchase_date) { should == @purchase_date } 
  its(:purchase_amount) { should == @purchase_amount.to_i } 
  its(:ispaid) { should be_false }
+ it "returns creator and updater" do
+  username = "#{random_string}"
+  @order.creator = mock_model(User, id: 1, username: username)
+  @order.updater = mock_model(User, id: 1, username: username)
+  @order.creator.username.should == username 
+  @order.updater.username.should == username 
+ end
+        
  describe "normally" do
   it "returns blurb" do                                                          
    fullname = "#{random_string} #{random_string}"

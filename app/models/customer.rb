@@ -1,12 +1,14 @@
 require 'starburstroma'
-
+#require 'creator'  
+#require File.expand_path("../concerns", __FILE__)
+#Dir[Rails.root.join("app/models/concerns/*.rb")].each {|f| require f} 
+                         
 class Customer < ActiveRecord::Base
- include Starburstroma
+ include Starburstroma  
+ include UserConcerns
 
  attr_accessible :created_by, :updated_by, :description, 
   :email, :firstname, :lastname, :todos_attributes, :fyis_attributes, :orders_attributes, :addresses_attributes
- belongs_to :creator, :class_name => "User", :foreign_key => "created_by"
- belongs_to :updater, :class_name => "User", :foreign_key => "updated_by"
  has_many :todos, :as => :notable, :dependent => :destroy
  has_many :fyis, :as => :notable, :dependent => :destroy
  has_many :orders
@@ -17,7 +19,7 @@ class Customer < ActiveRecord::Base
  accepts_nested_attributes_for :addresses, :reject_if => lambda { |a| a[:line_one].blank? }, :allow_destroy => true
 
  validates :email, :firstname, :lastname, :presence => true, :length => { :minimum => 1 }
- validate :requires_unique_name
+ validate :requires_unique_name 
  
  after_validation do |c|
   c.firstname = cleaned_up(c.firstname) 
@@ -44,8 +46,11 @@ class Customer < ActiveRecord::Base
 
 private
  def requires_unique_name  
-  if Customer.find_by_firstname_and_lastname(firstname, lastname)    
-   errors.add(:base, "Firstname/lastname combination already exists. Send information to jwshin@gmail.com.")
+  same_name_customer = Customer.find_by_firstname_and_lastname(firstname, lastname) 
+  if same_name_customer
+    unless (self == same_name_customer)
+     errors.add(:base, "Firstname/lastname combination already exists. Send information to jwshin@gmail.com.")
+    end
   end   
  end
 end

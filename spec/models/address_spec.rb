@@ -4,7 +4,9 @@ require 'cancan/matchers'
 describe Address do
  describe "normally" do
   before do
-   @address = Address.new( { created_by: 1, updated_by: 1 } )
+   #@address = Address.new( { created_by: 1, updated_by: 1 } )
+   @address = Address.new
+
    @street = random_street_address
    @suite = random_number
    @city = random_string
@@ -17,12 +19,18 @@ describe Address do
    @address.zip = @zip
   end
   subject { @address }
-  specify { subject.should be_valid }
   its(:street) { should == @street }
   its(:suite) { should == @suite }
   its(:city) { should == @city }
   its(:state) { should == @state }
   its(:zip) { should == @zip }
+  it "returns creator and updater" do
+   username = "#{random_string}"
+   @address.creator = mock_model(User, id: 1, username: username)
+   @address.updater = mock_model(User, id: 1, username: username)
+   @address.creator.username.should == username 
+   @address.updater.username.should == username 
+  end
   describe "when street" do
    it "is blank throws exception" do
     @address.street = '' 

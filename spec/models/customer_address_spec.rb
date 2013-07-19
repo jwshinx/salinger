@@ -4,7 +4,7 @@ require 'cancan/matchers'
 describe CustomerAddress do
  describe "normally" do
   before do
-   @address = CustomerAddress.new( {created_by: 1, updated_by: 1})
+   @address = CustomerAddress.new()
    @home = random_string
    @line_one = random_street_address
    @line_two = random_string
@@ -30,9 +30,16 @@ describe CustomerAddress do
   its(:suite) { should == @suite }
   its(:city) { should == @city }
   its(:state) { should == @state }
-  its(:zip) { should == @zip }
-  its(:created_by) { should == 1 }
-  its(:updated_by) { should == 1 }
+  its(:zip) { should == @zip }       
+  it "returns creator and updater" do
+   username = "#{random_string}"
+   @address.creator = mock_model(User, id: 1, username: username)
+   @address.updater = mock_model(User, id: 1, username: username)
+   @address.creator.username.should == username 
+   @address.updater.username.should == username 
+  end  
+  
+  
  end
  
  describe "privilege" do

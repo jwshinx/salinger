@@ -4,7 +4,8 @@ require 'cancan/matchers'
 describe Product do
  describe "normally" do
   before do 
-   @product = Product.new({created_by: 1, updated_by:1}) 
+   #@product = Product.new({created_by: 1, updated_by:1}) 
+   @product = Product.new
    @name = random_string
    @product.name = @name
    @description = random_string
@@ -19,6 +20,13 @@ describe Product do
   its(:description) { should == @description }
   its(:count) { should == @count.to_i }
   its(:price) { should == @price.to_i }   
+  it "returns creator and updater" do
+   username = "#{random_string}"
+   @product.creator = mock_model(User, id: 1, username: username)
+   @product.updater = mock_model(User, id: 1, username: username)
+   @product.creator.username.should == username 
+   @product.updater.username.should == username 
+  end                                                          
   it "returns blurb of name/description/price/count" do                                    
    @product.stub name: 'Green', description: 'Bright', price: 4999, count: 10
    @product.blurb.should == 'Green - Bright: $49.99, Count: 10'

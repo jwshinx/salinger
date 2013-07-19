@@ -8,7 +8,16 @@ describe Role do
   its(:name) { should == 'admin' }
   its(:name) { should_not be_blank }
   its(:description) { should == 'superuser!' }
-  its(:description) { should_not be_blank }
+  its(:description) { should_not be_blank }      
+  it "returns creator and updater" do
+   @role = Role.new
+   username = "#{random_string}"
+   @role.creator = mock_model(User, id: 1, username: username)
+   @role.updater = mock_model(User, id: 1, username: username)
+   @role.creator.username.should == username 
+   @role.updater.username.should == username 
+  end
+   
  end
  describe "when name" do
   it "is blank throws exception" do 

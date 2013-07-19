@@ -12,7 +12,14 @@ describe OrderStatus do
   end
   subject { @status }
   its(:title) { should == @title }
-  its(:description) { should == @description }
+  its(:description) { should == @description } 
+  it "returns creator and updater" do
+   username = "#{random_string}"
+   @status.creator = mock_model(User, id: 1, username: username)
+   @status.updater = mock_model(User, id: 1, username: username)
+   @status.creator.username.should == username 
+   @status.updater.username.should == username 
+  end  
  end
  describe "privilege" do
    subject { my_ability }

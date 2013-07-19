@@ -4,6 +4,9 @@ module ApplicationHelper
   if can? ability, model
    content_tag(:th)
   end
+ end  
+ def can_show_linkify display_text, object
+  show_linkify( display_text, :read, object, object.class.to_s.underscore.pluralize )
  end
  def show_linkify display_text, ability, object, url_token
   if can? ability, object.class 

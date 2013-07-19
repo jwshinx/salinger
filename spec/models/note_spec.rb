@@ -21,7 +21,13 @@ describe Note do
     @todo.notable = @user
     @todo.owner.fullname.should == 'mad max'
    end
-  
+   it "returns creator and updater" do
+    username = "#{random_string}"
+    @todo.creator = mock_model(User, id: 1, username: username)
+    @todo.updater = mock_model(User, id: 1, username: username)
+    @todo.creator.username.should == username 
+    @todo.updater.username.should == username 
+   end    
  end
  describe "privilege" do
    subject { my_ability }

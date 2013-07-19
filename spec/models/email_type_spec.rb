@@ -3,9 +3,22 @@ require 'cancan/matchers'
 
 describe EmailType do
  describe "normally" do
-  subject { FactoryGirl.create(:email_signup) }
+  #subject { FactoryGirl.create(:email_signup) }
+  before do 
+    @type = EmailType.new 
+    @type.stub name: "Email Signup"
+    @type.stub description: "signup for discounts"
+  end
+  subject { @type }
   its(:name) { should == 'Email Signup' }
   its(:description) { should == 'signup for discounts' } 
+  it "returns creator and updater" do
+   username = "#{random_string}"
+   @type.creator = mock_model(User, id: 1, username: username)
+   @type.updater = mock_model(User, id: 1, username: username)
+   @type.creator.username.should == username 
+   @type.updater.username.should == username 
+  end  
  end 
  describe "privilege" do
    subject { my_ability }

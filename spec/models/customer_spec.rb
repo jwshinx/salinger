@@ -14,11 +14,11 @@ describe Customer do
   let(:cust) { Customer.new }
   it "returns creator and updater" do
    username = "#{random_string}"
-   cust.stub creator: double(username: username)
-   cust.stub updater: double(username: username)
+   cust.creator = mock_model(User, id: 1, username: username)
+   cust.updater = mock_model(User, id: 1, username: username)
    cust.creator.username.should == username 
    cust.updater.username.should == username 
-  end
+  end                                                          
   it "returns email" do
    email = "#{random_email}" 
    cust.stub email: email 

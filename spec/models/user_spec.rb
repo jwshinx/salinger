@@ -11,6 +11,13 @@ describe User do
   its(:username) { should_not be_blank }
   its(:email) { should =~ /j\w+@yahkdi.com/ }
   its(:active) { should be_true }
+  it "returns creator and updater" do
+   username = "#{random_string}"
+   @joel.creator = mock_model(User, id: 1, username: username)
+   @joel.updater = mock_model(User, id: 1, username: username)
+   @joel.creator.username.should == username 
+   @joel.updater.username.should == username 
+  end 
   describe "role" do
    subject { @joel.role }
    its(:name) { should == 'admin' }

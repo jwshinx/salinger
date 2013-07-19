@@ -4,13 +4,20 @@ require 'cancan/matchers'
 describe TaskStatusType do
  describe "normally" do
   before do
-   @status = TaskStatusType.new({created_by: 1, updated_by: 1})
+   @status = TaskStatusType.new
    @name = random_string; @status.name = @name
    @description = random_string; @status.description = @description
   end
   subject { @status }
   its(:name) { should == @name }
-  its(:description) { should == @description }
+  its(:description) { should == @description } 
+  it "returns creator and updater" do
+   username = "#{random_string}"
+   @status.creator = mock_model(User, id: 1, username: username)
+   @status.updater = mock_model(User, id: 1, username: username)
+   @status.creator.username.should == username 
+   @status.updater.username.should == username 
+  end  
  end
  describe "privilege" do
    subject { my_ability }

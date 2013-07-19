@@ -3,7 +3,8 @@ require 'cancan/matchers'
 
 describe OrderLineItem do
  before do
-  @li = OrderLineItem.new({created_by:1, updated_by:1})
+  #@li = OrderLineItem.new({created_by:1, updated_by:1})
+  @li = OrderLineItem.new
   @qty = random_number; @li.quantity = @qty
   @price = random_number; @li.price = @price
   @subtotal = random_number; @li.subtotal = @subtotal
@@ -12,7 +13,16 @@ describe OrderLineItem do
  specify { subject.should be_valid }
  its(:quantity) { should == @qty.to_i }
  its(:price) { should == @price.to_i }
- its(:subtotal) { should == @subtotal.to_i }
+ its(:subtotal) { should == @subtotal.to_i } 
+ 
+ it "returns creator and updater" do
+  username = "#{random_string}"
+  @li.creator = mock_model(User, id: 1, username: username)
+  @li.updater = mock_model(User, id: 1, username: username)
+  @li.creator.username.should == username 
+  @li.updater.username.should == username 
+ end 
+ 
  describe "privilege" do
    subject { my_ability }
    let(:my_ability) { Ability.new(@user) }

@@ -4,12 +4,21 @@ require 'cancan/matchers'
 describe Fabric do
  describe "normally" do
   before do
-   @fabric = Fabric.new({created_by: 1, updated_by: 1})
+   @fabric = Fabric.new
    @name = random_string; @fabric.name = @name
   end
   subject { @fabric }
   specify { subject.should be_valid } 
-  its(:name) { should == @name }
+  its(:name) { should == @name }   
+
+  it "returns creator and updater" do
+   username = "#{random_string}"
+   @fabric.creator = mock_model(User, id: 1, username: username)
+   @fabric.updater = mock_model(User, id: 1, username: username)
+   @fabric.creator.username.should == username 
+   @fabric.updater.username.should == username 
+  end  
+  
   describe "with blank name" do
    its "returns error" do
     @fabric.name = ''

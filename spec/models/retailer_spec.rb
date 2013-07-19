@@ -1,5 +1,12 @@
 require 'spec_helper'
 
 describe Retailer do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it "returns creator and updater" do
+   @retailer = Retailer.new
+   username = "#{random_string}"
+   @retailer.creator = mock_model(User, id: 1, username: username)
+   @retailer.updater = mock_model(User, id: 1, username: username)
+   @retailer.creator.username.should == username 
+   @retailer.updater.username.should == username 
+  end
 end

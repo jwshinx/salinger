@@ -16,7 +16,14 @@ describe Farm do
    end
    it "returns address street" do
      @farm.address.street.should == @street
-   end
+   end   
+   it "returns creator and updater" do
+    username = "#{random_string}"
+    @farm.creator = mock_model(User, id: 1, username: username)
+    @farm.updater = mock_model(User, id: 1, username: username)
+    @farm.creator.username.should == username 
+    @farm.updater.username.should == username 
+   end    
  end
  describe "when perfect" do
   subject { FactoryGirl.build(:michaels_farm) }

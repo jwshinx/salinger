@@ -4,7 +4,7 @@ require 'cancan/matchers'
 describe Task do
  describe "normally" do
   before do
-   @task = Task.new({created_by: 1, updated_by:1 })
+   @task = Task.new
    @title = random_string; @task.title = @title
    @description = random_string; @task.description = @description
    @due_date = Date.today; @task.due_date = @due_date
@@ -14,7 +14,14 @@ describe Task do
   its(:title) { should == @title } 
   its(:description) { should == @description } 
   its(:due_date) { should == @due_date } 
-  its(:completed_on) { should == @completed_on }
+  its(:completed_on) { should == @completed_on }   
+  it "returns creator and updater" do
+   username = "#{random_string}"
+   @task.creator = mock_model(User, id: 1, username: username)
+   @task.updater = mock_model(User, id: 1, username: username)
+   @task.creator.username.should == username 
+   @task.updater.username.should == username 
+  end
   it "returns status" do
    task_status = mock_model TaskStatusType, name: 'Complete'
    @task.status = task_status 

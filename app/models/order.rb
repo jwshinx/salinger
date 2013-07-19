@@ -11,8 +11,6 @@ class Order < ActiveRecord::Base
  has_many :line_items, :class_name => 'OrderLineItem', :dependent => :destroy
  has_many :fyis, :as => :notable, :dependent => :destroy
  belongs_to :status, :class_name => 'OrderStatus', :foreign_key => 'order_status_id'
- belongs_to :creator, :class_name => "User", :foreign_key => "created_by"
- belongs_to :updater, :class_name => "User", :foreign_key => "updated_by"
  belongs_to :customer
  #validates :purchase_date, :presence => true, :length => { :minimum => 1 }
  validates :purchase_date, :presence => true

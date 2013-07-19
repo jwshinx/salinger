@@ -9,6 +9,14 @@ describe FabricPrice do
   its(:date) { should == Date.today } 
   its(:created_by) { should == 1 }
   its(:updated_by) { should == 1 }
+  it "returns creator and updater" do
+   @fabric = FabricPrice.new
+   username = "#{random_string}"
+   @fabric.creator = mock_model(User, id: 1, username: username)
+   @fabric.updater = mock_model(User, id: 1, username: username)
+   @fabric.creator.username.should == username 
+   @fabric.updater.username.should == username 
+  end
  end
  describe "privilege" do
    subject { my_ability }
