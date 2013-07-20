@@ -1,5 +1,7 @@
 class PurchasesController < ApplicationController
-  layout "purchase"
+  layout "purchase" 
+  load_and_authorize_resource :customer
+  
   include Trackable
   include Formatable
   include Exceptions
@@ -9,9 +11,7 @@ class PurchasesController < ApplicationController
      @customer.orders[0].line_items.build
     end
   end
-  def new
-    #@purchase = Retailer.new
-    #@purchase = Retailer.new
+  def new         
     @customer = Customer.new
     @customer.fyis.build
     @customer.todos.build
