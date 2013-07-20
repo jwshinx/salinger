@@ -12,14 +12,14 @@
     %th Object
     %th Created
           
-   - @versions.each do |version|
+   - @versions.reverse.each do |version|
     %tr
      %td= version.id
      %td= "#{version.item_type}-#{version.item_id}" 
      %td= version.event
      %td= User.find(version.whodunnit).username
      %td= version.object.nil? ? 'NA' : truncate(version.object)
-     %td= version.created_at.strftime('%m/%d/%Y %b:%p')
+     %td= version.created_at.strftime('%m/%d/%Y %l:%M %p')
 
      /%td
      / - if can? :read, version
