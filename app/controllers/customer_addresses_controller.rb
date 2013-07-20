@@ -1,6 +1,7 @@
 class CustomerAddressesController < ApplicationController
   layout 'customer_address'
-  load_and_authorize_resource
+  load_and_authorize_resource                                       
+  include Trackable
 
   def index
     #@customer_addresses = CustomerAddress.all
@@ -37,10 +38,7 @@ class CustomerAddressesController < ApplicationController
 
   def create
     #@customer_address = CustomerAddress.new(params[:customer_address])
-    
-    @customer_address.creator = current_user
-    @customer_address.updater = current_user
-
+    set_creator_and_updater @customer_address, current_user        
     respond_to do |format|
       if @customer_address.save
         format.html { redirect_to customer_url(@customer_address.customer), notice: 'Customer address was successfully created.' }

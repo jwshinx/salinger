@@ -1,7 +1,8 @@
 class OrderStatusesController < ApplicationController
   layout 'order_status'
   load_and_authorize_resource
-
+  include Trackable
+  
   def index
     #@order_statuses = OrderStatus.all
 
@@ -34,9 +35,8 @@ class OrderStatusesController < ApplicationController
   end
 
   def create
-    #@order_status = OrderStatus.new(params[:order_status])
-    @order_status.creator = current_user
-    @order_status.updater = current_user
+    #@order_status = OrderStatus.new(params[:order_status])    
+    set_creator_and_updater @order_status, current_user    
 
     respond_to do |format|
       if @order_status.save

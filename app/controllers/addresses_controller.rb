@@ -1,6 +1,7 @@
 class AddressesController < ApplicationController
   layout "address"
-  load_and_authorize_resource
+  load_and_authorize_resource                
+  include Trackable
 
   def index
     #@addresses = Address.all
@@ -35,8 +36,7 @@ class AddressesController < ApplicationController
 
   def create
     #@address = Address.new(params[:address])
-    @address.creator = current_user
-    @address.updater = current_user
+    set_creator_and_updater @address, current_user    
 
     respond_to do |format|
       if @address.save

@@ -2,7 +2,8 @@ class ProductsController < ApplicationController
   layout "product"
   load_and_authorize_resource
   include Formatable
-
+  include Trackable
+  
   def new_payment
    render 'shared/payment/new_payment.html.haml'
   end
@@ -48,9 +49,8 @@ class ProductsController < ApplicationController
   end
 
   def create
-    #@product = Product.new(params[:product])
-    @product.creator = current_user
-    @product.updater = current_user
+    #@product = Product.new(params[:product])     
+    set_creator_and_updater @product, current_user    
     @product.sewings.each { |s| s.creator = current_user }
     @product.sewings.each { |s| s.updater = current_user }
     @product.fyis.each { |f| f.creator = current_user }

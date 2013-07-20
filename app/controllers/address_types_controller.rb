@@ -1,6 +1,7 @@
 class AddressTypesController < ApplicationController
   layout 'address_type'
   load_and_authorize_resource
+  include Trackable
 
   def index
     #@address_types = AddressType.all
@@ -35,9 +36,7 @@ class AddressTypesController < ApplicationController
 
   def create
     #@address_type = AddressType.new(params[:address_type])
-    @address_type.creator = current_user
-    @address_type.updater = current_user
-
+    set_creator_and_updater @address_type, current_user    
     respond_to do |format|
       if @address_type.save
         format.html { redirect_to @address_type, notice: 'Address type was successfully created.' }

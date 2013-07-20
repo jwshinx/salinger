@@ -1,7 +1,8 @@
 class CustomersController < ApplicationController
   layout 'customer'
   load_and_authorize_resource
-
+  include Trackable
+  
   def index
     #@customers = Customer.all
 
@@ -39,8 +40,7 @@ class CustomersController < ApplicationController
 
   def create
     #@customer = Customer.new(params[:customer])
-    @customer.creator = current_user
-    @customer.updater = current_user
+    set_creator_and_updater @customer, current_user    
     @customer.fyis.each do |f| 
      f.creator = current_user 
      f.updater = current_user 

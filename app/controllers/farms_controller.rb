@@ -1,7 +1,8 @@
 class FarmsController < ApplicationController
   layout "farm"
   load_and_authorize_resource
-
+  include Trackable
+  
   def index
     #@farms = Farm.all
 
@@ -34,9 +35,7 @@ class FarmsController < ApplicationController
   end
 
   def create
-    @farm.creator = current_user
-    @farm.updater = current_user
-
+    set_creator_and_updater @farm, current_user    
     respond_to do |format|
       if @farm.save
         format.html { redirect_to @farm, notice: 'Farm was successfully created.' }

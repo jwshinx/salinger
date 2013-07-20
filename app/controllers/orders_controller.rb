@@ -1,7 +1,8 @@
 class OrdersController < ApplicationController
   layout "order"
   load_and_authorize_resource
-
+  include Trackable
+  
   def index
     @orders = Order.order('created_at desc').includes(:line_items).all
     @order_line_items = OrderLineItem.order('created_at desc').includes(:order).all
@@ -43,8 +44,7 @@ class OrdersController < ApplicationController
     #@order = Order.new(params[:order])
     logger.debug "---> OC.create 0.2: #{@order.line_items.empty?}"
     logger.debug "---> OC.create 0.3: #{@order.line_items.first.inspect}"
-    @order.creator = current_user
-    @order.updater = current_user
+    set_creator_and_updater @order, current_user    
 
     logger.debug "---> OC.create 0.4: #{@order.inspect}"
     logger.debug "---> OC.create 1"

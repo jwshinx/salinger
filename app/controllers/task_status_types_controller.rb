@@ -1,7 +1,8 @@
 class TaskStatusTypesController < ApplicationController
   layout 'task_status_type'
   load_and_authorize_resource
-
+  include Trackable
+  
   def index
     #@task_status_types = TaskStatusType.all
 
@@ -35,8 +36,7 @@ class TaskStatusTypesController < ApplicationController
 
   def create
     #@task_status_type = TaskStatusType.new(params[:task_status_type])
-    @task_status_type.creator = current_user
-    @task_status_type.updater = current_user
+    set_creator_and_updater @task_status_type, current_user    
 
     respond_to do |format|
       if @task_status_type.save

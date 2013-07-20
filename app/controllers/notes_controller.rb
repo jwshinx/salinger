@@ -1,7 +1,8 @@
 class NotesController < ApplicationController
   layout 'note'
   load_and_authorize_resource
-
+  include Trackable
+  
   def index
     #@notes = Note.all
     @notes = Note.order('created_at desc').all
@@ -46,8 +47,7 @@ class NotesController < ApplicationController
   end
 
   def create
-    @note.creator = current_user
-    @note.updater = current_user
+    set_creator_and_updater @note, current_user    
 
     respond_to do |format|
       if @note.save

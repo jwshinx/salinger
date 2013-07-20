@@ -1,7 +1,8 @@
 class RetailersController < ApplicationController
   layout "retailer"
   load_and_authorize_resource 
-
+  include Trackable
+  
   def index
     #@retailers = Retailer.all
 
@@ -35,8 +36,7 @@ class RetailersController < ApplicationController
 
   def create
     #@retailer = Retailer.new(params[:retailer])
-    @retailer.creator = current_user
-    @retailer.updater = current_user
+    set_creator_and_updater @retailer, current_user    
 
     respond_to do |format|
       if @retailer.save

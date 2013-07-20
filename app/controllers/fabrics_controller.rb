@@ -1,6 +1,7 @@
 class FabricsController < ApplicationController
   layout "fabric"
   load_and_authorize_resource
+  include Trackable
   include Formatable
 
   def index
@@ -38,11 +39,9 @@ class FabricsController < ApplicationController
 
   def create
     #@fabric = Fabric.new(params[:fabric])
-    @fabric.creator = current_user
-    @fabric.updater = current_user
+    set_creator_and_updater @fabric, current_user    
     @fabric.prices.each do |p| 
-     p.creator = current_user 
-     p.updater = current_user
+     set_creator_and_updater p, current_user    
      p.amount = convert_dollars_to_cents( params[:fabric][:prices_attributes]['0'][:amount] )
      p.date = Date.strptime(params[:fabric][:prices_attributes]['0'][:date], '%m/%d/%Y') 
     end
