@@ -24,7 +24,6 @@ class Order < ActiveRecord::Base
    "#{customer.fullname}: Order ##{id}  Amount: $#{cents_to_dollars(purchase_amount)}  Date: #{mmddyy_date(purchase_date)}"
  end
  def reduce_inventory                           
-   #line_items.each { |li| raise Exceptions::InadequateInventory if li.quantity > li.product.count }
    line_items.each do |li|                                
      li.product.count = li.product.count - li.quantity 
      li.product.save  

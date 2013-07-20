@@ -273,6 +273,49 @@ feature 'Purchase feature', %q{
     Note.count.should == 0    
   end
 
+  scenario "adding an order with a ' ' discount" do
+    log_in
+    visit "/new_purchase"
+    Customer.count.should == 1    
+    Product.first.count.should == 10    
+    Order.count.should == 1
+    OrderLineItem.count.should == 1    
+    Order.last.created_by.should == 22
+    Order.last.updated_by.should == 22
+    OrderLineItem.last.created_by.should == 22
+    OrderLineItem.last.updated_by.should == 22
+    Note.count.should == 0    
+    fill_in 'firstname', :with => 'Jimmy'
+    fill_in 'lastname', :with => 'Carter'
+    fill_in 'email', :with => 'jcarter@yahoo.com'
+    select 'Shipping', :from => 'address_type'
+    fill_in 'address_name', :with => 'Home'
+    fill_in 'address_line_one', :with => '1 Main Street'
+    fill_in 'address_suite', :with => '101'
+    fill_in 'address_city', :with => 'LA'
+    select 'California', :from => 'address_state'
+    fill_in 'address_zip', :with => '90011'
+    select 'Complete', :from => 'order_status'
+    fill_in 'discount', :with => ' '
+    fill_in 'purchase_date_datepicker', :with => '07/05/2013'
+    select 'Raiders - $50.00', :from => 'customer_orders_attributes_0_line_items_attributes_0_product_id'
+    fill_in 'customer_orders_attributes_0_line_items_attributes_0_quantity', :with => '1'
+    fill_in 'paid_amount', :with => '20'
+    click_button 'Save'
+    should_be_on "/customers/#{Customer.find_by_email('jcarter@yahoo.com').id}"
+    page.should have_content("Jimmy Carter")
+    page.should have_content("Order was successfully created.")
+    Customer.count.should == 2      
+    Product.first.count.should == 9    
+    Order.count.should == 2
+    OrderLineItem.count.should == 2    
+    Order.last.created_by.should_not == 22
+    Order.last.updated_by.should_not == 22
+    OrderLineItem.last.created_by.should_not == 22
+    OrderLineItem.last.updated_by.should_not == 22
+    Note.count.should == 0    
+  end
+
   scenario 'viewing order' do
     log_in
     visit "/orders"
