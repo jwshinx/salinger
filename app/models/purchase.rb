@@ -16,7 +16,8 @@ class Purchase
   set_creator_and_updater @customer, current_user
   set_creator_and_updater_to_customer_children current_user
   process_order options, current_user
- end
+ end             
+ 
  def process_order options, current_user
    check_for_adequate_inventory 
    @order.fyis.each { |ofyi| set_creator_and_updater ofyi, current_user }
@@ -25,10 +26,8 @@ class Purchase
    @order_total = @order.process_subtotals_of_line_items( options, current_user, @order_total )        
    @order.purchase_amount = apply_discount(@order_total, options[:discount], current_user)
    raise Exceptions::ExcessiveDiscountAmount if @order.purchase_amount < 0                                     
-   @order.purchase_date = Date.strptime(options[:customer][:orders_attributes]['0'][:purchase_date], '%m/%d/%Y')
-   @order.paid_date = Date.strptime(
-    options[:customer][:orders_attributes]['0'][:paid_date], '%m/%d/%Y'
-   ) unless options[:customer][:orders_attributes]['0'][:paid_date].blank?                                       
+   @order.purchase_date = mmddyy_format(options[:customer][:orders_attributes]['0'][:purchase_date])
+   @order.paid_date = mmddyy_format(options[:customer][:orders_attributes]['0'][:paid_date]) unless options[:customer][:orders_attributes]['0'][:paid_date].blank?                                       
  end                     
  def check_for_adequate_inventory
    @order.line_items.each { |li| raise Exceptions::InadequateInventory if li.quantity > li.product.count }

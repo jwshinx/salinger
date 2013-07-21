@@ -6,4 +6,7 @@ module Formatable
  def mmddyy_date date
   date.nil? ? '' : date.strftime("%m/%d/%Y")
  end
+ def mmddyy_format date
+  Date.strptime(date, '%m/%d/%Y')
+ end
 end
