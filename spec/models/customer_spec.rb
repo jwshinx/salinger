@@ -2,6 +2,15 @@ require 'spec_helper'
 require 'cancan/matchers'
 
 describe Customer do                 
+ describe "with monkeypatched string class" do
+   describe "fullname 'barack obama'" do
+     it "returns 'barack_obama'" do                              
+       @customer = Customer.new               
+       @customer.stub firstname: 'barack', lastname: 'obama'
+       @customer.fullname.underscored.should == 'barack_obama'
+     end
+   end
+ end
  describe "check uniqueness of" do
   describe "firstname-lastname combination" do
    it "sss" do                              
