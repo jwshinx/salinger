@@ -20,3 +20,22 @@ class Task < ActiveRecord::Base
   
  alias_method :blurb, :summary 
 end
+
+# == Schema Information
+#
+# Table name: tasks
+#
+#  id             :integer          not null, primary key
+#  title          :string(255)      not null
+#  description    :text
+#  updated_by     :integer          not null
+#  created_by     :integer          not null
+#  due_date       :date
+#  completed_on   :date
+#  completed_by   :integer
+#  assigned_to    :integer
+#  task_status_id :integer          not null
+#  created_at     :datetime         not null
+#  updated_at     :datetime         not null
+#
+

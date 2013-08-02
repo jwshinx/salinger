@@ -68,12 +68,15 @@ describe Customer do
    it "returns valid" do
     FactoryGirl.build(:charles_dickens).should be_valid
    end
-  end
+  end   
   describe "recent orders" do
-   it "returns array of orders" do
-    orders = [] << mock_model(Order, purchase_date: Date.today) << mock_model(Order, purchase_date: 3.days.ago) 
-    cust.stub recent_orders: orders 
-    cust.recent_orders.should == orders 
+   it "returns array of orders by-recent-purchase-date" do
+    by_recent_date_orders = [] 
+    older = mock_model(Order, purchase_date: 3.days.ago) 
+    newer = mock_model(Order, purchase_date: Date.today) 
+    by_recent_date_orders << newer << older
+    cust.should_receive(:orders).and_return(double('arel', :order => by_recent_date_orders))
+    cust.recent_orders.should == [newer, older] 
    end
   end
   describe "last order" do
@@ -137,3 +140,19 @@ describe Customer do
    end
  end
 end
+
+# == Schema Information
+#
+# Table name: customers
+#
+#  id          :integer          not null, primary key
+#  firstname   :string(255)      not null
+#  lastname    :string(255)      not null
+#  email       :string(255)      not null
+#  description :string(255)
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#  created_by  :integer          not null
+#  updated_by  :integer          not null
+#
+

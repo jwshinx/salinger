@@ -39,6 +39,8 @@ GEM
     activesupport (3.2.12)
       i18n (~> 0.6)
       multi_json (~> 1.0)
+    annotate (2.5.0)
+      rake
     arel (3.0.2)
     authlogic (3.2.0)
       activerecord (>= 3.0.0)
@@ -204,6 +206,7 @@ PLATFORMS
 
 DEPENDENCIES
   activemerchant
+  annotate (>= 2.5.0)
   authlogic
   bootstrap-sass (~> 2.3.2.0)
   cancan

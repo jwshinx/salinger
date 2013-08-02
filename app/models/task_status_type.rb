@@ -8,3 +8,17 @@ class TaskStatusType < ActiveRecord::Base
 
  scope :pending, where(:name => 'Pending')
 end
+
+# == Schema Information
+#
+# Table name: task_status_types
+#
+#  id          :integer          not null, primary key
+#  name        :string(255)      not null
+#  description :string(255)      not null
+#  created_by  :integer          not null
+#  updated_by  :integer          not null
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#
+

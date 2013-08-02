@@ -4,3 +4,17 @@ class EmailType < ActiveRecord::Base
  has_many :emails
 
 end
+
+# == Schema Information
+#
+# Table name: email_types
+#
+#  id          :integer          not null, primary key
+#  name        :string(255)      not null
+#  description :string(255)
+#  updated_by  :integer          not null
+#  created_by  :integer          not null
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#
+

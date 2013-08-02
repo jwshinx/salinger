@@ -47,3 +47,17 @@ describe OrderStatus do
    end
  end
 end
+
+# == Schema Information
+#
+# Table name: order_statuses
+#
+#  id          :integer          not null, primary key
+#  title       :string(255)
+#  description :text
+#  updated_by  :integer
+#  created_by  :integer
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#
+

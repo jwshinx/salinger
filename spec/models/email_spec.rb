@@ -85,3 +85,17 @@ describe Email do
    end
  end
 end
+
+# == Schema Information
+#
+# Table name: emails
+#
+#  id            :integer          not null, primary key
+#  content       :string(255)      not null
+#  email_type_id :integer          not null
+#  updated_by    :integer
+#  created_by    :integer
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
+#
+

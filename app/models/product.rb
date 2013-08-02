@@ -64,3 +64,19 @@ private
   end
  end 
 end
+
+# == Schema Information
+#
+# Table name: products
+#
+#  id          :integer          not null, primary key
+#  name        :string(255)      not null
+#  description :text             default(""), not null
+#  price       :integer          not null
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#  created_by  :integer          not null
+#  updated_by  :integer          not null
+#  count       :integer          not null
+#
+

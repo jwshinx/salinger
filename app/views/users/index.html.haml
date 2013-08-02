@@ -1,6 +1,6 @@
-#scan_column
+.span2
  = render 'shared/sidebar_menu'
-#content_area
+.span10
  %h1= and_show_count_of @users
  - unless @users.empty? 
   %table{:id => 'users_table', :class => 'tablesorter' }

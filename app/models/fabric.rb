@@ -17,3 +17,16 @@ class Fabric < ActiveRecord::Base
   prices.order('date desc').empty? ? 0 : prices.order('date desc').first.amount
  end
 end
+
+# == Schema Information
+#
+# Table name: fabrics
+#
+#  id         :integer          not null, primary key
+#  name       :string(255)      not null
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  created_by :integer          not null
+#  updated_by :integer          not null
+#
+

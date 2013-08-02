@@ -15,6 +15,7 @@ gem 'activemerchant', :require => 'active_merchant'
 gem "cancan"
 gem "jquery-validation-rails"
 gem 'paper_trail', '~> 2'
+gem 'annotate', ">=2.5.0"
 
 gem 'bootstrap-sass', '~> 2.3.2.0'
                    

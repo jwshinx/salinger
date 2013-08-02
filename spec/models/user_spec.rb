@@ -24,6 +24,35 @@ describe User do
    its(:description) { should == 'superuser!' }
   end
  end
+ describe "normally can retrieve" do           
+   before { @user = User.new }
+   subject { @user }
+   its(:created_products) { should be_instance_of Array }
+   its(:updated_products) { should be_instance_of Array }
+   its(:created_fabrics) { should be_instance_of Array }
+   its(:updated_fabrics) { should be_instance_of Array }
+   its(:created_sewings) { should be_instance_of Array }
+   its(:updated_sewings) { should be_instance_of Array }
+   its(:created_customers) { should be_instance_of Array }
+   its(:updated_customers) { should be_instance_of Array }
+   its(:updated_customers) { should be_instance_of Array }
+   its(:created_emails) { should be_instance_of Array }
+   its(:updated_emails) { should be_instance_of Array }
+   its(:created_email_types) { should be_instance_of Array }
+   its(:updated_email_types) { should be_instance_of Array }
+   its(:created_task_status_types) { should be_instance_of Array }
+   its(:updated_task_status_types) { should be_instance_of Array }
+   its(:created_order_statuses) { should be_instance_of Array }
+   its(:updated_order_statuses) { should be_instance_of Array }
+   its(:created_address_types) { should be_instance_of Array }
+   its(:updated_address_types) { should be_instance_of Array }
+   its(:created_customer_addresses) { should be_instance_of Array }
+   its(:updated_customer_addresses) { should be_instance_of Array }
+   its(:created_fyis) { should be_instance_of Array }
+   its(:updated_fyis) { should be_instance_of Array }
+   its(:created_todos) { should be_instance_of Array }
+   its(:updated_todos) { should be_instance_of Array }
+ end
 
  describe "privilege" do
   subject { my_ability }
@@ -54,3 +83,20 @@ describe User do
   end
  end
 end
+
+# == Schema Information
+#
+# Table name: users
+#
+#  id                :integer          not null, primary key
+#  username          :string(255)      not null
+#  email             :string(255)      not null
+#  active            :boolean          default(TRUE), not null
+#  role_id           :integer          not null
+#  crypted_password  :string(255)      not null
+#  password_salt     :string(255)      not null
+#  persistence_token :string(255)      not null
+#  created_at        :datetime         not null
+#  updated_at        :datetime         not null
+#
+

@@ -63,3 +63,16 @@ describe Fabric do
    end
  end
 end
+
+# == Schema Information
+#
+# Table name: fabrics
+#
+#  id         :integer          not null, primary key
+#  name       :string(255)      not null
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  created_by :integer          not null
+#  updated_by :integer          not null
+#
+

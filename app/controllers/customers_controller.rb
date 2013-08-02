@@ -12,7 +12,8 @@ class CustomersController < ApplicationController
     end
   end
 
-  def show
+  def show    
+    @customer = Customer.includes(:orders, :addresses, :todos, :fyis).find(params[:id])
     @orders = @customer.orders.order('created_at desc').includes(:line_items).all
     @customer_addresses = @customer.addresses.all
     @notes = @customer.todos_and_fyis
@@ -41,16 +42,8 @@ class CustomersController < ApplicationController
   def create
     #@customer = Customer.new(params[:customer])
     set_creator_and_updater @customer, current_user    
-    @customer.fyis.each do |f| 
-     f.creator = current_user 
-     f.updater = current_user 
-    end
-    @customer.todos.each do |t| 
-     t.creator = current_user 
-     t.updater = current_user 
-    end
-
-
+    @customer.fyis.each { |f| set_creator_and_updater f, current_user }   
+    @customer.todos.each { |f| set_creator_and_updater f, current_user }   
     respond_to do |format|
       if @customer.save
         format.html { redirect_to @customer, notice: 'Customer was successfully created.' }

@@ -36,7 +36,6 @@ class UsersController < ApplicationController
   def create
     role_id = Role.find_by_name('admin').id
     params[:user][:role_id] = role_id
-    logger.debug "---> params: #{params.inspect}"
     @user = User.new(params[:user])
 
     respond_to do |format|

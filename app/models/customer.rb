@@ -55,3 +55,18 @@ private
  end
 end
 
+# == Schema Information
+#
+# Table name: customers
+#
+#  id          :integer          not null, primary key
+#  firstname   :string(255)      not null
+#  lastname    :string(255)      not null
+#  email       :string(255)      not null
+#  description :string(255)
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#  created_by  :integer          not null
+#  updated_by  :integer          not null
+#
+

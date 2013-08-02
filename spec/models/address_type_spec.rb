@@ -49,3 +49,17 @@ describe AddressType do
    end
  end
 end
+
+# == Schema Information
+#
+# Table name: address_types
+#
+#  id          :integer          not null, primary key
+#  name        :string(255)      not null
+#  description :string(255)
+#  created_by  :integer          not null
+#  updated_by  :integer          not null
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#
+

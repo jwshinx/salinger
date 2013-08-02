@@ -20,15 +20,22 @@ describe Order do
   @order.updater.username.should == username 
  end
         
- describe "normally" do
+ describe "normally" do  
+  it "can return by-recent-purchase-date" do                                                                
+    Order.by_recent_purchase_date.should == []                          
+  end
   it "returns blurb" do                                                          
    fullname = "#{random_string} #{random_string}"
    @order.stub id: 1
    @order.stub customer: double(fullname: fullname)
    @order.blurb.should == "#{fullname}: Order ##{@order.id}  Amount: $#{@order.purchase_amount/100.0}  Date: #{@order.purchase_date.strftime('%m/%d/%Y')}"
   end
-  it "reduces inventory" do     
-    pending
+  it "reduces inventory" do                   
+    #my_product = double('product', :count => 10, :count= => 8, :save => true)
+    @order = Order.new
+    my_product = double('product', :count => 10)   
+    my_product.should_receive(:update_attribute).with(:count, 8)
+    @order.should_receive(:line_items).and_return([double('invoice_line_item', :quantity => 2, :product => my_product)])
     @order.reduce_inventory.should be_true
   end
  end
@@ -66,3 +73,22 @@ describe Order do
    end
  end
 end
+
+# == Schema Information
+#
+# Table name: orders
+#
+#  id              :integer          not null, primary key
+#  purchase_date   :date             not null
+#  paid_date       :date
+#  customer_id     :integer          not null
+#  purchase_amount :integer          not null
+#  paid_amount     :integer          default(0), not null
+#  updated_by      :integer          not null
+#  created_by      :integer          not null
+#  ispaid          :boolean          default(FALSE), not null
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#  order_status_id :integer          not null
+#
+

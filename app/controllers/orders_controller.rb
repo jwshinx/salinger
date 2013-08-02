@@ -5,7 +5,6 @@ class OrdersController < ApplicationController
   
   def index
     @orders = Order.order('created_at desc').includes(:line_items).all
-    @order_line_items = OrderLineItem.order('created_at desc').includes(:order).all
 
     respond_to do |format|
       format.html # index.html.erb
@@ -39,27 +38,16 @@ class OrdersController < ApplicationController
   end
 
   def create
-    logger.debug "---> OC.create 0"
-    logger.debug "---> OC.create 0.1: #{@order.inspect}"
     #@order = Order.new(params[:order])
-    logger.debug "---> OC.create 0.2: #{@order.line_items.empty?}"
-    logger.debug "---> OC.create 0.3: #{@order.line_items.first.inspect}"
     set_creator_and_updater @order, current_user    
-
-    logger.debug "---> OC.create 0.4: #{@order.inspect}"
-    logger.debug "---> OC.create 1"
     @order.line_items.each do |li|
-     li.creator = current_user 
-     li.updater = current_user 
-     li.price = li.product.price 
-     li.subtotal = li.product.price * li.quantity
+      set_creator_and_updater li, current_user    
+      li.price = li.product.price 
+      li.subtotal = li.product.price * li.quantity
     end
-    logger.debug "---> OC.create 2.1: #{@order.line_items.first.inspect}"
 
     if @order.save
-     #redirect_to customers_orders_url(@order.customer, @order), notice: 'Order was successfully created.' 
      flash[:notice] = 'Order was successfully created.' 
-     #redirect_to customers_orders_url(@order.customer, @order) 
      redirect_to customers_url
     else
      render action: "new_customer_order" 

@@ -11,7 +11,7 @@ class ProductsController < ApplicationController
    redirect_to products_url, notice: 'Payment was successful.' 
   end
   def index
-    #@products = Product.all
+    @products = Product.includes(:sewings, :fabrics, :fyis, :todos).all
 
     respond_to do |format|
       format.html # index.html.erb
@@ -51,13 +51,9 @@ class ProductsController < ApplicationController
   def create
     #@product = Product.new(params[:product])     
     set_creator_and_updater @product, current_user    
-    @product.sewings.each { |s| s.creator = current_user }
-    @product.sewings.each { |s| s.updater = current_user }
-    @product.fyis.each { |f| f.creator = current_user }
-    @product.fyis.each { |f| f.updater = current_user }
-    @product.todos.each { |t| t.creator = current_user }
-    @product.todos.each { |t| t.updater = current_user }
-
+    @product.sewings.each { |s| set_creator_and_updater s, current_user }
+    @product.fyis.each { |f| set_creator_and_updater f, current_user }
+    @product.todos.each { |t| set_creator_and_updater t, current_user }
     @product.price = convert_dollars_to_cents( params[:product][:price] ) 
 
     respond_to do |format|
