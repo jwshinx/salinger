@@ -16,6 +16,7 @@ gem "cancan"
 gem "jquery-validation-rails"
 gem 'paper_trail', '~> 2'
 gem 'annotate', ">=2.5.0"
+gem 'httparty'
 
 gem 'bootstrap-sass', '~> 2.3.2.0'
                    

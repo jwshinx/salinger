@@ -1,7 +1,7 @@
 require 'spec_helper'
 require 'cancan/matchers'
 
-describe Address do
+describe Address do                            
  describe "normally" do
   before do
    #@address = Address.new( { created_by: 1, updated_by: 1 } )

@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
  # authlogic adds basic validation on username and email eg
  acts_as_authentic                                                                                                                               
  validates :username, :email, uniqueness: true     
- validates :username, :email, :role_id, presence: true
+ validates :username, :email, :role_id, :password, presence: true
  attr_accessible :active, :crypted_password, :email, :password_salt, :persistence_token, :role_id, :username, :password, :password_confirmation
  belongs_to :role               
                              
