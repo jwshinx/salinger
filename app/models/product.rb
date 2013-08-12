@@ -1,22 +1,16 @@
 class Product < ActiveRecord::Base
  include MyValidators
- include Moneyable
+ include Moneyable 
+ include NoteConcerns
            
  has_paper_trail
-
+ has_string_array_of_notes
+ 
  validates :name, :presence => true, :length => { :minimum => 1 }
  validates :count, :presence => true, :length => { :minimum => 1 }
  validates :count, :numericality => { :only_integer => true }
  validates :description, :presence => true, :length => { :minimum => 1 }
- #validates :price, :numericality => { :greater_than => 0 }, :format => { :with => /^(\d{1,3}(\,\d{3})*|(\d+))(\.\d{2})?$/ }
- #validates :price, :numericality => true, :format => { :with => /^(\d{1,3}(\,\d{3})*|(\d+))(\.\d{2})?$/ }
  validates :price, :numericality => { :greater_than => 0 }, :format => { :with => /^(\d{1,3}(\,\d{3})*|(\d+))(\.\d{2})?$/ }
- #validates :price, :format => { :with => /^(\d{1,3}(\,\d{3})*|(\d+))(\.\d{2})?$/ }
-
- #validates :price, :format => { :with => /^(\d{1,3}(\,\d{3})*|(\d+))(\.\d{2})?$/,
- #   :message => "must be in dollars and cents" }
- #validates_with MyValidators::PriceDollarAmount
- #has_many :sewings, :dependent => :destroy, :inverse_of => :product
  has_many :sewings, :dependent => :destroy
  has_many :fabrics, :through => :sewings, :uniq => true
  accepts_nested_attributes_for :sewings, :allow_destroy => true, :reject_if => lambda { |a| a[:fabric_id].blank? }
@@ -32,14 +26,6 @@ class Product < ActiveRecord::Base
              
  def to_s
   "#{name} - #{description}: $#{cents_to_dollars(price)}, Count: #{count}"
- end
- def string_array_of_todos
-  return [] if todos.empty?
-  todos.map{|f| f.content }
- end
- def string_array_of_fyis
-  return [] if fyis.empty?
-  fyis.map{|f| f.content }
  end
 
  alias_method :blurb, :to_s

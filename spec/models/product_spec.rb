@@ -19,7 +19,13 @@ describe Product do
   specify { subject.should be_valid } 
   its(:description) { should == @description }
   its(:count) { should == @count.to_i }
-  its(:price) { should == @price.to_i }   
+  its(:price) { should == @price.to_i }
+  it "returns array of fyis" do
+    @product.string_array_of_fyis.should be_instance_of Array
+  end 
+  it "returns array of todos" do
+    @product.string_array_of_todos.should be_instance_of Array
+  end  
   it "returns creator and updater" do
    username = "#{random_string}"
    @product.creator = mock_model(User, id: 1, username: username)
