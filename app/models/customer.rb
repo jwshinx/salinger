@@ -1,7 +1,4 @@
 require 'starburstroma'
-#require 'creator'  
-#require File.expand_path("../concerns", __FILE__)
-#Dir[Rails.root.join("app/models/concerns/*.rb")].each {|f| require f} 
                          
 class Customer < ActiveRecord::Base
  include Starburstroma  

@@ -10,7 +10,6 @@ class Order < ActiveRecord::Base
  has_many :fyis, :as => :notable, :dependent => :destroy
  belongs_to :status, :class_name => 'OrderStatus', :foreign_key => 'order_status_id'
  belongs_to :customer
- #validates :purchase_date, :presence => true, :length => { :minimum => 1 }
  validates :purchase_date, :presence => true
  accepts_nested_attributes_for :line_items, :reject_if => lambda { |a| a[:product_id].blank? }, :allow_destroy => true
  accepts_nested_attributes_for :fyis, :reject_if => lambda { |a| a[:content].blank? }, :allow_destroy => true

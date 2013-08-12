@@ -1,8 +1,6 @@
 class Email < ActiveRecord::Base
  include UserConcerns
  attr_accessible :content, :created_by, :email_type_id, :updated_by
- #belongs_to :creator, :class_name => "User", :foreign_key => "created_by"
- #belongs_to :updater, :class_name => "User", :foreign_key => "updated_by"
  belongs_to :email_type
 
  validate :email_must_look_like_email_address
