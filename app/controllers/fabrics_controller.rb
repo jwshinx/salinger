@@ -38,17 +38,11 @@ class FabricsController < ApplicationController
   end
 
   def create
-    #@fabric = Fabric.new(params[:fabric])
-    set_creator_and_updater @fabric, current_user    
-    @fabric.prices.each do |p| 
-     set_creator_and_updater p, current_user    
-     p.amount = convert_dollars_to_cents( params[:fabric][:prices_attributes]['0'][:amount] )
-     p.date = Date.strptime(params[:fabric][:prices_attributes]['0'][:date], '%m/%d/%Y') 
-    end
-    #@fabric.prices = convert_dollars_to_cents( params[:product][:price] )
+    @fh = FabricHandler.new @fabric, current_user, params[:fabric][:prices_attributes]['0'][:amount], params[:fabric][:prices_attributes]['0'][:date]
 
     respond_to do |format|
-      if @fabric.save
+      #if @fabric.save
+      if @fh.save
         format.html { redirect_to @fabric, notice: 'Fabric was successfully created.' }
         format.json { render json: @fabric, status: :created, location: @fabric }
       else

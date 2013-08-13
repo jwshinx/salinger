@@ -1,4 +1,5 @@
-class Fabric < ActiveRecord::Base
+class Fabric < ActiveRecord::Base     
+ include UserConcerns
  validates :name, :presence => true, :length => { :minimum => 1 }
  validates_uniqueness_of :name
  has_many :sewings
