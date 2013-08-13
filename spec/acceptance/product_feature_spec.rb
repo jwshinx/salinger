@@ -42,7 +42,8 @@ feature 'Product feature', %q{
     fill_in "price", :with => "44.44"        
     select 'Black', :from => 'product[sewings_attributes][0][fabric_id]'
     click_button "Save"
-    should_be_on "/products/#{Product.find_by_name('Gap').id}"
+    #should_be_on "/products/#{Product.find_by_name('Gap').id}"  
+    should_be_on "/products"
     page.should have_content("Gap")
     page.should have_content("just white")
     page.should have_content("5")
@@ -58,7 +59,7 @@ feature 'Product feature', %q{
     fill_in "description", :with => "Gaa"
     fill_in "count", :with => "11"  
     select 'Red', :from => 'product[sewings_attributes][0][fabric_id]' 
-    click_button "Save"
+    click_button "Save"                         
     should_be_on "/products/#{Product.first.id}"
     page.should have_content("Jimmyz Surf")
     page.should have_content("11")

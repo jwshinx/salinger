@@ -42,22 +42,13 @@ class ProductsController < ApplicationController
   end
 
   def edit
-    #@product = Product.find(params[:id])
-    #3.times { @product.sewings.build }
     (3-@product.sewings.length).times { @product.sewings.build }
-    
   end
 
   def create
-    #@product = Product.new(params[:product])     
-    set_creator_and_updater @product, current_user    
-    @product.sewings.each { |s| set_creator_and_updater s, current_user }
-    @product.fyis.each { |f| set_creator_and_updater f, current_user }
-    @product.todos.each { |t| set_creator_and_updater t, current_user }
-    @product.price = convert_dollars_to_cents( params[:product][:price] ) 
-
+    @pb = ProductBuilder.new params[:product], current_user
     respond_to do |format|
-      if @product.save
+      if @pb.save
         format.html { redirect_to @product, notice: 'Product was successfully created.' }
         format.json { render json: @product, status: :created, location: @product }
       else
